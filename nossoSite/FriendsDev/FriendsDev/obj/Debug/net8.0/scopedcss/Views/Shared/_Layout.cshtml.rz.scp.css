@@ -48,7 +48,7 @@ button.accept-policy[b-krlq0ylwlp] {
     width: 8%;
 }
 
-.navbar-nav[b-krlq0ylwlp]{
+.nav-item[b-krlq0ylwlp]{
     display: flex;
     justify-content: space-around;
     text-align: right;
@@ -60,5 +60,13 @@ button.accept-policy[b-krlq0ylwlp] {
     width: 100%;
     white-space: nowrap;
     line-height: 60px;
+    text-align: center;
 }
 
+@media (max-width:768px){
+    .navbar[b-krlq0ylwlp] {
+        display: flex;
+        justify-content: space-around;
+
+    }
+}
