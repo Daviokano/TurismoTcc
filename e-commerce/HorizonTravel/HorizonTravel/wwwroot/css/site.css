@@ -1,5 +1,23 @@
-html {
-  font-size: 14px;
+
+* {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1;
 }
 
 @media (min-width: 768px) {
@@ -8,15 +26,68 @@ html {
   }
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.nav-link:hover {
+    color: #8B0000;
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+.navbar-brand .texto1{
+    color: #1E3A8A;
 }
 
-body {
-  margin-bottom: 60px;
+.navbar-brand .texto2{
+    color:#F97316 ;
+    font-weight: 300;
 }
+
+.navbar-nav .btn {
+    width: 120px;
+    font-weight: 600;
+    font-size: medium;
+}
+
+.bi-cart3{
+    color: #000;
+    cursor: pointer;
+}
+
+.bi-cart3:hover{
+    color: darkgray;
+}
+
+.btn-login {
+    background-color: #F97316;
+    color: white;
+    border: none;
+}
+
+.btn-login:hover {
+    background-color: #FFA500;
+    color: white;
+}
+
+.footer {
+    background-color: #1E3A8A;
+    color: #fff;
+}
+
+.footer .card-title{
+    font-size: 15px;
+}
+
+.footer .card-text{
+    line-height: 2;
+    font-size: 8px;
+}
+
+.footer .card-copy{
+    align-items: center;
+}
+
+.icon {
+    cursor: pointer;
+}
+
+.icon:hover {
+    color: #808080;
+}
+
