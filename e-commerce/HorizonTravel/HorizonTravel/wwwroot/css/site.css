@@ -3,7 +3,6 @@
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    box-sizing: border-box;
 }
 
 html, body {
@@ -16,18 +15,36 @@ body {
     flex-direction: column;
 }
 
-main {
-    flex: 1;
-}
-
 @media (min-width: 768px) {
   html {
     font-size: 16px;
   }
 }
 
+.nav-link {
+    position: relative;
+    color: #000;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 0;
+    height: 2px;
+    background-color: #ff8c00; /* Laranja */
+    transition: width 0.3s ease;
+}
+
 .nav-link:hover {
-    color: #8B0000;
+    color: #ff8c00; /* Laranja */
+}
+
+.nav-link:hover::after {
+    width: 100%;
 }
 
 .navbar-brand .texto1{
@@ -79,15 +96,17 @@ main {
     font-size: 8px;
 }
 
-.footer .card-copy{
-    align-items: center;
+.icon i {
+    color: #fff;
+    transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.icon {
-    cursor: pointer;
+.icon:hover i {
+    color: #6495ED;
+    transform: scale(1.2);
 }
 
-.icon:hover {
-    color: #808080;
-}
+
+
+
 

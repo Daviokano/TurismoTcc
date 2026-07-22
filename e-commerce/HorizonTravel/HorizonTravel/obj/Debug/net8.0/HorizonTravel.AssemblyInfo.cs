@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HorizonTravel")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e6746c54f1347f7317f1f43b4644a9265f75213b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5b1022069ed525047786452c6b7c8f77f8991cf5")]
 [assembly: System.Reflection.AssemblyProductAttribute("HorizonTravel")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HorizonTravel")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
