@@ -3,16 +3,16 @@
   "WorkspaceRootPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
       "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -27,12 +27,26 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAACUAAAAAAAAAAAAAAEQAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-07-24T15:53:25.571Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
               "Title": "site.css",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\wwwroot\\css\\site.css",
               "RelativeDocumentMoniker": "HorizonTravel\\wwwroot\\css\\site.css",
               "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\wwwroot\\css\\site.css",
               "RelativeToolTip": "HorizonTravel\\wwwroot\\css\\site.css",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAbAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
               "WhenOpened": "2026-07-21T16:49:50.744Z",
               "IsPinned": true,
@@ -48,28 +62,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "HorizonTravel\\Views\\Home\\Index.cshtml",
               "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Home\\Index.cshtml",
               "RelativeToolTip": "HorizonTravel\\Views\\Home\\Index.cshtml",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAASAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2026-07-21T20:52:14.227Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "_Layout.cshtml",
-              "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Shared\\_Layout.cshtml",
-              "RelativeDocumentMoniker": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
-              "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Shared\\_Layout.cshtml",
-              "RelativeToolTip": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AgIAAC4AAAAAAAAAAAAAABQAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-07-21T16:49:18.79Z",
               "EditorCaption": ""
             }
           ]

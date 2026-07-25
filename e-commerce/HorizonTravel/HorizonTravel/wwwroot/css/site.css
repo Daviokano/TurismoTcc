@@ -1,7 +1,6 @@
 
 * {
     font-family: "Poppins", sans-serif;
-    font-weight: 600;
     font-style: normal;
 }
 
@@ -9,15 +8,18 @@ html, body {
     height: 100%;
 }
 
-body {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
+main {
+    flex: 1;
 }
 
 @media (min-width: 768px) {
   html {
     font-size: 16px;
+  }
+
+  .navbar-collapse .nav-item{
+      align-items: center;
+      margin-bottom: 5px;
   }
 }
 
@@ -35,12 +37,12 @@ body {
     bottom: -5px;
     width: 0;
     height: 2px;
-    background-color: #ff8c00; /* Laranja */
+    background-color: #ff8c00;
     transition: width 0.3s ease;
 }
 
 .nav-link:hover {
-    color: #ff8c00; /* Laranja */
+    color: #ff8c00; 
 }
 
 .nav-link:hover::after {
@@ -82,31 +84,393 @@ body {
     color: white;
 }
 
+.banner {
+    width: 100%;
+    min-height: 650px;
+}
+
+.banner img {
+    width: 100%;
+    height: 640px;
+}
+
+.banner-conteudo {
+    position: absolute;
+    top: 300px;
+    left: 6%;
+    color: white;
+    max-width: 600px;
+}
+
+.banner-conteudo .titulo-banner {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 600;
+}
+
+.banner-conteudo .texto-banner {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
+
+.banner-conteudo .btn {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+}
+
+.banner-conteudo .btn:hover {
+    background-color: rgb(0, 103, 206);
+    color: white;
+    border: none;
+}
+
+.banner-busca {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+    padding: 0.6rem;
+    margin-top: -2.5rem;
+    position: relative;
+}
+
+.banner-busca .campo-busca {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+}
+
+.banner-busca .campo-busca .form-control {
+    border: none;
+    box-shadow: none;
+}
+
+.banner-busca .btn{
+    width: 100%;
+    font-weight: 600;
+}
+
+
+.text .titulo {
+    margin-bottom: 20px;
+    margin-top: 40px;
+    font-weight: 700;
+}
+
+.text .texto {
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.card-destino {
+    position: relative;
+    border: none;
+    border-radius: 14px;
+    overflow: hidden;
+    height: 440px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+}
+
+.card-destino .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
+
+.card-destino .card-img-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0) 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.titulo-card {
+    color: #fff;
+    font-weight: 300;
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+}
+
+.texto-card {
+    color: #fff;
+    font-weight: 300;
+    font-size: 0.85rem;
+    margin-bottom: 0;
+}
+
+.btn-card {
+    position: absolute;
+    bottom: 1rem;
+    right: 1rem;
+    background-color: #fff;
+    color: #ff8c00;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+}
+
+.btn-card:hover {
+    background-color: #ff8c00;
+    color: #fff;
+}
+
+.procurados {
+    padding: 2rem 0 3.5rem;
+}
+
+.titulo-procurados {
+    font-weight: 600;
+    color: #000;
+}
+
+.procurado-item {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+    padding: 1.6rem;
+    display: flex;
+    align-items: center;
+    gap: 1.2rem;
+}
+
+.procurado-item .procurado-img {
+    width: 64px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.procurado-item .procurado-numero {
+    font-weight: 600;
+    color: #000;
+    margin-right: 0.35rem;
+}
+
+.procurado-item .procurado-nome {
+    font-weight: 600;
+    color: #000;
+}
+
+.estrelas {
+    color: #ffce00;
+    font-size: 0.85rem;
+    display: flex;
+    gap: 5px;
+}
+
+.viaje-card {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    min-height: 300px;
+    height: 100%;
+}
+
+.viaje-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.viaje-card .viaje-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
+
+.viaje-card .viaje-titulo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
+
+.viaje-card .viaje-texto {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 380px;
+}
+
+
+.beneficios {
+    padding: 3.5rem 0;
+    background-color: #fff;
+    margin-bottom: 4rem;
+}
+
+.titulo-beneficios {
+    font-weight: 700;
+    color: #000;
+    font-size: 2.4rem;
+}
+
+.beneficio {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    width: 80%;
+    height: 120%;
+}
+
+.beneficio .beneficio-icone {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
+
+.icone-azul {
+    background-color: #d5e6f7;
+    color: #2f80ed;
+}
+
+.icone-amarelo {
+    background-color: #fdb913;
+    color: #fff;
+}
+
+.icone-amarelo-claro {
+    background-color: #fdeccb;
+    color: #ffce00;
+}
+
+.icone-verde {
+    background-color: #d4efdd;
+    color: #27ae60;
+}
+
+.titulo-beneficio {
+    color: #1E3A8A;
+    font-weight: 700;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.texto-beneficio {
+    color: #48484e;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+}
+
+
+.depoimentos {
+    background-color: #ff8c00;
+    border-radius: 12px;
+    padding: 3rem 1.5rem;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 4rem;
+}
+
+.titulo-depoimentos {
+    color: #fff;
+    font-weight: 700;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.texto-depoimentos {
+    color: #000;
+    font-weight: 300;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.depoimento-card {
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    padding: 1.25rem;
+    height: 100%;
+}
+
+.depoimento-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-weight: 700;
+}
+
+.titulo-depoimento {
+    font-weight: 500;
+    color: #000;
+    font-size: 1rem;
+    margin-bottom: 0;
+}
+
+.texto-depoimentos{
+    color: #fff;
+}
+
+.local-depoimento {
+    color: #9ca3af;
+    font-size: 0.8rem;
+}
+
+.texto-depoimento {
+    color: #000;
+    font-size: 0.9rem;
+}
+
+.data-depoimento {
+    color: #9ca3af;
+    font-size: 0.8rem;
+}
+
+.carrossel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 1.75rem;
+}
+
+.carrossel-dots .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+.carrossel-dots .dot.ativo {
+    background-color: #fff;
+}
+
 .footer {
     background-color: #1E3A8A;
     color: #fff;
 }
 
-.footer .card-title{
+.footer .card-title {
     font-size: 15px;
 }
 
-.footer .card-text{
+.footer .card-text {
     line-height: 2;
     font-size: 8px;
 }
 
-.icon i {
+.footer .icon i {
     color: #fff;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
-.icon:hover i {
+.footer .icon:hover i {
     color: #6495ED;
     transform: scale(1.2);
 }
-
-
-
-
-

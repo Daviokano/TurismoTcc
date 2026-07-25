@@ -2,11 +2,292 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
+
+<div class="container-fluid p-0">
+    <div class="banner">
+        <img src="~/lib/img banner.jpg" alt="banner" asp-append-version="true">
+
+        <div class="banner-conteudo">
+            <h2 class="titulo-banner">VISITE DESTINOS INCRÍVEIS</h2>
+            <p class="texto-banner">Descubra lugares paradisíacos e viva experiências únicas<br /> ao redor do mundo.</p>
+            <button type="button" id="btn-banner" class="btn btn-primary"> Explorar Destinos</button>
+        </div>
+
+    </div>
+</div>
+
+<div class="container">
+    <div class="banner-busca">
+        <form class="row g-2 align-items-center">
+            <div class="col-12 col-md">
+                <div class="campo-busca d-flex align-items-center px-2">
+                    <i class="bi bi-geo-alt text-secondary me-1"></i>
+                    <input type="text" class="form-control" placeholder="Origem" aria-label="Origem" />
+                </div>
+            </div>
+            <div class="col-12 col-md">
+                <div class="campo-busca d-flex align-items-center px-2">
+                    <i class="bi bi-geo-alt text-secondary me-1"></i>
+                    <input type="text" class="form-control" placeholder="Destino" aria-label="Destino" />
+                </div>
+            </div>
+            <!--mudar pra input de data-->
+            <div class="col-12 col-md">
+                <div class="campo-busca d-flex align-items-center px-2">
+                    <i class="bi bi-calendar-event text-secondary me-1"></i>
+                    <input type="text" class="form-control" placeholder="Data" aria-label="Data" />
+                </div>
+            </div>
+            <div class="col-12 col-md">
+                <div class="campo-busca d-flex align-items-center px-2">
+                    <i class="bi bi-people text-secondary me-1"></i>
+                    <input type="number" class="form-control" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
+                </div>
+            </div>
+            <div class="col-12 col-md-auto">
+                <button type="submit" class="btn btn-login">Buscar</button>
+            </div>
+        </form>
+    </div>
+</div>
 
 
+<div class="container">
+    <div class="text">
+        <h4 class="titulo"> Destinos em destaque</h4>
+        <p class="texto">Lugares incríveis esperando por você<br />Escolha se próximo destino e viva experiências únicas.</p>
+    </div>
+</div>
 
-    <img src="/lib/img banner.jpg" alt="Logo" width="100%" class="d-inline-block align-text-center">
+<div class="container py-5">
+    <div class="row g-4 mt-1">
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/lib/card paris.jpg" asp-append-version="true" class="card-img" alt="img" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Paris, França</h3>
+                    <p class="texto-card">Cidade, Luz e Romance</p>
+                </div>
+                <a href="#" class="btn-card" aria-label="Ver Paris"><i class="bi bi-arrow-right"></i></a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/lib/card paris.jpg" asp-append-version="true" class="card-img" alt="img" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Orlando, EUA</h3>
+                    <p class="texto-card">Parque da Disney</p>
+                </div>
+                <a href="#" class="btn-card" aria-label="Ver Orlando"><i class="bi bi-arrow-right"></i></a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/lib/card paris.jpg" asp-append-version="true" class="card-img" alt="img" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Copacabana, Brasil</h3>
+                    <p class="texto-card">Praias incríveis</p>
+                </div>
+                <a href="#" class="btn-card" aria-label="Ver Copacabana"><i class="bi bi-arrow-right"></i></a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/lib/card paris.jpg" asp-append-version="true" class="card-img" alt="img" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Pisa, Itália</h3>
+                    <p class="texto-card">Cidade da famosa torre</p>
+                </div>
+                <a href="#" class="btn-card" aria-label="Ver Pisa"><i class="bi bi-arrow-right"></i></a>
+            </article>
+        </div>
+    </div>
+    </div>
+</div>
+
+<section class="procurados">
+    <div class="container">
+        <h4 class="titulo-procurados mb-4">Mais procurados</h4>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-5">
+                <div class="d-flex flex-column gap-3">
+                    <div class="procurado-item">
+                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">1</span> França</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">2</span> Estados Unidos</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">3</span> Brasil</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">4</span> Japão</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            
+            <div class="col-12 col-lg-7">
+                <div class="viaje-card">
+                    <!--trocar imagem dps-->
+                    <img src="~/lib/img banner.jpg" asp-append-version="true" alt="Praia paradisíaca" />
+                    <div class="viaje-overlay">
+                        <h3 class="viaje-titulo">Viaje e aproveite suas férias</h3>
+                        <p class="viaje-texto">Explore paisagens incríveis, culturas diferentes e viva momentos inesquecíveis</p>
+                        <a href="#" class="btn btn-login"><i class="bi bi-play-fill"></i> Assistir vídeo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<section class="beneficios" id="beneficios">
+    <div class="container text-center">
+        <h2 class="titulo-beneficios">Nossos Diferenciais</h2>
+        <p class="texto mx-auto" style="max-width: 520px;">Proteção total em suas viagens! Conte com a Horizon Travel para uma experiência tranquila, segura e inesquecível.</p>
+
+        <div class="row g-4 mt-2 justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-azul"><i class="bi bi-shield-check"></i></span>
+                    <h3 class="titulo-beneficio">Segurança</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-amarelo"><i class="bi bi-currency-dollar"></i></span>
+                    <h3 class="titulo-beneficio">Melhor preço</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-amarelo-claro"><i class="bi bi-lightning-charge-fill"></i></span>
+                    <h3 class="titulo-beneficio">Rapidez</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-verde"><i class="bi bi-globe-americas"></i></span>
+                    <h3 class="titulo-beneficio">Cobertura global</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 
+<section class="container" id="depoimentos">
+    <div class="depoimentos">
 
+        <h2 class="titulo-depoimentos">O que nossos clientes dizem?</h2>
+        <p class="texto-depoimentos">Veja como tornamos viagens inesquecíveis para pessoas como você</p>
 
+        <div class="row g-4 justify-content-center">
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="depoimento-card">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="depoimento-avatar" style="background-color:#b03a5b;">M</span>
+                        <div>
+                            <p class="titulo-depoimento">Mariana Santos</p>
+                            <span class="local-depoimento">São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="estrelas">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </span>
+                        <span class="data-depoimento">22/06/26</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="depoimento-card">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="depoimento-avatar" style="background-color:#c2185b;">K</span>
+                        <div>
+                            <p class="titulo-depoimento">Kauã Edson</p>
+                            <span class="local-depoimento">São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="estrelas">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </span>
+                        <span class="data-depoimento">22/06/26</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="depoimento-card">
+                    <div class="d-flex align-items-center gap-2 mb-2">
+                        <span class="depoimento-avatar" style="background-color:#9aa61e;">V</span>
+                        <div>
+                            <p class="titulo-depoimento">Victor Couto</p>
+                            <span class="local-depoimento">São Paulo, SP</span>
+                        </div>
+                    </div>
+                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                        <span class="estrelas">
+                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                        </span>
+                        <span class="data-depoimento">22/06/26</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="carrossel-dots">
+            <span class="dot ativo"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+        </div>
+    </div>
+</section>
