@@ -1,0 +1,619 @@
+:root {
+    --blue: #0758ff;
+    --navy: #001950;
+    --bg: #e9e9eb;
+    --ink: #090909;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    background: #000;
+    font-family: Montserrat, Arial, sans-serif;
+    color: var(--ink);
+}
+
+.page-shell {
+    width: min(100% - 58px, 850px);
+    margin: 43px auto 0;
+    background: var(--bg);
+    overflow: hidden;
+}
+
+.cabecalho-site {
+    height: 60px;
+    margin: 0 51px;
+    border-bottom: 1px solid #8594aa;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.marca {
+    width: 106px;
+    height: 51px;
+    border: 2px solid #1594ff;
+    display: grid;
+    place-items: center;
+}
+
+.marca img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+nav {
+    display: flex;
+    gap: 26px;
+    font-size: 11px;
+    font-weight: 700;
+}
+
+nav a {
+    text-decoration: none;
+    color: var(--ink);
+}
+
+nav .active {
+    color: var(--blue);
+}
+
+.banner {
+    min-height: 329px;
+    padding: 58px 56px 37px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.texto-banner h1 {
+    font-size: 25px;
+    line-height: 1.22;
+    margin: 0 0 63px;
+    font-weight: 800;
+}
+
+.texto-banner h1 span {
+    color: var(--blue);
+}
+
+.botao-principal {
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 8px 11px;
+    border-radius: 5px;
+}
+
+.prova-social {
+    display: flex;
+    align-items: center;
+    margin-top: 25px;
+}
+
+.avatares {
+    display: flex;
+}
+
+.avatares img {
+    background: #fff;
+    border-radius: 50%;
+    width: 22px;
+    height: 22px;
+    object-fit: cover;
+    margin-right: -3px;
+    border: 2px solid var(--bg);
+}
+
+.prova-social p {
+    font-size: 10px;
+    color: #25447c;
+    margin: 0 0 0 8px;
+    line-height: 1.2;
+}
+
+.prova-social small {
+    font-size: 9px;
+    color: #111;
+}
+
+.imagem-banner {
+    height: 220px;
+    width: 360px;
+    position: relative;
+}
+
+.imagem-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.blue-band {
+    height: 65px;
+    background: var(--navy);
+}
+
+.sobre {
+    padding: 57px 56px 70px;
+}
+
+.introducao h2,
+.equipe h2 {
+    font-size: 20px;
+    margin: 0 0 24px;
+    font-weight: 800;
+}
+
+.introducao p {
+    font-size: 15px;
+    line-height: 1.27;
+    max-width: 650px;
+    margin: 0 0 36px;
+}
+
+.botao-contorno {
+    display: inline-block;
+    border: 1px solid var(--blue);
+    border-radius: 4px;
+    padding: 7px 19px;
+    color: #111;
+    text-decoration: none;
+    font-size: 12px;
+    background: #fff;
+}
+
+.valores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 63px;
+    margin-top: 70px;
+}
+
+.cartao-valor {
+    background: #fff;
+    min-height: 229px;
+    padding: 18px 14px 15px;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px #999;
+}
+
+.icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e4e4e4;
+    color: var(--blue);
+    font-size: 31px;
+    display: grid;
+    place-items: center;
+    margin: -10px 0 22px;
+}
+
+.cartao-valor h3 {
+    font-size: 17px;
+    margin: 0 0 13px;
+}
+
+.cartao-valor p {
+    font-size: 13px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.equipe {
+    padding: 34px 0 89px;
+}
+
+.equipe h2 {
+    text-align: center;
+    color: var(--navy);
+    margin-bottom: 44px;
+}
+
+.linha-equipe {
+    display: flex;
+    align-items: flex-start;
+    gap: 46px;
+    width: max-content;
+    transform: translateX(-14px);
+}
+
+.membro {
+    width: 162px;
+    flex: 0 0 162px;
+    text-align: center;
+}
+
+.foto-membro {
+    height: 196px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 1px 2px 2px #999;
+    overflow: hidden;
+}
+
+.foto-membro img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.membro h3 {
+    font-size: 12px;
+    margin: 13px 0 2px;
+    white-space: nowrap;
+}
+
+.membro p {
+    font-size: 11px;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.seta {
+    border: 0;
+    background: transparent;
+    font-size: 31px;
+    font-weight: 800;
+    height: 196px;
+    cursor: pointer;
+}
+
+.secao-mascote {
+    padding: 66px 46px 66px;
+}
+
+.linha-secao {
+    height: 1px;
+    background: #8290a5;
+    margin-bottom: 44px;
+}
+
+.secao-mascote > h2 {
+    text-align: center;
+    color: var(--navy);
+    font-size: 21px;
+    margin: 0 0 36px;
+}
+
+.introducao-mascote {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 38px;
+    align-items: center;
+    margin-bottom: 84px;
+}
+
+.imagem-mascote {
+    height: 318px;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.imagem-mascote img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.introducao-mascote h3 {
+    color: var(--blue);
+    font-size: 25px;
+    line-height: 1.2;
+    margin: 0 0 14px;
+}
+
+.introducao-mascote p {
+    font-size: 15px;
+    line-height: 1.28;
+    margin: 0;
+    text-align: justify;
+}
+
+.titulo-avaliacoes {
+    text-align: left !important;
+    color: #090909 !important;
+    margin: 42px 0 16px !important;
+}
+
+.topo-avaliacoes {
+    display: grid;
+    grid-template-columns: 342px 1fr;
+    gap: 38px;
+    align-items: center;
+}
+
+.caixa-nota {
+    height: 117px;
+    background: #edfbff;
+    border-radius: 5px;
+    color: var(--blue);
+    text-align: center;
+    padding: 26px;
+}
+
+.caixa-nota strong {
+    font-size: 21px;
+    display: block;
+}
+
+.caixa-nota div {
+    font-size: 23px;
+    letter-spacing: 4px;
+}
+
+.caixa-nota small {
+    font-size: 12px;
+}
+
+.barras-notas {
+    font-size: 11px;
+    line-height: 26px;
+}
+
+.barras-notas i {
+    display: inline-block;
+    width: 303px;
+    height: 4px;
+    background: #111;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
+.barras-notas b {
+    display: block;
+    height: 100%;
+    background: var(--blue);
+}
+
+.lista-avaliacoes {
+    margin-top: 34px;
+    width: 45%;
+}
+
+.lista-avaliacoes article {
+    display: flex;
+    gap: 13px;
+    margin-bottom: 43px;
+    font-size: 10px;
+}
+
+.lista-avaliacoes img {
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: cover;
+}
+
+.lista-avaliacoes strong,
+.lista-avaliacoes small {
+    display: block;
+}
+
+.lista-avaliacoes p {
+    margin: 6px 0 0;
+}
+
+.lista-avaliacoes span {
+    color: var(--blue);
+    font-size: 14px;
+}
+
+.mais-avaliacoes {
+    display: block;
+    text-align: right;
+    color: var(--blue);
+    font-size: 10px;
+}
+
+.faixa-contato {
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px #999;
+    min-height: 75px;
+    margin: 48px 0 0;
+    padding: 14px 20px;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.pessoas-faixa {
+    display: flex;
+}
+
+.pessoas-faixa img {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -3px;
+}
+
+.faixa-contato strong {
+    font-size: 14px;
+}
+
+.faixa-contato p {
+    font-size: 9px;
+    max-width: 320px;
+}
+
+.faixa-contato .botao-principal {
+    margin-left: auto;
+    background: var(--blue);
+    font-size: 11px;
+    padding: 7px 17px;
+}
+
+footer {
+    min-height: 190px;
+    background: linear-gradient(#202020, #061e68);
+    color: #fff;
+    padding: 35px 34px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    gap: 35px;
+    font-size: 10px;
+}
+
+footer img {
+    width: 105px;
+    height: 70px;
+    object-fit: contain;
+}
+
+footer p {
+    font-size: 9px;
+    line-height: 1.4;
+}
+
+@media (max-width: 700px) {
+    .page-shell {
+        width: calc(100% - 28px);
+        margin-top: 20px;
+    }
+
+    .cabecalho-site {
+        margin: 0 24px;
+        height: auto;
+        padding: 10px 0;
+        gap: 12px;
+    }
+
+    .marca {
+        width: 90px;
+        height: 45px;
+    }
+
+    nav {
+        gap: 10px;
+        font-size: 9px;
+    }
+
+    .banner {
+        padding: 42px 30px 35px;
+        display: block;
+    }
+
+    .texto-banner h1 {
+        font-size: 23px;
+        margin-bottom: 40px;
+    }
+
+    .imagem-banner {
+        width: 100%;
+        margin-top: 35px;
+        transform: scale(0.86);
+        transform-origin: left top;
+    }
+
+    .sobre {
+        padding: 45px 30px;
+    }
+
+    .introducao p {
+        font-size: 14px;
+    }
+
+    .valores {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        margin-top: 48px;
+    }
+
+    .equipe {
+        overflow: hidden;
+    }
+
+    .linha-equipe {
+        gap: 20px;
+    }
+
+    .membro {
+        width: 150px;
+        flex-basis: 150px;
+    }
+
+    .blue-band {
+        height: 52px;
+    }
+
+    .secao-mascote {
+        padding: 45px 24px;
+    }
+
+    .introducao-mascote {
+        grid-template-columns: 1fr;
+        gap: 25px;
+        margin-bottom: 55px;
+    }
+
+    .imagem-mascote {
+        height: 260px;
+    }
+
+    .introducao-mascote h3 {
+        font-size: 22px;
+    }
+
+    .topo-avaliacoes {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+
+    .barras-notas i {
+        width: calc(100% - 55px);
+    }
+
+    .lista-avaliacoes {
+        width: 100%;
+    }
+
+    .faixa-contato {
+        gap: 10px;
+        flex-wrap: wrap;
+    }
+
+    .faixa-contato p {
+        max-width: 230px;
+    }
+
+    footer {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+.icon {
+    font-size: 0;
+    color: transparent;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+}
+
+.cartao-valor:nth-child(1) .icon {
+    background-image: url('../img/missao.png');
+}
+
+.cartao-valor:nth-child(2) .icon {
+    background-image: url('../img/valores.png');
+}
+
+.cartao-valor:nth-child(3) .icon {
+    background-image: url('../img/visao.png');
+}
