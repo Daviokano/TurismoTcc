@@ -12,13 +12,13 @@ html {
 }
 body {
   margin:0;
-  background:#000;
+  background:var(--bg);
   font-family:Montserrat,Arial,sans-serif;
   color:var(--ink)
 }
 .page-shell {
-  width:min(100% - 58px,850px);
-  margin:43px auto 0;
+  width:100%;
+  margin:0 auto;
   background:var(--bg);
   overflow:hidden
 }
@@ -33,23 +33,11 @@ body {
 .marca {
   width:64px;
   height:48px;
-  color:var(--blue);
   text-decoration:none;
   display:grid;
   place-items:center;
-  text-align:center;
-  font-size:10px;
-  font-weight:800;
-  line-height:.9;
-  transform:skew(-12deg)
 }
-.marca small {
-  font-size:6px
-}
-.marca span {
-  border-bottom:2px solid var(--blue);
-  padding:4px
-}
+.marca img { max-width:100%; max-height:100%; object-fit:contain }
 nav {
   display:flex;
   gap:26px;
@@ -82,6 +70,7 @@ nav .active {
   line-height:1.3;
   overflow:hidden
 }
+.foto-placeholder img { width:100%; height:100%; object-fit:cover }
 .foto-hero {
   height:195px;
   border-radius:48% 52% 49% 51%;
@@ -169,6 +158,7 @@ nav .active {
   font-weight:800;
   margin-bottom:18px
 }
+.icone-placeholder img { width:60px; height:60px; object-fit:contain }
 .cartao-servico p {
   font-size:10px;
   line-height:1.18;
@@ -177,8 +167,8 @@ nav .active {
 }
 @media(max-width:700px) {
   .page-shell {
-  width:calc(100% - 28px);
-  margin-top:20px
+  width:100%;
+  margin-top:0
 }
 .cabecalho-site {
   margin:0 24px;
