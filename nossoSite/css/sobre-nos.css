@@ -159,6 +159,66 @@ nav .active {
   margin-bottom:18px
 }
 .icone-placeholder img { width:60px; height:60px; object-fit:contain }
+.projetos-realizados {
+  padding: 48px 58px 96px;
+  background: var(--bg);
+}
+.projetos-realizados h2 {
+  color: var(--navy);
+  font-size: 20px;
+  line-height: 1.2;
+  margin: 0 0 25px;
+}
+.projetos-realizados h2 span {
+  color: var(--blue);
+}
+.cartoes-projetos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 39px;
+}
+.cartao-projeto {
+  height: 178px;
+  padding: 11px 15px 18px;
+  background: var(--blue);
+  border-radius: 5px;
+  box-shadow: 1px 2px 2px #888;
+}
+.cartao-projeto h3 {
+  color: #000;
+  font-size: 18px;
+  line-height: 1.1;
+  margin: 0 0 10px;
+}
+.imagem-projeto {
+  height: 97px;
+  background: #d9d9d9;
+  overflow: hidden;
+}
+.imagem-projeto img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+footer {
+  min-height: 190px;
+  background: linear-gradient(#202020, #061e68);
+  color: #fff;
+  padding: 35px 34px;
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr;
+  gap: 35px;
+  font-size: 10px;
+}
+footer img {
+  width: 105px;
+  height: 70px;
+  object-fit: contain;
+}
+footer p {
+  font-size: 9px;
+  line-height: 1.4;
+}
 .cartao-servico p {
   font-size:10px;
   line-height:1.18;
@@ -216,6 +276,19 @@ nav {
 }
 .icone-placeholder {
   margin-bottom:12px
+}
+.projetos-realizados {
+  padding: 42px 30px 60px;
+}
+.cartoes-projetos {
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+}
+.cartao-projeto {
+  height: 178px;
+}
+footer {
+  grid-template-columns: 1fr 1fr;
 }
 
 }
