@@ -225,14 +225,216 @@ nav .active {
 }
 .barras-notas .nota-1{width:0%}.barras-notas .nota-2{width:2%}.barras-notas .nota-3{width:8%}.barras-notas .nota-4{width:57%}.barras-notas .nota-5{width:33%}
 
-.secao-mascote{padding:66px 46px 66px}.linha-secao{height:1px;background:#8290a5;margin-bottom:44px}.secao-mascote>h2{text-align:center;color:var(--navy);font-size:21px;margin:0 0 36px}.introducao-mascote{display:grid;grid-template-columns:280px 1fr;gap:38px;align-items:center;margin-bottom:84px}.imagem-mascote{height:318px;background:#fff;display:grid;place-items:center;overflow:hidden}.imagem-mascote img{width:100%;height:100%;object-fit:contain}.introducao-mascote h3{color:var(--blue);font-size:25px;line-height:1.2;margin:0 0 14px}.introducao-mascote p{font-size:15px;line-height:1.28;margin:0;text-align:justify}.titulo-avaliacoes{text-align:left!important;color:#090909!important;margin:42px 0 16px!important}.topo-avaliacoes{display:grid;grid-template-columns:342px 1fr;gap:38px;align-items:center}.caixa-nota{height:117px;background:#edfbff;border-radius:5px;color:var(--blue);text-align:center;padding:26px}.caixa-nota strong{font-size:21px;display:block}.caixa-nota div{font-size:23px;letter-spacing:4px}.caixa-nota small{font-size:12px}.barras-notas{font-size:11px;line-height:26px}.barras-notas i{display:inline-block;width:303px;height:4px;background:#111;margin:0 6px;vertical-align:middle}.barras-notas b{display:block;height:100%;background:var(--blue)}.lista-avaliacoes{margin-top:34px;width:45%}.lista-avaliacoes article{display:flex;gap:13px;margin-bottom:43px;font-size:13px}.lista-avaliacoes img{width:52px;height:52px;border-radius:50%;background:#fff;object-fit:cover}.lista-avaliacoes strong,.lista-avaliacoes small{display:block}.lista-avaliacoes p{margin:6px 0 0}.lista-avaliacoes span{color:var(--blue);font-size:17px}.mais-avaliacoes{display:block;text-align:right;color:var(--blue);font-size:10px}.faixa-contato{background:#fff;border-radius:5px;box-shadow:0 2px 2px #999;min-height:75px;margin:48px 0 0;padding:14px 20px;display:flex;align-items:center;gap:28px}.pessoas-faixa{display:flex}.pessoas-faixa img{width:28px;height:28px;border-radius:50%;object-fit:cover;margin-right:-3px}.faixa-contato strong{font-size:14px}.faixa-contato p{font-size:9px;max-width:320px}.faixa-contato .botao-principal{margin-left:auto;background:var(--blue);font-size:11px;padding:7px 17px}@media(max-width:700px){.secao-mascote{padding:45px 24px}.introducao-mascote{grid-template-columns:1fr;gap:25px;margin-bottom:55px}.imagem-mascote{height:260px}.introducao-mascote h3{font-size:22px}.topo-avaliacoes{grid-template-columns:1fr;gap:25px}.barras-notas i{width:calc(100% - 55px)}.lista-avaliacoes{width:100%}.faixa-contato{gap:10px;flex-wrap:wrap}.faixa-contato p{max-width:230px}}
-.secao-mascote{text-align:center}.introducao-mascote{justify-items:center}.introducao-mascote>div:last-child{text-align:center}.introducao-mascote p{text-align:center}.titulo-avaliacoes{text-align:center!important}.topo-avaliacoes{justify-items:center}.lista-avaliacoes{width:100%;max-width:620px;margin-left:auto;margin-right:auto}.lista-avaliacoes article{text-align:center;justify-content:center}.mais-avaliacoes{text-align:center}.faixa-contato{justify-content:center}.faixa-contato .botao-principal{margin-left:0}
-.introducao-mascote{grid-template-columns:1fr 1fr;gap:60px;align-items:center;justify-items:stretch;max-width:900px;margin-left:auto;margin-right:auto}.introducao-mascote .imagem-mascote{width:100%;max-width:360px;justify-self:center}.introducao-mascote>div:last-child{text-align:left}.introducao-mascote p{text-align:left}
-.secao-mascote>h2:not(.titulo-avaliacoes){font-size:30px}.titulo-avaliacoes{font-size:21px!important}.introducao-mascote h3{font-size:32px}.introducao-mascote p{font-size:20px;line-height:1.4}
-.titulo-avaliacoes{font-size:28px!important;text-align:center!important;margin:55px auto 28px!important}.topo-avaliacoes{grid-template-columns:minmax(340px,470px) minmax(360px,500px);justify-content:center;gap:70px;max-width:1060px;margin:0 auto}.caixa-nota{width:100%;height:165px;padding:38px}.caixa-nota strong{font-size:30px}.caixa-nota div{font-size:32px}.caixa-nota small{font-size:16px}.barras-notas{font-size:16px;line-height:36px;text-align:left}.barras-notas i{width:400px;height:6px}.lista-avaliacoes{max-width:950px;margin:60px auto 0}.lista-avaliacoes article{font-size:16px;gap:18px;margin-bottom:52px;align-items:flex-start;text-align:left;justify-content:flex-start}.lista-avaliacoes img{width:68px;height:68px}.lista-avaliacoes p{line-height:1.35}.lista-avaliacoes span{font-size:19px}.mais-avaliacoes{font-size:14px;text-align:center}
-.faixa-contato{width:95%;max-width:980px;min-height:125px;margin:60px auto 0;padding:24px 30px;gap:32px}.pessoas-faixa img{width:40px;height:40px}.faixa-contato strong{font-size:20px}.faixa-contato p{font-size:13px;line-height:1.35;max-width:360px}.faixa-contato .botao-principal{font-size:14px;padding:11px 22px}
-@media(max-width:700px){.titulo-avaliacoes{font-size:24px!important}.topo-avaliacoes{grid-template-columns:1fr;gap:30px}.barras-notas i{width:calc(100% - 65px)}.lista-avaliacoes article{font-size:14px}.lista-avaliacoes{max-width:100%}}
-@media(max-width:700px){.introducao-mascote{grid-template-columns:1fr;gap:25px}.introducao-mascote>div:last-child{text-align:center}.introducao-mascote p{text-align:center}}
+.secao-mascote {
+    padding: 55px 46px 65px;
+    text-align: center;
+}
+
+.linha-secao {
+    height: 1px;
+    background: #8290a5;
+    margin-bottom: 34px;
+}
+
+.secao-mascote > h2 {
+    color: var(--navy);
+    font-size: 26px;
+    margin: 0 0 30px;
+}
+
+.introducao-mascote {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    max-width: 900px;
+    margin: 0 auto 65px;
+}
+
+.imagem-mascote {
+    height: 260px;
+    background: #fff;
+    display: grid;
+    place-items: center;
+    overflow: hidden;
+}
+
+.imagem-mascote img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.introducao-mascote > div:last-child {
+    text-align: left;
+}
+
+.introducao-mascote h3 {
+    color: var(--blue);
+    font-size: 28px;
+    line-height: 1.2;
+    margin: 0 0 14px;
+}
+
+.introducao-mascote p {
+    font-size: 17px;
+    line-height: 1.35;
+    margin: 0;
+    text-align: left;
+}
+
+.titulo-avaliacoes {
+    text-align: center !important;
+    color: var(--ink) !important;
+    font-size: 26px !important;
+    margin: 45px 0 24px !important;
+}
+
+.topo-avaliacoes {
+    display: grid;
+    grid-template-columns: minmax(300px, 400px) minmax(300px, 440px);
+    justify-content: center;
+    gap: 45px;
+    align-items: center;
+}
+
+.caixa-nota {
+    height: 145px;
+    background: #edfbff;
+    border-radius: 5px;
+    color: var(--blue);
+    text-align: center;
+    padding: 28px;
+}
+
+.caixa-nota strong {
+    font-size: 27px;
+    display: block;
+}
+
+.caixa-nota div {
+    font-size: 28px;
+    letter-spacing: 4px;
+}
+
+.caixa-nota small {
+    font-size: 14px;
+}
+
+.barras-notas {
+    font-size: 14px;
+    line-height: 30px;
+    text-align: left;
+}
+
+.barras-notas i {
+    display: inline-block;
+    width: 340px;
+    height: 5px;
+    background: #111;
+    margin: 0 6px;
+    vertical-align: middle;
+}
+
+.barras-notas b {
+    display: block;
+    height: 100%;
+    background: var(--blue);
+}
+
+.lista-avaliacoes {
+    width: 100%;
+    max-width: 850px;
+    margin: 48px auto 0;
+}
+
+.lista-avaliacoes article {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 38px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.lista-avaliacoes img {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    background: #fff;
+    object-fit: cover;
+}
+
+.lista-avaliacoes strong,
+.lista-avaliacoes small {
+    display: block;
+}
+
+.lista-avaliacoes p {
+    margin: 6px 0 0;
+    line-height: 1.3;
+}
+
+.lista-avaliacoes span {
+    color: var(--blue);
+    font-size: 16px;
+}
+
+.mais-avaliacoes {
+    display: block;
+    text-align: center;
+    color: var(--blue);
+    font-size: 13px;
+}
+
+.faixa-contato {
+    width: 95%;
+    max-width: 980px;
+    min-height: 115px;
+    margin: 50px auto 0;
+    padding: 22px 28px;
+    background: #fff;
+    border-radius: 5px;
+    box-shadow: 0 2px 2px #999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 28px;
+}
+
+.pessoas-faixa {
+    display: flex;
+}
+
+.pessoas-faixa img {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: -3px;
+}
+
+.faixa-contato strong {
+    font-size: 18px;
+}
+
+.faixa-contato p {
+    font-size: 12px;
+    line-height: 1.3;
+    max-width: 340px;
+}
+
+.faixa-contato .botao-principal {
+    margin-left: 0;
+    background: var(--blue);
+    font-size: 13px;
+    padding: 10px 20px;
+}
+
+@media (max-width: 700px) {
+    .secao-mascote {
+        padding: 40px 24px 50px;
+    }
+}
 
 .cartao-valor h3 {
     font-size: 25px;
