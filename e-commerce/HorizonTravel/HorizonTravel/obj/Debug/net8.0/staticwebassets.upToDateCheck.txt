@@ -1,4 +1,11 @@
+wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\img\card copacabana.jpeg
+wwwroot\img\card orlando.jpeg
+wwwroot\img\card paris.jpg
+wwwroot\img\card pisa.jpeg
+wwwroot\img\img banner.jpg
+wwwroot\img\logo horizon.jpg
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -45,8 +52,6 @@ wwwroot\lib\bootstrap\dist\js\bootstrap.js.map
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js
 wwwroot\lib\bootstrap\dist\js\bootstrap.min.js.map
 wwwroot\lib\bootstrap\LICENSE
-wwwroot\lib\card paris.jpg
-wwwroot\lib\img banner.jpg
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.js
 wwwroot\lib\jquery-validation-unobtrusive\jquery.validate.unobtrusive.min.js
 wwwroot\lib\jquery-validation-unobtrusive\LICENSE.txt
@@ -59,5 +64,3 @@ wwwroot\lib\jquery\dist\jquery.js
 wwwroot\lib\jquery\dist\jquery.min.js
 wwwroot\lib\jquery\dist\jquery.min.map
 wwwroot\lib\jquery\LICENSE.txt
-wwwroot\lib\logo horizon.jpg
-wwwroot\css\site.css
