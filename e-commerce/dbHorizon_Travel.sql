@@ -1,4 +1,5 @@
 CREATE DATABASE dbHorizon_Travel;
+-- DROP DATABASE dbhorizon_travel;
 USE dbHorizon_Travel;
 
 CREATE TABLE Usuario(
@@ -17,7 +18,7 @@ CREATE TABLE Usuario(
 
     dataNascimentoUsu DATE NOT NULL,
 
-    senhaUsu VARCHAR(255) NOT NULL
+    senhaUsu CHAR(8) NOT NULL
 
 );
 
@@ -33,7 +34,7 @@ CREATE TABLE Funcionario(
 
     emailFun VARCHAR(100) NOT NULL UNIQUE,
 
-    senhaFun VARCHAR(255) NOT NULL,
+    senhaFun CHAR(8) NOT NULL,
 
     dataNascimentoFun DATE NOT NULL
 
