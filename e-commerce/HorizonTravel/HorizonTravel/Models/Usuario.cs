@@ -27,7 +27,7 @@ namespace HorizonTravel.Models
 
         [Display(Name = "Endereço")]
         [Required(ErrorMessage = "O endereço é obrigatório.")]
-        public string enderecoUsu {get; set;}
+        public Endereco enderecoUsu {get; set;}
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]

@@ -1,7 +1,18 @@
-﻿namespace HorizonTravel.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace HorizonTravel.Models
 {
     public class Endereco
     {
+        public string Rua { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
 
+        [StringLength(2)]
+        public string Estado { get; set; }
+
+        [RegularExpression(@"^\d{5}-?\d{3}$", ErrorMessage = "CEP inválido.")]
+        public string CEP { get; set; }
     }
 }

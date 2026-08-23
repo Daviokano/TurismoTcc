@@ -1,5 +1,5 @@
 CREATE DATABASE dbHorizon_Travel;
--- DROP DATABASE dbhorizon_travel;
+-- DROP DATABASE dbHorizon_travel;
 USE dbHorizon_Travel;
 
 CREATE TABLE Usuario(

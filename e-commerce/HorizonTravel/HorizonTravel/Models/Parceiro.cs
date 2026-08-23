@@ -15,7 +15,7 @@ namespace HorizonTravel.Models
 
         [Display(Name = "Endereço")]
         [Required(ErrorMessage = "O endereço é obrigatório.")]
-        public string enderecoFor {  get; set; }
+        public Endereco enderecoFor {  get; set; }
 
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Email inválido.")]

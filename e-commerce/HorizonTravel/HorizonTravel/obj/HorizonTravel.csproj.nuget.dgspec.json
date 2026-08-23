@@ -52,7 +52,7 @@
           "dependencies": {
             "MySql.Data": {
               "target": "Package",
-              "version": "[9.7.0, )"
+              "version": "[26.7.0, )"
             }
           },
           "imports": [
