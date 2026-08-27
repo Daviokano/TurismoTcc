@@ -37,9 +37,10 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("select * from Usuario where emailUsu = @emailUsu and senhaUsu = @senhaUsu", conexao);
+                //mudar as váriaveis quando a palloma terminar de atualizar o banco
+				MySqlCommand cmd = new MySqlCommand("SELECT u.*, e.IDEndereco, e.Rua, e.Numero, e.Cidade, e.Estado, e.CEP FROM Usuario u LEFT JOIN Endereco e ON u.idEndereco = e.IDEndereco WHERE u.emailUsu = @emailUsu AND u.senhaUsu = @senhaUsu", conexao);
 
-                cmd.Parameters.Add("@emailusu", MySqlDbType.VarChar).Value = Email;
+				cmd.Parameters.Add("@emailusu", MySqlDbType.VarChar).Value = Email;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = Senha;
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -55,14 +56,24 @@ namespace HorizonTravel.Repository
                     usuario.nomeUsu = Convert.ToString(dr["nomeUsu"]);
                     usuario.emailUsu = Convert.ToString(dr["emailUsu"]);
                     usuario.telefoneUsu = Convert.ToString(dr["telefoneUsu"]);
-                    usuario.enderecoUsu = Convert.ToString(dr["enderecoUsu"]);
                     usuario.dataNascismento = Convert.ToDateTime(dr["dataNascimento"]);
                     usuario.senhaUsu = Convert.ToString(dr["senhaUsu"]);
-                }
-                return usuario;
+
+					// parte do endereço
+					usuario.enderecoUsu = new Endereco();
+
+					usuario.enderecoUsu.enderecoId = Convert.ToInt32(dr["IDEndereco"]);
+					usuario.enderecoUsu.Rua = Convert.ToString(dr["Rua"]);
+					usuario.enderecoUsu.Numero = Convert.ToString(dr["Numero"]);
+					usuario.enderecoUsu.Cidade = Convert.ToString(dr["Cidade"]);
+					usuario.enderecoUsu.Estado = Convert.ToString(dr["Estado"]);
+					usuario.enderecoUsu.CEP = Convert.ToString(dr["CEP"]);
+				}
+				return usuario;
             }
         }
 
+        //terminar depois
         public IEnumerable<Usuario> ObterTodosUsuarios()
         {
             List<Usuario> usuList = new List<Usuario>();
