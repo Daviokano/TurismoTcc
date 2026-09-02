@@ -252,8 +252,7 @@ nav .active {
 }
 
 .imagem-mascote {
-    height: 260px;
-    background: #fff;
+    height: 560px;
     display: grid;
     place-items: center;
     overflow: hidden;
