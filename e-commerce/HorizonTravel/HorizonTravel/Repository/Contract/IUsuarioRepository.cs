@@ -10,7 +10,7 @@ namespace HorizonTravel.Repository.Contract
         //CRUD
         void Cadastrar(Usuario usuario);
         void Atualizar(Usuario usuario);
-        void Excluir(Usuario usuario);
+        void Excluir(int Id);
         Usuario ObterUsuario(int Id);
         IEnumerable<Usuario> ObterTodosUsuarios();
     }

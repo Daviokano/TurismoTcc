@@ -1,7 +1,12 @@
+using HorizonTravel.Repository;
+using HorizonTravel.Repository.Contract;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+// add a interface como um serviço
+builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 
 var app = builder.Build();
 

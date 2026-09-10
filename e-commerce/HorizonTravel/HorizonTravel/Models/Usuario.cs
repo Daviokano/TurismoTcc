@@ -4,8 +4,6 @@ namespace HorizonTravel.Models
 {
     public class Usuario
     {
-        [Display(Name = "Código de usuário")]
-        [Required(ErrorMessage = "O código é obrigatório.")]
         public int IDUsu {get; set;}
 
         [Display(Name = "CPF")]
@@ -25,13 +23,15 @@ namespace HorizonTravel.Models
         [Required(ErrorMessage = "O Telefone é obrigatório.")]
         public string telefoneUsu {get; set;}
 
+        public int IDEnd { get; set; }
+
         [Display(Name = "Endereço")]
         [Required(ErrorMessage = "O endereço é obrigatório.")]
-        public Endereco enderecoUsu {get; set;}
+        public Endereco Endereco {get; set;}
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
-        public DateOnly dataNascismento {get; set;}
+        public DateTime dataNascismentoUsu {get; set;}
 
         [Display(Name = "Senha do usuário")]
         [Required(ErrorMessage = "A senha é obrigatória.")]
