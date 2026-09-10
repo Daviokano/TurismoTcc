@@ -1,7 +1,11 @@
+<<<<<<< HEAD
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 
 var builder = WebApplication.CreateBuilder(args);
+=======
+WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
+>>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

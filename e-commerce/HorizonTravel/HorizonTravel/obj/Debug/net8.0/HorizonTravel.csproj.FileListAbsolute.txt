@@ -51,3 +51,16 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.pdb
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.genruntimeconfig.cache
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\ref\HorizonTravel.dll
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.csproj.AssemblyReference.cache
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\rpswa.dswa.cache.json
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.AssemblyInfoInputs.cache
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.AssemblyInfo.cs
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.csproj.CoreCompileInputs.cache
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.RazorAssemblyInfo.cache
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.RazorAssemblyInfo.cs
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.sourcelink.json
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.dll
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\refint\HorizonTravel.dll
+C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.pdb

@@ -4,7 +4,15 @@ namespace HorizonTravel.Models
 {
     public class Endereco
     {
+<<<<<<< HEAD
         public int IDEnd {  get; set; }
+=======
+        public int enderecoId { get; set; }
+        public string Rua { get; set; }
+        public string Numero { get; set; }
+        public string Bairro { get; set; }
+        public string Cidade { get; set; }
+>>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
 
         [Display(Name = "Logradouro")]
         [EmailAddress(ErrorMessage = "O logradouro é obrigatório.")]
@@ -30,6 +38,13 @@ namespace HorizonTravel.Models
         [Display(Name = "CEP")]
         [EmailAddress(ErrorMessage = "O CEP é obrigatório.")]
         [RegularExpression(@"^\d{5}-?\d{3}$", ErrorMessage = "CEP inválido.")]
+<<<<<<< HEAD
         public string CEPEnd { get; set; }
     }
+=======
+        public string CEP { get; set; }
+
+		public virtual ICollection<Usuario> Usuario { get; set; }
+	}
+>>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
 }

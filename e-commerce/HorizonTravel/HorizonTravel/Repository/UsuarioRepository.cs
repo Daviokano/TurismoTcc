@@ -119,6 +119,7 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
+<<<<<<< HEAD
                 MySqlCommand cmd = new MySqlCommand(@" 
                 SELECT IDUsu, CPFUsu, nomeUsu, emailUsu, telefoneUsu, IDEnd, dataNascimentoUsu, senhaUsu, IDEnd
                 FROM Usuario
@@ -126,6 +127,12 @@ namespace HorizonTravel.Repository
                 AND senhaUsu = @senhaUsu", conexao);
 
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = Email;
+=======
+                //mudar as váriaveis quando a palloma terminar de atualizar o banco
+				MySqlCommand cmd = new MySqlCommand("SELECT u.*, e.IDEndereco, e.Rua, e.Numero, e.Cidade, e.Estado, e.CEP FROM Usuario u LEFT JOIN Endereco e ON u.idEndereco = e.IDEndereco WHERE u.emailUsu = @emailUsu AND u.senhaUsu = @senhaUsu", conexao);
+
+				cmd.Parameters.Add("@emailusu", MySqlDbType.VarChar).Value = Email;
+>>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = Senha;
 
                 MySqlDataAdapter da = new MySqlDataAdapter(cmd);
@@ -141,14 +148,32 @@ namespace HorizonTravel.Repository
                     usuario.nomeUsu = Convert.ToString(dr["nomeUsu"]);
                     usuario.emailUsu = Convert.ToString(dr["emailUsu"]);
                     usuario.telefoneUsu = Convert.ToString(dr["telefoneUsu"]);
+<<<<<<< HEAD
                     usuario.dataNascismentoUsu = Convert.ToDateTime(dr["dataNascimento"]);
                     usuario.senhaUsu = Convert.ToString(dr["senhaUsu"]);
                     usuario.IDEnd = Convert.ToInt32(dr["IDEnd"]);
                 }
                 return usuario;
+=======
+                    usuario.dataNascismento = Convert.ToDateTime(dr["dataNascimento"]);
+                    usuario.senhaUsu = Convert.ToString(dr["senhaUsu"]);
+
+					// parte do endereço
+					usuario.enderecoUsu = new Endereco();
+
+					usuario.enderecoUsu.enderecoId = Convert.ToInt32(dr["IDEndereco"]);
+					usuario.enderecoUsu.Rua = Convert.ToString(dr["Rua"]);
+					usuario.enderecoUsu.Numero = Convert.ToString(dr["Numero"]);
+					usuario.enderecoUsu.Cidade = Convert.ToString(dr["Cidade"]);
+					usuario.enderecoUsu.Estado = Convert.ToString(dr["Estado"]);
+					usuario.enderecoUsu.CEP = Convert.ToString(dr["CEP"]);
+				}
+				return usuario;
+>>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
             }
         }
 
+        //terminar depois
         public IEnumerable<Usuario> ObterTodosUsuarios()
         {
             List<Usuario> usuList = new List<Usuario>();
