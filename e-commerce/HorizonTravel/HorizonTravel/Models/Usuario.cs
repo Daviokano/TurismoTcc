@@ -23,25 +23,15 @@ namespace HorizonTravel.Models
         [Required(ErrorMessage = "O Telefone é obrigatório.")]
         public string telefoneUsu {get; set;}
 
-<<<<<<< HEAD
         public int IDEnd { get; set; }
 
         [Display(Name = "Endereço")]
-=======
-		public int enderecoId { get; set; }
-
-		[Display(Name = "Endereço")]
->>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
         [Required(ErrorMessage = "O endereço é obrigatório.")]
         public Endereco Endereco {get; set;}
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
-<<<<<<< HEAD
         public DateTime dataNascismentoUsu {get; set;}
-=======
-        public DateTime dataNascismento {get; set;}
->>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
 
         [Display(Name = "Senha do usuário")]
         [Required(ErrorMessage = "A senha é obrigatória.")]

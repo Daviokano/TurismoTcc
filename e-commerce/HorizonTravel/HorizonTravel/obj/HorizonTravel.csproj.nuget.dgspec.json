@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {}
+    "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {
+    "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
+        "projectUniqueName": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
         "projectName": "HorizonTravel",
-        "projectPath": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
-        "packagesPath": "C:\\Users\\3MTEC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\obj\\",
+        "projectPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
+        "packagesPath": "C:\\Users\\Bia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\3MTEC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,12 +26,10 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net8.0": {
-            "framework": "net8.0",
             "targetAlias": "net8.0",
             "projectReferences": {}
           }
@@ -46,16 +44,19 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "10.0.400"
+        "SdkAnalysisLevel": "9.0.300"
       },
       "frameworks": {
         "net8.0": {
-          "framework": "net8.0",
           "targetAlias": "net8.0",
           "dependencies": {
             "MySql.Data": {
               "target": "Package",
               "version": "[26.7.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.4, )"
             }
           },
           "imports": [
@@ -77,11 +78,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.317/PortableRuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400-preview.0.26322.102/PortableRuntimeIdentifierGraph.json"
->>>>>>> a5f08bc4d6687722b9189c5ad78a9a3155867564
         }
       }
     }

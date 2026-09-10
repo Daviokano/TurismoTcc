@@ -13,7 +13,9 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\K4os.Compression.LZ4.Streams.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\K4os.Hash.xxHash.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\MySql.Data.dll
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\Newtonsoft.Json.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\System.Configuration.ConfigurationManager.dll
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\System.Security.Cryptography.ProtectedData.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\System.Security.Permissions.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\System.Windows.Extensions.dll
@@ -23,6 +25,8 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win-x64\native\k5sprt64.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win-x64\native\krb5_64.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win-x64\native\krbcc64.dll
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.Messages.dll
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Diagnostics.EventLog.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\bin\Debug\net8.0\runtimes\win\lib\net8.0\System.Windows.Extensions.dll
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.csproj.AssemblyReference.cache
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\rpswa.dswa.cache.json
@@ -51,16 +55,3 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.pdb
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.genruntimeconfig.cache
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\ref\HorizonTravel.dll
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.csproj.AssemblyReference.cache
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\rpswa.dswa.cache.json
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.AssemblyInfoInputs.cache
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.AssemblyInfo.cs
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.csproj.CoreCompileInputs.cache
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.RazorAssemblyInfo.cache
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.RazorAssemblyInfo.cs
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.sourcelink.json
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.dll
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\refint\HorizonTravel.dll
-C:\Users\3MTEC\Documents\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net8.0\HorizonTravel.pdb
