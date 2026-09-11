@@ -176,24 +176,24 @@ namespace HorizonTravel.Repository
                     usuList.Add(
                         new Usuario
                         {
-                            IDUsu = Convert.ToInt32(dr["IDUsu"]),
-                            CPFUsu = Convert.ToString(dr["CPFUsu"]),
-                            nomeUsu = Convert.ToString(dr["nomeUsu"]),
-                            emailUsu = Convert.ToString(dr["emailUsu"]),
-                            telefoneUsu = Convert.ToString(dr["telefoneUsu"]),
-                            IDEnd = Convert.ToInt32(dr["IDEnd"]),
-                            dataNascismentoUsu = Convert.ToDateTime(dr["dataNascimentoUsu"]),
-                            senhaUsu = Convert.ToString(dr["senhaUsu"]),
+                            usuario.IDUsu = (Int32)(dr["IDUsu"]);
+                            usuario.nomeUsu = (string)(dr["nomeUsu"]);
+                            usuario.CPFUsu = (string)(dr["CPFUsu"]);
+                            usuario.emailUsu = (string)(dr["emailUsu"]);
+                            usuario.telefoneUsu = (string)(dr["telefoneUsu"]);
+                            usuario.dataNascismentoUsu = (DateTime)(dr["dataNascismentoUsu"]);
+                            usuario.senhaUsu = (string)(dr["senhaUsu"]);
+                            usuario.IDEnd = (Int32)(dr["IDEnd"]);
 
                             Endereco = new Endereco
                             {
-                                IDEnd = Convert.ToInt32(dr["IDEnd"]),
-                                logEnd = Convert.ToString(dr["logEnd"]),
-                                numEnd = Convert.ToString(dr["numEnd"]),
-                                bairroEnd = Convert.ToString(dr["bairroEnd"]),
-                                cidEnd = Convert.ToString(dr["cidEnd"]),
-                                estEnd = Convert.ToString(dr["estEnd"]),
-                                CEPEnd = Convert.ToString(dr["CEPEnd"])
+                                IDEnd = (Int32)(dr["IDEnd"]),
+                                logEnd = (string)(dr["logEnd"]),
+                                numEnd = (string)(dr["numEnd"]),
+                                bairroEnd = (string)(dr["bairroEnd"]),
+                                cidEnd = (string)(dr["cidEnd"]),
+                                estEnd = (string)(dr["estEnd"]),
+                                CEPEnd = (string)(dr["CEPEnd"])
                             }
                         }
                     );
@@ -235,13 +235,13 @@ namespace HorizonTravel.Repository
 
                     usuario.Endereco = new Endereco
                     {
-                        IDEnd = Convert.ToInt32(dr["IDEnd"]),
-                        logEnd = Convert.ToString(dr["logEnd"]),
-                        numEnd = Convert.ToString(dr["numEnd"]),
-                        bairroEnd = Convert.ToString(dr["bairroEnd"]),
-                        cidEnd = Convert.ToString(dr["cidEnd"]),
-                        estEnd = Convert.ToString(dr["estEnd"]),
-                        CEPEnd = Convert.ToString(dr["CEPEnd"])
+                        IDEnd = (Int32)(dr["IDEnd"]),
+                        logEnd = (string)(dr["logEnd"]),
+                        numEnd = (string)(dr["numEnd"]),
+                        bairroEnd = (string)(dr["bairroEnd"]),
+                        cidEnd = (string)(dr["cidEnd"]),
+                        estEnd = (string)(dr["estEnd"]),
+                        CEPEnd = (string)(dr["CEPEnd"])
                     };
                 }
                 return usuario;

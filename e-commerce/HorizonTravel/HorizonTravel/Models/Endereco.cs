@@ -33,5 +33,6 @@ namespace HorizonTravel.Models
         public string CEPEnd { get; set; }
 
 		public virtual ICollection<Usuario> Usuario { get; set; }
+		public virtual ICollection<Parceiro> Parceiro { get; set; }
 	}
 }

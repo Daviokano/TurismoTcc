@@ -1,7 +1,9 @@
 ﻿@model HorizonTravel.Models.Usuario
 @{
     ViewData["Title"] = "Login";
+    ViewData["SemLayout"] = true;
 }
+
 
 <main role="main">
     <br>
@@ -10,8 +12,9 @@
     <section class="container">
         <aside class="col-sm-4">
             <h3 class="subtitle-doc">
-                Login
+                Entrar
             </h3>
+            <p>Bem-vindo de volta! Faça login na sua conta.</p>
 
             <div id="code_login_1">
                 <div class="card">
@@ -43,8 +46,8 @@
                             </div>
 
                             <div class="form-group">
-                                <a class="float-right" href="#">
-                                    Esqueceu a senha
+                                <a class="texto float-right" href="#">
+                                    Esqueci minha senha
                                 </a>
 
                                 <label>Senha</label>
@@ -57,8 +60,9 @@
                             <div class="form-group">
                                 <button type="submit"
                                         class="btn btn-primary btn-block">
-                                    Acessar
+                                    Entrar
                                 </button>
+                                <p>Ainda não tem conta?<span class="texto">Cadastre-se</span></p>
                             </div>
 
                         </form>
