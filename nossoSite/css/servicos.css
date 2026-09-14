@@ -82,6 +82,15 @@ nav .active {
   color: #fff;
 }
 
+.subtitulo-hero {
+  max-width: 500px;
+  margin: 24px 0 0;
+  color: #fff;
+  font-size: 26px;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
 .texto-hero span {
   color: var(--blue);
 }
@@ -94,6 +103,8 @@ nav .active {
   width: 100%;
   height: 100%;
   object-fit: contain;
+  border-radius: 44px;
+  filter: drop-shadow(0 18px 28px rgba(0, 12, 55, .3));
 }
 
 .lista-servicos {
@@ -136,13 +147,13 @@ nav .active {
 
 .resultados {
   min-height: 135px;
-  background: #000;
+  background: #1857ad;
   color: #fff;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
-  padding: 22px 140px;
-  gap: 35px;
+  padding: 22px 80px;
+  gap: 18px;
 }
 
 .resultados div {
@@ -172,7 +183,7 @@ nav .active {
   max-width: none;
   margin: 0 auto;
   padding: 100px max(70px, calc((100% - 1250px) / 2));
-  background: linear-gradient(135deg, #000 0%, #073b91 52%, #0758ff 100%);
+  background: #1857ad;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
   gap: 100px;
@@ -231,6 +242,9 @@ nav .active {
   padding: 52px 42px 56px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
   transform: translateY(35px);
+  display:flex;
+  flex-direction:column;
+  gap:16px;
 }
 
 .formulario h3 {
@@ -247,13 +261,13 @@ nav .active {
   padding: 12px 14px;
   font-family: inherit;
   font-size: 15px;
-  margin-bottom: 12px;
+  margin-bottom: 0;
 }
 
 .campos-duplos {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 12px;
+  gap: 16px;
 }
 
 .formulario textarea {
@@ -298,7 +312,9 @@ footer p {
 .footer-marca strong { display:block; font-size:32px; line-height:1; letter-spacing:-1px; text-decoration:underline }
 .footer-marca strong span { color:var(--blue) }
 .footer-marca p { max-width:300px; margin:20px 0 0 }
-.imagem-contatos-placeholder { width:145px; height:34px; margin-top:10px; border:1px dashed rgba(255,255,255,.75); border-radius:4px }
+.contatos-icones { display:flex; align-items:center; gap:14px; margin-top:12px }
+.icone-contato { width:50px; height:50px; border:1px dashed rgba(255,255,255,.8); border-radius:5px; background:rgba(255,255,255,.08) }
+.icone-contato img { width:100%; height:100%; object-fit:contain; display:block }
 .footer-endereco strong, .footer-contatos strong { font-size:14px }
 .footer-direitos { grid-column:1 / -1; text-align:center; font-size:11px }
 
