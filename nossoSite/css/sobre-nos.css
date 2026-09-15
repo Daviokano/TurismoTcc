@@ -25,7 +25,6 @@ body {
 .cabecalho-site {
   height:110px;
   margin:0 58px;
-  border-bottom:1px solid #8594aa;
   display:flex;
   align-items:center;
   justify-content:space-between
@@ -36,7 +35,6 @@ body {
 .marca {
   width:170px;
   height:88px;
-  border:2px solid #1594ff;
   text-decoration:none;
   display:grid;
   place-items:center;
@@ -108,8 +106,8 @@ nav .active {
 .como-trabalhamos {
   max-width:none;
   margin:0;
-  padding:100px max(70px, calc((100% - 1320px) / 2)) 110px;
-  background:linear-gradient(135deg, #f7faff 0%, #fff 58%, #eef5ff 100%);
+  padding:100px max(70px, calc((100% - 1320px) / 2)) 55px;
+  background:var(--navy);
   display:grid;
   grid-template-columns:minmax(420px,1.4fr) minmax(330px,1fr);
   gap:110px;
@@ -117,12 +115,12 @@ nav .active {
   justify-content:center
 }
 .lista-trabalho h2 {
-  color:var(--navy);
+  color:#fff;
   font-size:40px;
   margin:0 0 24px
 }
 .lista-trabalho .intro-trabalho {
-  color:#263653;
+  color:#d9e6ff;
   font-size:20px;
   line-height:1.5;
   max-width:560px;
@@ -175,7 +173,7 @@ nav .active {
 .historia-empresa {
   padding: 88px 70px 96px;
   background: #f4f7fc;
-  border-bottom: 3px solid #cfe0ff;
+  border-bottom: 4px solid #111;
 }
 .cabecalho-historia { max-width: 760px; margin: 0 auto 48px; text-align: center; }
 .cabecalho-historia > span { color: var(--blue); font-size: 16px; font-weight: 800; letter-spacing: 2px; }
@@ -225,7 +223,7 @@ nav .active {
 }
 .servicos-sobre {
   background:var(--navy);
-  padding:55px 70px 78px;
+  padding:35px 70px 78px;
   color:#fff
 }
 .servicos-sobre h2 {
@@ -241,32 +239,38 @@ nav .active {
   gap:40px
 }
 .cartao-servico {
-  height:420px;
+  height:360px;
   background:#fff;
   color:var(--ink);
   border-radius:18px;
-  padding:34px 30px 30px
+  padding:26px 24px 24px
 }
 .icone-placeholder {
-  height:125px;
+  height:95px;
   color:var(--blue);
   display:grid;
   place-items:center;
   font-size:20px;
   font-weight:800;
-  margin-bottom:34px
+  margin-bottom:22px
 }
-.icone-placeholder img { width:125px; height:125px; object-fit:contain }
+.icone-placeholder img { width:95px; height:95px; object-fit:contain }
 .projetos-realizados {
-  padding: 90px 70px 25px;
+  padding: 72px 70px 42px;
   background: var(--bg);
+  display:grid;
+  grid-template-columns:minmax(0, 860px) 360px;
+  gap:32px;
+  align-items:center;
+  justify-content:center;
 }
 .projetos-realizados h2 {
   color: var(--navy);
   font-size: 38px;
   line-height: 1.2;
-  margin: 0 auto 42px;
+  margin: 0 0 30px;
   text-align: center;
+  grid-column:1 / -1;
 }
 .projetos-realizados h2 span {
   color: var(--blue);
@@ -274,15 +278,37 @@ nav .active {
 .cartoes-projetos {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  grid-template-rows: repeat(2, minmax(480px, 1fr));
-  column-gap: 34px;
-  row-gap: 40px;
-  max-width: 1320px;
-  margin: 0 auto;
+  grid-template-rows: repeat(2, minmax(390px, 1fr));
+  column-gap: 28px;
+  row-gap: 28px;
+  max-width: none;
+  margin: 0;
+  grid-column:1;
 }
+.projetos-realizados .cta-historia {
+  grid-column:2;
+  grid-row:2;
+  width:auto;
+  max-width:none;
+  margin:0;
+  height:auto;
+  min-height:100%;
+  align-self:center;
+  padding:48px 34px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  box-sizing:border-box;
+  text-align:center;
+  background-image:linear-gradient(135deg, rgba(0,25,80,.9), rgba(7,88,255,.82)), url('../img/fotoFuno.png');
+  background-size:cover;
+  background-position:center;
+}
+.projetos-realizados .cta-historia a { display:inline-block; align-self:center; margin-top:22px; }
+.projetos-realizados .cta-descricao { margin:18px auto 0; max-width:260px; color:#d9e6ff; font-size:14px; line-height:1.5; }
 .cartao-projeto {
   height: 100%;
-  min-height: 0;
+  min-height: 390px;
   padding: 26px 26px 24px;
   background: #fff;
   border: 1px solid #dfe7f4;
@@ -341,7 +367,7 @@ footer p {
 .footer-marca strong span { color:var(--blue) }
 .footer-marca p { max-width:300px; margin:20px 0 0 }
 .contatos-icones { display:flex; align-items:center; gap:14px; margin-top:12px }
-.icone-contato { width:50px; height:50px; border:1px dashed rgba(255,255,255,.8); border-radius:5px; background:rgba(255,255,255,.08) }
+.icone-contato { width:50px; height:50px; border-radius:5px; background:rgba(255,255,255,.08) }
 .icone-contato img { width:100%; height:100%; object-fit:contain; display:block }
 .footer-endereco strong, .footer-contatos strong { font-size:14px }
 .footer-direitos { grid-column:1 / -1; text-align:center; font-size:11px }
@@ -417,14 +443,16 @@ nav {
 }
 .icone-placeholder img { width:72px; height:72px; }
 .cartao-servico p { font-size:15px; line-height:1.35; }
-.projetos-realizados {
-  padding: 55px 30px 35px;
-}
-.cartoes-projetos {
+  .projetos-realizados {
+    padding: 55px 30px 35px;
+    display:block;
+  }
+  .cartoes-projetos {
   grid-template-columns: 1fr;
   grid-template-rows: none;
   gap: 28px;
-}
+  }
+  .projetos-realizados .cta-historia { margin:28px 0 0; height:auto; min-height:0; }
 .cartao-projeto {
   height:auto;
   min-height: 280px;

@@ -34,7 +34,6 @@ body {
 .marca {
   width: 170px;
   height: 88px;
-  border: 2px solid #1594ff;
   display: grid;
   place-items: center;
 }
@@ -67,7 +66,7 @@ nav .active {
   max-width: none;
   margin: 0 auto;
   padding: 110px max(70px, calc((100% - 1310px) / 2));
-  background: linear-gradient(135deg, #001950 0%, #073b91 52%, #0758ff 100%);
+  background: var(--bg);
   display: grid;
   grid-template-columns: minmax(520px, 1fr) minmax(650px, 1.5fr);
   align-items: center;
@@ -79,13 +78,13 @@ nav .active {
   line-height: 1.2;
   margin: 0;
   font-weight: 800;
-  color: #fff;
+  color: var(--navy);
 }
 
 .subtitulo-hero {
   max-width: 500px;
   margin: 24px 0 0;
-  color: #fff;
+  color: #263653;
   font-size: 26px;
   font-weight: 600;
   line-height: 1.5;
@@ -96,22 +95,36 @@ nav .active {
 }
 
 .imagem-hero {
-  height: 520px;
+  height: 470px;
+  overflow: hidden;
+  border-radius: 20px;
 }
 
 .imagem-hero img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  border-radius: 44px;
+  object-fit: cover;
+  border-radius: 20px;
+  border: 3px solid #dff7ff;
+  box-sizing: border-box;
+  display: block;
   filter: drop-shadow(0 18px 28px rgba(0, 12, 55, .3));
+}
+
+.subtitulo-hero mark {
+  background:transparent;
+  color:var(--blue);
+  padding:0;
+  border-radius:0;
+  font-weight:800;
 }
 
 .lista-servicos {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 32px;
-  padding: 70px 70px 80px;
+  padding: 70px 70px 30px;
+  background: #1857ad;
 }
 
 .cartao-servico {
@@ -126,16 +139,21 @@ nav .active {
   align-items: flex-start;
 }
 
-.cartao-servico > img {
-  width: 105px;
-  height: 105px;
-  object-fit: contain;
+.icone-svg {
+  width: 58px;
+  height: 58px;
+  fill:none;
+  stroke:var(--blue);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
   margin: 0 0 22px;
 }
 
 .cartao-servico h2 {
   font-size: 24px;
   margin: 0 0 10px;
+  color:var(--navy);
 }
 
 .cartao-servico p {
@@ -143,12 +161,13 @@ nav .active {
   line-height: 1.35;
   margin: 0;
   max-width: 310px;
+  color:#263653;
 }
 
 .resultados {
   min-height: 135px;
-  background: #1857ad;
-  color: #fff;
+  background: #fff;
+  color: var(--navy);
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   align-items: center;
@@ -158,23 +177,29 @@ nav .active {
 
 .resultados div {
   display: grid;
-  grid-template-columns: 26px auto;
+  grid-template-columns: 34px auto;
+  column-gap: 6px;
   align-items: center;
+  justify-self: center;
 }
 
-.resultados img {
-  width: 21px;
-  height: 21px;
-  object-fit: contain;
+.estatistica-svg {
+  width: 32px;
+  height: 32px;
+  fill:none;
+  stroke:var(--blue);
+  stroke-width:1.8;
+  stroke-linecap:round;
+  stroke-linejoin:round;
   grid-row: span 2;
 }
 
 .resultados strong {
-  font-size: 26px;
+  font-size: 34px !important;
 }
 
 .resultados span {
-  font-size: 14px;
+  font-size: 18px;
 }
 
 .contato {
@@ -182,7 +207,7 @@ nav .active {
   width: 100%;
   max-width: none;
   margin: 0 auto;
-  padding: 100px max(70px, calc((100% - 1250px) / 2));
+  padding: 76px max(70px, calc((100% - 1250px) / 2));
   background: #1857ad;
   display: grid;
   grid-template-columns: 1fr 1.1fr;
@@ -204,7 +229,7 @@ nav .active {
 }
 
 .informacoes-contato h2 span {
-  color: var(--blue);
+  color: #dff7ff;
 }
 
 .informacoes-contato > p {
@@ -313,7 +338,7 @@ footer p {
 .footer-marca strong span { color:var(--blue) }
 .footer-marca p { max-width:300px; margin:20px 0 0 }
 .contatos-icones { display:flex; align-items:center; gap:14px; margin-top:12px }
-.icone-contato { width:50px; height:50px; border:1px dashed rgba(255,255,255,.8); border-radius:5px; background:rgba(255,255,255,.08) }
+.icone-contato { width:50px; height:50px; border-radius:5px; background:rgba(255,255,255,.08) }
 .icone-contato img { width:100%; height:100%; object-fit:contain; display:block }
 .footer-endereco strong, .footer-contatos strong { font-size:14px }
 .footer-direitos { grid-column:1 / -1; text-align:center; font-size:11px }
