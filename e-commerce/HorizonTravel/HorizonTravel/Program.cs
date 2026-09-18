@@ -9,6 +9,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllersWithViews();
 // add a interface como um serviço
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IFuncionarioRepositoty, FuncionarioRepository>();
 
 builder.Services.AddDistributedMemoryCache();
 

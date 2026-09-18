@@ -97,13 +97,12 @@ namespace HorizonTravel.Repository
                     funcionario.emailFun = Convert.ToString(dr["emailFun"]);
                     funcionario.telefoneFun = Convert.ToString(dr["telefoneFun"]);
                     funcionario.dataNascimentoFun = Convert.ToDateTime(dr["dataNascimentoFun"]);
-                    funcionario.senhaFun = Convert.ToInt32(dr["senhaFun"]);
+                    funcionario.senhaFun = Convert.ToString(dr["senhaFun"]);
                 }
                 return funcionario;
             }
         }
 
-        //Terminar depois
         public Funcionario ObterFuncionario(int Id)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -119,11 +118,15 @@ namespace HorizonTravel.Repository
                 dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
                 while (dr.Read())
                 {
-                    //@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun
-                    funcionario.IDFun = (Int32)(dr)
+                    funcionario.IDFun = (Int32)(dr["IDFun"]);
+                    funcionario.nomeFun = (string)(dr["nomeFun"]);
+                    funcionario.CPFFun = (string)(dr["CPFFun"]);
+                    funcionario.emailFun = (string)(dr["emailFun"]);
+                    funcionario.telefoneFun = (string)(dr["telefoneFun"]);
+                    funcionario.dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]);
+                    funcionario.senhaFun = (string)(dr["senhaFun"]);
                 }
-
-
+                return funcionario;
             }
         }
 
@@ -156,6 +159,7 @@ namespace HorizonTravel.Repository
                         }
                     );
                 }
+                return funList;
             }
         }
     }

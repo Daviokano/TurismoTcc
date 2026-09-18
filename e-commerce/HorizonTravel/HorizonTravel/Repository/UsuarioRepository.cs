@@ -176,14 +176,14 @@ namespace HorizonTravel.Repository
                     usuList.Add(
                         new Usuario
                         {
-                            usuario.IDUsu = (Int32)(dr["IDUsu"]);
-                            usuario.nomeUsu = (string)(dr["nomeUsu"]);
-                            usuario.CPFUsu = (string)(dr["CPFUsu"]);
-                            usuario.emailUsu = (string)(dr["emailUsu"]);
-                            usuario.telefoneUsu = (string)(dr["telefoneUsu"]);
-                            usuario.dataNascismentoUsu = (DateTime)(dr["dataNascismentoUsu"]);
-                            usuario.senhaUsu = (string)(dr["senhaUsu"]);
-                            usuario.IDEnd = (Int32)(dr["IDEnd"]);
+                            IDUsu = (Int32)(dr["IDUsu"]),
+                            nomeUsu = (string)(dr["nomeUsu"]),
+                            CPFUsu = (string)(dr["CPFUsu"]),
+                            emailUsu = (string)(dr["emailUsu"]),
+                            telefoneUsu = (string)(dr["telefoneUsu"]),
+                            dataNascismentoUsu = (DateTime)(dr["dataNascismentoUsu"]),
+                            senhaUsu = (string)(dr["senhaUsu"]),
+                            IDEnd = (Int32)(dr["IDEnd"]),
 
                             Endereco = new Endereco
                             {

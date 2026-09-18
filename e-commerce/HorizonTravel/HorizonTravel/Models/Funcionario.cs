@@ -28,7 +28,7 @@ namespace HorizonTravel.Models
 
         [Display(Name = "Data de nascimento")]
         [Required(ErrorMessage = "A data de nascimento é obrigatória.")]
-        public DateTime dataNascismentoFun { get; set; }
+        public DateTime dataNascimentoFun { get; set; }
 
         [Display(Name = "Senha do funcionário")]
         [Required(ErrorMessage = "A senha é obrigatória.")]

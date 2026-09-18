@@ -1,0 +1,42 @@
+﻿using HorizonTravel.Models;
+using Newtonsoft.Json;
+
+namespace HorizonTravel.Libraries.Login
+{
+    public class LoginFuncionário
+    {
+        private string Key = "Login.Funcionario";
+        private Sessao.Sessao _sessao;
+
+        public LoginFuncionário(Sessao.Sessao sessao)
+        {
+            _sessao = sessao;
+        }
+
+        public void Login(Funcionario funcionario)
+        {
+            //serializar
+            string funcionarioJSONString = JsonConvert.SerializeObject(funcionario);
+            _sessao.Cadastrar(Key, funcionarioJSONString);
+        }
+
+        public Funcionario GetFuncionario()
+        {
+            //deserializar
+            if (_sessao.Existe(Key))
+            {
+                string funcionarioJSONString = _sessao.Consultar(Key);
+                return JsonConvert.DeserializeObject<Funcionario>(funcionarioJSONString);
+            }
+            else
+            {
+                return null;
+            }
+        }
+
+        public void Logout()
+        {
+            _sessao.RemoverTodos();
+        }
+    }
+}

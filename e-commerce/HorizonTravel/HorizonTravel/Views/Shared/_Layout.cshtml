@@ -2,7 +2,6 @@
     var paginaSemLayout = ViewData["SemLayout"] as bool? ?? false;
 }
 
-
 @inject HorizonTravel.Libraries.Login.LoginUsuario LoginUsuario
 
 <!DOCTYPE html>
@@ -61,52 +60,50 @@
                             <li class="nav-item" href="#">
                                 <a class="nav-link1"><i class="bi-cart3 fs-2 me-3"></i></a>
                             </li>
-                        </ul>
-                    </div>
 
-                    <li class="nav-item dropdown" style="list-style:none">
-                        @if (LoginUsuario.GetUsuario() != null)
-                        {
-                            <a class="nav-link dropdown-toggle"
-                               data-bs-toggle="dropdown"
-                               href="#"
-                               role="button"
-                               aria-expanded="false">
-                                @LoginUsuario.GetUsuario().nomeUsu
-                            </a>
+                            <li class="nav-item dropdown" style="list-style:none">
+                                @if (LoginUsuario.GetUsuario() != null)
+                                {
+                                    <a class="nav-link dropdown-toggle"
+                                       data-bs-toggle="dropdown"
+                                       href="#"
+                                       role="button"
+                                       aria-expanded="false">
+                                        @LoginUsuario.GetUsuario().nomeUsu
+                                    </a>
 
-                            <ul class="dropdown-menu">
-                                <li>
-                                    <a class="dropdown-item" href="#">Minhas Compras</a>
-                                </li>
+                                    <ul class="dropdown-menu">
+                                        <li>
+                                            <a class="dropdown-item" href="#">Minhas Compras</a>
+                                        </li>
 
-                                <li>
-                                    <a class="dropdown-item" href="#">Meu Perfil</a>
-                                </li>
+                                        <li>
+                                            <a class="dropdown-item" href="#">Meu Perfil</a>
+                                        </li>
 
-                                <li>
-                                    <hr class="dropdown-divider">
-                                </li>
+                                        <li>
+                                            <hr class="dropdown-divider">
+                                        </li>
 
-                                <li>
-                                    <a class="dropdown-item" href="/Home/LogoutCliente">Sair</a>
-                                </li>
-                            </ul>
-                        }
-
-                        else
-                        {
-                            <li class="nav-item">
-                                <a class="nav-link1 me-3" href="/Home/Login"><button type="button" class="btn btn-login btn-sm">Login</button></a>
+                                        <li>
+                                            <a class="dropdown-item" href="/Home/LogoutCliente">Sair</a>
+                                        </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link1 me-3" href="/Home/Login"><button type="button" class="btn-login btn-sm">Login</button></a>
+                                    </li>
+                                }
                             </li>
-                        }
+                        </ul>
 
-                    </li>
-
+                    </div>
                 </div>
             </nav>
         </header>
-        }
+    }
 
 
     <main role="main">

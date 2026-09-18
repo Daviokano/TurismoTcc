@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {}
+    "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {}
   },
   "projects": {
-    "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {
+    "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
+        "projectUniqueName": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
         "projectName": "HorizonTravel",
-        "projectPath": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
-        "packagesPath": "C:\\Users\\3MTEC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\3MTEC\\Documents\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\obj\\",
+        "projectPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\HorizonTravel.csproj",
+        "packagesPath": "C:\\Users\\Bia\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\3MTEC\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Bia\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -81,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.400/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.401/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",

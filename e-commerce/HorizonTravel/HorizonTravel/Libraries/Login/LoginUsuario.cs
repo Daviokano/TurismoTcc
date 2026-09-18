@@ -25,8 +25,8 @@ namespace HorizonTravel.Libraries.Login
             //deserializar
             if (_sessao.Existe(Key))
             {
-                string clienteJSONString = _sessao.Consultar(Key);
-                return JsonConvert.DeserializeObject<Usuario>(clienteJSONString);
+                string usuarioJSONString = _sessao.Consultar(Key);
+                return JsonConvert.DeserializeObject<Usuario>(usuarioJSONString);
             }
             else
             {

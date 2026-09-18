@@ -10,8 +10,6 @@ CREATE TABLE Endereco(
 
     numEnd VARCHAR(10) NOT NULL,
 
-    ruaEnd VARCHAR(100) NOT NULL UNIQUE,
-
     bairroEnd VARCHAR(20) NOT NULL,
 
     cidEnd VARCHAR(200) NOT NULL,
