@@ -39,7 +39,6 @@ body {
 .marca {
     width: 170px;
     height: 88px;
-    border: 2px solid #1594ff;
     display: grid;
     place-items: center;
 }
@@ -71,8 +70,11 @@ nav .active {
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 60px;
+    gap: 0;
     height: 840px;
+    max-width: 1800px;
+    margin: 0 auto;
+    box-sizing: border-box;
 }
 
 .texto-banner {
@@ -81,7 +83,7 @@ nav .active {
 }
 
 .texto-banner h1 {
-    font-size: 56px;
+    font-size: 64px;
     line-height: 1.22;
     margin: 0 0 72px;
     font-weight: 800;
@@ -138,6 +140,7 @@ nav .active {
     width: 650px;
     flex: 0 0 650px;
     position: relative;
+    margin-left: -180px;
 }
 
 .imagem-banner img {
@@ -290,13 +293,17 @@ nav .active {
     place-items: center;
     overflow: hidden;
     border-radius: 28px;
-    box-shadow: 0 10px 24px rgba(0, 0, 0, .28);
+    padding: 0;
+    background: #e9e9e9;
+    box-shadow: 0 12px 28px 4px rgba(0, 15, 60, .24);
 }
 
 .imagem-mascote img {
     width: 100%;
     height: 100%;
     object-fit: contain;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .introducao-mascote > div:last-child {
@@ -508,15 +515,62 @@ nav .active {
 }
 
 .equipe {
-    padding: 34px 0 89px;
+    padding: 70px 0 96px;
+    background: linear-gradient(180deg, #f4f7fc 0%, #ffffff 100%);
 }
 
 .equipe h2 {
     text-align: center;
     color: var(--navy);
-    margin-bottom: 52px;
+    margin-bottom: 0;
     font-size: 28px;
 }
+
+.intro-equipe {
+    max-width: 690px;
+    margin: 0 auto 58px;
+    text-align: center;
+}
+
+.etiqueta-secao {
+    color: var(--blue);
+    font-size: 18px;
+    font-weight: 800;
+    letter-spacing: 2px;
+}
+
+.intro-equipe h2 {
+    margin: 10px 0 14px;
+    font-size: 56px;
+    letter-spacing: -.8px;
+}
+
+.intro-equipe p,
+.titulo-time p {
+    color: #596273;
+    line-height: 1.6;
+    margin: 0;
+    font-size: 21px;
+}
+
+.titulo-time {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 22px;
+    margin: 0 auto 30px;
+    text-align: center;
+}
+
+.titulo-time h2 { font-size: 32px; }
+.linha-decorativa {
+    width: 64px;
+    height: 3px;
+    border-radius: 99px;
+    background: var(--blue);
+    opacity: .75;
+}
+.titulo-time p { margin-top: 8px; }
 
 .linha-equipe {
     display: flex;
@@ -531,13 +585,17 @@ nav .active {
     width: 205px;
     flex: 0 0 205px;
     text-align: center;
+    padding: 0 0 16px;
+    transition: transform .2s ease;
 }
+
+.membro:hover { transform: translateY(-6px); }
 
 .foto-membro {
     height: 245px;
     background: #fff;
-    border-radius: 5px;
-    box-shadow: 1px 2px 2px #999;
+    border-radius: 12px;
+    box-shadow: 0 10px 24px rgba(12, 35, 83, .13);
     overflow: hidden;
 }
 
@@ -549,14 +607,16 @@ nav .active {
 
 .membro h3 {
     font-size: 16px;
-    margin: 17px 0 5px;
-    white-space: nowrap;
+    margin: 16px 0 6px;
+    white-space: normal;
+    line-height: 1.2;
 }
 
 .membro p {
     font-size: 14px;
     line-height: 1.2;
     margin: 0;
+    color: #596273;
 }
 
 
@@ -587,7 +647,9 @@ footer p {
 .footer-marca strong span { color:var(--blue); }
 .footer-marca p { max-width:300px; margin:20px 0 0; }
 
-.imagem-contatos-placeholder { width: 145px; height: 34px; margin-top: 10px; border: 1px dashed rgba(255,255,255,.75); border-radius: 4px; }
+.contatos-icones { display: flex; align-items: center; gap: 14px; margin-top: 12px; }
+.icone-contato { width: 50px; height: 50px; border-radius: 5px; background: rgba(255,255,255,.08); }
+.icone-contato img { width: 100%; height: 100%; object-fit: contain; display: block; }
 .footer-endereco strong, .footer-contatos strong { font-size: 14px; }
 .footer-direitos { grid-column: 1 / -1; text-align: center; font-size: 11px; }
 
@@ -621,11 +683,12 @@ footer p {
     }
 
     .texto-banner h1 {
-        font-size: 28px;
+        font-size: 32px;
         margin-bottom: 40px;
     }
 
     .imagem-banner {
+        margin-left: 0;
         width: 100%;
         height: 260px;
         flex: 0 0 auto;
@@ -667,7 +730,17 @@ footer p {
 
     .equipe {
         overflow: hidden;
+        padding-top: 52px;
     }
+
+    .intro-equipe { margin-bottom: 42px; padding: 0 18px; }
+    .etiqueta-secao { font-size: 15px; }
+    .intro-equipe h2 { font-size: 40px; }
+    .intro-equipe p { font-size: 18px; }
+    .titulo-time { gap: 12px; padding: 0 18px; }
+    .titulo-time h2 { font-size: 24px; }
+    .titulo-time p { font-size: 15px; }
+    .linha-decorativa { width: 28px; }
 
     .linha-equipe {
         gap: 20px;
