@@ -1,5 +1,6 @@
 
 using HorizonTravel.Libraries.Login;
+using HorizonTravel.Libraries.Middleware;
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 
@@ -45,8 +46,14 @@ app.UseAuthorization();
 app.UseCookiePolicy();
 app.UseSession();
 
+app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
+
 app.MapControllerRoute(
     name: "default",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+app.MapControllerRoute(
+    name:"areas",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

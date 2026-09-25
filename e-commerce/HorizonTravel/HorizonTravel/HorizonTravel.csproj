@@ -7,8 +7,31 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
     <PackageReference Include="MySql.Data" Version="26.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
+    <PackageReference Include="NuGet.Packaging" Version="7.9.0" />
+    <PackageReference Include="NuGet.Protocol" Version="7.9.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Areas\Funcionario\Data\" />
+    <Folder Include="Areas\Funcionario\Models\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\css\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\icons\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\icons\32x32-transparent\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\icons\64x64-transparent\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\icons\64x64-white\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\icons\svg\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-design\shots\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-ecommerce\fonts\fontawesome\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-ecommerce\sass\.DS_Store" />
+    <None Include="wwwroot\lib\resources\lib\bootstrap-ecommerce-uikit\ui-ecommerce\sass\ui-assets\helpers\.DS_Store" />
   </ItemGroup>
 
 </Project>

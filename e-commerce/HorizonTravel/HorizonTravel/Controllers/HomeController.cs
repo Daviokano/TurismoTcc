@@ -1,4 +1,5 @@
 using System.Diagnostics;
+using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
 using HorizonTravel.Models;
 using HorizonTravel.Repository.Contract;
@@ -49,6 +50,7 @@ namespace HorizonTravel.Controllers
             return View();
         }
 
+        [UsuarioAutorizacaoAtributte]
         public IActionResult LogoutUsuario()
         {
             _usuarioLogin.Logout();

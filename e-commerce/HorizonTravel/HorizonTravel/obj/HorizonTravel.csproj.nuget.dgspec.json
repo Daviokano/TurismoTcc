@@ -53,6 +53,10 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "dependencies": {
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[10.0.2, )"
+            },
             "MySql.Data": {
               "target": "Package",
               "version": "[26.7.0, )"
@@ -60,6 +64,14 @@
             "Newtonsoft.Json": {
               "target": "Package",
               "version": "[13.0.4, )"
+            },
+            "NuGet.Packaging": {
+              "target": "Package",
+              "version": "[7.9.0, )"
+            },
+            "NuGet.Protocol": {
+              "target": "Package",
+              "version": "[7.9.0, )"
             }
           },
           "imports": [

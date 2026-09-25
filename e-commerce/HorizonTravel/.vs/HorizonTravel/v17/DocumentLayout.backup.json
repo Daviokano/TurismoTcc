@@ -3,6 +3,10 @@
   "WorkspaceRootPath": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\areas\\funcionario\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\areas\\funcionario\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|c:\\users\\bia\\onedrive\\documentos\\turismotcc\\e-commerce\\horizontravel\\horizontravel\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{590CE7CB-913D-4C45-AF8E-DF455BCDF963}|HorizonTravel\\HorizonTravel.csproj|solutionrelative:horizontravel\\repository\\usuariorepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -58,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 9,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -70,7 +74,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Areas\\Funcionario\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "HorizonTravel\\Areas\\Funcionario\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Areas\\Funcionario\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "HorizonTravel\\Areas\\Funcionario\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-09-18T20:39:24.797Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "Index.cshtml",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Home\\Index.cshtml",
               "RelativeDocumentMoniker": "HorizonTravel\\Views\\Home\\Index.cshtml",
@@ -78,12 +95,11 @@
               "RelativeToolTip": "HorizonTravel\\Views\\Home\\Index.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-10T19:39:49.997Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T19:39:49.997Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "_Layout.cshtml",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Shared\\_Layout.cshtml",
               "RelativeDocumentMoniker": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
@@ -91,12 +107,11 @@
               "RelativeToolTip": "HorizonTravel\\Views\\Shared\\_Layout.cshtml",
               "ViewState": "AgIAAAsAAAAAAAAAAAAAABkAAAA0AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-10T19:22:19.678Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T19:22:19.678Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "PainelUsuario.cshtml",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Home\\PainelUsuario.cshtml",
               "RelativeDocumentMoniker": "HorizonTravel\\Views\\Home\\PainelUsuario.cshtml",
@@ -104,12 +119,11 @@
               "RelativeToolTip": "HorizonTravel\\Views\\Home\\PainelUsuario.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-10T19:17:50.602Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T19:17:50.602Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "Login.cshtml",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Views\\Home\\Login.cshtml",
               "RelativeDocumentMoniker": "HorizonTravel\\Views\\Home\\Login.cshtml",
@@ -117,12 +131,11 @@
               "RelativeToolTip": "HorizonTravel\\Views\\Home\\Login.cshtml",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAA4AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
-              "WhenOpened": "2026-09-10T19:15:13.232Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T19:15:13.232Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "Endereco.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Models\\Endereco.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Models\\Endereco.cs",
@@ -130,12 +143,11 @@
               "RelativeToolTip": "HorizonTravel\\Models\\Endereco.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T18:59:33.711Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T18:59:33.711Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "LoginUsuario.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Libraries\\Login\\LoginUsuario.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Libraries\\Login\\LoginUsuario.cs",
@@ -143,12 +155,11 @@
               "RelativeToolTip": "HorizonTravel\\Libraries\\Login\\LoginUsuario.cs",
               "ViewState": "AgIAAA8AAAAAAAAAAAA1wCQAAAAcAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T17:48:53.133Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T17:48:53.133Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "Sessao.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Libraries\\Sessao\\Sessao.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Libraries\\Sessao\\Sessao.cs",
@@ -156,25 +167,24 @@
               "RelativeToolTip": "HorizonTravel\\Libraries\\Sessao\\Sessao.cs",
               "ViewState": "AgIAABoAAAAAAAAAAAAAADEAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T17:32:11.596Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T17:32:11.596Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "UsuarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Repository\\UsuarioRepository.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Repository\\UsuarioRepository.cs",
               "ToolTip": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Repository\\UsuarioRepository.cs",
               "RelativeToolTip": "HorizonTravel\\Repository\\UsuarioRepository.cs",
-              "ViewState": "AgIAAGoAAAAAAAAAAAAUwHYAAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAGoAAAAAAAAAAAAUwGsAAAAOAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2026-08-19T19:02:26.046Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Program.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Program.cs",
@@ -182,12 +192,11 @@
               "RelativeToolTip": "HorizonTravel\\Program.cs",
               "ViewState": "AgIAAAQAAAAAAAAAAAAkwBwAAAAXAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T19:31:19.898Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T19:31:19.898Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "IUsuarioRepository.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Repository\\Contract\\IUsuarioRepository.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Repository\\Contract\\IUsuarioRepository.cs",
@@ -199,7 +208,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "HomeController.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Controllers\\HomeController.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Controllers\\HomeController.cs",
@@ -207,12 +216,11 @@
               "RelativeToolTip": "HorizonTravel\\Controllers\\HomeController.cs",
               "ViewState": "AgIAAB4AAAAAAAAAAAAQwDYAAAA7AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2026-09-10T18:15:56.435Z",
-              "EditorCaption": ""
+              "WhenOpened": "2026-09-10T18:15:56.435Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "Usuario.cs",
               "DocumentMoniker": "C:\\Users\\Bia\\OneDrive\\Documentos\\TurismoTcc\\e-commerce\\HorizonTravel\\HorizonTravel\\Models\\Usuario.cs",
               "RelativeDocumentMoniker": "HorizonTravel\\Models\\Usuario.cs",
