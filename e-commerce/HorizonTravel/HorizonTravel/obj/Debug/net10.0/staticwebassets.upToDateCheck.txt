@@ -1,15 +1,21 @@
-wwwroot\css\index.css
 wwwroot\css\login.css
 wwwroot\css\loginfuncionario.css
+wwwroot\css\site.css
 wwwroot\favicon.ico
+wwwroot\img\brasil-procurados.jpg
 wwwroot\img\cadastroimg.png
 wwwroot\img\card copacabana.jpeg
 wwwroot\img\card orlando.jpeg
 wwwroot\img\card paris.jpg
 wwwroot\img\card pisa.jpeg
+wwwroot\img\eua-procurados.jpg
+wwwroot\img\franca-procurados.jpg
 wwwroot\img\img banner.jpg
+wwwroot\img\japao-procurados.png
 wwwroot\img\loginimg.jpg
 wwwroot\img\logo horizon.jpg
+wwwroot\img\video-img.jpg
+wwwroot\js\index.js
 wwwroot\js\site.js
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -542,11 +548,12 @@ wwwroot\lib\resources\lib\jquery3.3.1\jquery-3.3.1.min.js
 wwwroot\lib\resources\lib\mask\jquery.mask.min.js
 wwwroot\lib\resources\lib\pagedlist\PagedList.css
 wwwroot\lib\resources\lib\popper1.14.6\popper.min.js
-wwwroot\css\site.css
-C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\index.css
+wwwroot\css\index.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\login.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\loginfuncionario.css
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\site.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\favicon.ico
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\js\index.js
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\js\site.js
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\lib\bootstrap\dist\css\bootstrap-grid.css.map
@@ -739,4 +746,4 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\lib\resources\lib\mask\jquery.mask.min.js
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\lib\resources\lib\pagedlist\PagedList.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\lib\resources\lib\popper1.14.6\popper.min.js
-C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\site.css
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\wwwroot\css\index.css

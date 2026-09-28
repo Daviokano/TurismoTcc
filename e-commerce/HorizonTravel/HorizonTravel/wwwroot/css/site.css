@@ -57,22 +57,26 @@ main {
     margin: 0 12px;
 }
 
-    .navbar-nav .nav-link:hover {
-        color: #1a3a8f;
-    }
+.navbar-nav .nav-link:hover {
+    color: #696969;
+}
 
 .header-actions {
     gap: 20px;
+}
+
+.itens{
+    text-decoration: none;
 }
 
 .btn-login {
     background-color: #f5821f;
     color: #fff;
     font-weight: 600;
-    padding: 8px 24px;
     border-radius: 6px;
-    border: none;
     text-decoration: none;
+    width: 45px;
+    height: 70px;
 }
 
 .btn-login:hover {
@@ -82,13 +86,13 @@ main {
 
 .cart-icon {
     color: #333;
-    font-size: 1.3rem;
-    text-decoration: none;
+    width: 60px;
+    height: 50px;
 }
 
-    .cart-icon:hover {
-        color: #1a3a8f;
-    }
+.cart-icon:hover {
+    color: #1a3a8f;
+}
 
 .footer-horizon {
     background-color: #1a3a8f;

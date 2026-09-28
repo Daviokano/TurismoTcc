@@ -242,7 +242,6 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\scopedcss\Views\Shared\_Layout.cshtml.rz.scp.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\scopedcss\bundle\HorizonTravel.styles.css
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\scopedcss\projectbundle\HorizonTravel.bundle.scp.css
-C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\q1oott1zsz-{0}-bz5g29yd5b-bz5g29yd5b.gz
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\3z0rp3jgyl-{0}-npbck4tgm1-npbck4tgm1.gz
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\sj8o5b8ei3-{0}-dyjx89twm7-dyjx89twm7.gz
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\dyyhbej1fq-{0}-61n19gt1b8-61n19gt1b8.gz
@@ -452,4 +451,6 @@ C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTrav
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\HorizonTravel.pdb
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\HorizonTravel.genruntimeconfig.cache
 C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\ref\HorizonTravel.dll
-C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\58bi62l7yb-{0}-6dkgu8kwgx-6dkgu8kwgx.gz
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\olmxnl9t6t-{0}-omexqm4tk0-omexqm4tk0.gz
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\58bi62l7yb-{0}-e43glegv6h-e43glegv6h.gz
+C:\Users\Bia\OneDrive\Documentos\TurismoTcc\e-commerce\HorizonTravel\HorizonTravel\obj\Debug\net10.0\compressed\q1oott1zsz-{0}-5itxr53hbs-5itxr53hbs.gz

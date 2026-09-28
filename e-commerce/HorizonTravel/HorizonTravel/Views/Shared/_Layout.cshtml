@@ -52,13 +52,15 @@
                             <a class="nav-link" asp-controller="Sobre" asp-action="Index">Sobre</a>
                         </li>
                     </ul>
+                    <ul class="itens d-flex align-items-center header-actions">
+                        <li class="nav-item">
+                            <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
+                        </li>
 
-                    <div class="d-flex align-items-center header-actions">
-                        <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
-                        <a class="cart-icon" asp-controller="Carrinho" asp-action="Index">
-                            <i class="bi bi-cart3"></i>
-                        </a>
-                    </div>
+                        <li class="nav-item">
+                            <a class="cart-icon" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart3"></i></a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </nav>
