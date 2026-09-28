@@ -2,6 +2,7 @@ using System.Diagnostics;
 using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -65,6 +66,19 @@ namespace HorizonTravel.Controllers
         public IActionResult Privacy()
         {
             return View();
+        }
+
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult Cadastrar([FromForm] Usuario usuario)
+        {
+            usuario.situacaoUsu = SituacaoUsuConstant.Ativo;
+            _usuarioRepository.Cadastrar(usuario);
+            return RedirectToAction(nameof(Cadastrar));
         }
     }
 }

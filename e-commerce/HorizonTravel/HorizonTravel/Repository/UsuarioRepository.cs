@@ -1,4 +1,5 @@
 ﻿using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
@@ -15,6 +16,21 @@ namespace HorizonTravel.Repository
         public UsuarioRepository(IConfiguration conf)
         {
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
+        }
+
+        public void Ativar(int Id)
+        {
+            string situacao = SituacaoUsuConstant.Ativo;
+
+            using(var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET situacaoUsu=@situacaoUsu WHERE IDUsu=@IDUsu", conexao);
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = Id;
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
         }
 
         public void Atualizar(Usuario usuario)
@@ -37,13 +53,14 @@ namespace HorizonTravel.Repository
                 cmdEndereco.ExecuteNonQuery();
 
                 MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET nomeUsu=@nomeUsu, CPFUsu=@CPFUsu, emailUsu=@emailUsu, 
-                telefoneUsu=@telefoneUsu, dataNascimentoUsu=@dataNascimentoUsu, senhaUsu=@senhaUsu WHERE IDUsu=@IDUsu");
+                telefoneUsu=@telefoneUsu, dataNascimentoUsu=@dataNascimentoUsu, senhaUsu=@senhaUsu, situacaoUsu=@situacaoUsu WHERE IDUsu=@IDUsu");
 
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
                 cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = usuario.CPFUsu;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
                 cmd.Parameters.Add("@dataNascismentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascismentoUsu;
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
 
                 cmd.ExecuteNonQuery();
@@ -72,8 +89,8 @@ namespace HorizonTravel.Repository
                 // Pega o id do endereço que acabou de ser cadastrado, tipo, endereço tal tem id=15, ele pega o id 15
                 int IDEnd = Convert.ToInt32(cmdEndereco.LastInsertedId);
 
-                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Usuario(nomeUsu, CPFUsu, emailUsu, telefoneUsu, dataNascimentoUsu, senhaUsu)
-                VALUES (@nomeUsu, @CPFUsu, @emailUsu, @telefoneUsu, @dataNascimentoUsu, @senhaUsu)", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Usuario(nomeUsu, CPFUsu, emailUsu, telefoneUsu, dataNascimentoUsu, senhaUsu, situacaoUsu)
+                VALUES (@nomeUsu, @CPFUsu, @emailUsu, @telefoneUsu, @dataNascimentoUsu, @senhaUsu, @situacaoUsu)", conexao);
 
 
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
@@ -82,8 +99,24 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
                 cmd.Parameters.Add("@dataNascismentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascismentoUsu;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
                 cmd.Parameters.Add("@IDEnd", MySqlDbType.Int32).Value = IDEnd;
 
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
+        public void Desativar(int Id)
+        {
+            string situacao = SituacaoUsuConstant.Inativo;
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET situacaoUsu=@situacaoUsu WHERE IDUsu=@IDUsu", conexao);
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -119,7 +152,7 @@ namespace HorizonTravel.Repository
                 conexao.Open();
 
                 MySqlCommand cmd = new MySqlCommand(@" 
-                SELECT IDUsu, CPFUsu, nomeUsu, emailUsu, telefoneUsu, IDEnd, dataNascimentoUsu, senhaUsu, IDEnd
+                SELECT IDUsu, CPFUsu, nomeUsu, emailUsu, telefoneUsu, IDEnd, dataNascimentoUsu, senhaUsu, situacaoUsu, IDEnd
                 FROM Usuario
                 WHERE emailUsu = @emailUsu
                 AND senhaUsu = @senhaUsu", conexao);
@@ -142,7 +175,7 @@ namespace HorizonTravel.Repository
                     usuario.telefoneUsu = Convert.ToString(dr["telefoneUsu"]);
                     usuario.dataNascismentoUsu = Convert.ToDateTime(dr["dataNascimento"]);
                     usuario.senhaUsu = Convert.ToString(dr["senhaUsu"]);
-                    usuario.IDEnd = Convert.ToInt32(dr["IDEnd"]);
+                    usuario.situacaoUsu = Convert.ToString(dr["situacaoUsu"]);
 				}
 				return usuario;
             }
@@ -157,7 +190,7 @@ namespace HorizonTravel.Repository
                 conexao.Open();
 
                 MySqlCommand cmd = new MySqlCommand(@" 
-                SELECT u.IDUsu, u.CPFUsu, u.nomeUsu, u.emailUsu, u.telefoneUsu, u.IDEnd, u.dataNascimentoUsu, u.senhaUsu, e.IDEnd
+                SELECT u.IDUsu, u.CPFUsu, u.nomeUsu, u.emailUsu, u.telefoneUsu, u.IDEnd, u.dataNascimentoUsu, u.senhaUsu, u.situacaoUsu,e.IDEnd
                 AS IDEnd, e.logEnd, e.numEnd, e.bairroEnd, e.cidEnd, e.estEnd, e.CEPEnd
                 FROM Usuario u
                 INNER JOIN Endereco e 
@@ -183,6 +216,7 @@ namespace HorizonTravel.Repository
                             telefoneUsu = (string)(dr["telefoneUsu"]),
                             dataNascismentoUsu = (DateTime)(dr["dataNascismentoUsu"]),
                             senhaUsu = (string)(dr["senhaUsu"]),
+                            situacaoUsu = Convert.ToString(dr["situacaoUsu"]),
                             IDEnd = (Int32)(dr["IDEnd"]),
 
                             Endereco = new Endereco
@@ -209,7 +243,7 @@ namespace HorizonTravel.Repository
                 conexao.Open();
 
                 MySqlCommand cmd = new MySqlCommand(@" 
-                SELECT u.IDUsu, u.CPFUsu, u.nomeUsu, u.emailUsu, u.telefoneUsu, u.IDEnd, u.dataNascimentoUsu, u.senhaUsu,e.IDEnd
+                SELECT u.IDUsu, u.CPFUsu, u.nomeUsu, u.emailUsu, u.telefoneUsu, u.IDEnd, u.dataNascimentoUsu, u.senhaUsu, u.situacaoUsu, e.IDEnd
                 AS IDEnd, e.logEnd, e.numEnd, e.bairroEnd, e.cidEnd, e.estEnd, e.CEPEnd
                 FROM Usuario u
                 INNER JOIN Endereco e 
@@ -231,6 +265,7 @@ namespace HorizonTravel.Repository
                     usuario.telefoneUsu = (string)(dr["telefoneUsu"]);
                     usuario.dataNascismentoUsu = (DateTime)(dr["dataNascismentoUsu"]);
                     usuario.senhaUsu = (string)(dr["senhaUsu"]);
+                    usuario.situacaoUsu = (string)(dr["situacaoUsu"]);
                     usuario.IDEnd = (Int32)(dr["IDEnd"]);
 
                     usuario.Endereco = new Endereco

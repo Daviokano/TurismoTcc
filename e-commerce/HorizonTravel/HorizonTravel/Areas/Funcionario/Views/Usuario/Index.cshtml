@@ -1,0 +1,92 @@
+@using HorizonTravel.Models
+@model IEnumerable<HorizonTravel.Models.Usuario>
+
+@{
+    ViewData["Title"] = "Usuários";
+}
+
+<h1>Usuários</h1>
+
+<p class="btn btn-outline-primary" role="button">
+    <a asp-action="Cadastrar">
+        <span class="fas fa-user-plus" title="Cadastro" aria-hidden="true"></span>
+        <span>Cadastrar novo usuário</span>
+    </a>
+</p>
+
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().IDUsu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().CPFUsu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().nomeUsu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().emailUsu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().telefoneUsu)
+                </th>
+                <th scope="col">
+                    @Html.DisplayNameFor(model => model.First().dataNascismentoUsu)
+                </th>
+                <th scope="col">Ações</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            @foreach (Usuario usuario in Model)
+            {
+                <tr>
+                    <td>
+                        @usuario.IDUsu
+                    </td>
+                    <td>
+                        @usuario.CPFUsu
+                    </td>
+                    <td>
+                        @usuario.nomeUsu
+                    </td>
+                    <td>
+                        @usuario.emailUsu
+                    </td>
+                    <td>
+                        @usuario.telefoneUsu
+                    </td>
+                    <td>
+                        @usuario.situacaoUsu
+                    </td>
+
+
+
+                    <td>
+                        @if (usuario.situacaoUsu == "A")
+                        {
+                            <button type="button" class="btn btn-danger">
+                                @Html.ActionLink("Desativar", "Desativar", new { id = usuario.IDUsu },
+                                    new { onclick = "return confirm('Realmente deseja desativar esse usuário?');" })
+                            </button>
+                        }
+                        else if (usuario.situacaoUsu == "D")
+                        {
+                            <button type="button" class="btn btn-secondary">
+                                @Html.ActionLink("Ativar", "Ativar", new { id = usuario.IDUsu },
+                                    new { onclick = "return confirm('Realmente deseja ativar esse usuário?');" })
+                            </button>
+                        }
+                        @* <a asp-action="GerarSenha" asp-route-id="@usuario.IDUsu" class="btn btn-secondary">Detalhes</a> 
+                        <a asp-action="Edit" asp-route-id="@usuario.IDUsu" class="btn btn-secondary">Editar</a> 
+                        <a asp-action="Delete" asp-route-id="@usuario.IDUsu" class="btn btn-danger">Excluir</a> *@
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

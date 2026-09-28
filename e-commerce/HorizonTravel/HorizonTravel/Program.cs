@@ -1,6 +1,7 @@
 
 using HorizonTravel.Libraries.Login;
 using HorizonTravel.Libraries.Middleware;
+using HorizonTravel.Libraries.Sessao;
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 
@@ -25,8 +26,12 @@ builder.Services.AddSession(options =>
 });
 builder.Services.AddMvc().AddSessionStateTempDataProvider();
 
+// ex.: em ConfigureServices
+builder.Services.AddScoped<HorizonTravel.Libraries.Login.LoginFuncionario>();
 builder.Services.AddScoped<HorizonTravel.Libraries.Sessao.Sessao>();
-builder.Services.AddScoped<LoginUsuario>();
+builder.Services.AddScoped<HorizonTravel.Libraries.Login.LoginUsuario>();
+builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+builder.Services.AddDistributedMemoryCache();
 
 //add para manipular a sessão
 builder.Services.AddHttpContextAccessor();

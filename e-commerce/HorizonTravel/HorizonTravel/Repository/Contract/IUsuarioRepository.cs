@@ -13,5 +13,8 @@ namespace HorizonTravel.Repository.Contract
         void Excluir(int Id);
         Usuario ObterUsuario(int Id);
         IEnumerable<Usuario> ObterTodosUsuarios();
+
+        void Ativar(int Id);
+        void Desativar(int Id);
     }
 }

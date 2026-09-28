@@ -38,5 +38,7 @@ namespace HorizonTravel.Models
         [DataType(DataType.Password)]
         [StringLength(8, ErrorMessage = "A senha deve ter 8 caracteres.")]
         public string senhaUsu {get; set;}
+        
+        public string situacaoUsu { get; set;}
     }
 }

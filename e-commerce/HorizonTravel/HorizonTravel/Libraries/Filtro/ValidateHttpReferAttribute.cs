@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace HorizonTravel.Libraries.Filtro
 {
-    public class ValidateHttpReferAttribute : Attribute, IActionFilter
+    public class ValidateHttpReferer : Attribute, IActionFilter
     {
        
         public void OnActionExecuted(ActionExecutedContext context)
