@@ -28,11 +28,11 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         {
             Models.Funcionario funcionarioDB = _funcionarioRepository.Login(funcionario.emailFun, funcionario.senhaFun);
 
-            if(funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
-            {
-                _loginFuncionario.Login(funcionarioDB);
-                return new RedirectResult(Url.Action(nameof(PainelFuncionario)));
-            }
+                if(funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
+                {
+                    _loginFuncionario.Login(funcionarioDB);
+                    return RedirectToAction(nameof(PainelFuncionario));
+                }
             else
             {
                 ViewData["MSG_E"] = "Funcioário não encontrado, por favor verifique email e senha digitados";
@@ -63,7 +63,8 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Logout()
         {
             _loginFuncionario.Logout();
-            return RedirectToAction("LoginFuncionario", "Home");
+            // Redireciona para a action Login desta controller/área
+            return RedirectToAction(nameof(Login));
         }
     }
 }
