@@ -14,15 +14,16 @@ body {
   background: var(--bg);
   font-family: Montserrat, Arial, sans-serif;
   color: var(--ink);
+  overflow-x: hidden;
 }
 
-.page-shell {
+main {
   width: 100%;
   overflow: hidden;
   background: var(--bg);
 }
 
-.cabecalho-site {
+.cabecalho {
   height: 110px;
   margin: 0 58px;
   border-bottom: 1px solid #8594aa;
@@ -60,7 +61,7 @@ nav .active {
   color: var(--blue);
 }
 
-.hero-servicos {
+.apresentacao-servicos {
   min-height: 720px;
   width: 100%;
   max-width: none;
@@ -73,7 +74,7 @@ nav .active {
   gap: 110px;
 }
 
-.texto-hero h1 {
+.texto-apresentacao h1 {
   font-size: 48px;
   line-height: 1.2;
   margin: 0;
@@ -85,22 +86,22 @@ nav .active {
   max-width: 500px;
   margin: 24px 0 0;
   color: #263653;
-  font-size: 26px;
+  font-size: 22px;
   font-weight: 600;
   line-height: 1.5;
 }
 
-.texto-hero span {
+.texto-apresentacao span {
   color: var(--blue);
 }
 
-.imagem-hero {
+.imagem-apresentacao {
   height: 470px;
   overflow: hidden;
   border-radius: 20px;
 }
 
-.imagem-hero img {
+.imagem-apresentacao img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -112,10 +113,10 @@ nav .active {
 }
 
 .subtitulo-hero mark {
-  background:transparent;
+  background: transparent;
   color:var(--blue);
-  padding:0;
-  border-radius:0;
+  padding: 0;
+  border-radius: 0;
   font-weight:800;
 }
 
@@ -175,7 +176,7 @@ nav .active {
   gap: 18px;
 }
 
-.resultados div {
+.resultados .estatistica-item {
   display: grid;
   grid-template-columns: 34px auto;
   column-gap: 6px;
@@ -344,7 +345,7 @@ footer p {
 .footer-direitos { grid-column:1 / -1; text-align:center; font-size:11px }
 
 @media (max-width: 700px) {
-  .cabecalho-site {
+  .cabecalho {
     margin: 0 24px;
     height: auto;
     padding: 14px 0;
@@ -361,14 +362,14 @@ footer p {
     font-size: 12px;
   }
 
-  .hero-servicos {
+  .apresentacao-servicos {
     height: auto;
     padding: 55px 30px 30px;
     grid-template-columns: 1fr;
     gap: 15px;
   }
 
-  .imagem-hero {
+  .imagem-apresentacao {
     height: 280px;
   }
 
@@ -427,4 +428,35 @@ footer p {
   footer {
     grid-template-columns: 1fr 1fr;
   }
+}
+
+@media (max-width: 1250px) and (min-width: 701px) {
+  .apresentacao-servicos { padding: 80px 48px; grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.2fr); gap: 48px; }
+  .texto-apresentacao h1 { font-size: 40px; }
+  .subtitulo-hero { font-size: 21px; }
+  .imagem-apresentacao { height: 380px; }
+  .lista-servicos { grid-template-columns: repeat(2, 1fr); padding-inline: 48px; }
+  .contato { padding-inline: 48px; gap: 50px; }
+  footer { column-gap: 45px; }
+}
+
+@media (max-width: 700px) {
+  .texto-apresentacao h1 { font-size: 32px; }
+  .subtitulo-hero { font-size: 18px; }
+  .lista-servicos { grid-template-columns: 1fr; padding: 28px 20px; }
+  .cartao-servico { min-height: 0; }
+  .resultados { grid-template-columns: repeat(2, 1fr); }
+  .resultados div { justify-self: start; }
+  .contato { padding-inline: 20px; }
+  .informacoes-contato h2 { font-size: 34px; }
+  .campos-duplos { grid-template-columns: 1fr; }
+  .formulario { padding: 30px 22px; }
+}
+
+@media (max-width: 420px) {
+  .apresentacao-servicos { padding-inline: 20px; }
+  .imagem-apresentacao { height: 220px; }
+  .resultados { padding-inline: 20px; }
+  .resultados strong { font-size: 24px !important; }
+  .resultados span { font-size: 12px; }
 }

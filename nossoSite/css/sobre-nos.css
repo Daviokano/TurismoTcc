@@ -14,15 +14,16 @@ body {
   margin:0;
   background:var(--bg);
   font-family:Montserrat,Arial,sans-serif;
-  color:var(--ink)
+  color:var(--ink);
+  overflow-x:hidden
 }
-.page-shell {
+main {
   width:100%;
   margin:0 auto;
   background:var(--bg);
   overflow:hidden
 }
-.cabecalho-site {
+.cabecalho {
   height:110px;
   margin:0 58px;
   display:flex;
@@ -30,8 +31,8 @@ body {
   justify-content:space-between
 }
 
-.cabecalho-site .marca { width:170px; height:88px; }
-.cabecalho-site nav { display:flex; gap:35px; font-size:18px; font-weight:700; }
+.cabecalho .marca { width:170px; height:88px; }
+.cabecalho nav { display:flex; gap:35px; font-size:18px; font-weight:700; }
 .marca {
   width:170px;
   height:88px;
@@ -53,7 +54,7 @@ nav a {
 nav .active {
   color:var(--blue)
 }
-.hero-sobre {
+.apresentacao-sobre {
   min-height:760px;
   width:100%;
   max-width:none;
@@ -78,24 +79,24 @@ nav .active {
   overflow:hidden
 }
 .foto-placeholder img { width:100%; height:100%; object-fit:cover }
-.foto-hero {
+.foto-apresentacao {
   width:100%;
   height:560px;
   border-radius:48% 52% 49% 51%;
   border:16px solid var(--navy);
   background:#effbff
 }
-.texto-hero h1 {
+.texto-apresentacao h1 {
   font-size:48px;
   line-height:1.16;
   margin:0 0 8px;
   font-weight:800;
   color:#fff
 }
-.texto-hero h1 span {
+.texto-apresentacao h1 span {
   color:var(--blue)
 }
-.texto-hero p {
+.texto-apresentacao p {
   font-size:24px;
   line-height:1.35;
   line-height:1.13;
@@ -220,6 +221,39 @@ nav .active {
   .historia-grid > .bloco-historia:nth-child(3) .mini-frentes span { margin: 0; }
   .cta-historia { display: block; margin: 16px 24px 50px; padding: 24px; }
   .cta-historia a { display: inline-block; margin-top: 20px; }
+}
+
+@media (max-width: 1250px) and (min-width: 701px) {
+  .apresentacao-sobre { padding: 80px 48px; grid-template-columns: minmax(300px, 1fr) minmax(360px, 1.1fr); gap: 48px; }
+  .texto-apresentacao h1 { font-size: 40px; }
+  .texto-apresentacao p { font-size: 20px; }
+  .foto-apresentacao { height: 430px; }
+  .como-trabalhamos { padding-inline: 48px; grid-template-columns: minmax(300px, 1.2fr) minmax(280px, 1fr); gap: 48px; }
+  .historia-empresa { padding-inline: 48px; }
+  .historia-grid { grid-template-columns: repeat(2, 1fr); }
+  .historia-grid > .bloco-historia:last-child { grid-column: 1 / -1; }
+  .projetos-realizados { padding-inline: 48px; }
+  .cartoes-servicos { gap: 20px; }
+  footer { column-gap: 45px; }
+}
+
+@media (max-width: 700px) {
+  .texto-apresentacao p { font-size: 18px; text-align: left; }
+  .historia-empresa { padding-inline: 20px; }
+  .cabecalho-historia h2 { font-size: 34px; }
+  .servicos-sobre { padding-inline: 20px; }
+  .cartoes-servicos { grid-template-columns: 1fr; }
+  .cartao-servico { height: auto; min-height: 210px; }
+  .projetos-realizados { padding-inline: 20px; }
+  .projetos-realizados h2 { font-size: 30px; }
+  .cta-historia { margin-inline: 0; }
+}
+
+@media (max-width: 420px) {
+  .apresentacao-sobre { padding-inline: 20px; }
+  .foto-apresentacao { height: 170px; border-width: 8px; }
+  .item-trabalho { padding: 14px; gap: 14px; }
+  .item-trabalho p { font-size: 15px; }
 }
 .servicos-sobre {
   background:var(--navy);
@@ -380,11 +414,20 @@ footer p {
   letter-spacing:normal;
 }
 @media(max-width:700px) {
-  .page-shell {
+  main {
   width:100%;
   margin-top:0
 }
-.cabecalho-site {
+
+/* Ajustes finais para telas estreitas: mantidos no fim para prevalecer sobre regras legadas. */
+@media (max-width: 700px) {
+  .cartoes-servicos { grid-template-columns: 1fr; gap: 18px; }
+  .cartao-servico { height: auto; min-height: 210px; }
+  .projetos-realizados { display: block; }
+  .cartoes-projetos { grid-template-columns: 1fr; grid-template-rows: none; }
+  .projetos-realizados .cta-historia { margin: 28px 0 0; min-height: 0; }
+}
+  .cabecalho {
   margin:0 24px;
   height:auto;
   padding:14px 0;
@@ -395,22 +438,22 @@ footer p {
   height:62px
 }
 .cartao-servico p strong { color:var(--blue); font-weight:800; }
-.cabecalho-site .marca { width:125px; height:62px; }
+  .cabecalho .marca { width:125px; height:62px; }
 nav {
   gap:16px;
   font-size:12px
 }
-.cabecalho-site nav { gap:16px; font-size:12px; }
-.hero-sobre {
+  .cabecalho nav { gap:16px; font-size:12px; }
+  .apresentacao-sobre {
   padding:35px 30px;
   min-height:auto;
   grid-template-columns:1fr;
   gap:28px
 }
-.foto-hero {
+.foto-apresentacao {
   height:190px
 }
-.texto-hero h1 {
+  .texto-apresentacao h1 {
   font-size:22px
 }
 .como-trabalhamos {
