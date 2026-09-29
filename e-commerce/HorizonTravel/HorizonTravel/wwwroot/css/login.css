@@ -1,332 +1,295 @@
-﻿* {
-    font-family: "Poppins", sans-serif;
-    font-weight: 600;
-    font-style: normal;
-    margin: 0;
-    padding: 0;
+﻿@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap');
+
+/* ============ Variáveis ============ */
+:root {
+    --laranja: #f97316;
+    --laranja-escuro: #ea580c;
+    --laranja-link: #c2410c;
+    --texto: #111111;
+    --texto-suave: #6b7280;
+    --icone: #9ca3af;
+    --borda: #d9dbe0;
+}
+
+/* ============ Base da página ============ */
+.pagina-login,
+.pagina-login * {
     box-sizing: border-box;
 }
 
-.login-page {
-    width: 100%;
-    height: 100vh;
+/* cobre a tela inteira, por cima do header/footer do _Layout */
+.pagina-login {
+    position: fixed;
+    inset: 0;
+    z-index: 2000;
+    overflow-y: auto;
+    font-family: 'Montserrat', sans-serif;
+    color: var(--texto);
+    background: #fff;
+}
+
+/* evita a barra de rolagem da página que fica atrás */
+body:has(.pagina-login) {
+    overflow: hidden;
 }
 
 .login-container {
     display: flex;
+    align-items: stretch;
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* ============ Lado esquerdo: imagem ============ */
+.imagem-login {
+    position: relative;
+    flex: 0 0 50%;
+    align-self: stretch;
+    min-height: 100vh;
+    min-height: 100dvh;
     overflow: hidden;
 }
 
-.login-image {
-    overflow: hidden;
-}
-
-.login-image img {
-    object-fit: cover;
-    display: block;
-}
-
-
-.image-content {
+/* a imagem preenche 100% da altura e da largura do painel */
+.imagem-login > img {
     position: absolute;
-    color: white;
+    display: block;
+    width: 110%;
+    height: 120%;
+    object-fit: cover;
 }
 
-.logo-horizon {
-    color: white;
+.banner-img {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px;
+    color: #fff;
 }
 
-.logo-top {
+.logo-aviao {
     display: flex;
+    flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
-    margin-bottom: 28px;
-    font-size: 18px;
-    font-weight: 600;
+    gap: 12px;
 }
 
 .logo-icon {
-    width: 30px;
-    height: 30px;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    background-color: #ff6f00;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-
-.logo-icon i {
-    font-size: 15px;
-    color: white;
-}
-
-
-.logo-horizon h4 {
-    margin: 0 0 7px 0;
-    color: white;
+    background: linear-gradient(135deg, #fb923c, var(--laranja-link));
+    color: #fff;
     font-size: 18px;
+}
+
+.logo-aviao > span:nth-of-type(2) {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.logo-aviao h4 {
+    flex-basis: 100%;
+    margin: 18px 0 0;
+    font-size: 16px;
     font-weight: 700;
-    line-height: 1.2;
+    letter-spacing: 0.3px;
 }
 
-.logo-horizon p {
+.logo-aviao p {
+    flex-basis: 100%;
+    max-width: 340px;
     margin: 0;
-    max-width: 390px;
-    color: white;
     font-size: 14px;
-    line-height: 1.4;
+    font-weight: 400;
+    line-height: 1.5;
 }
 
-.image-content h2 {
-    margin: 0 0 8px 0;
-    font-size: 18px;
-    font-weight: 700;
-    letter-spacing: 0.2px;
-}
-
-.image-content p {
-    margin: 0;
-    max-width: 360px;
-    font-size: 14px;
-    line-height: 1.4;
-    color: white;
-}
-
-
-/* =========================
-   LADO DO FORMULÁRIO
-========================= */
-
+/* ============ Lado direito: formulário ============ */
 .login-form {
-    width: 54%;
-    min-height: 100vh;
-    background-color: #ffffff;
+    flex: 1;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 40px;
+    padding: 40px 24px;
+    background: #fff;
 }
 
-
-/* Conteúdo */
-
-.form-content {
+.formulario {
     width: 100%;
-    max-width: 430px;
+    max-width: 400px;
 }
 
-
-    /* =========================
-   TÍTULO
-========================= */
-
-    .form-content h1 {
-        margin: 0;
-        font-size: 24px;
-        font-weight: 700;
-        color: #111111;
-    }
-
-
-/* Texto abaixo do título */
+.formulario h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--texto);
+}
 
 .texto1 {
-    margin-top: 5px;
-    margin-bottom: 25px;
+    margin: 0 0 28px;
     font-size: 13px;
-    color: #555555;
+    color: #222;
 }
 
+/* mensagem de erro (ViewData["MSG_E"]) */
+.formulario .alert {
+    margin: 0 0 20px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    font-size: 13px;
+}
 
-/* =========================
-   CAMPOS
-========================= */
+.formulario .alert-danger {
+    background: #fef2f2;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
 
+/* ============ Campos ============ */
 .form-group {
-    margin-bottom: 18px;
+    margin-bottom: 20px;
 }
 
-    .form-group label {
-        display: block;
-        margin-bottom: 7px;
-        font-size: 13px;
-        font-weight: 600;
-        color: #222222;
-    }
-
-
-/* Container do input */
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--texto);
+}
 
 .input-container {
     position: relative;
-    width: 100%;
 }
 
-
-    /* Ícone */
-
-    .input-container > i:first-child {
-        position: absolute;
-        left: 13px;
-        top: 50%;
-        transform: translateY(-50%);
-        color: #aaa;
-        font-size: 14px;
-        z-index: 2;
-    }
-
-
-    /* Input */
-
-    .input-container .form-control {
-        width: 100%;
-        height: 45px;
-        padding-left: 40px;
-        padding-right: 40px;
-        border: 1px solid #d6d6d6;
-        border-radius: 7px;
-        font-size: 12px;
-        box-shadow: none;
-    }
-
-
-        /* Input quando selecionado */
-
-        .input-container .form-control:focus {
-            border-color: #ff7417;
-            box-shadow: 0 0 0 2px rgba(255, 116, 23, 0.10);
-        }
-
-
-/* Placeholder */
-
-.form-control::placeholder {
-    color: #aaa;
-}
-
-
-/* =========================
-   ÍCONE DE SENHA
-========================= */
-
-.senha-icon {
+/* ícone à esquerda (envelope / cadeado) */
+.input-container > i {
     position: absolute;
-    right: 13px;
+    left: 14px;
+    top: 50%;
+    z-index: 1;
+    transform: translateY(-50%);
+    font-size: 15px;
+    color: var(--icone);
+    pointer-events: none;
+}
+
+/* seletor mais específico para vencer o .form-control do Bootstrap */
+.input-container .form-control {
+    width: 100%;
+    height: 46px;
+    padding: 0 42px;
+    border: 1px solid var(--borda);
+    border-radius: 10px;
+    background: #fff;
+    font-family: inherit;
+    font-size: 13px;
+    color: var(--texto);
+    box-shadow: none;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-container .form-control::placeholder {
+    color: var(--icone);
+}
+
+.input-container .form-control:focus {
+    border-color: var(--laranja);
+    box-shadow: 0 0 0 3px rgba(249, 115, 22, 0.15);
+}
+
+/* botão do olho (mostrar/ocultar senha) */
+.toggle-senha {
+    position: absolute;
+    right: 10px;
     top: 50%;
     transform: translateY(-50%);
-    color: #999;
-    font-size: 14px;
+    display: grid;
+    place-items: center;
+    padding: 6px;
+    border: 0;
+    background: none;
+    font-size: 15px;
+    color: var(--icone);
     cursor: pointer;
+    transition: color 0.2s;
 }
 
+.toggle-senha:hover {
+    color: var(--texto);
+}
 
-/* =========================
-   ESQUECI SENHA
-========================= */
+/* ============ Esqueci minha senha ============ */
+.senha-group {
+    margin-bottom: 24px;
+}
 
 .forgot-password {
     display: block;
+    margin-top: 8px;
     text-align: right;
-    margin-top: 7px;
     font-size: 11px;
-    color: #ff7417;
+    color: var(--laranja-link);
     text-decoration: none;
 }
 
-    .forgot-password:hover {
-        color: #e85d00;
-        text-decoration: underline;
-    }
+.forgot-password:hover {
+    text-decoration: underline;
+}
 
-
-/* =========================
-   BOTÃO
-========================= */
-
+/* ============ Botão entrar ============ */
 .btn-login {
     width: 100%;
-    height: 45px;
-    border: none;
-    border-radius: 7px;
-    background-color: #ff7417;
-    color: white;
-    font-size: 14px;
+    height: 46px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--laranja);
+    font-family: inherit;
+    font-size: 15px;
     font-weight: 600;
+    color: #fff;
     cursor: pointer;
-    transition: 0.2s;
+    transition: background 0.2s, transform 0.1s;
 }
 
-    .btn-login:hover {
-        background-color: #e96308;
-    }
+.btn-login:hover {
+    background: var(--laranja-escuro);
+}
 
+.btn-login:active {
+    transform: translateY(1px);
+}
 
-/* =========================
-   CADASTRO
-========================= */
-
+/* ============ Link de cadastro ============ */
 .register-text {
+    margin: 16px 0 0;
     text-align: center;
-    margin-top: 10px;
     font-size: 11px;
-    color: #888;
+    color: var(--texto-suave);
 }
 
-    .register-text a {
-        color: #ff7417;
-        text-decoration: none;
-        font-weight: 500;
-    }
-
-        .register-text a:hover {
-            text-decoration: underline;
-        }
-
-
-/* =========================
-   ALERTA
-========================= */
-
-.alert {
-    font-size: 12px;
-    margin-bottom: 15px;
+.register-text a {
+    color: var(--laranja-link);
+    text-decoration: none;
 }
 
+.register-text a:hover {
+    text-decoration: underline;
+}
 
-/* =========================
-   RESPONSIVIDADE
-========================= */
-
-@media (max-width: 768px) {
-
-    .login-container {
-        flex-direction: column;
-    }
-
-    .login-image {
-        width: 100%;
-        min-height: 300px;
-        height: 40vh;
+/* ============ Responsivo ============ */
+@media (max-width: 860px) {
+    .imagem-login {
+        display: none;
     }
 
     .login-form {
-        width: 100%;
-        min-height: 60vh;
-        padding: 30px 25px;
+        padding: 32px 20px;
     }
-
-    .image-content {
-        left: 25px;
-        bottom: 25px;
-        width: calc(100% - 50px);
-    }
-
-        .image-content h2 {
-            font-size: 16px;
-        }
-
-        .image-content p {
-            font-size: 12px;
-        }
 }

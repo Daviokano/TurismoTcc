@@ -1,4 +1,4 @@
-
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&family=Geologica:wght,CRSV@100..900,0&family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Share+Tech&display=swap');
 * {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
@@ -24,456 +24,186 @@ main {
   }
 }
 
-.nav-link {
-    position: relative;
-    color: #000;
+.navbar {
+    background-color: #fff;
+    box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
+}
+
+.navbar-brand {
+    gap: 8px;
+}
+
+.logo-horizon {
+    width: 70px;
+    height: 65px;
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+
+.logo-horizon {
+    color: #1a3a8f;
+}
+
+.logo-travel {
+    color: #f5821f;
+}
+
+.navbar-nav .nav-link {
+    color: #333;
+    font-weight: 500;
+    margin: 0 12px;
+}
+
+.navbar-nav .nav-link:hover {
+    color: #696969;
+}
+
+.header-actions {
+    gap: 20px;
+}
+
+.itens{
     text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-.nav-link::after {
-    content: "";
-    position: absolute;
-    left: 0;
-    bottom: -5px;
-    width: 0;
-    height: 2px;
-    background-color: #ff8c00;
-    transition: width 0.3s ease;
-}
-
-.nav-link:hover {
-    color: #ff8c00; 
-}
-
-.nav-link:hover::after {
-    width: 100%;
-}
-
-.navbar-brand .texto1{
-    color: #1E3A8A;
-}
-
-.navbar-brand .texto2{
-    color:#F97316 ;
-    font-weight: 300;
-}
-
-.navbar-nav .btn {
-    width: 120px;
-    font-weight: 600;
-    font-size: medium;
-}
-
-.bi-cart3{
-    color: #000;
-    cursor: pointer;
-}
-
-.bi-cart3:hover{
-    color: darkgray;
 }
 
 .btn-login {
-    background-color: #F97316;
-    color: white;
-    border: none;
-    width: 100px;
-    height: 30px;
+    background-color: #f5821f;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 6px;
+    text-decoration: none;
+    width: 45px;
+    height: 70px;
 }
 
 .btn-login:hover {
-    background-color: #FFA500;
-    color: white;
+    background-color: #d96e12;
+    color: #fff;
 }
 
-.banner {
-    width: 100%;
-    min-height: 650px;
+.cart-icon {
+    color: #333;
+    width: 60px;
+    height: 50px;
 }
 
-.banner img {
-    width: 100%;
-    height: 640px;
+.cart-icon:hover {
+    color: #1a3a8f;
 }
 
-.banner-conteudo {
-    position: absolute;
-    top: 300px;
-    left: 6%;
-    color: white;
-    max-width: 600px;
+.footer-horizon {
+    background-color: #1a3a8f;
+    color: #fff;
+    padding: 40px 60px 20px;
+    font-family: inherit;
 }
 
-.banner-conteudo .titulo-banner {
-    font-size: 3rem;
-    margin-bottom: 20px;
-    font-weight: 600;
-}
-
-.banner-conteudo .texto-banner {
-    margin-bottom: 20px;
-    font-weight: 300;
-}
-
-.banner-conteudo .btn {
-    background-color: #1E3A8A;
-    color: white;
-    border: none;
-}
-
-.banner-conteudo .btn:hover {
-    background-color: rgb(0, 103, 206);
-    color: white;
-    border: none;
-}
-
-.banner-busca {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    padding: 0.6rem;
-    margin-top: -2.5rem;
-    position: relative;
-}
-
-.banner-busca .campo-busca {
-    border: 1px solid #e5e7eb;
-    border-radius: 8px;
-}
-
-.banner-busca .campo-busca .form-control {
-    border: none;
-    box-shadow: none;
-}
-
-.banner-busca .btn{
-    width: 100%;
-    font-weight: 600;
-}
-
-
-.text .titulo {
-    margin-bottom: 20px;
-    margin-top: 40px;
-    font-weight: 700;
-}
-
-.text .texto {
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.card-destino {
-    position: relative;
-    border: none;
-    border-radius: 14px;
-    overflow: hidden;
-    height: 440px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-}
-
-.card-destino .card-img {
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-
-.card-destino .card-img-overlay {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0) 55%);
+.footer-container {
     display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 30px;
 }
 
-.titulo-card {
-    color: #fff;
-    font-weight: 300;
-    font-size: 1rem;
-    margin-bottom: 0.15rem;
+.footer-col {
+    flex: 1;
+    min-width: 200px;
 }
 
-.texto-card {
-    color: #fff;
-    font-weight: 300;
+.footer-brand h5 {
+    font-weight: 700;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.footer-brand h5 i {
+    margin-right: 6px;
+}
+
+.footer-brand p {
     font-size: 0.85rem;
-    margin-bottom: 0;
+    opacity: 0.85;
+    max-width: 280px;
 }
 
-.btn-card {
-    position: absolute;
-    bottom: 1rem;
-    right: 1rem;
-    background-color: #fff;
-    color: #ff8c00;
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border: none;
-}
-
-.btn-card:hover {
-    background-color: #ff8c00;
-    color: #fff;
-}
-
-.procurados {
-    padding: 2rem 0 3.5rem;
-}
-
-.titulo-procurados {
-    font-weight: 600;
-    color: #000;
-}
-
-.procurado-item {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    padding: 1.6rem;
-    display: flex;
-    align-items: center;
-    gap: 1.2rem;
-}
-
-.procurado-item .procurado-img {
-    width: 64px;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 8px;
-}
-
-.procurado-item .procurado-numero {
-    font-weight: 600;
-    color: #000;
-    margin-right: 0.35rem;
-}
-
-.procurado-item .procurado-nome {
-    font-weight: 600;
-    color: #000;
-}
-
-.estrelas {
-    color: #ffce00;
-    font-size: 0.85rem;
-    display: flex;
-    gap: 5px;
-}
-
-.viaje-card {
-    position: relative;
-    border-radius: 16px;
-    overflow: hidden;
-    min-height: 300px;
-    height: 100%;
-}
-
-.viaje-card img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.viaje-card .viaje-overlay {
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    padding: 1.5rem;
-}
-
-.viaje-card .viaje-titulo {
-    color: #fff;
+.footer-col h6 {
     font-weight: 700;
-    font-size: 1.6rem;
+    margin-bottom: 12px;
 }
 
-.viaje-card .viaje-texto {
-    color: rgba(255, 255, 255, 0.9);
-    max-width: 380px;
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-
-.beneficios {
-    padding: 3.5rem 0;
-    background-color: #fff;
-    margin-bottom: 4rem;
-}
-
-.titulo-beneficios {
-    font-weight: 700;
-    color: #000;
-    font-size: 2.4rem;
-}
-
-.beneficio {
-    background-color: #fff;
-    border-radius: 14px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
-    padding: 2rem 1.5rem;
-    text-align: center;
-    width: 80%;
-    height: 120%;
-}
-
-.beneficio .beneficio-icone {
-    width: 76px;
-    height: 76px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-}
-
-.icone-azul {
-    background-color: #d5e6f7;
-    color: #2f80ed;
-}
-
-.icone-amarelo {
-    background-color: #fdb913;
+.footer-links li {
     color: #fff;
+    margin-bottom: 8px;
 }
 
-.icone-amarelo-claro {
-    background-color: #fdeccb;
-    color: #ffce00;
-}
-
-.icone-verde {
-    background-color: #d4efdd;
-    color: #27ae60;
-}
-
-.titulo-beneficio {
-    color: #1E3A8A;
-    font-weight: 700;
-    font-size: 1.1rem;
-    margin-bottom: 0.5rem;
-}
-
-.texto-beneficio {
-    color: #48484e;
-    font-size: 0.95rem;
-    margin-bottom: 0;
-}
-
-
-.depoimentos {
-    background-color: #ff8c00;
-    border-radius: 12px;
-    padding: 3rem 1.5rem;
-    position: relative;
-    overflow: hidden;
-    margin-bottom: 4rem;
-}
-
-.titulo-depoimentos {
+.footer-links a {
     color: #fff;
-    font-weight: 700;
-    font-size: 2rem;
-    text-align: center;
-}
-
-.texto-depoimentos {
-    color: #000;
-    font-weight: 300;
-    text-align: center;
-    margin-bottom: 2rem;
-}
-
-.depoimento-card {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
-    padding: 1.25rem;
-    height: 100%;
-}
-
-.depoimento-avatar {
-    width: 42px;
-    height: 42px;
-    border-radius: 50%;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    color: #fff;
-    font-weight: 700;
-}
-
-.titulo-depoimento {
-    font-weight: 500;
-    color: #000;
-    font-size: 1rem;
-    margin-bottom: 0;
-}
-
-.texto-depoimentos{
-    color: #fff;
-}
-
-.local-depoimento {
-    color: #9ca3af;
-    font-size: 0.8rem;
-}
-
-.texto-depoimento {
-    color: #000;
+    text-decoration: none;
     font-size: 0.9rem;
+    opacity: 0.9;
 }
 
-.data-depoimento {
-    color: #9ca3af;
-    font-size: 0.8rem;
+.footer-links a:hover {
+    color: #5f86f9;
 }
 
-.carrossel-dots {
+.footer-col p {
+    font-size: 0.85rem;
+    opacity: 0.85;
+    margin-bottom: 6px;
+}
+
+.footer-social {
     display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 1.75rem;
+    gap: 12px;
+    margin-top: 12px;
 }
 
-.carrossel-dots .dot {
-    width: 10px;
-    height: 10px;
+.footer-social a {
+    width: 34px;
+    height: 34px;
+    border: 1px solid #fff;
     border-radius: 50%;
-    background-color: rgba(255, 255, 255, 0.5);
-}
-
-.carrossel-dots .dot.ativo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #fff;
+    text-decoration: none;
+    transition: background 0.2s;
 }
 
-.footer {
-    background-color: #1E3A8A;
+.footer-social a:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.footer-divider {
+    border: none;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    margin: 25px 0 15px;
+}
+
+.footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    font-size: 0.85rem;
+    opacity: 0.85;
+}
+
+.footer-bottom a {
     color: #fff;
+    text-decoration: none;
 }
 
-.footer .card-title {
-    font-size: 15px;
-}
-
-.footer .card-text {
-    line-height: 2;
-    font-size: 8px;
-}
-
-.footer .icon i {
-    color: #fff;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.footer .icon:hover i {
-    color: #6495ED;
-    transform: scale(1.2);
+.footer-bottom a:hover {
+    text-decoration: underline;
 }

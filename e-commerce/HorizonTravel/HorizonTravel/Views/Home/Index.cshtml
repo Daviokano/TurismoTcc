@@ -2,6 +2,9 @@
     ViewData["Title"] = "Home Page";
 }
 
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/js/index.js" asp-append-version="true" />
+
 <!-- BANNER INICIAL DA PÁG. -->
 <div class="container-fluid p-0">
     <div class="banner">
@@ -37,7 +40,7 @@
             <div class="col-12 col-md">
                 <div class="campo-busca d-flex align-items-center px-2">
                     <i class="bi bi-calendar-event text-secondary me-1"></i>
-                    <input type="text" class="form-control" placeholder="Data" aria-label="Data" />
+                    <input type="date" class="form-control" placeholder="Data" aria-label="Data" />
                 </div>
             </div>
             <div class="col-12 col-md">
@@ -126,7 +129,7 @@
             <div class="col-12 col-lg-5">
                 <div class="d-flex flex-column gap-3">
                     <div class="procurado-item">
-                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <img src="~/img/franca-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
                         <div>
                             <div class="procurado-nome"><span class="procurado-numero">1</span> França</div>
                             <div class="estrelas">
@@ -136,7 +139,7 @@
                     </div>
 
                     <div class="procurado-item">
-                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <img src="~/img/eua-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
                         <div>
                             <div class="procurado-nome"><span class="procurado-numero">2</span> Estados Unidos</div>
                             <div class="estrelas">
@@ -146,7 +149,7 @@
                     </div>
 
                     <div class="procurado-item">
-                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <img src="~/img/brasil-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
                         <div>
                             <div class="procurado-nome"><span class="procurado-numero">3</span> Brasil</div>
                             <div class="estrelas">
@@ -156,7 +159,7 @@
                     </div>
 
                     <div class="procurado-item">
-                        <img src="~/lib/card paris.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <img src="~/img/japao-procurados.png" asp-append-version="true" class="procurado-img" alt="img" />
                         <div>
                             <div class="procurado-nome"><span class="procurado-numero">4</span> Japão</div>
                             <div class="estrelas">
@@ -171,7 +174,7 @@
             <div class="col-12 col-lg-7">
                 <div class="viaje-card">
                     <!--trocar imagem dps-->
-                    <img src="~/lib/img banner.jpg" asp-append-version="true" alt="Praia paradisíaca" />
+                    <img src="~/img/video-img.jpg" asp-append-version="true" alt="Praia paradisíaca" />
                     <div class="viaje-overlay">
                         <h3 class="viaje-titulo">Viaje e aproveite suas férias</h3>
                         <p class="viaje-texto">Explore paisagens incríveis, culturas diferentes e viva momentos inesquecíveis</p>
@@ -229,72 +232,95 @@
 
 <!-- DEPOIMENTOS DOS USUÁRIOS -->
 <!-- ** MUDAR PRA CARROSSEL -->
-<section class="container" id="depoimentos">
+<section class="container-fluid p-0" id="depoimentos">
     <div class="depoimentos">
 
         <h2 class="titulo-depoimentos">O que nossos clientes dizem?</h2>
         <p class="texto-depoimentos">Veja como tornamos viagens inesquecíveis para pessoas como você</p>
 
-        <div class="row g-4 justify-content-center">
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="depoimento-card">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="depoimento-avatar" style="background-color:#b03a5b;">M</span>
-                        <div>
-                            <p class="titulo-depoimento">Mariana Santos</p>
-                            <span class="local-depoimento">São Paulo, SP</span>
-                        </div>
-                    </div>
-                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="estrelas">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </span>
-                        <span class="data-depoimento">22/06/26</span>
-                    </div>
-                </div>
-            </div>
+        <div class="depoimentos-carrossel">
+            <div class="depoimentos-track" id="depoimentosTrack">
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="depoimento-card">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="depoimento-avatar" style="background-color:#c2185b;">K</span>
-                        <div>
-                            <p class="titulo-depoimento">Kauã Edson</p>
-                            <span class="local-depoimento">São Paulo, SP</span>
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#b03a5b;">M</span>
+                            <div>
+                                <p class="titulo-depoimento">Mariana Santos</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
                         </div>
                     </div>
-                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="estrelas">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </span>
-                        <span class="data-depoimento">22/06/26</span>
-                    </div>
                 </div>
-            </div>
 
-            <div class="col-12 col-md-6 col-lg-4">
-                <div class="depoimento-card">
-                    <div class="d-flex align-items-center gap-2 mb-2">
-                        <span class="depoimento-avatar" style="background-color:#9aa61e;">V</span>
-                        <div>
-                            <p class="titulo-depoimento">Victor Couto</p>
-                            <span class="local-depoimento">São Paulo, SP</span>
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#c2185b;">K</span>
+                            <div>
+                                <p class="titulo-depoimento">Kauã Edson</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
                         </div>
                     </div>
-                    <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
-                    <div class="d-flex justify-content-between align-items-center">
-                        <span class="estrelas">
-                            <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
-                        </span>
-                        <span class="data-depoimento">22/06/26</span>
+                </div>
+
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#9aa61e;">V</span>
+                            <div>
+                                <p class="titulo-depoimento">Victor Couto</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
+                        </div>
                     </div>
                 </div>
+
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#2E6E8B;">A</span>
+                            <div>
+                                <p class="titulo-depoimento">Ana Beatriz</p>
+                                <span class="local-depoimento">Campinas, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Atendimento excelente, super recomendo a Horizon Travel</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">15/07/26</span>
+                        </div>
+                    </div>
+                </div>
+
             </div>
         </div>
 
-        <div class="carrossel-dots">
+        <div class="carrossel-dots" id="carrosselDots">
             <span class="dot ativo"></span>
             <span class="dot"></span>
             <span class="dot"></span>

@@ -1,0 +1,42 @@
+@model HorizonTravel.Models.Usuario
+@{
+    ViewData["Title"] = "Cadastrar";
+}
+
+<h2>Cadastro de Usuário</h2>
+
+<form method="post">
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        <label asp-for="nomeUsu">Nome</label>
+        <input asp-for="nomeUsu" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CPFUsu">CPF</label>
+        <input asp-for="CPFUsu" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="emailUsu">E-mail</label>
+        <input asp-for="emailUsu" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="telefoneUsu">Telefone</label>
+        <input asp-for="telefoneUsu" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="dataNascismentoUsu">Data de Nascimento</label>
+        <input asp-for="dataNascismentoUsu" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="senhaUsu">Senha</label>
+        <input asp-for="senhaUsu" type="password" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+</form>
