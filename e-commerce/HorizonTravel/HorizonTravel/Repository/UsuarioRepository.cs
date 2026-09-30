@@ -39,11 +39,14 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET nomeUsu=@nomeUsu, CPFUsu=@CPFUsu, emailUsu=@emailUsu, 
+                telefoneUsu=@telefoneUsu, dataNascimentoUsu=@dataNascimentoUsu, senhaUsu=@senhaUsu WHERE IDUsu=@IDUsu");
+
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
                 cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = usuario.CPFUsu;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
-                cmd.Parameters.Add("@dataNascismentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascismentoUsu;
+                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascimentoUsu;
                 cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
 
@@ -66,9 +69,10 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = usuario.CPFUsu;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
-                cmd.Parameters.Add("@dataNascismentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascismentoUsu;
+                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascimentoUsu;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
                 cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
+
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -130,7 +134,7 @@ namespace HorizonTravel.Repository
                     usuario.nomeUsu = Convert.ToString(dr["nomeUsu"]);
                     usuario.emailUsu = Convert.ToString(dr["emailUsu"]);
                     usuario.telefoneUsu = Convert.ToString(dr["telefoneUsu"]);
-                    usuario.dataNascismentoUsu = Convert.ToDateTime(dr["dataNascimento"]);
+                    usuario.dataNascimentoUsu = Convert.ToDateTime(dr["dataNascimentoUsu"]);
                     usuario.senhaUsu = Convert.ToString(dr["senhaUsu"]);
                     usuario.situacaoUsu = Convert.ToString(dr["situacaoUsu"]);
 				}
@@ -166,7 +170,7 @@ namespace HorizonTravel.Repository
                             CPFUsu = (string)(dr["CPFUsu"]),
                             emailUsu = (string)(dr["emailUsu"]),
                             telefoneUsu = (string)(dr["telefoneUsu"]),
-                            dataNascismentoUsu = (DateTime)(dr["dataNascimentoUsu"]),
+                            dataNascimentoUsu = (DateTime)(dr["dataNascimentoUsu"]),
                             senhaUsu = (string)(dr["senhaUsu"]),
                             situacaoUsu = Convert.ToString(dr["situacaoUsu"]),
                         }
@@ -198,7 +202,7 @@ namespace HorizonTravel.Repository
                         usuario.CPFUsu = (string)(dr["CPFUsu"]);
                         usuario.emailUsu = (string)(dr["emailUsu"]);
                         usuario.telefoneUsu = (string)(dr["telefoneUsu"]);
-                        usuario.dataNascismentoUsu = (DateTime)(dr["dataNascimentoUsu"]);
+                        usuario.dataNascimentoUsu = (DateTime)(dr["dataNascimentoUsu"]);
                         usuario.senhaUsu = (string)(dr["senhaUsu"]);
                         usuario.situacaoUsu = Convert.ToString(dr["situacaoUsu"]);
                     }
@@ -206,6 +210,5 @@ namespace HorizonTravel.Repository
                 return usuario;
             }
         }
-    }
     }
 }
