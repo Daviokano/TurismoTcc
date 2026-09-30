@@ -75,6 +75,17 @@
                     </div>
 
                     <div class="form-group">
+                        <label for="dataNascismentoUsu">Data de Nascimento</label>
+                        <div class="input-container">
+                            <i class="bi bi-calendar-event"></i>
+                            <input asp-for="dataNascismentoUsu"
+                                   class="form-control"
+                                   placeholder="dd/mm/aaaa"
+                                   type="">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
                         <label for="telefoneUsu">Telefone</label>
                         <div class="input-container">
                             <i class="bi bi-telephone"></i>
@@ -91,12 +102,12 @@
                             <i class="bi bi-lock"></i>
                             <input asp-for="senhaUsu"
                                    class="form-control"
-                                   placeholder="Mínimo 6 caracteres"
+                                   placeholder="Mínimo 8 caracteres"
                                    type="password"
                                    minlength="6"
                                    required>
                             <button type="button" class="toggle-senha" data-alvo="senhaUsu" aria-label="Mostrar senha">
-                                <i class="bi bi-eye"></i>
+                                
                             </button>
                         </div>
                     </div>

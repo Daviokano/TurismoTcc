@@ -24,6 +24,8 @@ main {
   }
 }
 
+
+/*NAV*/
 .navbar {
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
@@ -69,14 +71,7 @@ main {
     background-color: #f5821f;
     color: #fff;
     font-weight: 600;
-    border-radius: 6px;
-    text-decoration: none;
-    width: 76px;
-    height: 36px;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 16px;
+    display: block;
 }
 
 .btn-login:hover {
@@ -85,15 +80,18 @@ main {
 }
 
 .cart-icon .bi {
+    display: block;
+    text-decoration: none;
     color: #333;
-    width: 60px;
-    height: 60px;
 }
 
 .cart-icon:hover {
     color: #1a3a8f;
 }
 
+
+
+/*FOOTTER*/
 .footer-horizon {
     background-color: #1a3a8f;
     color: #fff;

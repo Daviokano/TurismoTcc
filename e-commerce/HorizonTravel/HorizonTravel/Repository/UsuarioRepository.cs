@@ -152,7 +152,7 @@ namespace HorizonTravel.Repository
                 conexao.Open();
 
                 MySqlCommand cmd = new MySqlCommand(@" 
-                SELECT IDUsu, CPFUsu, nomeUsu, emailUsu, telefoneUsu, IDEnd, dataNascimentoUsu, senhaUsu, situacaoUsu, IDEnd
+                SELECT IDUsu, CPFUsu, nomeUsu, emailUsu, telefoneUsu, dataNascimentoUsu, senhaUsu, situacaoUsu
                 FROM Usuario
                 WHERE emailUsu = @emailUsu
                 AND senhaUsu = @senhaUsu", conexao);

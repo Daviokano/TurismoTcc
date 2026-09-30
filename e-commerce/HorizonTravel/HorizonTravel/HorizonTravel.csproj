@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Views\Usuario\**" />
+    <Content Remove="Views\Usuario\**" />
+    <EmbeddedResource Remove="Views\Usuario\**" />
+    <None Remove="Views\Usuario\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.2" />
     <PackageReference Include="MySql.Data" Version="26.7.0" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.4" />
@@ -17,7 +24,6 @@
   <ItemGroup>
     <Folder Include="Areas\Funcionario\Data\" />
     <Folder Include="Areas\Funcionario\Models\" />
-    <Folder Include="Views\Usuario\" />
   </ItemGroup>
 
   <ItemGroup>

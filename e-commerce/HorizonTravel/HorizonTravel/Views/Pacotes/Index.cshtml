@@ -1,11 +1,93 @@
-@{ ViewData["Title"] = "Pacotes"; }
+@{
+    ViewData["Title"] = "Pacotes";
+}
+
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
 
-<section class="banner-pacotes"><img src="~/img/pacotes-hero.jpg" alt="Paisagem de viagem" /><div class="conteudo-banner-pacotes"><h1>NOSSOS<br />PACOTES</h1><p>Encontre o seu destino ideal.<br />Mais de 30 pacotes para você.</p></div></section>
+<section class="banner-pacotes">
+    <img src="~/img/pacotes-hero.jpg" alt="Paisagem de viagem" />
+    <div class="conteudo-banner-pacotes">
+        <h1>NOSSOS<br />PACOTES</h1>
+        <p>Encontre o seu destino ideal.<br />Mais de 30 pacotes para você.</p>
+    </div>
+</section>
 
-<section class="envoltorio-busca-pacotes"><form class="barra-busca-pacotes"><div class="campo-busca"><i class="bi bi-geo-alt text-secondary"></i><input type="text" placeholder="Destino" aria-label="Destino" /></div><div class="campo-busca"><i class="bi bi-calendar-event text-secondary"></i><input type="date" aria-label="Data" /></div><div class="campo-busca"><i class="bi bi-people text-secondary"></i><input type="number" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" /></div><button type="submit" class="btn btn-login">Buscar</button></form></section>
+<section class="envoltorio-busca-pacotes">
+    <form class="barra-busca-pacotes">
+        <div class="campo-busca">
+            <i class="bi bi-geo-alt text-secondary"></i>
+            <input type="text" placeholder="Destino" aria-label="Destino" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-calendar-event text-secondary"></i>
+            <input type="date" aria-label="Data" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-people text-secondary"></i>
+            <input type="number" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
+        </div>
+        <button type="submit" class="btn btn-login">Buscar</button>
+    </form>
+</section>
 
-<main class="conteudo-pacotes"><section class="filtros-pacotes"><div><i class="bi bi-sliders"></i><span>Filtrar por:</span><button class="filtro-ativo">todos</button><button>Brasil</button><button>Japão</button><button>EAU</button><button>Itália</button><button>França</button><button>Tailândia</button></div><select aria-label="Ordenar pacotes"><option>Popularidade</option><option>Menor preço</option><option>Maior preço</option></select></section><p class="total-pacotes"><strong>48</strong> pacotes encontrados</p><section class="grade-pacotes">
-@foreach (var pacote in new[] { ("Rio de Janeiro", "pacote-rio.jpg"), ("São Paulo", "pacote-sao-paulo.jpg"), ("Salvador", "pacote-salvador.jpg"), ("Amazônia", "pacote-amazonia.jpg"), ("Paris", "pacote-paris.jpg"), ("Londres", "pacote-londres.jpg"), ("Veneza", "pacote-veneza.jpg"), ("Roma", "pacote-roma.jpg"), ("Nova Iorque", "pacote-nova-iorque.jpg"), ("Disney", "pacote-disney.jpg"), ("Los Angeles", "pacote-los-angeles.jpg"), ("Miami", "pacote-miami.jpg"), ("Japão", "pacote-japao.jpg"), ("Quioto", "pacote-quioto.jpg"), ("Tóquio", "pacote-toquio.jpg"), ("Brasil", "pacote-brasil.jpg") })
-{<article class="cartao-pacote"><img src="~/img/@pacote.Item2" alt="Pacote para @pacote.Item1" /><div class="corpo-cartao-pacote"><h2>Pacote @pacote.Item1</h2><p>Brasil - Rio de janeiro</p><div class="detalhes-pacote"><span><i class="bi bi-clock"></i> 14 dias</span><span>até 4x</span></div><b class="estrelas-pacote">★★★★★</b><div class="rodape-cartao-pacote"><span>A partir de<strong>4.500</strong></span><a href="#">Ver pacote</a></div></div></article>}
-</section></main>
+<main class="conteudo-pacotes">
+    <section class="filtros-pacotes">
+        <div>
+            <i class="bi bi-sliders"></i>
+            <span>Filtrar por:</span>
+            <button class="filtro-ativo">todos</button>
+            <button>Brasil</button>
+            <button>Japão</button>
+            <button>EAU</button>
+            <button>Itália</button>
+            <button>França</button>
+            <button>Tailândia</button>
+        </div>
+        <select aria-label="Ordenar pacotes">
+            <option>Popularidade</option>
+            <option>Menor preço</option>
+            <option>Maior preço</option>
+        </select>
+    </section>
+
+    <p class="total-pacotes"><strong>48</strong> pacotes encontrados</p>
+
+    <section class="grade-pacotes">
+        @foreach (var pacote in new[] { 
+            ("Rio de Janeiro", "pacote-rio.jpg"), 
+            ("São Paulo", "pacote-sao-paulo.jpg"), 
+            ("Salvador", "pacote-salvador.jpg"), 
+            ("Amazônia", "pacote-amazonia.jpg"), 
+            ("Paris", "pacote-paris.jpg"), 
+            ("Londres", "pacote-londres.jpg"), 
+            ("Veneza", "pacote-veneza.jpg"), 
+            ("Roma", "pacote-roma.jpg"), 
+            ("Nova Iorque", "pacote-nova-iorque.jpg"), 
+            ("Disney", "pacote-disney.jpg"), 
+            ("Los Angeles", "pacote-los-angeles.jpg"), 
+            ("Miami", "pacote-miami.jpg"), 
+            ("Japão", "pacote-japao.jpg"), 
+            ("Quioto", "pacote-quioto.jpg"), 
+            ("Tóquio", "pacote-toquio.jpg"), 
+            ("Brasil", "pacote-brasil.jpg") 
+        })
+        {
+            <article class="cartao-pacote">
+                <img src="~/img/@pacote.Item2" alt="Pacote para @pacote.Item1" />
+                <div class="corpo-cartao-pacote">
+                    <h2>Pacote @pacote.Item1</h2>
+                    <p>Brasil - Rio de janeiro</p>
+                    <div class="detalhes-pacote">
+                        <span><i class="bi bi-clock"></i> 14 dias</span>
+                        <span>até 4x</span>
+                    </div>
+                    <b class="estrelas-pacote">★★★★★</b>
+                    <div class="rodape-cartao-pacote">
+                        <span>A partir de<strong>4.500</strong></span>
+                        <a href="#">Ver pacote</a>
+                    </div>
+                </div>
+            </article>
+        }
+    </section>
+</main>
