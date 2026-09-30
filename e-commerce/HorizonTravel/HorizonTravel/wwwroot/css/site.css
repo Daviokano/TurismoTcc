@@ -75,8 +75,12 @@ main {
     font-weight: 600;
     border-radius: 6px;
     text-decoration: none;
-    width: 45px;
-    height: 70px;
+    width: 76px;
+    height: 36px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 16px;
 }
 
 .btn-login:hover {

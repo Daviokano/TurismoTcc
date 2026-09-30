@@ -1,0 +1,52 @@
+@{
+    ViewData["Title"] = "Destinos";
+}
+
+<link rel="stylesheet" href="~/css/destinos.css" asp-append-version="true" />
+
+<section class="banner-destinos">
+    <img src="~/img/destinos-hero.jpg" alt="Paisagem de destino turístico" />
+    <div class="conteudo-banner-destinos">
+        <p>Explore o mundo e encontre...</p>
+        <h1>DESTINOS<br />INCRÍVEIS!</h1>
+        <span>Descubra onde será sua próxima aventura</span>
+    </div>
+</section>
+
+<section class="conteudo-destinos">
+    <div class="cabecalho-destinos">
+        <h2>Todos os destinos</h2>
+        <span></span>
+    </div>
+
+    <div class="grade-destinos">
+        @foreach (var destino in new[] {
+            ("Brasil", "destino-brasil.jpg", "Descubra praias, natureza e experiências inesquecíveis."),
+            ("França", "destino-franca.jpg", "Encante-se com elegância, história e charme."),
+            ("Japão", "destino-japao.jpg", "Tradição, tecnologia e paisagens surpreendentes."),
+            ("México", "destino-mexico.jpg", "Cores, cultura e paisagens fascinantes."),
+            ("Tailândia", "destino-tailandia.jpg", "Praias paradisíacas e uma cultura encantadora."),
+            ("Emirados Árabes Unidos", "destino-emirados.jpg", "Luxo, inovação e paisagens únicas."),
+            ("Itália", "destino-italia.jpg", "Gastronomia, arte e beleza italiana."),
+            ("Estados Unidos", "destino-eua.jpg", "Cidades grandiosas e experiências inesquecíveis."),
+            ("Egito", "destino-egito.jpg", "História, cultura e monumentos impressionantes."),
+            ("Inglaterra", "destino-inglaterra.jpg", "Paisagens clássicas e muita história."),
+            ("África do Sul", "destino-africa-do-sul.jpg", "Natureza exuberante e experiências inesquecíveis."),
+            ("Argentina", "destino-argentina.jpg", "Paisagens incríveis, cultura e sabor.")
+        })
+        {
+            <article class="cartao-destino">
+                <img src="~/img/@destino.Item2" alt="Destino turístico: @destino.Item1" />
+                <div class="corpo-cartao-destino">
+                    <span>@destino.Item1</span>
+                    <h3>@destino.Item1</h3>
+                    <p>@destino.Item3</p>
+                    <div>
+                        <b>★★★★★</b>
+                        <small>4 pacotes</small>
+                    </div>
+                </div>
+            </article>
+        }
+    </div>
+</section>
