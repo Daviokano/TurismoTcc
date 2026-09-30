@@ -3,7 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
-<link rel="stylesheet" href="~/js/index.js" asp-append-version="true" />
+<script src="~/js/index.js"></script>
 
 <!-- BANNER INICIAL DA PÁG. -->
 <div class="container-fluid p-0">
@@ -40,7 +40,7 @@
             <div class="col-12 col-md">
                 <div class="campo-busca d-flex align-items-center px-2">
                     <i class="bi bi-calendar-event text-secondary me-1"></i>
-                    <input type="date" class="form-control" placeholder="Data" aria-label="Data" />
+                    <input class="form-control" placeholder="Data" aria-label="Data" />
                 </div>
             </div>
             <div class="col-12 col-md">
@@ -301,21 +301,23 @@
                 <div class="depoimento-slide">
                     <div class="depoimento-card">
                         <div class="d-flex align-items-center gap-2 mb-2">
-                            <span class="depoimento-avatar" style="background-color:#2E6E8B;">A</span>
+                            <span class="depoimento-avatar" style="background-color:#9aa61e;">V</span>
                             <div>
-                                <p class="titulo-depoimento">Ana Beatriz</p>
-                                <span class="local-depoimento">Campinas, SP</span>
+                                <p class="titulo-depoimento">Victor Couto</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
                             </div>
                         </div>
-                        <p class="texto-depoimento">Atendimento excelente, super recomendo a Horizon Travel</p>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
                         <div class="d-flex justify-content-between align-items-center">
                             <span class="estrelas">
                                 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
                             </span>
-                            <span class="data-depoimento">15/07/26</span>
+                            <span class="data-depoimento">22/06/26</span>
                         </div>
                     </div>
                 </div>
+
+
 
             </div>
         </div>
@@ -328,3 +330,7 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/js/index.js"></script>
+}

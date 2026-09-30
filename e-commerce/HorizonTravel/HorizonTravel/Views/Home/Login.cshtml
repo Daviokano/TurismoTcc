@@ -1,4 +1,5 @@
-@model HorizonTravel.Models.Usuario
+﻿@model HorizonTravel.Models.Usuario
+
 @{
     ViewData["Title"] = "Login";
     ViewData["SemLayout"] = true;
@@ -7,10 +8,38 @@
 <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 
 <main class="pagina-login">
+
     <section class="login-container">
+
+        <div class="imagem-login">
+
+            <img src="~/img/cadastroimg1.jpg" alt="Praia ao amanhecer">
+
+            <div class="banner-img">
+
+                <div class="logo-aviao">
+                    <span class="logo-icon">
+                        <i class="bi bi-airplane-fill"></i>
+                    </span>
+                    <span class="logo-nome">Horizon Travel</span>
+                </div>
+
+                <h4>SUA PRÓXIMA AVENTURA COMEÇA AQUI!</h4>
+                <p>Acesse sua conta e explore os melhores pacotes de viagem especialmente para você!</p>
+
+            </div>
+
+        </div>
+
         <aside class="login-form">
+
             <div class="formulario">
+
                 <h1>Entrar</h1>
+
+                <p class="texto1">
+                    Bem-vindo de volta! Faça login na sua conta.
+                </p>
 
                 @if (ViewData["MSG_E"] != null)
                 {
@@ -20,24 +49,58 @@
                 }
 
                 <form method="post">
-                    @Html.AntiForgeryToken()
 
                     <div class="form-group">
                         <label for="emailUsu">E-mail</label>
-                        <input asp-for="emailUsu" class="form-control" placeholder="seu@email.com" type="email" />
+                        <div class="input-container">
+                            <i class="bi bi-envelope"></i>
+                            <input asp-for="emailUsu"
+                                   class="form-control"
+                                   placeholder="seu@email.com"
+                                   type="email"
+                                   required>
+                        </div>
                     </div>
 
-                    <div class="form-group">
+                    <div class="form-group senha-group">
                         <label for="senhaUsu">Senha</label>
-                        <input asp-for="senhaUsu" class="form-control" placeholder="Sua Senha" type="password" />
+                        <div class="input-container">
+                            <i class="bi bi-lock"></i>
+                            <input asp-for="senhaUsu"
+                                   class="form-control"
+                                   placeholder="Sua Senha"
+                                   type="password"
+                                   required>
+                            <button type="button" class="toggle-senha" data-alvo="senhaUsu" aria-label="Mostrar senha">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+
+                        <a href="#" class="forgot-password">Esqueci minha senha</a>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn-login">Entrar</button>
+                        <button type="submit" class="btn-login">
+                            Entrar
+                        </button>
                     </div>
+
+                    <p class="register-text">
+                        Ainda não tem conta?
+                        <a href="~/Home/Cadastrar">Cadastre-se</a>
+                    </p>
+
                 </form>
 
             </div>
+
         </aside>
+
     </section>
+
 </main>
+
+@section Scripts {
+    <script src="~/js/cadastro.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}

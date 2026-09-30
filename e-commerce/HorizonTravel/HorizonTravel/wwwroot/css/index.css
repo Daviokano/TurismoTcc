@@ -215,10 +215,10 @@ main {
     border: none;
 }
 
-    .btn-card:hover {
-        background-color: #ff8c00;
-        color: #fff;
-    }
+.btn-card:hover {
+    background-color: #ff8c00;
+    color: #fff;
+}
 
 .procurados {
     padding: 2rem 0 3.5rem;
@@ -233,29 +233,29 @@ main {
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-    padding: 1.6rem;
     display: flex;
     align-items: center;
-    gap: 1.2rem;
+    gap: 2.5rem;
+    height: 130px;
 }
 
-    .procurado-item .procurado-img {
-        width: 64px;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px;
-    }
+.procurado-item .procurado-img {
+    width: 84px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 0px 0px 8px;
+}
 
-    .procurado-item .procurado-numero {
-        font-weight: 600;
-        color: #000;
-        margin-right: 0.35rem;
-    }
+.procurado-item .procurado-numero {
+    font-weight: 600;
+    color: #000;
+    margin-right: 0.35rem;
+}
 
-    .procurado-item .procurado-nome {
-        font-weight: 600;
-        color: #000;
-    }
+.procurado-item .procurado-nome {
+    font-weight: 600;
+    color: #000;
+}
 
 .estrelas {
     color: #ffce00;
@@ -272,34 +272,34 @@ main {
     height: 100%;
 }
 
-    .viaje-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.viaje-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .viaje-card .viaje-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 1.5rem;
-    }
+.viaje-card .viaje-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
 
-    .viaje-card .viaje-titulo {
-        color: #fff;
-        font-weight: 700;
-        font-size: 1.6rem;
-    }
+.viaje-card .viaje-titulo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
 
-    .viaje-card .viaje-texto {
-        color: rgba(255, 255, 255, 0.9);
-        max-width: 380px;
-    }
+.viaje-card .viaje-texto {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 380px;
+}
 
 
 .beneficios {

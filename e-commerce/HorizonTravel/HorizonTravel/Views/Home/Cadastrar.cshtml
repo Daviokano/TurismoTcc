@@ -1,42 +1,128 @@
 @model HorizonTravel.Models.Usuario
+
 @{
     ViewData["Title"] = "Cadastrar";
+    ViewData["SemLayout"] = true;
 }
 
-<h2>Cadastro de Usuário</h2>
+<link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
 
-<form method="post">
-    @Html.AntiForgeryToken()
+<main class="pagina-login">
 
-    <div class="form-group">
-        <label asp-for="nomeUsu">Nome</label>
-        <input asp-for="nomeUsu" class="form-control" />
-    </div>
+    <section class="login-container">
 
-    <div class="form-group">
-        <label asp-for="CPFUsu">CPF</label>
-        <input asp-for="CPFUsu" class="form-control" />
-    </div>
+        <div class="imagem-login">
 
-    <div class="form-group">
-        <label asp-for="emailUsu">E-mail</label>
-        <input asp-for="emailUsu" class="form-control" />
-    </div>
+            <img src="~/img/loginimg1.jpg" alt="Paisagem ao pôr do sol">
 
-    <div class="form-group">
-        <label asp-for="telefoneUsu">Telefone</label>
-        <input asp-for="telefoneUsu" class="form-control" />
-    </div>
+            <div class="banner-img">
 
-    <div class="form-group">
-        <label asp-for="dataNascismentoUsu">Data de Nascimento</label>
-        <input asp-for="dataNascismentoUsu" type="date" class="form-control" />
-    </div>
+                <div class="logo-aviao">
+                    <span class="logo-icon">
+                        <i class="bi bi-airplane-fill"></i>
+                    </span>
+                    <span class="logo-nome">Horizon Travel</span>
+                </div>
 
-    <div class="form-group">
-        <label asp-for="senhaUsu">Senha</label>
-        <input asp-for="senhaUsu" type="password" class="form-control" />
-    </div>
+                <h4>Junte-se a milhares de viajantes!</h4>
+                <p>Crie sua conta e tenha acesso a pacotes exclusivos, ofertas especiais e muito mais.</p>
 
-    <button type="submit" class="btn btn-primary">Cadastrar</button>
-</form>
+            </div>
+
+        </div>
+
+        <aside class="login-form">
+
+            <div class="formulario">
+
+                <h1>Criar conta</h1>
+
+                <p class="texto1">
+                    Preencha os dados abaixo para se cadastrar.
+                </p>
+
+                @if (ViewData["MSG_E"] != null)
+                {
+                    <p class="alert alert-danger">
+                        @Html.Raw(ViewData["MSG_E"])
+                    </p>
+                }
+
+                <form method="post">
+
+                    <div class="form-group">
+                        <label for="nomeUsu">Nome completo</label>
+                        <div class="input-container">
+                            <i class="bi bi-person"></i>
+                            <input asp-for="nomeUsu"
+                                   class="form-control"
+                                   placeholder="Seu nome completo"
+                                   type="text"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="emailUsu">E-mail</label>
+                        <div class="input-container">
+                            <i class="bi bi-envelope"></i>
+                            <input asp-for="emailUsu"
+                                   class="form-control"
+                                   placeholder="seu@email.com"
+                                   type="email"
+                                   required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefoneUsu">Telefone</label>
+                        <div class="input-container">
+                            <i class="bi bi-telephone"></i>
+                            <input asp-for="telefoneUsu"
+                                   class="form-control"
+                                   placeholder="(11) 99999-9999"
+                                   type="tel">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="senhaUsu">Senha</label>
+                        <div class="input-container">
+                            <i class="bi bi-lock"></i>
+                            <input asp-for="senhaUsu"
+                                   class="form-control"
+                                   placeholder="Mínimo 6 caracteres"
+                                   type="password"
+                                   minlength="6"
+                                   required>
+                            <button type="button" class="toggle-senha" data-alvo="senhaUsu" aria-label="Mostrar senha">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <button type="submit" class="btn-login">
+                            Criar conta
+                        </button>
+                    </div>
+
+                    <p class="register-text">
+                        Já tem conta?
+                        <a href="~/Home/Login">Entrar</a>
+                    </p>
+
+                </form>
+
+            </div>
+
+        </aside>
+
+    </section>
+
+</main>
+
+@section Scripts {
+    <script src="~/js/cadastro.js"></script>
+    <partial name="_ValidationScriptsPartial" />
+}
