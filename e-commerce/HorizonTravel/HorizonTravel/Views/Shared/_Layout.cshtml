@@ -9,103 +9,108 @@
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HorizonTravel.styles.css" asp-append-version="true" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <header>
+    @if (ViewData["SemLayout"] == null)
+        {
+        <header>
 
-        <nav class="navbar navbar-expand-lg py-3">
-            <div class="container">
-                <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
-                    <img src="~/img/logo horizon.jpg" alt="logo" class="logo-horizon" />    
-                    <span class="logo-text">
-                        <span class="logo-horizon">Horizon</span> <span class="logo-travel">Travel</span>
-                    </span>
-                </a>
+            <nav class="navbar navbar-expand-lg py-3">
+                <div class="container">
+                    <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo horizon.jpg" alt="logo" class="logo-horizon" />
+                        <span class="logo-text">
+                            <span class="logo-horizon">Horizon</span> <span class="logo-travel">Travel</span>
+                        </span>
+                    </a>
 
-                <button class="navbar-toggler"
-                        type="button"
-                        data-bs-toggle="collapse"
-                        data-bs-target="#navbarNav"
-                        aria-controls="navbarNav"
-                        aria-expanded="false"
-                        aria-label="Abrir menu">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Abrir menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Pacotes" asp-action="Index">Pacotes</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Destinos" asp-action="Index">Destinos</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Sobre" asp-action="Index">Sobre</a>
-                        </li>
-                    </ul>
-                    <ul class="itens d-flex align-items-center header-actions">
-                        <li class="nav-item">
-                            <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
-                        </li>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Pacotes" asp-action="Index">Pacotes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Destinos" asp-action="Index">Destinos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Sobre" asp-action="Index">Sobre</a>
+                            </li>
+                        </ul>
+                        <ul class="nav-item d-flex align-items-center header-actions">
+                            <li class="nav-link">
+                                <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a class="cart-icon" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart3"></i></a>
-                        </li>
-                    </ul>
+                            <li class="nav-link">
+                                <a class="cart-icon" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
+            </nav>
 
-    </header>
+        </header>
 
+    }
 
     <main role="main" class="pb-3">
         @RenderBody()
     </main>
+        @if (ViewData["SemLayout"] == null)
+        {
+        <footer class="footer-horizon">
+            <div class="footer-container">
+                <div class="footer-col footer-brand">
+                    <h5><i class="bi bi-send-fill"></i> Horizon Travel</h5>
+                    <p>Sua agência de confiança para descobrir os melhores destinos do mundo com segurança e praticidade</p>
+                </div>
 
-    <footer class="footer-horizon">
-    <div class="footer-container">
-        <div class="footer-col footer-brand">
-            <h5><i class="bi bi-send-fill"></i> Horizon Travel</h5>
-            <p>Sua agência de confiança para descobrir os melhores destinos do mundo com segurança e praticidade</p>
-        </div>
+                <div class="footer-col">
+                    <h6>Sobre nós</h6>
+                    <ul class="footer-links">
+                        <li><a href="#">Quem somos</a></li>
+                        <li><a href="#">Nossa história</a></li>
+                        <li><a href="#">Trabalhe conosco</a></li>
+                    </ul>
+                </div>
 
-        <div class="footer-col">
-            <h6>Sobre nós</h6>
-            <ul class="footer-links">
-                <li><a href="#">Quem somos</a></li>
-                <li><a href="#">Nossa história</a></li>
-                <li><a href="#">Trabalhe conosco</a></li>
-            </ul>
-        </div>
-
-        <div class="footer-col">
-            <h6>Contato</h6>
-            <p>Entre em contato conosco para avaliação e dúvidas, e siga nossas redes</p>
-            <p>HorizonTravel@gmail.com</p>
-            <div class="footer-social">
-                <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
-                <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
-                <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                <div class="footer-col">
+                    <h6>Contato</h6>
+                    <p>Entre em contato conosco para avaliação e dúvidas, e siga nossas redes</p>
+                    <p>HorizonTravel@gmail.com</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-        <hr class="footer-divider">
+            <hr class="footer-divider">
 
-        <div class="footer-bottom">
+            <div class="footer-bottom">
                 <span>&copy; 2026 Horizon Travel - Todos os direitos reservados.</span>
-            <a href="#">Política de Privacidade</a>
-        </div>
-    </footer>
+                <a href="#">Política de Privacidade</a>
+            </div>
+        </footer>
+        }
+        
 
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

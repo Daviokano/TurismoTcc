@@ -65,18 +65,11 @@ main {
     gap: 20px;
 }
 
-.itens{
-    text-decoration: none;
-}
-
 .btn-login {
     background-color: #f5821f;
     color: #fff;
     font-weight: 600;
     border-radius: 6px;
-    text-decoration: none;
-    width: 45px;
-    height: 70px;
 }
 
 .btn-login:hover {
@@ -84,10 +77,10 @@ main {
     color: #fff;
 }
 
-.cart-icon {
+.cart-icon .bi {
     color: #333;
     width: 60px;
-    height: 50px;
+    height: 60px;
 }
 
 .cart-icon:hover {
@@ -136,6 +129,7 @@ main {
 
 .footer-links {
     list-style: none;
+    color: #fff;
     padding: 0;
     margin: 0;
 }
