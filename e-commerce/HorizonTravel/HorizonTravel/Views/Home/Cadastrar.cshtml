@@ -13,7 +13,7 @@
 
         <div class="imagem-login">
 
-            <img src="~/img/loginimg1.jpg" alt="Paisagem ao pôr do sol">
+            <img src="~/img/cadastroimg1.jpg" alt="Paisagem ao pôr do sol">
 
             <div class="banner-img">
 
@@ -44,93 +44,109 @@
                 @if (ViewData["MSG_E"] != null)
                 {
                     <p class="alert alert-danger">
-                        @Html.Raw(ViewData["MSG_E"])
+                        @ViewData["MSG_E"]
                     </p>
                 }
 
                 <form method="post">
 
                     <div class="form-group">
-                        <label for="nomeUsu">Nome completo</label>
+                        <label asp-for="nomeUsu">Nome completo</label>
                         <div class="input-container">
                             <i class="bi bi-person"></i>
                             <input asp-for="nomeUsu"
                                    class="form-control"
                                    placeholder="Seu nome completo"
                                    type="text"
+                                   autocomplete="name"
                                    required>
                         </div>
+                        <span asp-validation-for="nomeUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="CPFUsu">CPF</label>
+                        <label asp-for="CPFUsu">CPF</label>
                         <div class="input-container">
+                            <i class="bi bi-person-vcard"></i>
                             <input asp-for="CPFUsu"
                                    class="form-control"
                                    placeholder="123.456.789-00"
-                                   type="number"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="14"
                                    required>
                         </div>
+                        <span asp-validation-for="CPFUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="emailUsu">E-mail</label>
+                        <label asp-for="CPFUsu">CPF</label>
                         <div class="input-container">
-                            <i class="bi bi-envelope"></i>
-                            <input asp-for="emailUsu"
+                            <i class="bi bi-person-vcard"></i>
+                            <input asp-for="CPFUsu"
                                    class="form-control"
-                                   placeholder="seu@email.com"
-                                   type="email"
+                                   placeholder="Somente números"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="14"
                                    required>
                         </div>
+                        <span asp-validation-for="CPFUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="dataNascimentoUsu">Data de Nascimento</label>
+                        <label asp-for="dataNascimentoUsu">Data de nascimento</label>
                         <div class="input-container">
                             <i class="bi bi-calendar-event"></i>
                             <input asp-for="dataNascimentoUsu"
                                    class="form-control"
-                                   placeholder="dd/mm/aaaa">
+                                   autocomplete="bday"
+                                   required>
                         </div>
+                        <span asp-validation-for="dataNascimentoUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="telefoneUsu">Telefone</label>
+                        <label asp-for="telefoneUsu">Telefone</label>
                         <div class="input-container">
                             <i class="bi bi-telephone"></i>
                             <input asp-for="telefoneUsu"
                                    class="form-control"
                                    placeholder="(11) 99999-9999"
-                                   type="tel">
+                                   type="tel"
+                                   maxlength="15"
+                                   autocomplete="tel">
                         </div>
+                        <span asp-validation-for="telefoneUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="senhaUsu">Senha</label>
+                        <label asp-for="senhaUsu">Senha</label>
                         <div class="input-container">
                             <i class="bi bi-lock"></i>
                             <input asp-for="senhaUsu"
                                    class="form-control"
                                    placeholder="Mínimo 8 caracteres"
                                    type="password"
-                                   minlength="6"
+                                   minlength="8"
+                                   autocomplete="new-password"
                                    required>
                             <button type="button" class="toggle-senha" data-alvo="senhaUsu" aria-label="Mostrar senha">
-                                
+                                <i class="bi bi-eye"></i>
                             </button>
                         </div>
+                        <span asp-validation-for="senhaUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
-                        <button type="submit" class="btn-login" href="~/Home/Login">
+                        <button type="submit" class="btn-login">
                             Criar conta
                         </button>
                     </div>
 
                     <p class="register-text">
                         Já tem conta?
-                        <a href="~/Home/Login">Entrar</a>
+                        <a asp-controller="Home" asp-action="Login">Entrar</a>
                     </p>
 
                 </form>
@@ -144,6 +160,6 @@
 </main>
 
 @section Scripts {
-    <script src="~/js/cadastro.js"></script>
     <partial name="_ValidationScriptsPartial" />
+    <script src="~/js/cadastrar.js"></script>
 }

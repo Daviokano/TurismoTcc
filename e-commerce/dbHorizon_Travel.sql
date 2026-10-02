@@ -1,25 +1,6 @@
 CREATE DATABASE dbHorizon_Travel;
--- DROP DATABASE dbHorizon_travel;
+-- DROP DATABASE dbHorizon_Travel;
 USE dbHorizon_Travel;
-
-CREATE TABLE Endereco(
-
-    IDEnd INT AUTO_INCREMENT PRIMARY KEY,
-
-    ruaEnd VARCHAR(200) NOT NULL,
-
-    numEnd VARCHAR(10) NOT NULL,
-
-    bairroEnd VARCHAR(20) NOT NULL,
-
-    cidEnd VARCHAR(200) NOT NULL,
-
-    estEnd CHAR(2) NOT NULL,
-
-    CEPEnd CHAR(8) NOT NULL
-
-);
-
 
 CREATE TABLE Usuario(
 
@@ -33,18 +14,13 @@ CREATE TABLE Usuario(
 
     telefoneUsu VARCHAR(20) NOT NULL,
 
-    IDEnd INT NOT NULL,
+    dataNascimentoUsu DATE NOT NULL,
 
-    dataNascimentoUsu DATETIME NOT NULL,
-
-    senhaUsu CHAR(8) NOT NULL,
+    senhaUsu VARCHAR(255) NOT NULL,
     
-    CONSTRAINT FK_UsuarioEndereco
-        FOREIGN KEY (IDEnd)
-        REFERENCES Endereco(IDEnd)
+    situacaoUsu CHAR(2) NOT NULL
 
 );
-
 
 CREATE TABLE Funcionario(
 
@@ -58,9 +34,9 @@ CREATE TABLE Funcionario(
 
     emailFun VARCHAR(100) NOT NULL UNIQUE,
 
-    senhaFun CHAR(8) NOT NULL,
+    senhaFun VARCHAR(255) NOT NULL,
 
-    dataNascimentoFun DATETIME NOT NULL
+    dataNascimentoFun DATE NOT NULL
 
 );
 
@@ -70,15 +46,7 @@ CREATE TABLE Parceiro(
 
     nomeFor VARCHAR(100) NOT NULL,
 
-    enderecoFor VARCHAR(200) NOT NULL,
-
-    emailFor VARCHAR(100) NOT NULL UNIQUE,
-    
-    IDEnd INT NOT NULL,
-    
-    CONSTRAINT FK_ParceiroEndereco
-        FOREIGN KEY (IDEnd)
-        REFERENCES Endereco(IDEnd)
+    emailFor VARCHAR(100) NOT NULL UNIQUE
 
 );
 
@@ -88,7 +56,7 @@ CREATE TABLE Promocao(
 
     porcentagemDesconto DECIMAL(5,2) NOT NULL,
 
-    dataValidade DATETIME NOT NULL,
+    dataValidade DATE NOT NULL,
 
     CHECK(porcentagemDesconto >= 0),
 
@@ -118,7 +86,7 @@ CREATE TABLE Pacote(
 
     destinoPac VARCHAR(100) NOT NULL,
 
-    dataPac DATETIME NOT NULL,
+    dataPac DATE NOT NULL,
 
     CONSTRAINT FK_PacoteFuncionario
         FOREIGN KEY(IDFun)
@@ -148,7 +116,7 @@ CREATE TABLE Reserva(
 
     IDPac INT NOT NULL,
 
-    dataRes DATETIME NOT NULL,
+    dataRes DATE NOT NULL,
 
     statusRes VARCHAR(40) NOT NULL,
 
@@ -170,7 +138,7 @@ CREATE TABLE Pagamento(
 
     valorPag DECIMAL(10,2) NOT NULL,
 
-    dataPag DATETIME NOT NULL,
+    dataPag DATE NOT NULL,
 
     metodoPag VARCHAR(50) NOT NULL,
 
@@ -215,7 +183,7 @@ CREATE TABLE Avaliacao(
 
     comentarioAva TEXT,
 
-    dataAva DATETIME NOT NULL,
+    dataAva DATE NOT NULL,
 
     CONSTRAINT FK_AvaliacaoUsuario
         FOREIGN KEY(IDUsu)
@@ -239,7 +207,6 @@ IN pCPF CHAR(11),
 IN pNome VARCHAR(100),
 IN pEmail VARCHAR(100),
 IN pTelefone VARCHAR(20),
-IN pEndereco VARCHAR(200),
 IN pDataNascimento DATE,
 IN pSenha VARCHAR(255)
 
@@ -248,10 +215,10 @@ IN pSenha VARCHAR(255)
 BEGIN
 
 INSERT INTO Usuario
-(CPFUsu,nomeUsu,emailUsu,telefoneUsu,enderecoUsu,dataNascimentoUsu,senhaUsu)
+(CPFUsu,nomeUsu,emailUsu,telefoneUsu,dataNascimentoUsu,senhaUsu)
 
 VALUES
-(pCPF,pNome,pEmail,pTelefone,pEndereco,pDataNascimento,pSenha);
+(pCPF,pNome,pEmail,pTelefone,pDataNascimento,pSenha);
 
 END $$
 

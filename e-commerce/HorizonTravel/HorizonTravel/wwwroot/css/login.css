@@ -98,6 +98,13 @@ html, body {
     max-width: 420px;
 }
 
+.form-group .text-danger {
+    display: block;
+    margin-top: 0.3rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+}
+
 .formulario h1 {
     font-size: 1.6rem;
     font-weight: 700;
