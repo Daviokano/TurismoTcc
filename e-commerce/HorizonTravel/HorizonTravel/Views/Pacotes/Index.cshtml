@@ -3,6 +3,7 @@
 }
 
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/pacotes-fix.css" asp-append-version="true" />
 
 <section class="banner-pacotes">
     <img src="~/img/pacotes-hero.jpg" alt="Paisagem de viagem" />
@@ -16,11 +17,15 @@
     <form class="barra-busca-pacotes">
         <div class="campo-busca">
             <i class="bi bi-geo-alt text-secondary"></i>
+            <input type="text" placeholder="Origem" aria-label="Origem" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-geo-alt text-secondary"></i>
             <input type="text" placeholder="Destino" aria-label="Destino" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-calendar-event text-secondary"></i>
-            <input type="date" aria-label="Data" />
+            <input type="text" placeholder="Data" aria-label="Data" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-people text-secondary"></i>
@@ -84,7 +89,7 @@
                     <b class="estrelas-pacote">★★★★★</b>
                     <div class="rodape-cartao-pacote">
                         <span>A partir de<strong>4.500</strong></span>
-                        <a href="#">Ver pacote</a>
+                    <a asp-controller="Pacotes" asp-action="Detalhes">Ver pacote</a>
                     </div>
                 </div>
             </article>

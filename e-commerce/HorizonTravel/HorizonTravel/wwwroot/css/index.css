@@ -58,11 +58,7 @@ main {
     font-weight: 300;
 }
 
-.navbar-nav .btn {
-    width: 120px;
-    font-weight: 600;
-    font-size: medium;
-}
+.navbar-nav .btn { font-weight: 600; }
 
 /* ALTERADO: remove o sublinhado de todos os links do header */
 .navbar a,
@@ -80,16 +76,12 @@ main {
     }
 
 /* ALTERADO: tamanho do ícone do carrinho (use font-size, não width) */
-.navbar .bi-cart3 {
-    font-size: 1.4rem;
-}
+.navbar .bi-cart3 { font-size: 17px; }
 
 .btn-login {
     background-color: #F97316;
     color: white;
     border: none;
-    width: 100px;
-    height: 30px;
 }
 
     .btn-login:hover {
@@ -99,12 +91,10 @@ main {
 
 /* ALTERADO: mais específico que ".navbar-nav .btn", então os tamanhos agora valem */
 .navbar-nav .btn.btn-login {
-    width: 100px;
-    height: 36px;
-    font-size: 0.9rem;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
+    width: 82px;
+    height: 28px;
+    font-size: .85rem;
+    line-height: 28px;
 }
 
 .banner {
