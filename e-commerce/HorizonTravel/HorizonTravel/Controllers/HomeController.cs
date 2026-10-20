@@ -77,8 +77,27 @@ namespace HorizonTravel.Controllers
         public IActionResult Cadastrar([FromForm] Usuario usuario)
         {
             usuario.situacaoUsu = SituacaoUsuConstant.Ativo;
-            _usuarioRepository.Cadastrar(usuario);
-            return RedirectToAction(nameof(Cadastrar));
+            var CPFExistente = _usuarioRepository.BuscaCpfUsuario(usuario.CPFUsu).CPFUsu;
+            var EmailExistente = _usuarioRepository.BuscaEmailUsuario(usuario.emailUsu).emailUsu;
+
+            if (!string.IsNullOrWhiteSpace(CPFExistente))
+            {
+                //cpf cadastrardo
+                ViewData["MSG_E"] = "Este CPF já está cadastrado!!";
+                return View();
+            }
+            else if (!string.IsNullOrWhiteSpace(EmailExistente))
+            {
+                //email cadastrardo
+                ViewData["MSG_E"] = "Este email já está cadastrado!!";
+                return View();
+            }
+            else if(ModelState.IsValid)
+            {
+                _usuarioRepository.Cadastrar(usuario);
+                return RedirectToAction(nameof(Login));
+            }
+            return View();
         }
     }
 }

@@ -82,7 +82,7 @@
         <footer class="footer-horizon">
             <div class="footer-container">
                 <div class="footer-col footer-brand">
-                    <h5><i class="bi bi-send-fill"></i> Horizon Travel</h5>
+                    <h5><i class="bi bi-airplane-fill"></i> Horizon Travel</h5>
                     <p>Sua agência de confiança para descobrir os melhores destinos do mundo com segurança e praticidade</p>
                 </div>
 
@@ -119,6 +119,12 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*Importar jquery.mask.min.js*@
+    <script src="~/lib/mask/jquery.mask.min.js"></script>
+    @*Função máscara site.js*@
+    <script src="~/js/site.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -66,10 +66,17 @@
 
                     <div class="form-group">
                         <label asp-for="CPFUsu">CPF</label>
+                        @if (ViewData["MSG_CPF"] != null)
+                        {
+                            <p class="alert alert-danger">
+                                @Html.Raw(ViewData["MSG_CPF"])
+                            </p>
+                        }
+                        
                         <div class="input-container">
                             <i class="bi bi-person-vcard"></i>
                             <input asp-for="CPFUsu"
-                                   class="form-control"
+                                   class="form-control CPF"
                                    placeholder="123.456.789-00"
                                    type="text"
                                    inputmode="numeric"
@@ -80,18 +87,24 @@
                     </div>
 
                     <div class="form-group">
-                        <label asp-for="CPFUsu">CPF</label>
+                        <label asp-for="emailUsu">E-mail</label>
+                        @if (ViewData["MSG_EMAIL"] != null)
+                        {
+                            <p class="alert alert-danger">
+                                @Html.Raw(ViewData["MSG_EMAIL"])
+                            </p>
+                        }
+
                         <div class="input-container">
-                            <i class="bi bi-person-vcard"></i>
-                            <input asp-for="CPFUsu"
+                            <i class="bi bi-envelope"></i>
+                            <input asp-for="emailUsu"
                                    class="form-control"
-                                   placeholder="Somente números"
-                                   type="text"
-                                   inputmode="numeric"
-                                   maxlength="14"
+                                   placeholder="seu@email.com"
+                                   type="email"
+                                   autocomplete="email"
                                    required>
                         </div>
-                        <span asp-validation-for="CPFUsu" class="text-danger"></span>
+                        <span asp-validation-for="emailUsu" class="text-danger"></span>
                     </div>
 
                     <div class="form-group">
@@ -99,8 +112,11 @@
                         <div class="input-container">
                             <i class="bi bi-calendar-event"></i>
                             <input asp-for="dataNascimentoUsu"
-                                   class="form-control"
-                                   autocomplete="bday"
+                                   class="form-control DataNasc"
+                                   placeholder="dd/mm/aaaa"
+                                   type="text"
+                                   inputmode="numeric"
+                                   maxlength="8"
                                    required>
                         </div>
                         <span asp-validation-for="dataNascimentoUsu" class="text-danger"></span>
@@ -111,10 +127,10 @@
                         <div class="input-container">
                             <i class="bi bi-telephone"></i>
                             <input asp-for="telefoneUsu"
-                                   class="form-control"
+                                   class="form-control Telefone"
                                    placeholder="(11) 99999-9999"
                                    type="tel"
-                                   maxlength="15"
+                                   maxlength="11"
                                    autocomplete="tel">
                         </div>
                         <span asp-validation-for="telefoneUsu" class="text-danger"></span>

@@ -16,5 +16,8 @@ namespace HorizonTravel.Repository.Contract
 
         void Ativar(int Id);
         void Desativar(int Id);
+
+        Usuario BuscaCpfUsuario(string Cpf);
+        Usuario BuscaEmailUsuario(string Email);
     }
 }

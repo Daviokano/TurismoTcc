@@ -79,7 +79,6 @@ html, body {
 
 .banner-img p {
     font-size: 0.95rem;
-    line-height: 1.35;
     max-width: 22rem;
 }
 
@@ -197,9 +196,9 @@ html, body {
     transition: background 0.2s;
 }
 
-    .btn-login:hover {
-        background: #ea6a0a;
-    }
+.btn-login:hover {
+    background: #ea6a0a;
+}
 
 .register-text {
     text-align: center;

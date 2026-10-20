@@ -55,7 +55,47 @@ namespace HorizonTravel.Repository
             }
         }
 
-        public void Cadastrar(Usuario usuario)
+        public Usuario BuscaCpfUsuario(string Cpf)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand ("SELECT CPFUsu FROM Usuario WHERE CPFUsu=@CPFUsu", conexao);
+                cmd.Parameters.AddWithValue("@CPFUsu", Cpf);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Usuario usuario = new Usuario();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while(dr.Read())
+                {
+                    usuario.CPFUsu = (string)(dr["CPFUsu"]);
+                }
+                return usuario;
+            }
+        }
+
+        public Usuario BuscaEmailUsuario(string Email)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand("SELECT emailUsu FROM Usuario WHERE emailUsu=@emailUsu", conexao);
+                cmd.Parameters.AddWithValue("@emailUsu", Email);
+                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
+                MySqlDataReader dr;
+
+                Usuario usuario = new Usuario();
+                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (dr.Read())
+                {
+                    usuario.emailUsu = (string)(dr["emailUsu"]);
+                }
+                    return usuario;
+                }
+            }
+
+            public void Cadastrar(Usuario usuario)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
