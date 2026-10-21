@@ -69,7 +69,7 @@ nav .active {
   padding: 110px max(70px, calc((100% - 1310px) / 2));
   background: var(--bg);
   display: grid;
-  grid-template-columns: minmax(520px, 1fr) minmax(650px, 1.5fr);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
   align-items: center;
   gap: 110px;
 }
@@ -114,22 +114,23 @@ nav .active {
 
 .subtitulo-hero mark {
   background: transparent;
-  color:var(--blue);
+  color: var(--blue);
   padding: 0;
   border-radius: 0;
-  font-weight:800;
+  font-weight: 800;
 }
 
 .lista-servicos {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 32px;
   padding: 70px 70px 30px;
   background: #1857ad;
 }
 
 .cartao-servico {
-  min-height: 315px;
+  min-height: 220px;
+  height: 100%;
   background: #fff;
   border-radius: 18px;
   border-top: 5px solid var(--blue);
@@ -140,21 +141,10 @@ nav .active {
   align-items: flex-start;
 }
 
-.icone-svg {
-  width: 58px;
-  height: 58px;
-  fill:none;
-  stroke:var(--blue);
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  margin: 0 0 22px;
-}
-
 .cartao-servico h2 {
   font-size: 24px;
   margin: 0 0 10px;
-  color:var(--navy);
+  color: var(--navy);
 }
 
 .cartao-servico p {
@@ -162,7 +152,7 @@ nav .active {
   line-height: 1.35;
   margin: 0;
   max-width: 310px;
-  color:#263653;
+  color: #263653;
 }
 
 .resultados {
@@ -177,30 +167,22 @@ nav .active {
 }
 
 .resultados .estatistica-item {
-  display: grid;
-  grid-template-columns: 34px auto;
-  column-gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
   align-items: center;
   justify-self: center;
-}
-
-.estatistica-svg {
-  width: 32px;
-  height: 32px;
-  fill:none;
-  stroke:var(--blue);
-  stroke-width:1.8;
-  stroke-linecap:round;
-  stroke-linejoin:round;
-  grid-row: span 2;
+  text-align: center;
 }
 
 .resultados strong {
-  font-size: 34px !important;
+  font-size: 34px;
+  line-height: 1;
 }
 
 .resultados span {
   font-size: 18px;
+  line-height: 1.2;
 }
 
 .contato {
@@ -268,9 +250,9 @@ nav .active {
   padding: 52px 42px 56px;
   box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
   transform: translateY(35px);
-  display:flex;
-  flex-direction:column;
-  gap:16px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .formulario h3 {
@@ -320,8 +302,8 @@ footer {
   display: grid;
   grid-template-columns: 300px 190px 190px;
   justify-content: center;
-  column-gap:120px;
-  row-gap:24px;
+  column-gap: 120px;
+  row-gap: 24px;
   font-size: 12px;
 }
 
@@ -335,14 +317,55 @@ footer p {
   font-size: 12px;
   line-height: 1.4;
 }
-.footer-marca strong { display:block; font-size:32px; line-height:1; letter-spacing:-1px; text-decoration:underline }
-.footer-marca strong span { color:var(--blue) }
-.footer-marca p { max-width:300px; margin:20px 0 0 }
-.contatos-icones { display:flex; align-items:center; gap:14px; margin-top:12px }
-.icone-contato { width:50px; height:50px; border-radius:5px; background:rgba(255,255,255,.08) }
-.icone-contato img { width:100%; height:100%; object-fit:contain; display:block }
-.footer-endereco strong, .footer-contatos strong { font-size:14px }
-.footer-direitos { grid-column:1 / -1; text-align:center; font-size:11px }
+
+.footer-marca strong {
+  display: block;
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -1px;
+  text-decoration: underline;
+}
+
+.footer-marca strong span {
+  color: var(--blue);
+}
+
+.footer-marca p {
+  max-width: 300px;
+  margin: 20px 0 0;
+}
+
+.contatos-icones {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 12px;
+}
+
+.icone-contato {
+  width: 50px;
+  height: 50px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, .08);
+}
+
+.icone-contato img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.footer-endereco strong,
+.footer-contatos strong {
+  font-size: 14px;
+}
+
+.footer-direitos {
+  grid-column: 1 / -1;
+  text-align: center;
+  font-size: 11px;
+}
 
 @media (max-width: 700px) {
   .cabecalho {
@@ -403,11 +426,11 @@ footer p {
   }
 
   .resultados strong {
-    font-size: 12px;
+    font-size: 24px;
   }
 
   .resultados span {
-    font-size: 7px;
+    font-size: 12px;
   }
 
   .contato {
@@ -431,32 +454,100 @@ footer p {
 }
 
 @media (max-width: 1250px) and (min-width: 701px) {
-  .apresentacao-servicos { padding: 80px 48px; grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.2fr); gap: 48px; }
-  .texto-apresentacao h1 { font-size: 40px; }
-  .subtitulo-hero { font-size: 21px; }
-  .imagem-apresentacao { height: 380px; }
-  .lista-servicos { grid-template-columns: repeat(2, 1fr); padding-inline: 48px; }
-  .contato { padding-inline: 48px; gap: 50px; }
-  footer { column-gap: 45px; }
+  .apresentacao-servicos {
+    padding: 80px 48px;
+    grid-template-columns: minmax(300px, 1fr) minmax(380px, 1.2fr);
+    gap: 48px;
+  }
+
+  .texto-apresentacao h1 {
+    font-size: 40px;
+  }
+
+  .subtitulo-hero {
+    font-size: 21px;
+  }
+
+  .imagem-apresentacao {
+    height: 380px;
+  }
+
+  .lista-servicos {
+    grid-template-columns: repeat(2, 1fr);
+    padding-inline: 48px;
+  }
+
+  .contato {
+    padding-inline: 48px;
+    gap: 50px;
+  }
+
+  footer {
+    column-gap: 45px;
+  }
 }
 
 @media (max-width: 700px) {
-  .texto-apresentacao h1 { font-size: 32px; }
-  .subtitulo-hero { font-size: 18px; }
-  .lista-servicos { grid-template-columns: 1fr; padding: 28px 20px; }
-  .cartao-servico { min-height: 0; }
-  .resultados { grid-template-columns: repeat(2, 1fr); }
-  .resultados div { justify-self: start; }
-  .contato { padding-inline: 20px; }
-  .informacoes-contato h2 { font-size: 34px; }
-  .campos-duplos { grid-template-columns: 1fr; }
-  .formulario { padding: 30px 22px; }
+  .texto-apresentacao h1 {
+    font-size: 32px;
+  }
+
+  .subtitulo-hero {
+    font-size: 18px;
+  }
+
+  .lista-servicos {
+    grid-template-columns: 1fr;
+    padding: 28px 20px;
+  }
+
+  .cartao-servico {
+    min-height: 0;
+  }
+
+  .resultados {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .resultados div {
+    justify-self: start;
+  }
+
+  .contato {
+    padding-inline: 20px;
+  }
+
+  .informacoes-contato h2 {
+    font-size: 34px;
+  }
+
+  .campos-duplos {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario {
+    padding: 30px 22px;
+  }
 }
 
 @media (max-width: 420px) {
-  .apresentacao-servicos { padding-inline: 20px; }
-  .imagem-apresentacao { height: 220px; }
-  .resultados { padding-inline: 20px; }
-  .resultados strong { font-size: 24px !important; }
-  .resultados span { font-size: 12px; }
+  .apresentacao-servicos {
+    padding-inline: 20px;
+  }
+
+  .imagem-apresentacao {
+    height: 220px;
+  }
+
+  .resultados {
+    padding-inline: 20px;
+  }
+
+  .resultados strong {
+    font-size: 24px;
+  }
+
+  .resultados span {
+    font-size: 12px;
+  }
 }
