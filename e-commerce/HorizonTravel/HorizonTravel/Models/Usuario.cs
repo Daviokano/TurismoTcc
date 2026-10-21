@@ -30,9 +30,9 @@ namespace HorizonTravel.Models
         [Display(Name = "Senha do usuário")]
         [Required(ErrorMessage = "A senha é obrigatória.")]
         [DataType(DataType.Password)]
-        [StringLength(8, ErrorMessage = "A senha deve ter 8 caracteres.")]
+        [MinLength(8, ErrorMessage = "A senha deve ter no mínimo 8 caracteres.")]
         public string senhaUsu {get; set;}
         
-        public string situacaoUsu { get; set;}
+        public string? situacaoUsu { get; set;}
     }
 }
