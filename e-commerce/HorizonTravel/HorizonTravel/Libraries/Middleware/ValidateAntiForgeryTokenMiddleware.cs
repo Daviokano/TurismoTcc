@@ -15,10 +15,11 @@ namespace HorizonTravel.Libraries.Middleware
 
         public async Task Invoke(HttpContext context)
         {
-            if (string.Equals(context.Request.Method, "POST", StringComparison.OrdinalIgnoreCase))
+            if (HttpMethods.IsPost(context.Request.Method)) 
             {
                 await _antiforgery.ValidateRequestAsync(context);
             }
+
             await _next(context);
         }
     }

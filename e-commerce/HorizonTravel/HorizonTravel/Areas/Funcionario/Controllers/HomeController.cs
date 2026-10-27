@@ -3,6 +3,7 @@ using HorizonTravel.Libraries.Login;
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HorizonTravel.Areas.Funcionario.Controllers
 {
@@ -18,27 +19,31 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             _loginFuncionario = loginFuncionario;
         }
 
-        public IActionResult Login()
+        [HttpGet]
+        public IActionResult LoginFuncionario()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Login([FromForm] Models.Funcionario funcionario)
+        public IActionResult LoginFuncionario([FromForm] Models.Funcionario funcionario)
         {
             Models.Funcionario funcionarioDB = _funcionarioRepository.Login(funcionario.emailFun, funcionario.senhaFun);
 
-                if(funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
-                {
-                    _loginFuncionario.Login(funcionarioDB);
-                    return RedirectToAction(nameof(PainelFuncionario));
-                }
+            if (funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
+            {
+                _loginFuncionario.Login(funcionarioDB);
+                return RedirectToAction(nameof(PainelFuncionario));
+            }
             else
             {
-                ViewData["MSG_E"] = "Funcioário não encontrado, por favor verifique email e senha digitados";
+                ViewData["MSG_E"] = "Funcionário não encontrado, por favor verifique email e senha digitados";
                 return View();
             }
         }
+
+        
+
         public IActionResult PainelFuncionario()
         {
             ViewBag.nomeFun = _loginFuncionario.GetFuncionario().nomeFun;
@@ -53,6 +58,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View();
         }
 
+        //verificar se deve ser criada outra index que mostre os dados dos funcionarios, como atualização
         [FuncionarioAutorizacaoAtributte]
         public IActionResult Index()
         {
@@ -64,7 +70,8 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         {
             _loginFuncionario.Logout();
             // Redireciona para a action Login desta controller/área
-            return RedirectToAction(nameof(Login));
+            return RedirectToAction(nameof(LoginFuncionario));
         }
+
     }
 }

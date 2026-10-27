@@ -1,0 +1,44 @@
+@model IEnumerable<HorizonTravel.Models.Funcionario>
+@{
+    ViewData["Title"] = "Funcionários";
+    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Funcionários</h2>
+
+<p>
+    <a asp-action="Cadastrar" class="btn btn-primary">Novo Funcionário</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>@Html.DisplayNameFor(model => model.First().IDFun)</th>
+            <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
+            <th>@Html.DisplayNameFor(model => model.First().nomeFun)</th>
+            <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
+            <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
+            <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.IDFun</td>
+            <td>@item.CPFFun</td>
+            <td>@item.nomeFun</td>
+            <td>@item.emailFun</td>
+            <td>@item.telefoneFun</td>
+            <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
+            <td>
+                <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="btn btn-sm btn-warning">Editar</a>
+                <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="btn btn-sm btn-info">Detalhes</a>
+                <a asp-action="Excluir" asp-route-id="@item.IDFun" class="btn btn-sm btn-danger"
+                                    onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>

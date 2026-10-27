@@ -95,18 +95,21 @@ namespace HorizonTravel.Repository
                 }
             }
 
-            public void Cadastrar(Usuario usuario)
+        public void Cadastrar(Usuario usuario)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
+
+                //tirando máscara do CPF para salvar no banco
+                string cpf = System.Text.RegularExpressions.Regex.Replace(usuario.CPFUsu, @"\D", "");
 
                 MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Usuario(nomeUsu, CPFUsu, emailUsu, telefoneUsu, dataNascimentoUsu, senhaUsu, situacaoUsu)
                 VALUES (@nomeUsu, @CPFUsu, @emailUsu, @telefoneUsu, @dataNascimentoUsu, @senhaUsu, @situacaoUsu)", conexao);
 
 
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
-                cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = usuario.CPFUsu;
+                cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = cpf;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
                 cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascimentoUsu;

@@ -1,0 +1,46 @@
+@model HorizonTravel.Models.Funcionario
+@{
+    ViewBag.Title = "Cadastrar Funcionário";
+    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar Funcionário</h2>
+
+<form asp-action="Cadastrar" method="post">
+    <div class="form-group">
+        <label asp-for="CPFFun" class="control-label"></label>
+        <input asp-for="CPFFun" class="form-control" />
+        <span asp-validation-for="CPFFun" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="nomeFun" class="control-label"></label>
+        <input asp-for="nomeFun" class="form-control" />
+        <span asp-validation-for="nomeFun" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="emailFun" class="control-label"></label>
+        <input asp-for="emailFun" class="form-control" />
+        <span asp-validation-for="emailFun" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="telefoneFun" class="control-label"></label>
+        <input asp-for="telefoneFun" class="form-control" />
+        <span asp-validation-for="telefoneFun" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="dataNascimentoFun" class="control-label"></label>
+        <input asp-for="dataNascimentoFun" class="form-control" type="date" />
+        <span asp-validation-for="dataNascimentoFun" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="senhaFun" class="control-label"></label>
+        <input asp-for="senhaFun" class="form-control" type="password" maxlength="8" />
+        <span asp-validation-for="senhaFun" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

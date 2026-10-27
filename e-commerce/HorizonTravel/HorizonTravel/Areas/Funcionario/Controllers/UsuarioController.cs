@@ -2,7 +2,7 @@
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
-namespace HorizonTravel.Controllers
+namespace HorizonTravel.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
     public class UsuarioController : Controller
