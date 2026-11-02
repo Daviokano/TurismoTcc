@@ -1,1 +1,331 @@
-.banner-sobre{height:300px;position:relative;overflow:hidden}.banner-sobre>img{width:100%;height:100%;object-fit:cover;filter:brightness(.55)}.conteudo-banner-sobre{position:absolute;inset:0;max-width:1200px;width:calc(100% - 48px);margin:auto;color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:flex-end;text-align:right}.conteudo-banner-sobre h1{font-size:2.4rem;line-height:1.05;margin:0 0 10px}.conteudo-banner-sobre p{margin:0}.apresentacao-sobre{display:flex;gap:70px;align-items:center;padding-top:48px;padding-bottom:48px}.apresentacao-sobre img{width:42%;height:190px;object-fit:cover;border-radius:5px}.apresentacao-sobre small{color:#111;font-size:.65rem}.apresentacao-sobre small strong{color:#f5821f}.apresentacao-sobre h2{font-size:1.35rem;margin:10px 0}.apresentacao-sobre p{line-height:1.45;font-size:.72rem}.numeros-sobre{background:#1e3a8a;color:#fff;display:flex;justify-content:center;gap:110px;padding:22px}.numeros-sobre div{text-align:center}.numeros-sobre strong,.numeros-sobre span{display:block}.numeros-sobre strong{font-size:1.5rem}.numeros-sobre span{font-size:.7rem}.valores-sobre{display:grid;grid-template-columns:repeat(3,1fr);gap:25px;padding-top:32px;padding-bottom:32px}.valores-sobre article,.lista-diferenciais article{background:#fff;text-align:center;padding:25px;box-shadow:0 2px 10px #0002}.valores-sobre i,.lista-diferenciais i{color:#f5821f;font-size:1.6rem}.valores-sobre h3,.lista-diferenciais h3{font-size:.85rem}.valores-sobre p,.lista-diferenciais p{font-size:.7rem}.diferenciais-sobre{padding-bottom:55px}.diferenciais-sobre>h2{text-align:center;color:#1e3a8a;font-size:1rem;margin:10px 0 30px}.lista-diferenciais{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}.contato-sobre{background:#e8f3f5;padding:28px 0 0}.contato-conteudo-sobre{display:grid;grid-template-columns:1.2fr 1fr;gap:60px}.formulario-sobre{text-align:center}.formulario-sobre h2{color:#f5821f;font-size:1rem;margin:0}.formulario-sobre p{font-size:.65rem;margin:5px 0 14px}.formulario-sobre form{display:grid;gap:8px}.formulario-sobre input,.formulario-sobre textarea{width:100%;border:1px solid #cbd5d8;border-radius:3px;padding:8px;font-size:.65rem}.formulario-sobre form div{display:grid;grid-template-columns:1fr 1fr;gap:8px}.formulario-sobre textarea{height:70px;resize:none}.formulario-sobre button{background:#ff7417;color:#fff;border:0;border-radius:4px;padding:10px;margin:28px auto 0;width:150px;font-size:.65rem;font-weight:700}.informacoes-sobre{font-size:.72rem;padding-top:28px}.informacoes-sobre h3{font-size:.8rem}.informacoes-sobre i{color:#1e3a8a;width:22px}.mapa-sobre{height:130px;background:#eee url('/img/img banner.jpg') center/cover;opacity:.7}@media(max-width:700px){.apresentacao-sobre{display:block}.apresentacao-sobre img{width:100%;margin-bottom:25px}.numeros-sobre{gap:18px;flex-wrap:wrap}.valores-sobre,.lista-diferenciais,.contato-conteudo-sobre{grid-template-columns:1fr}.conteudo-banner-sobre{align-items:center;text-align:center}.banner-sobre h1{font-size:2rem}.formulario-sobre form div{grid-template-columns:1fr}}
+.banner-sobre {
+    height: 420px;
+    position: relative;
+    overflow: hidden;
+}
+
+.banner-sobre > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(0.55);
+}
+
+.conteudo-banner-sobre {
+    position: absolute;
+    inset: 0;
+    max-width: 1200px;
+    width: calc(100% - 48px);
+    margin: auto;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-end;
+    text-align: right;
+}
+
+.conteudo-banner-sobre h1 {
+    font-size: 3.6rem;
+    line-height: 1.05;
+    margin: 0 0 18px;
+}
+
+.conteudo-banner-sobre p {
+    font-size: 1.25rem;
+    margin: 0;
+}
+
+.apresentacao-sobre {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+.apresentacao-sobre img {
+    width: 48%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.apresentacao-sobre small {
+    color: #111;
+    font-size: 1.05rem;
+}
+
+.apresentacao-sobre small strong {
+    color: #f5821f;
+}
+
+.apresentacao-sobre h2 {
+    font-size: 2.8rem;
+    line-height: 1.2;
+    margin: 20px 0;
+}
+
+.apresentacao-sobre p {
+    line-height: 1.8;
+    font-size: 1.25rem;
+}
+
+.numeros-sobre {
+    background: #1e3a8a;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    gap: 140px;
+    padding: 40px 24px;
+}
+
+.numeros-sobre div {
+    text-align: center;
+}
+
+.numeros-sobre strong,
+.numeros-sobre span {
+    display: block;
+}
+
+.numeros-sobre strong {
+    font-size: 2.4rem;
+}
+
+.numeros-sobre span {
+    font-size: 1rem;
+    margin-top: 6px;
+}
+
+.valores-sobre {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 32px;
+    padding-top: 65px;
+    padding-bottom: 65px;
+}
+
+.valores-sobre article,
+.lista-diferenciais article {
+    background: #fff;
+    text-align: center;
+    padding: 38px 30px;
+    box-shadow: 0 2px 14px #0002;
+}
+
+.valores-sobre i,
+.lista-diferenciais i {
+    color: #f5821f;
+    font-size: 2.8rem;
+}
+
+.valores-sobre h3,
+.lista-diferenciais h3 {
+    font-size: 1.3rem;
+    margin: 18px 0 10px;
+}
+
+.valores-sobre p,
+.lista-diferenciais p {
+    font-size: 1rem;
+    line-height: 1.55;
+    margin: 0;
+}
+
+.diferenciais-sobre {
+    padding-bottom: 80px;
+}
+
+.diferenciais-sobre > h2 {
+    text-align: center;
+    color: #1e3a8a;
+    font-size: 1.8rem;
+    margin: 10px 0 40px;
+}
+
+.lista-diferenciais {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+}
+
+.contato-sobre {
+    background: #e8f3f5;
+    padding: 60px 0 0;
+    margin-bottom: -1rem;
+}
+
+.contato-conteudo-sobre {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 80px;
+    align-items: center;
+}
+
+.formulario-sobre {
+    text-align: center;
+}
+
+.formulario-sobre h2 {
+    color: #f5821f;
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.formulario-sobre p {
+    font-size: 1rem;
+    margin: 10px 0 24px;
+}
+
+.formulario-sobre form {
+    display: grid;
+    gap: 14px;
+}
+
+.formulario-sobre input,
+.formulario-sobre textarea {
+    width: 100%;
+    border: 1px solid #cbd5d8;
+    border-radius: 5px;
+    padding: 14px;
+    font-size: 1rem;
+}
+
+.formulario-sobre form div {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+}
+
+.formulario-sobre textarea {
+    height: 130px;
+    resize: none;
+}
+
+.formulario-sobre button {
+    background: #ff7417;
+    color: #fff;
+    border: 0;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 28px auto 30px;
+    width: 210px;
+    font-size: 0.95rem;
+    font-weight: 700;
+}
+
+.informacoes-sobre {
+    align-self: center;
+    font-size: 1rem;
+    padding-top: 0;
+    transform: translateY(-24px);
+}
+
+.informacoes-sobre h3 {
+    font-size: 2rem;
+    margin-bottom: 22px;
+}
+
+.informacoes-sobre p {
+    font-size: 1.35rem;
+    line-height: 1.8;
+    margin-bottom: 18px;
+}
+
+.informacoes-sobre i {
+    color: #1e3a8a;
+    width: 28px;
+}
+
+.mapa-sobre {
+    display: none;
+}
+
+@media (max-width: 900px) {
+    .numeros-sobre {
+        gap: 60px;
+    }
+
+    .lista-diferenciais {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 700px) {
+    .banner-sobre {
+        height: 340px;
+    }
+
+    .apresentacao-sobre {
+    display: flex;
+    gap: 100px;
+    align-items: center;
+    padding-top: 110px;
+    padding-bottom: 110px;
+}
+
+    .apresentacao-sobre img {
+    width: 48%;
+    height: 390px;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+    .conteudo-banner-sobre {
+        align-items: center;
+        text-align: center;
+    }
+
+    .conteudo-banner-sobre h1 {
+        font-size: 2.6rem;
+    }
+
+    .conteudo-banner-sobre p {
+        font-size: 1rem;
+    }
+
+    .numeros-sobre {
+        gap: 28px;
+        flex-wrap: wrap;
+    }
+
+    .numeros-sobre div {
+        width: 40%;
+    }
+
+    .valores-sobre,
+    .lista-diferenciais,
+    .contato-conteudo-sobre {
+        grid-template-columns: 1fr;
+    }
+
+    .diferenciais-sobre > h2 {
+        font-size: 1.5rem;
+    }
+
+    .contato-conteudo-sobre {
+        align-items: start;
+    }
+
+    .informacoes-sobre {
+        align-self: start;
+        padding-top: 20px;
+        transform: none;
+    }
+
+    .formulario-sobre form div {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+

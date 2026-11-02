@@ -1,4 +1,4 @@
-﻿@inject HorizonTravel.Libraries.Login.LoginFuncionario _loginFuncionario
+@inject HorizonTravel.Libraries.Login.LoginFuncionario _loginFuncionario
 @inject HorizonTravel.Libraries.Login.LoginUsuario _loginUsuario
 <!DOCTYPE html>
 <html lang="en">
@@ -46,9 +46,6 @@
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Pacotes" asp-action="Index">Pacotes</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" asp-controller="Contato" asp-action="Index">Contato</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" asp-controller="Sobre" asp-action="Index">Sobre</a>
@@ -130,3 +127,4 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
