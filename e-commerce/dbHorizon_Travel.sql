@@ -22,6 +22,8 @@ CREATE TABLE Usuario(
 
 );
 
+select * from usuario;
+
 CREATE TABLE Funcionario(
 
     IDFun INT AUTO_INCREMENT PRIMARY KEY,
@@ -33,12 +35,20 @@ CREATE TABLE Funcionario(
     telefoneFun VARCHAR(20) NOT NULL,
 
     emailFun VARCHAR(100) NOT NULL UNIQUE,
-
+-- mudar a quantidade de caracteres
     senhaFun VARCHAR(255) NOT NULL,
 
     dataNascimentoFun DATE NOT NULL
 
 );
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678901', 'Bia', '(11) 99999-9999', 'bia@email.com', '123456', '2008-07-01');
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678902', 'Davi', '(11) 99999-9999', 'davi@email.com', '123456', '2008-07-01');
+
+select * from funcionario;
 
 CREATE TABLE Parceiro(
 

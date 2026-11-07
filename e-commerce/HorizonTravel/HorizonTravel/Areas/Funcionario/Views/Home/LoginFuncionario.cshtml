@@ -1,7 +1,7 @@
 ﻿@model HorizonTravel.Models.Funcionario
 @{
     ViewData["Title"] = "Login";
-    ViewData["SemLayout"] = true;
+    Layout = null;
 }
 
 <link rel="stylesheet" href="~/css/loginfuncionario.css" asp-append-version="true" />
@@ -30,7 +30,7 @@
 
                             <div class="form-group">
                                 <label>E-mail</label>
-                                <input asp-for="emailFun"
+                                <input name="emailFun"
                                        class="form-control"
                                        placeholder="Email"
                                        type="email">
@@ -39,7 +39,7 @@
                             <div class="form-group">
                                 <a class="float-right" href="#">Esqueceu sua senha?</a>
                                 <label>Senha</label>
-                                <input asp-for="senhaFun"
+                                <input name="senhaFun"
                                        class="form-control"
                                        placeholder="******"
                                        type="password">

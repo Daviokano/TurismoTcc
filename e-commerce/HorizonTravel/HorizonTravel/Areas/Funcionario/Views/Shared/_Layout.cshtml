@@ -48,7 +48,7 @@
         <ul class="navbar-nav px-3">
             <li class="nav-item text-nowrap">
                 <a class="nav-link" asp-area="Funcionario" asp-action="Logout"
-                asp-controller="Home"><span>@_funcionario.GetFuncionario().nomeFun </span> Sair</a>
+                asp-controller="Home"><span>@(_funcionario.GetFuncionario()?.nomeFun)</span> Sair</a>
             </li>
         </ul>
     </nav>

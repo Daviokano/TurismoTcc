@@ -42,8 +42,8 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, emailFun, dataNascimentoFun, senhaFun)
-                VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun)", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun)
+                        VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun)", conexao);
 
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
                 cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = funcionario.CPFFun;

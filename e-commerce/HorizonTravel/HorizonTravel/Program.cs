@@ -47,9 +47,9 @@ app.UseHttpsRedirection();
 app.UseStaticFiles();
 app.UseDefaultFiles();
 app.UseRouting();
+app.UseSession();
 app.UseAuthorization();
 app.UseCookiePolicy();
-app.UseSession();
 
 app.UseMiddleware<ValidateAntiForgeryTokenMiddleware>();
 

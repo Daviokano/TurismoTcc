@@ -6,14 +6,14 @@ namespace HorizonTravel.Libraries.Filtro
 {
     public class FuncionarioAutorizacaoAtributte : Attribute, IAuthorizationFilter
     {
-        LoginFuncionario _loginFuncionario;
-
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            _loginFuncionario = (LoginFuncionario)context.HttpContext.RequestServices.GetService(typeof(LoginFuncionario));
-            if (_loginFuncionario.GetFuncionario() == null)
+            var loginFuncionario = (LoginFuncionario)context.HttpContext.RequestServices.GetService(typeof(LoginFuncionario));
+
+            if (loginFuncionario?.GetFuncionario() == null)
             {
-                context.Result = new RedirectToActionResult("LoginFuncionario", "Home", null);
+                context.Result = new RedirectToActionResult(
+                    "LoginFuncionario","Home", new { area = "Funcionario" });
             }
         }
     }

@@ -28,6 +28,10 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult LoginFuncionario([FromForm] Models.Funcionario funcionario)
         {
+            // ADICIONE ESTA LINHA AQUI:
+            Console.WriteLine($"Email: [{funcionario.emailFun}] Senha: [{funcionario.senhaFun}]");
+
+
             Models.Funcionario funcionarioDB = _funcionarioRepository.Login(funcionario.emailFun, funcionario.senhaFun);
 
             if (funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
@@ -42,8 +46,8 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             }
         }
 
-        
 
+        [FuncionarioAutorizacaoAtributte]
         public IActionResult PainelFuncionario()
         {
             ViewBag.nomeFun = _loginFuncionario.GetFuncionario().nomeFun;
