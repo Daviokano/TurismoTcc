@@ -28,9 +28,8 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult LoginFuncionario([FromForm] Models.Funcionario funcionario)
         {
-            // ADICIONE ESTA LINHA AQUI:
+            //para conferir se emailFun e senhaFun chegaram preenchidos
             Console.WriteLine($"Email: [{funcionario.emailFun}] Senha: [{funcionario.senhaFun}]");
-
 
             Models.Funcionario funcionarioDB = _funcionarioRepository.Login(funcionario.emailFun, funcionario.senhaFun);
 
@@ -41,7 +40,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             }
             else
             {
-                ViewData["MSG_E"] = "Funcionário não encontrado, por favor verifique email e senha digitados";
+                ViewData["MSG_E"] = "Funcionário não encontrado, por favor verifique email e senha digitados.";
                 return View();
             }
         }

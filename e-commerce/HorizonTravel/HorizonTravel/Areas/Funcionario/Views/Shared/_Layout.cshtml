@@ -13,31 +13,13 @@
     <title>@ViewBag.Title</title>
 
     <link href="~/css/StyleSheet.css" rel="stylesheet" type="text/css" />
-
-    <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="~/resources/lib/bootstrap-4.2.1-dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/resources/lib/pagedlist/PagedList.css" rel="stylesheet" type="text/css" />
-
     <link href="~/resources/lib/pagedlist/PagedList.css" rel="stylesheet" type="text/css" /> 
-
-    <style>
-        .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: none;
-        }
-
-        @@media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-        }
-        }
-    </style>
-    <!-- Custom styles for this template -->
     <link href="~/resources/lib/dashboard/dashboard.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="~/css/layoutfuncionario.css" asp-append-version="true" />
+
 </head>
 
 <body>
@@ -52,103 +34,62 @@
             </li>
         </ul>
     </nav>
-
-    <div class="container-fluid">
-        <div class="row">
-            <nav class="col-md-2 d-none d-md-block bg-light sidebar">
-                <div class="sidebar-sticky">
-                    <ul class="nav flex-column">
-                        <li class="nav-item">
-                            <a class="nav-link active" asp-action="Painel">
-                                <span data-feather="home"></span>
-                                Painel de Controle
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-action="Index" asp-controller="Categoria">
-                                <span data-feather="file"></span>
-                                Categoria
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="shopping-cart"></span>
-                                Produtos
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Colaborador" asp-action="Index">
-                                <span data-feather="users"></span>
-                                Funcionario
-                            </a>
-                        </li>
-                       
-
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="Cliente" asp-action="Index">
-                                <span data-feather="users"></span>
-                                Cliente
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file"></span>
-                                Pedidos
-                            </a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="bar-chart-2"></span>
-                                Relatórios
-                            </a>
-                        </li>
-                    </ul>
-
-                    <h6 class="sidebar-heading d-flex justify-content-between align-items-center px-3 mt-4 mb-1 text-muted">
-                        <span>Saved reports</span>
-                        <a class="d-flex align-items-center text-muted" href="#">
-                            <span data-feather="plus-circle"></span>
-                        </a>
-                    </h6>
-                    <ul class="nav flex-column mb-2">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Current month
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Last quarter
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Social engagement
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <span data-feather="file-text"></span>
-                                Year-end sale
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
-            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
-                @RenderBody()
-
-            </main>
+    <aside class="sidebar-ht">
+        <div class="sidebar-brand">
+            <span data-feather="send"></span>
+            <i class="bi bi-airplane"></i>
+            Horizon Travel
         </div>
-    </div>
+
+        <ul class="sidebar-menu">
+            <li>
+                <a class="active" asp-action="PainelFuncionario">
+                    <i class="bi bi-house-door"></i>
+                    Painel de Controle
+                </a>
+            </li>
+            <li>
+                <a asp-action="Index" asp-controller="Categoria">
+                    <i class="bi bi-box-seam"></i>
+                     Pacotes
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-megaphone"></i>
+                     Promoções
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Funcionario" asp-action="Index">
+                    <i class="bi bi-people"></i>
+                     Funcionários
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Usuario" asp-action="Index">
+                    <i class="bi bi-clock-history"></i>
+                     Histórico por cliente
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="bi bi-people"></i>
+                     Parceiros
+                </a>
+            </li>
+        </ul>
+
+        <a class="sidebar-logout" asp-area="Funcionario" asp-controller="Home" asp-action="Logout">
+            <i class="bi bi-box-arrow-right"></i>
+            Sair
+        </a>
+    </aside>
+
+    <main class="conteudo-principal">
+        @RenderBody()
+    </main>
+
     <script src="~/resources/lib/jquery3.3.1/jquery-3.3.1.min.js"></script>
     <script>window.jQuery || document.write('<script src="/resources/lib/jquery3.3.1/jquery-3.3.1.min.js"><\/script>')</script>
     <script src="~/resources/lib/mask/jquery.mask.min.js"></script>
