@@ -115,53 +115,67 @@ main {
     max-width: 600px;
 }
 
-    .banner-conteudo .titulo-banner {
-        font-size: 3rem;
-        margin-bottom: 20px;
-        font-weight: 600;
-    }
-
-    .banner-conteudo .texto-banner {
-        margin-bottom: 20px;
-        font-weight: 300;
-    }
-
-    .banner-conteudo .btn {
-        background-color: #1E3A8A;
-        color: white;
-        border: none;
-    }
-
-        .banner-conteudo .btn:hover {
-            background-color: rgb(0, 103, 206);
-            color: white;
-            border: none;
-        }
-
-.banner-busca {
-    background-color: #fff;
-    border-radius: 10px;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
-    padding: 0.6rem;
-    margin-top: -2.5rem;
-    position: relative;
+.banner-conteudo .titulo-banner {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-weight: 600;
 }
 
-    .banner-busca .campo-busca {
-        border: 1px solid #e5e7eb;
-        border-radius: 8px;
-    }
+.banner-conteudo .texto-banner {
+    margin-bottom: 20px;
+    font-weight: 300;
+}
 
-        .banner-busca .campo-busca .form-control {
-            border: none;
-            box-shadow: none;
-        }
+.banner-conteudo .btn {
+    background-color: #1E3A8A;
+    color: white;
+    border: none;
+}
 
-    .banner-busca .btn {
-        width: 100%;
-        font-weight: 600;
-    }
+.banner-conteudo .btn:hover {
+    background-color: rgb(0, 103, 206);
+    color: white;
+    border: none;
+}
 
+
+.envoltorio-busca-pacotes {
+    position: relative;
+    z-index: 2;
+    max-width: 1180px;
+    margin: -28px auto 0;
+    padding: 0 24px;
+}
+
+.barra-busca-pacotes {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, .12);
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr auto;
+    gap: 10px;
+    padding: .6rem;
+}
+
+.barra-busca-pacotes .campo-busca {
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    padding: 0 .5rem;
+}
+
+.barra-busca-pacotes input {
+    border: 0;
+    outline: 0;
+    width: 100%;
+    padding: .375rem;
+}
+
+.barra-busca-pacotes .btn {
+    min-width: 118px;
+    font-weight: 600;
+}
 
 .text .titulo {
     margin-bottom: 20px;

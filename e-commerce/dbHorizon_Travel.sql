@@ -35,8 +35,8 @@ CREATE TABLE Funcionario(
     telefoneFun VARCHAR(20) NOT NULL,
 
     emailFun VARCHAR(100) NOT NULL UNIQUE,
--- mudar a quantidade de caracteres
-    senhaFun VARCHAR(255) NOT NULL,
+
+    senhaFun VARCHAR(8) NOT NULL,
 
     dataNascimentoFun DATE NOT NULL
 

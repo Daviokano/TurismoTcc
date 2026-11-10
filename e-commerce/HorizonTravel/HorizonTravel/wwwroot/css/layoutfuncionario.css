@@ -1,0 +1,126 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+    color: #111827;
+    background: #ffffff;
+}
+
+/* ===== Barra lateral ===== */
+.sidebar-ht {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    background: #05053a;
+    color: #ffffff;
+    padding: 20px 12px;
+    z-index: 1000;
+}
+
+.sidebar-brand {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 10px 28px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.sidebar-brand .bi {
+    font-size: 1rem;
+}
+
+.sidebar-menu a .bi,
+.sidebar-logout .bi {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.sidebar-menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    flex: 1;
+}
+
+.sidebar-menu li {
+    margin-bottom: 4px;
+}
+
+.sidebar-menu a,
+.sidebar-logout {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.85);
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+}
+
+.sidebar-menu a:hover,
+.sidebar-logout:hover {
+    background: #12125a;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.sidebar-menu a.active {
+    background: #12125a;
+    color: #ffffff;
+}
+
+.sidebar-logout {
+    margin-top: auto;
+}
+
+/* ===== Conteúdo ao lado da barra ===== */
+.conteudo-principal {
+    margin-left: 220px;
+    padding: 24px 32px;
+    min-height: 100vh;
+    background: #ffffff;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 767.98px) {
+    .sidebar-ht {
+        position: static;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        padding: 12px;
+    }
+
+    .sidebar-brand {
+        padding: 0 10px 0 0;
+    }
+
+    .sidebar-menu {
+        display: flex;
+        flex-wrap: wrap;
+        flex: none;
+        width: 100%;
+    }
+
+    .sidebar-logout {
+        margin-top: 0;
+    }
+
+    .conteudo-principal {
+        margin-left: 0;
+        padding: 16px;
+    }
+}
