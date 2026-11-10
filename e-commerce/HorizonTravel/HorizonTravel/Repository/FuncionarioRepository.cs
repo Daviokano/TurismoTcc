@@ -64,7 +64,7 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("DELETE * FROM Funcionario WHERE IDFun=@IDFun", conexao);
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM Funcionario WHERE IDFun=@IDFun", conexao);
                 cmd.Parameters.AddWithValue("@IDFun", Id);
                 int i = cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -108,24 +108,26 @@ namespace HorizonTravel.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"SELECT * FROM Funcionario WHERE emailFun=@emailFun AND senhaFun=@senhaFun", conexao);
-                cmd.Parameters.AddWithValue("IDFun", Id);
-               
-                MySqlDataAdapter da = new MySqlDataAdapter(cmd);
-                MySqlDataReader dr;
+
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Funcionario WHERE IDFun=@IDFun", conexao);
+                cmd.Parameters.AddWithValue("@IDFun", Id);
 
                 Funcionario funcionario = new Funcionario();
-                dr = cmd.ExecuteReader(CommandBehavior.CloseConnection);
-                while (dr.Read())
+
+                using (MySqlDataReader dr = cmd.ExecuteReader(CommandBehavior.CloseConnection))
                 {
-                    funcionario.IDFun = (Int32)(dr["IDFun"]);
-                    funcionario.nomeFun = (string)(dr["nomeFun"]);
-                    funcionario.CPFFun = (string)(dr["CPFFun"]);
-                    funcionario.emailFun = (string)(dr["emailFun"]);
-                    funcionario.telefoneFun = (string)(dr["telefoneFun"]);
-                    funcionario.dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]);
-                    funcionario.senhaFun = (string)(dr["senhaFun"]);
+                    while (dr.Read())
+                    {
+                        funcionario.IDFun = (Int32)(dr["IDFun"]);
+                        funcionario.nomeFun = (string)(dr["nomeFun"]);
+                        funcionario.CPFFun = (string)(dr["CPFFun"]);
+                        funcionario.emailFun = (string)(dr["emailFun"]);
+                        funcionario.telefoneFun = (string)(dr["telefoneFun"]);
+                        funcionario.dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]);
+                        funcionario.senhaFun = (string)(dr["senhaFun"]);
+                    }
                 }
+
                 return funcionario;
             }
         }

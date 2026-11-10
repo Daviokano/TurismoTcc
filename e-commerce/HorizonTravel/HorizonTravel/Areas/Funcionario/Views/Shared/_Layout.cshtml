@@ -22,6 +22,7 @@
 
 </head>
 
+@await RenderSectionAsync("Scripts", required: false)
 <body>
     <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
         <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Painel</a>
@@ -34,57 +35,66 @@
             </li>
         </ul>
     </nav>
-    <aside class="sidebar-ht">
-        <div class="sidebar-brand">
-            <span data-feather="send"></span>
+    <aside class="barra-lateral">
+        <div class="barra-lateral-marca">
             <i class="bi bi-airplane"></i>
             Horizon Travel
         </div>
 
-        <ul class="sidebar-menu">
+        <ul class="barra-lateral-menu">
             <li>
-                <a class="active" asp-action="PainelFuncionario">
+                <a asp-action="PainelFuncionario">
                     <i class="bi bi-house-door"></i>
                     Painel de Controle
                 </a>
             </li>
             <li>
-                <a asp-action="Index" asp-controller="Categoria">
+                <a asp-controller="Categoria" asp-action="Index">
                     <i class="bi bi-box-seam"></i>
-                     Pacotes
+                    Pacotes
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="bi bi-megaphone"></i>
-                     Promoções
+                    Promoções
                 </a>
             </li>
             <li>
                 <a asp-controller="Funcionario" asp-action="Index">
                     <i class="bi bi-people"></i>
-                     Funcionários
+                    Funcionários
                 </a>
             </li>
             <li>
                 <a asp-controller="Usuario" asp-action="Index">
                     <i class="bi bi-clock-history"></i>
-                     Histórico por cliente
+                    Clientes
+                </a>
+            </li>
+            <li>
+                <a asp-controller="Usuario" asp-action="Histórico">
+                    <i class="bi bi-clock-history"></i>
+                    Histórico por cliente
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <i class="bi bi-people"></i>
-                     Parceiros
+                    <i class="bi bi-handshake"></i>
+                    Parceiros
                 </a>
             </li>
         </ul>
 
-        <a class="sidebar-logout" asp-area="Funcionario" asp-controller="Home" asp-action="Logout">
+        <a class="barra-lateral-sair" asp-area="Funcionario" asp-controller="Home" asp-action="Logout">
             <i class="bi bi-box-arrow-right"></i>
             Sair
         </a>
     </aside>
+
+    <main class="conteudo-principal">
+        @RenderBody()
+    </main>
 
     <main class="conteudo-principal">
         @RenderBody()

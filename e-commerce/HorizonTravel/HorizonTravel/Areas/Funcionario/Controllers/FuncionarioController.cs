@@ -7,13 +7,25 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
     public class FuncionarioController : Controller
     {
         private IFuncionarioRepositoty _funcionarioRepository;
+
         public FuncionarioController(IFuncionarioRepositoty funcionarioRepository)
         {
             _funcionarioRepository = funcionarioRepository;
         }
-        public IActionResult Index()
+
+        // Pra listar os funcionários e filtrar pela barra de busca (nome ou CPF)
+        public IActionResult Index(string busca)
         {
-            return View(_funcionarioRepository.ObterTodosFuncionarios());
+            var funcionarios = _funcionarioRepository.ObterTodosFuncionarios();
+
+            if (!string.IsNullOrWhiteSpace(busca))
+            {
+                funcionarios = funcionarios.Where(f =>
+                    (f.nomeFun != null && f.nomeFun.Contains(busca, StringComparison.OrdinalIgnoreCase)) ||
+                    (f.CPFFun != null && f.CPFFun.Contains(busca)));
+            }
+
+            return View(funcionarios);
         }
 
         [HttpGet]
@@ -46,9 +58,11 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
                 TempData["MSG_S"] = "Cadastro atualizado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
-            return View();
+
+            return View(funcionario);
         }
 
+        [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Excluir(int Id)
         {

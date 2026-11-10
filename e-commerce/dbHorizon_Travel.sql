@@ -43,10 +43,14 @@ CREATE TABLE Funcionario(
 );
 
 INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678901', 'Bia', '(11) 99999-9999', 'bia@email.com', '123456', '2008-07-01');
+VALUES ('12345678903', 'Lavinia Lis', '(11) 12345-4321', 'lizlavinia@email.com', '12345678', '2008-06-01');
 
 INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678902', 'Davi', '(11) 99999-9999', 'davi@email.com', '123456', '2008-07-01');
+VALUES ('12345678902', 'Ana Silva', '(11) 54321-1234', 'silvaana@email.com', '12345678', '2008-07-01');
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678901', 'Luiza Scolar', '(11) 54321-1234', 'sclarluiza@email.com', '12345678', '2008-05-01');
+
 
 select * from funcionario;
 

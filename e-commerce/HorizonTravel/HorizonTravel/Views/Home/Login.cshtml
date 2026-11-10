@@ -76,7 +76,7 @@
                                    minlength="8"
                                    autocomplete="new-password"
                                    required>
-                            <button type="button" class="toggle-senha" data-alvo="senhaFun" aria-label="Mostrar senha">
+                            <button type="button" class="toggle-senha" data-alvo="senhaUsu" aria-label="Mostrar senha">
                                 <i class="bi bi-eye"></i>
                             </button>
                         </div>
@@ -93,6 +93,11 @@
                     <p class="register-text">
                         Ainda não tem conta?
                         <a href="~/Home/Cadastrar">Cadastre-se</a>
+                    </p>
+
+                    <p class="register-text">
+                        Para fazer login como funcionário,
+                        <a asp-area="Funcionario" asp-action="LoginFuncionario" asp-controller="Home">Clique aqui!</a>
                     </p>
 
                 </form>

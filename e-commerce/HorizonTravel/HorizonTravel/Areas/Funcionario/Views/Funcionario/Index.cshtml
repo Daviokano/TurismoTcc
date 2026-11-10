@@ -4,41 +4,93 @@
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Funcionários</h2>
-
-<p>
-    <a asp-action="Cadastrar" class="btn btn-primary">Novo Funcionário</a>
-</p>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.First().IDFun)</th>
-            <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
-            <th>@Html.DisplayNameFor(model => model.First().nomeFun)</th>
-            <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
-            <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
-            <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
-            <th></th>
-        </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
+@functions {
+    string ObterIniciais(string nome)
     {
-        <tr>
-            <td>@item.IDFun</td>
-            <td>@item.CPFFun</td>
-            <td>@item.nomeFun</td>
-            <td>@item.emailFun</td>
-            <td>@item.telefoneFun</td>
-            <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
-            <td>
-                <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="btn btn-sm btn-warning">Editar</a>
-                <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="btn btn-sm btn-info">Detalhes</a>
-                <a asp-action="Excluir" asp-route-id="@item.IDFun" class="btn btn-sm btn-danger"
-                                    onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
-            </td>
-        </tr>
+        if (string.IsNullOrWhiteSpace(nome))
+        {
+            return "?";
+        }
+
+        var partes = nome.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (partes.Length == 1)
+        {
+            return partes[0][0].ToString().ToUpper();
+        }
+
+        return (partes[0][0].ToString() + partes[partes.Length - 1][0].ToString()).ToUpper();
     }
-    </tbody>
-</table>
+}
+
+<link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
+
+<div class="cabecalho-pagina">
+    <div>
+        <h1 class="titulo-pagina">Funcionários</h1>
+        <p class="subtitulo-pagina">Gerencie os funcionários cadastrados no sistema.</p>
+    </div>
+
+    <a asp-action="Cadastrar" class="botao-novo">Novo Funcionário</a>
+</div>
+
+
+<form method="get" asp-action="Index" class="caixa-busca">
+    <i class="bi bi-search"></i>
+    <input type="text"
+           name="busca"
+           class="campo-busca"
+           value="@Context.Request.Query["busca"]"
+           placeholder="Buscar funcionário por nome ou CPF..." />
+</form>
+
+<div class="tabela-container">
+    <table class="tabela-funcionarios">
+        <thead>
+            <tr>
+                <th>Funcionário</th>
+                <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="tabela-vazia">Nenhum funcionário encontrado.</td>
+                </tr>
+            }
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <div class="funcionario-info">
+                            <span class="avatar">@ObterIniciais(item.nomeFun)</span>
+                            <span>@item.nomeFun</span>
+                        </div>
+                    </td>
+                    <td>@item.CPFFun</td>
+                    <td>@item.emailFun</td>
+                    <td>@item.telefoneFun</td>
+                    <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        <div class="grupo-acoes">
+                            <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
+                            <form asp-action="Excluir" asp-route-id="@item.IDFun" method="post"
+                                onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                <button type="submit" class="botao-acao botao-excluir">Excluir</button>
+                            </form>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+
+<script src="~/js/listausuario.js" asp-append-version="true"></script>

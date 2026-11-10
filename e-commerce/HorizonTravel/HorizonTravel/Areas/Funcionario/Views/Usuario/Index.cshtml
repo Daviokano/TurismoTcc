@@ -5,92 +5,106 @@
     ViewData["Title"] = "Usuários";
 }
 
-<h1>Usuários</h1>
+<link rel="stylesheet" href="~/css/listausuario.css" asp-append-version="true" />
 
-<p class="btn btn-outline-primary" role="button">
-    <a asp-action="Cadastrar">
-        <span class="fas fa-user-plus" title="Cadastro" aria-hidden="true"></span>
-        <span>Cadastrar novo usuário</span>
-    </a>
-</p>
+<div class="pagina-lista">
+    <div class="cabecalho-lista">
+        <div>
+            <h1 class="titulo-lista">Usuários</h1>
+            <p class="subtitulo-lista">Gerencie os usuários cadastrados no sistema.</p>
+        </div>
 
-<div class="table-responsive">
-    <table class="table table-bordered">
-        <thead>
-            <tr>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().IDUsu)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().CPFUsu)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().nomeUsu)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().emailUsu)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().telefoneUsu)
-                </th>
-                <th scope="col">
-                    @Html.DisplayNameFor(model => model.First().dataNascimentoUsu)
-                </th>
-                <th scope="col">Ações</th>
-            </tr>
-        </thead>
+        <a asp-action="Cadastrar" class="botao-novo">
+            <span class="fas fa-user-plus" aria-hidden="true"></span>
+            <span>Cadastrar novo usuário</span>
+        </a>
+    </div>
 
+    <div class="campo-busca">
+        <span class="fas fa-search icone-busca" aria-hidden="true"></span>
+        <input type="text" id="campoBusca" class="input-busca"
+               placeholder="Buscar usuário por nome ou CPF..." autocomplete="off" />
+    </div>
 
-        <tbody>
-            @foreach (Usuario usuario in Model)
-            {
+    <div class="cartao-tabela">
+        <table class="tabela-usuarios" id="tabelaUsuarios">
+            <thead>
                 <tr>
-                    <td>
-                        @usuario.IDUsu
-                    </td>
-                    <td>
-                        @usuario.CPFUsu
-                    </td>
-                    <td>
-                        @usuario.nomeUsu
-                    </td>
-                    <td>
-                        @usuario.emailUsu
-                    </td>
-                    <td>
-                        @usuario.telefoneUsu
-                    </td>
-                    <td>
-                        @usuario.dataNascimentoUsu
-                    </td>
-                    <td>
-                        @usuario.situacaoUsu
-                    </td>
-
-
-
-                    <td>
-                        @if (usuario.situacaoUsu == "A")
-                        {
-                            <button type="button" class="btn btn-danger">
-                                @Html.ActionLink("Desativar", "Desativar", new { id = usuario.IDUsu },
-                                    new { onclick = "return confirm('Realmente deseja desativar esse usuário?');" })
-                            </button>
-                        }
-                        else if (usuario.situacaoUsu == "D")
-                        {
-                            <button type="button" class="btn btn-secondary">
-                                @Html.ActionLink("Ativar", "Ativar", new { id = usuario.IDUsu },
-                                    new { onclick = "return confirm('Realmente deseja ativar esse usuário?');" })
-                            </button>
-                        }
-
-                        @* <a asp-action="GerarSenha" asp-route-id="@usuario.IDUsu" class="btn btn-secondary">Detalhes</a> 
-                        <a asp-action="Edit" asp-route-id="@usuario.IDUsu" class="btn btn-secondary">Editar</a> 
-                        <a asp-action="Delete" asp-route-id="@usuario.IDUsu" class="btn btn-danger">Excluir</a> *@
-                    </td>
+                    <th>Usuário</th>
+                    <th>CPF</th>
+                    <th>E-mail</th>
+                    <th>Telefone</th>
+                    <th>Nascimento</th>
+                    <th>Status</th>
+                    <th>Ações</th>
                 </tr>
-            }
-        </tbody>
-    </table>
+            </thead>
+
+            <tbody>
+                @foreach (Usuario usuario in Model)
+                {
+                    string iniciais = "";
+                    if (!string.IsNullOrWhiteSpace(usuario.nomeUsu))
+                    {
+                        var partes = usuario.nomeUsu.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        iniciais = partes.Length > 1
+                            ? $"{partes[0][0]}{partes[partes.Length - 1][0]}"
+                            : $"{partes[0][0]}";
+                        iniciais = iniciais.ToUpper();
+                    }
+
+                    <tr class="linha-usuario">
+                        <td>
+                            <div class="celula-usuario">
+                                <span class="avatar-iniciais">@iniciais</span>
+                                <span class="nome-usuario">@usuario.nomeUsu</span>
+                            </div>
+                        </td>
+                        <td class="cpf-usuario">@usuario.CPFUsu</td>
+                        <td>@usuario.emailUsu</td>
+                        <td>@usuario.telefoneUsu</td>
+                        <td>@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            @if (usuario.situacaoUsu == "A")
+                            {
+                                <span class="selo selo-ativo">Ativo</span>
+                            }
+                            else
+                            {
+                                <span class="selo selo-inativo">Inativo</span>
+                            }
+                        </td>
+                        <td>
+                            @if (usuario.situacaoUsu == "A")
+                            {
+                                <a asp-action="Desativar" asp-route-id="@usuario.IDUsu"
+                                   class="botao-acao botao-desativar"
+                                   onclick="return confirm('Realmente deseja desativar esse usuário?');">Desativar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Ativar" asp-route-id="@usuario.IDUsu"
+                                   class="botao-acao botao-ativar"
+                                   onclick="return confirm('Realmente deseja ativar esse usuário?');">Ativar</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+                <tr id="linhaSemResultado" class="linha-sem-resultado" hidden>
+                    <td colspan="7">Nenhum usuário encontrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="paginacao">
+        <button type="button" class="botao-pagina" aria-label="Página anterior">&lsaquo;</button>
+        <button type="button" class="botao-pagina pagina-atual">1</button>
+        <button type="button" class="botao-pagina" aria-label="Próxima página">&rsaquo;</button>
+    </div>
 </div>
+
+@section Scripts {
+    <script src="~/js/listausuario.js" asp-append-version="true"></script>
+}

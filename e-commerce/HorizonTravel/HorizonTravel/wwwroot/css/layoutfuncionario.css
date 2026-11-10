@@ -1,6 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-
 body {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
@@ -10,7 +9,7 @@ body {
 }
 
 /* ===== Barra lateral ===== */
-.sidebar-ht {
+.barra-lateral {
     position: fixed;
     top: 0;
     left: 0;
@@ -24,7 +23,7 @@ body {
     z-index: 1000;
 }
 
-.sidebar-brand {
+.barra-lateral-marca {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -34,29 +33,23 @@ body {
     color: #ffffff;
 }
 
-.sidebar-brand .bi {
+.barra-lateral-marca .bi {
     font-size: 1rem;
 }
 
-.sidebar-menu a .bi,
-.sidebar-logout .bi {
-    font-size: 1rem;
-    flex-shrink: 0;
-}
-
-.sidebar-menu {
+.barra-lateral-menu {
     list-style: none;
     margin: 0;
     padding: 0;
     flex: 1;
 }
 
-.sidebar-menu li {
+.barra-lateral-menu li {
     margin-bottom: 4px;
 }
 
-.sidebar-menu a,
-.sidebar-logout {
+.barra-lateral-menu a,
+.barra-lateral-sair {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -69,19 +62,25 @@ body {
     transition: background 0.2s, color 0.2s;
 }
 
-.sidebar-menu a:hover,
-.sidebar-logout:hover {
+.barra-lateral-menu a .bi,
+.barra-lateral-sair .bi {
+    font-size: 1rem;
+    flex-shrink: 0;
+}
+
+.barra-lateral-menu a:hover,
+.barra-lateral-sair:hover {
     background: #12125a;
     color: #ffffff;
     text-decoration: none;
 }
 
-.sidebar-menu a.active {
+.barra-lateral-menu a.ativo {
     background: #12125a;
     color: #ffffff;
 }
 
-.sidebar-logout {
+.barra-lateral-sair {
     margin-top: auto;
 }
 
@@ -95,7 +94,7 @@ body {
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {
-    .sidebar-ht {
+    .barra-lateral {
         position: static;
         width: 100%;
         flex-direction: row;
@@ -104,18 +103,18 @@ body {
         padding: 12px;
     }
 
-    .sidebar-brand {
+    .barra-lateral-marca {
         padding: 0 10px 0 0;
     }
 
-    .sidebar-menu {
+    .barra-lateral-menu {
         display: flex;
         flex-wrap: wrap;
         flex: none;
         width: 100%;
     }
 
-    .sidebar-logout {
+    .barra-lateral-sair {
         margin-top: 0;
     }
 
