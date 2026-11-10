@@ -1,0 +1,78 @@
+@model IEnumerable<HorizonTravel.Models.ItemCarrinho>
+
+@{
+    ViewData["Title"] = "Carrinho";
+    decimal subtotal = Model.Sum(item => item.Preco * item.Quantidade);
+    int quantidadeItens = Model.Sum(item => item.Quantidade);
+}
+
+<link rel="stylesheet" href="~/css/carrinho.css" asp-append-version="true" />
+
+<main class="pagina-carrinho">
+    <div class="cabecalho-carrinho">
+        <h1><i class="bi bi-cart3"></i> Seu carrinho</h1>
+    </div>
+
+    <div class="barra-carrinho">
+        <strong>@quantidadeItens itens</strong>
+        <form asp-action="Limpar" method="post">
+            <button type="submit" class="limpar-carrinho">Limpar carrinho</button>
+        </form>
+    </div>
+
+    <section class="lista-carrinho" aria-label="Itens do carrinho">
+        @if (!Model.Any())
+        {
+            <p class="carrinho-vazio">Seu carrinho está vazio.</p>
+        }
+        else
+        {
+            foreach (var item in Model)
+            {
+                <article class="item-carrinho">
+                    <div class="imagem-item-carrinho" role="img" aria-label="Imagem do pacote @item.NomePacote"></div>
+
+                    <div class="informacoes-item-carrinho">
+                        <h2>@item.NomePacote</h2>
+                        <p>@item.Destino</p>
+                        <p>Pacote de viagem completo</p>
+                        <form asp-action="Atualizar" method="post" class="controle-quantidade">
+                            <input type="hidden" name="idPacote" value="@item.IdPacote" />
+                            <button type="submit" name="quantidade" value="@(item.Quantidade - 1)">−</button>
+                            <span>@item.Quantidade</span>
+                            <button type="submit" name="quantidade" value="@(item.Quantidade + 1)">+</button>
+                        </form>
+                    </div>
+
+                    <strong class="preco-item">R$ @((item.Preco * item.Quantidade).ToString("N2"))</strong>
+                    <form asp-action="Remover" method="post" class="remover-form">
+                        <input type="hidden" name="idPacote" value="@item.IdPacote" />
+                        <button type="submit" class="remover-item" aria-label="Remover @item.NomePacote">×</button>
+                    </form>
+                </article>
+            }
+        }
+    </section>
+
+    <section class="resumo-carrinho" aria-label="Resumo da compra">
+        <div class="linha-resumo">
+            <span>Subtotal (@quantidadeItens itens)</span>
+            <strong>R$ @subtotal.ToString("N2")</strong>
+        </div>
+        <div class="linha-resumo">
+            <span>Taxas e encargos</span>
+            <strong>R$ 0,00</strong>
+        </div>
+
+        <div class="total-carrinho">
+            <strong>Total</strong>
+            <strong>R$ @subtotal.ToString("N2")</strong>
+        </div>
+
+        <button type="button" class="botao-finalizar" @(Model.Any() ? null : "disabled")>
+            <i class="bi bi-bag"></i>
+            Finalizar compra
+        </button>
+        <p class="compra-segura">Ambiente 100% seguro</p>
+    </section>
+</main>
