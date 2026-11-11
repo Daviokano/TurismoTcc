@@ -1,270 +1,290 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
 
-.pagina-lista {
+html, body {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
     font-style: normal;
-    padding: 32px 22px;
-    color: #111;
 }
 
+[hidden] {
+    display: none !important;
+}
+
+/* ===== Página (sem espaço extra no topo) ===== */
 .pagina-lista {
-    align-self: flex-start; /* se o pai for flex com align-items:center */
-    width: 100%;
     margin: 0;
-    box-sizing: border-box;
-    font-family: inherit; /* usa a mesma fonte do resto do sistema */
+    padding: 0;
 }
 
-/* Cabeçalho */
+/* ===== Cabeçalho ===== */
 .cabecalho-lista {
     display: flex;
-    justify-content: space-between;
     align-items: flex-start;
+    justify-content: space-between;
     gap: 16px;
-    flex-wrap: wrap;
-    margin-bottom: 28px;
+    margin: 0 0 24px;
 }
 
 .titulo-lista {
-    font-size: 20px;
+    margin: 0 0 2px;
+    font-size: 1.1rem;
     font-weight: 700;
-    margin: 0 0 4px;
+    color: #111827;
 }
 
 .subtitulo-lista {
-    font-size: 12px;
-    color: #555;
     margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
 }
 
+/* ===== Botão de cadastro ===== */
 .botao-novo {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: #ff7a1a;
-    color: #fff;
-    font-size: 12px;
-    font-weight: 700;
-    padding: 10px 16px;
-    border-radius: 6px;
+    padding: 9px 18px;
+    border-radius: 4px;
+    background: #f97316;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
     text-decoration: none;
-    transition: background .2s;
+    white-space: nowrap;
+    transition: background 0.2s;
 }
 
-.botao-novo:hover {
-    background: #e66a0d;
-    color: #fff;
-}
+    .botao-novo:hover {
+        background: #ea6a0a;
+        color: #ffffff;
+        text-decoration: none;
+    }
 
-/* Busca */
+/* ===== Campo de busca ===== */
 .campo-busca {
     position: relative;
+    width: 100%;
     margin-bottom: 28px;
 }
 
 .icone-busca {
     position: absolute;
-    left: 14px;
     top: 50%;
+    left: 16px;
     transform: translateY(-50%);
-    font-size: 12px;
-    color: #555;
+    font-size: 0.95rem;
+    color: #6b7280;
     pointer-events: none;
 }
 
 .input-busca {
+    display: block;
     width: 100%;
-    height: 32px;
-    padding: 0 14px 0 36px;
-    border: 1px solid #bdbdbd;
-    border-radius: 6px;
-    font-size: 12px;
-    background: #fff;
-    outline: none;
-    box-sizing: border-box;
-    transition: border-color .2s, box-shadow .2s;
+    height: 50px;
+    padding: 0 16px 0 44px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #111827;
 }
 
     .input-busca::placeholder {
-        color: #666;
+        color: #6b7280;
     }
 
     .input-busca:focus {
-        border-color: #ff7a1a;
-        box-shadow: 0 0 0 3px rgba(255, 122, 26, .15);
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
     }
 
-/* Tabela */
+/* ===== Tabela ===== */
 .cartao-tabela {
-    border: 1px solid #bdbdbd;
-    border-radius: 10px;
-    overflow: hidden;
+    width: 100%;
     overflow-x: auto;
-    background: #fff;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
 }
 
 .tabela-usuarios {
     width: 100%;
     border-collapse: collapse;
-    font-size: 11.5px;
-    min-width: 900px;
 }
 
-    .tabela-usuarios thead {
-        background: #f3f3f3;
-    }
-
-    .tabela-usuarios th {
+    .tabela-usuarios thead th {
+        padding: 16px 18px;
+        border-bottom: 1px solid #d1d5db;
+        background: #f5f5f5;
+        font-size: 0.75rem;
+        font-weight: 700;
         text-align: left;
-        font-weight: 700;
-        font-size: 11.5px;
-        padding: 18px 12px;
-        border-bottom: 1px solid #bdbdbd;
         white-space: nowrap;
+        color: #111827;
     }
 
-    .tabela-usuarios td {
-        padding: 14px 12px;
-        font-weight: 700;
-        border-bottom: 1px solid #bdbdbd;
+    .tabela-usuarios tbody td {
+        padding: 16px 18px;
+        border-bottom: 1px solid #d1d5db;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-align: left;
         vertical-align: middle;
+        color: #111827;
     }
 
     .tabela-usuarios tbody tr:last-child td {
-        border-bottom: none;
+        border-bottom: 0;
     }
 
 .linha-usuario:hover {
     background: #fafafa;
 }
 
-/* Avatar + nome */
+.linha-sem-resultado td {
+    padding: 28px 18px;
+    text-align: center;
+    color: #6b7280;
+}
+
+/* ===== Usuário com avatar ===== */
 .celula-usuario {
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 12px;
+    white-space: nowrap;
 }
 
 .avatar-iniciais {
-    flex-shrink: 0;
-    width: 34px;
-    height: 34px;
-    border-radius: 50%;
-    background: #d9d9d9;
-    color: #111;
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #e5e7eb;
+    font-size: 0.75rem;
     font-weight: 700;
+    color: #111827;
 }
 
 .nome-usuario {
-    font-weight: 700;
+    font-weight: 600;
 }
 
 .cpf-usuario {
     white-space: nowrap;
 }
 
-/* Status */
+/* ===== Selos de status ===== */
 .selo {
     display: inline-block;
-    padding: 3px 12px;
+    padding: 4px 14px;
     border-radius: 999px;
-    font-size: 11px;
+    font-size: 0.7rem;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .selo-ativo {
-    background: #c9f7c9;
-    color: #1c5e1c;
+    background: #dcfce7;
+    color: #15803d;
 }
 
 .selo-inativo {
-    background: #cfcfcf;
-    color: #333;
+    background: #e5e7eb;
+    color: #4b5563;
 }
 
-/* Ações */
+/* ===== Botões de ação ===== */
 .botao-acao {
     display: inline-block;
-    padding: 5px 16px;
+    padding: 4px 14px;
+    border: 0;
     border-radius: 999px;
-    font-size: 11px;
+    font-family: inherit;
+    font-size: 0.7rem;
     font-weight: 700;
+    line-height: 1.5;
     text-decoration: none;
-    transition: filter .2s;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: filter 0.2s;
 }
 
     .botao-acao:hover {
-        filter: brightness(.95);
+        filter: brightness(0.95);
+        text-decoration: none;
     }
 
 .botao-desativar {
-    background: #ffd9d9;
-    color: #e60000;
+    background: #fee2e2;
+    color: #dc2626;
 }
 
 .botao-ativar {
-    background: #c9f7c9;
-    color: #1c5e1c;
+    background: #dcfce7;
+    color: #15803d;
 }
 
-/* Sem resultado (o [hidden] precisa de regra própria por causa do display) */
-.linha-sem-resultado td {
-    text-align: center;
-    color: #777;
-    font-weight: 500;
-    padding: 24px;
-}
-
-.linha-sem-resultado[hidden] {
-    display: none;
-}
-
-/* Paginação */
+/* ===== Paginação ===== */
 .paginacao {
     display: flex;
     justify-content: flex-end;
-    align-items: center;
-    gap: 6px;
-    margin-top: 16px;
+    gap: 4px;
+    margin-top: 14px;
 }
 
 .botao-pagina {
-    width: 20px;
-    height: 20px;
-    padding: 0;
-    border: 1px solid #bdbdbd;
-    background: #fff;
-    color: #333;
-    font-size: 14px;
-    line-height: 1;
-    cursor: pointer;
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 3px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    cursor: pointer;
 }
 
 .botao-pagina:hover {
-    background: #f0f0f0;
+    background: #f3f4f6;
 }
 
-.botao-pagina.pagina-atual {
-    width: 22px;
-    height: 22px;
-    background: #0000ff;
+.pagina-atual {
     border-color: #0000ff;
-    color: #fff;
-    font-size: 11px;
+    background: #0000ff;
+    color: #ffffff;
 }
 
-/* Responsivo */
-@media (max-width: 600px) {
-    .pagina-lista {
-        padding: 20px 12px;
+.pagina-atual:hover {
+    background: #0000ff;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 767.98px) {
+    .cabecalho-lista {
+        flex-direction: column;
+    }
+
+    .botao-novo {
+        justify-content: center;
+        width: 100%;
     }
 }
