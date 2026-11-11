@@ -24,6 +24,7 @@ CREATE TABLE Usuario(
 
 select * from usuario;
 
+-- ADD CAMPO PERMISSÃO
 CREATE TABLE Funcionario(
 
     IDFun INT AUTO_INCREMENT PRIMARY KEY,
@@ -49,12 +50,22 @@ INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataN
 VALUES ('12345678902', 'Ana Silva', '(11) 54321-1234', 'silvaana@email.com', '12345678', '2008-07-01');
 
 INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678901', 'Luiza Scolar', '(11) 54321-1234', 'sclarluiza@email.com', '12345678', '2008-05-01');
+VALUES ('12345678901', 'Luiza Scolar', '(11) 54321-1234', 'scolarluiza@email.com', '12345678', '2008-05-01');
 
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678904', 'Davi Okano', '(11) 54321-1234', 'okanodavi@email.com', '12345678', '2008-09-30');
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678906', 'Isabelli Melo', '(11) 54321-1234', 'meloisabelli@email.com', '12345678', '2007-05-01');
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
+VALUES ('12345678907', 'Palloma Tiodosio', '(11) 54321-1234', 'tiodosiopalloma@email.com', '12345678', '2008-05-01');
 
 select * from funcionario;
 
 CREATE TABLE Parceiro(
+
+	IDFor INT AUTO_INCREMENT PRIMARY KEY,
 
     CNPJFor CHAR(14) PRIMARY KEY,
 
@@ -63,6 +74,14 @@ CREATE TABLE Parceiro(
     emailFor VARCHAR(100) NOT NULL UNIQUE
 
 );
+
+INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor) VALUES
+('12345678000101', 'Hotel Recanto do Sol Ltda', 'contato@hotelrecantodosol.com.br'),
+('23456789000102', 'Aerovia Passagens Aéreas S.A.', 'parcerias@aeroviapassagens.com.br'),
+('34567890000103', 'Rota Segura Transportes e Turismo', 'comercial@rotasegura.com.br'),
+('45678901000104', 'Sabor da Viagem Alimentação e Eventos', 'atendimento@sabordaviagem.com.br');
+
+select * from parceiro;
 
 CREATE TABLE Promocao(
 
