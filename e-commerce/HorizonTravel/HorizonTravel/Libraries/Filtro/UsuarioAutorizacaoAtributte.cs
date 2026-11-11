@@ -14,10 +14,10 @@ namespace HorizonTravel.Libraries.Filtro
             Usuario usuario = _loginUsuario.GetUsuario();
             if (usuario == null)
             {
-                context.Result = new ContentResult()
-                {
-                    Content = "Acesso negado."
-                };
+                context.Result = new RedirectToActionResult(
+                    "Login",
+                    "Home",
+                    new { returnUrl = context.HttpContext.Request.Path });
             }
         }
     }

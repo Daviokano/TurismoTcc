@@ -52,8 +52,25 @@
                             </li>
                         </ul>
                         <ul class="navbar-nav d-flex flex-row align-items-center header-actions">
-                            <li class="nav-item">
-                                <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
+                            <li class="nav-item dropdown">
+                                @if (_loginUsuario.GetUsuario() != null)
+                                {
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @_loginUsuario.GetUsuario().nomeUsu
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" href="#">Minhas reservas</a></li>
+                                        <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li>
+                                            <a class="dropdown-item" asp-controller="Home" asp-action="LogoutUsuario">Sair</a>
+                                        </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
+                                }
                             </li>
                             <li class="nav-item">
                                 <a class="cart-icon" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart3"></i></a>
