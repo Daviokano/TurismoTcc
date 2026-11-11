@@ -55,7 +55,7 @@ namespace HorizonTravel.Controllers
         public IActionResult LogoutUsuario()
         {
             _usuarioLogin.Logout();
-            return RedirectToAction(nameof(PainelUsuario));
+            return RedirectToAction(nameof(Index));
         }
 
         public IActionResult Index()

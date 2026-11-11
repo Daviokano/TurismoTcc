@@ -1,0 +1,4 @@
+C:\Users\win\Downloads\TurismoTcc\nossoSite\obj\Debug\net10.0\HorizonTravel.csproj.AssemblyReference.cache
+C:\Users\win\Downloads\TurismoTcc\nossoSite\obj\Debug\net10.0\HorizonTravel.dll
+C:\Users\win\Downloads\TurismoTcc\nossoSite\obj\Debug\net10.0\refint\HorizonTravel.dll
+C:\Users\win\Downloads\TurismoTcc\nossoSite\obj\Debug\net10.0\HorizonTravel.pdb
