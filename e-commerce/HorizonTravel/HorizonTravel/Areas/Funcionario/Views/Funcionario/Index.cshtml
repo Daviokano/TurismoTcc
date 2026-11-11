@@ -1,7 +1,6 @@
-@model IEnumerable<HorizonTravel.Models.Funcionario>
+@model IEnumerable<HorizonTravel.Models.Usuario>
 @{
-    ViewData["Title"] = "Funcionários";
-    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Usuários";
 }
 
 @functions {
@@ -23,72 +22,85 @@
     }
 }
 
-<link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/telacontroleusuario.css" asp-append-version="true" />
 
 <div class="cabecalho-pagina">
     <div>
-        <h1 class="titulo-pagina">Funcionários</h1>
-        <p class="subtitulo-pagina">Gerencie os funcionários cadastrados no sistema.</p>
+        <h1 class="titulo-pagina">Usuários</h1>
+        <p class="subtitulo-pagina">Gerencie os usuários cadastrados no sistema.</p>
     </div>
 
-    <a asp-action="Cadastrar" class="botao-novo">Novo Funcionário</a>
+    <a asp-action="Cadastrar" class="botao-novo">Novo Usuário</a>
 </div>
 
-
-<form method="get" asp-action="Index" class="caixa-busca">
+<div class="caixa-busca">
     <i class="bi bi-search"></i>
     <input type="text"
-           name="busca"
+           id="campoBusca"
            class="campo-busca"
-           value="@Context.Request.Query["busca"]"
-           placeholder="Buscar funcionário por nome ou CPF..." />
-</form>
+           autocomplete="off"
+           placeholder="Buscar usuário por nome ou CPF..." />
+</div>
 
 <div class="tabela-container">
-    <table class="tabela-funcionarios">
+    <table class="tabela-usuarios" id="tabelaUsuarios">
         <thead>
             <tr>
-                <th>Funcionário</th>
-                <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
+                <th>Usuário</th>
+                <th>@Html.DisplayNameFor(model => model.First().CPFUsu)</th>
+                <th>@Html.DisplayNameFor(model => model.First().emailUsu)</th>
+                <th>@Html.DisplayNameFor(model => model.First().telefoneUsu)</th>
+                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoUsu)</th>
+                <th>Status</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
-            @if (!Model.Any())
+            @foreach (var item in Model)
             {
-                <tr>
-                    <td colspan="6" class="tabela-vazia">Nenhum funcionário encontrado.</td>
+                <tr class="linha-usuario">
+                    <td>
+                        <div class="usuario-info">
+                            <span class="avatar">@ObterIniciais(item.nomeUsu)</span>
+                            <span class="nome-usuario">@item.nomeUsu</span>
+                        </div>
+                    </td>
+                    <td class="cpf-usuario">@item.CPFUsu</td>
+                    <td>@item.emailUsu</td>
+                    <td>@item.telefoneUsu</td>
+                    <td>@item.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
+                    <td>
+                        @if (item.situacaoUsu == "A")
+                        {
+                            <span class="selo selo-ativo">Ativo</span>
+                        }
+                        else
+                        {
+                            <span class="selo selo-inativo">Inativo</span>
+                        }
+                    </td>
+                    <td>
+                        <div class="grupo-acoes">
+                            @if (item.situacaoUsu == "A")
+                            {
+                                <a asp-action="Desativar" asp-route-id="@item.IDUsu"
+                                   class="botao-acao botao-excluir"
+                                   onclick="return confirm('Realmente deseja desativar esse usuário?');">Desativar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Ativar" asp-route-id="@item.IDUsu"
+                                   class="botao-acao botao-ativar"
+                                   onclick="return confirm('Realmente deseja ativar esse usuário?');">Ativar</a>
+                            }
+                        </div>
+                    </td>
                 </tr>
             }
 
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <div class="funcionario-info">
-                            <span class="avatar">@ObterIniciais(item.nomeFun)</span>
-                            <span>@item.nomeFun</span>
-                        </div>
-                    </td>
-                    <td>@item.CPFFun</td>
-                    <td>@item.emailFun</td>
-                    <td>@item.telefoneFun</td>
-                    <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        <div class="grupo-acoes">
-                            <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
-                            <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
-                            <form asp-action="Excluir" asp-route-id="@item.IDFun" method="post"
-                                onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
-                                <button type="submit" class="botao-acao botao-excluir">Excluir</button>
-                            </form>
-                        </div>
-                    </td>
-                </tr>
-            }
+            <tr id="linhaSemResultado" class="linha-sem-resultado" @(Model.Any() ? "hidden" : "")>
+                <td colspan="7" class="tabela-vazia">Nenhum usuário encontrado.</td>
+            </tr>
         </tbody>
     </table>
 </div>

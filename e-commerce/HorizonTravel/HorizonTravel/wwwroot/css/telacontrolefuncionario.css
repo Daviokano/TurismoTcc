@@ -1,4 +1,8 @@
-﻿.cabecalho-pagina {
+﻿[hidden] {
+    display: none !important;
+}
+
+.cabecalho-pagina {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -32,25 +36,25 @@
     transition: background 0.2s;
 }
 
-.botao-novo:hover {
-    background: #ea6a0a;
-    color: #ffffff;
-    text-decoration: none;
-}
+    .botao-novo:hover {
+        background: #ea6a0a;
+        color: #ffffff;
+        text-decoration: none;
+    }
 
 .caixa-busca {
     position: relative;
     margin-bottom: 28px;
 }
 
-.caixa-busca .bi {
-    position: absolute;
-    top: 50%;
-    left: 14px;
-    transform: translateY(-50%);
-    font-size: 0.85rem;
-    color: #6b7280;
-}
+    .caixa-busca .bi {
+        position: absolute;
+        top: 50%;
+        left: 14px;
+        transform: translateY(-50%);
+        font-size: 0.85rem;
+        color: #6b7280;
+    }
 
 .campo-busca {
     width: 100%;
@@ -65,15 +69,15 @@
     color: #111827;
 }
 
-.campo-busca::placeholder {
-    color: #6b7280;
-}
+    .campo-busca::placeholder {
+        color: #6b7280;
+    }
 
-.campo-busca:focus {
-    outline: none;
-    border-color: #05053a;
-    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-}
+    .campo-busca:focus {
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+    }
 
 .tabela-container {
     overflow-x: auto;
@@ -82,46 +86,46 @@
     background: #ffffff;
 }
 
-.tabela-funcionarios {
+.tabela-usuarios {
     width: 100%;
     border-collapse: collapse;
 }
 
-.tabela-funcionarios thead th {
-    padding: 16px 18px;
-    border-bottom: 1px solid #d1d5db;
-    background: #f5f5f5;
-    font-size: 0.75rem;
-    font-weight: 700;
-    text-align: left;
-    white-space: nowrap;
-    color: #111827;
-}
+    .tabela-usuarios thead th {
+        padding: 16px 18px;
+        border-bottom: 1px solid #d1d5db;
+        background: #f5f5f5;
+        font-size: 0.75rem;
+        font-weight: 700;
+        text-align: left;
+        white-space: nowrap;
+        color: #111827;
+    }
 
-.tabela-funcionarios tbody td {
-    padding: 16px 18px;
-    border-bottom: 1px solid #d1d5db;
-    font-size: 0.75rem;
-    font-weight: 600;
-    vertical-align: middle;
-    color: #111827;
-}
+    .tabela-usuarios tbody td {
+        padding: 16px 18px;
+        border-bottom: 1px solid #d1d5db;
+        font-size: 0.75rem;
+        font-weight: 600;
+        vertical-align: middle;
+        color: #111827;
+    }
 
-.tabela-funcionarios tbody tr:last-child td {
-    border-bottom: 0;
-}
+    .tabela-usuarios tbody tr:last-child td {
+        border-bottom: 0;
+    }
 
-.tabela-funcionarios tbody tr:hover {
-    background: #fafafa;
-}
+    .tabela-usuarios tbody tr:hover {
+        background: #fafafa;
+    }
 
 .tabela-vazia {
-    padding: 28px 18px;
+    padding: 28px 18px !important;
     text-align: center;
     color: #6b7280;
 }
 
-.funcionario-info {
+.usuario-info {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -142,29 +146,41 @@
     color: #111827;
 }
 
+.selo {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.selo-ativo {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.selo-inativo {
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
 .grupo-acoes {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
-.grupo-acoes form {
-    margin: 0;
-}
-
-.botao-acao {
-    border: 0;
-    font-family: inherit;
-    cursor: pointer;
-}
-
 .botao-acao {
     padding: 4px 14px;
+    border: 0;
     border-radius: 999px;
+    font-family: inherit;
     font-size: 0.7rem;
     font-weight: 700;
     text-decoration: none;
     white-space: nowrap;
+    cursor: pointer;
     transition: filter 0.2s;
 }
 
@@ -173,19 +189,14 @@
     text-decoration: none;
 }
 
-.botao-editar {
-    background: #fef3c7;
-    color: #b45309;
-}
-
-.botao-detalhes {
-    background: #dbeafe;
-    color: #1d4ed8;
-}
-
 .botao-excluir {
     background: #fee2e2;
     color: #dc2626;
+}
+
+.botao-ativar {
+    background: #dcfce7;
+    color: #15803d;
 }
 
 @media (max-width: 767.98px) {
