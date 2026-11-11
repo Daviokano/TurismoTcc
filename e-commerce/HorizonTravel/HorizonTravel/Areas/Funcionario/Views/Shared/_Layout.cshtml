@@ -23,18 +23,8 @@
 </head>
 
 @await RenderSectionAsync("Scripts", required: false)
-<body>
-    <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-        <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">Painel</a>
-        <input class="form-control form-control-dark w-100" type="text" placeholder="Search" aria-label="Search">
 
-        <ul class="navbar-nav px-3">
-            <li class="nav-item text-nowrap">
-                <a class="nav-link" asp-area="Funcionario" asp-action="Logout"
-                asp-controller="Home"><span>@(_funcionario.GetFuncionario()?.nomeFun)</span> Sair</a>
-            </li>
-        </ul>
-    </nav>
+<body>
     <aside class="barra-lateral">
         <div class="barra-lateral-marca">
             <i class="bi bi-airplane"></i>
@@ -68,7 +58,7 @@
             </li>
             <li>
                 <a asp-controller="Usuario" asp-action="Index">
-                    <i class="bi bi-clock-history"></i>
+                    <i class="bi-person-lines-fill"></i>
                     Clientes
                 </a>
             </li>
@@ -80,7 +70,7 @@
             </li>
             <li>
                 <a href="#">
-                    <i class="bi bi-handshake"></i>
+                    <i class="bi-diagram-3"></i>
                     Parceiros
                 </a>
             </li>

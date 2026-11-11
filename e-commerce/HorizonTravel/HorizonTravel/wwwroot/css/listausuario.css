@@ -1,8 +1,20 @@
-﻿.pagina-lista {
-    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
-    background: #ffffff;
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+
+.pagina-lista {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
     padding: 32px 22px;
     color: #111;
+}
+
+.pagina-lista {
+    align-self: flex-start; /* se o pai for flex com align-items:center */
+    width: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: inherit; /* usa a mesma fonte do resto do sistema */
 }
 
 /* Cabeçalho */
@@ -41,10 +53,10 @@
     transition: background .2s;
 }
 
-    .botao-novo:hover {
-        background: #e66a0d;
-        color: #fff;
-    }
+.botao-novo:hover {
+    background: #e66a0d;
+    color: #fff;
+}
 
 /* Busca */
 .campo-busca {

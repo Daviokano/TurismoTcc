@@ -1,7 +1,22 @@
-﻿[hidden] {
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+[hidden] {
     display: none !important;
 }
 
+/* ===== Cabeçalho da página ===== */
 .cabecalho-pagina {
     display: flex;
     align-items: flex-start;
@@ -42,8 +57,10 @@
         text-decoration: none;
     }
 
+/* ===== Campo de busca ===== */
 .caixa-busca {
     position: relative;
+    width: 100%;
     margin-bottom: 28px;
 }
 
@@ -57,6 +74,7 @@
     }
 
 .campo-busca {
+    display: block;
     width: 100%;
     height: 40px;
     padding: 0 14px 0 38px;
@@ -79,18 +97,22 @@
         box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
     }
 
+/* ===== Tabela (funcionários e usuários) ===== */
 .tabela-container {
+    width: 100%;
     overflow-x: auto;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     background: #ffffff;
 }
 
+.tabela-funcionarios,
 .tabela-usuarios {
     width: 100%;
     border-collapse: collapse;
 }
 
+    .tabela-funcionarios thead th,
     .tabela-usuarios thead th {
         padding: 16px 18px;
         border-bottom: 1px solid #d1d5db;
@@ -102,29 +124,35 @@
         color: #111827;
     }
 
+    .tabela-funcionarios tbody td,
     .tabela-usuarios tbody td {
         padding: 16px 18px;
         border-bottom: 1px solid #d1d5db;
         font-size: 0.75rem;
         font-weight: 600;
+        text-align: left;
         vertical-align: middle;
         color: #111827;
     }
 
+    .tabela-funcionarios tbody tr:last-child td,
     .tabela-usuarios tbody tr:last-child td {
         border-bottom: 0;
     }
 
+    .tabela-funcionarios tbody tr:hover,
     .tabela-usuarios tbody tr:hover {
         background: #fafafa;
     }
 
 .tabela-vazia {
     padding: 28px 18px !important;
-    text-align: center;
+    text-align: center !important;
     color: #6b7280;
 }
 
+/* ===== Nome com avatar ===== */
+.funcionario-info,
 .usuario-info {
     display: flex;
     align-items: center;
@@ -146,6 +174,7 @@
     color: #111827;
 }
 
+/* ===== Selos de situação ===== */
 .selo {
     display: inline-block;
     padding: 4px 14px;
@@ -165,28 +194,45 @@
     color: #4b5563;
 }
 
+/* ===== Botões de ação ===== */
 .grupo-acoes {
     display: flex;
     align-items: center;
     gap: 6px;
 }
 
+    .grupo-acoes form {
+        margin: 0;
+    }
+
 .botao-acao {
+    display: inline-block;
     padding: 4px 14px;
     border: 0;
     border-radius: 999px;
     font-family: inherit;
     font-size: 0.7rem;
     font-weight: 700;
+    line-height: 1.5;
     text-decoration: none;
     white-space: nowrap;
     cursor: pointer;
     transition: filter 0.2s;
 }
 
-.botao-acao:hover {
-    filter: brightness(0.95);
-    text-decoration: none;
+    .botao-acao:hover {
+        filter: brightness(0.95);
+        text-decoration: none;
+    }
+
+.botao-editar {
+    background: #fef3c7;
+    color: #b45309;
+}
+
+.botao-detalhes {
+    background: #dbeafe;
+    color: #1d4ed8;
 }
 
 .botao-excluir {
@@ -199,6 +245,7 @@
     color: #15803d;
 }
 
+/* ===== Mobile ===== */
 @media (max-width: 767.98px) {
     .cabecalho-pagina {
         flex-direction: column;

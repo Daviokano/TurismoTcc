@@ -1,6 +1,8 @@
-@model IEnumerable<HorizonTravel.Models.Usuario>
+@model IEnumerable<HorizonTravel.Models.Funcionario>
+
 @{
-    ViewData["Title"] = "Usuários";
+    ViewData["Title"] = "Funcionários";
+    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
 }
 
 @functions {
@@ -22,87 +24,69 @@
     }
 }
 
-<link rel="stylesheet" href="~/css/telacontroleusuario.css" asp-append-version="true" />
+<link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
 
 <div class="cabecalho-pagina">
     <div>
-        <h1 class="titulo-pagina">Usuários</h1>
-        <p class="subtitulo-pagina">Gerencie os usuários cadastrados no sistema.</p>
+        <h1 class="titulo-pagina">Funcionários</h1>
+        <p class="subtitulo-pagina">Gerencie os funcionários cadastrados no sistema.</p>
     </div>
 
-    <a asp-action="Cadastrar" class="botao-novo">Novo Usuário</a>
+    <a asp-action="Cadastrar" class="botao-novo">Novo Funcionário</a>
 </div>
 
-<div class="caixa-busca">
+<form method="get" asp-action="Index" class="caixa-busca">
     <i class="bi bi-search"></i>
     <input type="text"
-           id="campoBusca"
+           name="busca"
            class="campo-busca"
-           autocomplete="off"
-           placeholder="Buscar usuário por nome ou CPF..." />
-</div>
+           value="@Context.Request.Query["busca"]"
+           placeholder="Buscar funcionário por nome ou CPF..." />
+</form>
 
 <div class="tabela-container">
-    <table class="tabela-usuarios" id="tabelaUsuarios">
+    <table class="tabela-funcionarios">
         <thead>
             <tr>
-                <th>Usuário</th>
-                <th>@Html.DisplayNameFor(model => model.First().CPFUsu)</th>
-                <th>@Html.DisplayNameFor(model => model.First().emailUsu)</th>
-                <th>@Html.DisplayNameFor(model => model.First().telefoneUsu)</th>
-                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoUsu)</th>
-                <th>Status</th>
+                <th>Funcionário</th>
+                <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
+                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
                 <th>Ações</th>
             </tr>
         </thead>
         <tbody>
+            @if (!Model.Any())
+            {
+                <tr>
+                    <td colspan="6" class="tabela-vazia">Nenhum funcionário encontrado.</td>
+                </tr>
+            }
+
             @foreach (var item in Model)
             {
-                <tr class="linha-usuario">
+                <tr>
                     <td>
-                        <div class="usuario-info">
-                            <span class="avatar">@ObterIniciais(item.nomeUsu)</span>
-                            <span class="nome-usuario">@item.nomeUsu</span>
+                        <div class="funcionario-info">
+                            <span class="avatar">@ObterIniciais(item.nomeFun)</span>
+                            <span>@item.nomeFun</span>
                         </div>
                     </td>
-                    <td class="cpf-usuario">@item.CPFUsu</td>
-                    <td>@item.emailUsu</td>
-                    <td>@item.telefoneUsu</td>
-                    <td>@item.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        @if (item.situacaoUsu == "A")
-                        {
-                            <span class="selo selo-ativo">Ativo</span>
-                        }
-                        else
-                        {
-                            <span class="selo selo-inativo">Inativo</span>
-                        }
-                    </td>
+                    <td>@item.CPFFun</td>
+                    <td>@item.emailFun</td>
+                    <td>@item.telefoneFun</td>
+                    <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
                     <td>
                         <div class="grupo-acoes">
-                            @if (item.situacaoUsu == "A")
-                            {
-                                <a asp-action="Desativar" asp-route-id="@item.IDUsu"
-                                   class="botao-acao botao-excluir"
-                                   onclick="return confirm('Realmente deseja desativar esse usuário?');">Desativar</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Ativar" asp-route-id="@item.IDUsu"
-                                   class="botao-acao botao-ativar"
-                                   onclick="return confirm('Realmente deseja ativar esse usuário?');">Ativar</a>
-                            }
+                            <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
+                            <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
+                            <a asp-action="Excluir" asp-route-id="@item.IDFun" class="botao-acao botao-excluir"
+                               onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
                         </div>
                     </td>
                 </tr>
             }
-
-            <tr id="linhaSemResultado" class="linha-sem-resultado" @(Model.Any() ? "hidden" : "")>
-                <td colspan="7" class="tabela-vazia">Nenhum usuário encontrado.</td>
-            </tr>
         </tbody>
     </table>
 </div>
-
-<script src="~/js/listausuario.js" asp-append-version="true"></script>
