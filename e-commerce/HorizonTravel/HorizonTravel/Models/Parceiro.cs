@@ -4,6 +4,8 @@ namespace HorizonTravel.Models
 {
     public class Parceiro
     {
+        public int IDFor { get; set; }
+
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "O CNPJ é obrigatório.")]
         [RegularExpression("^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$", ErrorMessage = "CNPJ inválido")]
@@ -16,6 +18,6 @@ namespace HorizonTravel.Models
         [Display(Name = "Email")]
         [EmailAddress(ErrorMessage = "Email inválido.")]
         [RegularExpression(".+\\@.+\\..+", ErrorMessage = "Informe um email válido")]
-        public string emailfor {  get; set; }
+        public string emailFor {  get; set; }
     }
 }
