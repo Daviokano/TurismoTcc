@@ -1,4 +1,5 @@
 ﻿using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -13,6 +14,22 @@ namespace HorizonTravel.Repository
         {
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
         }
+
+        public void Ativar(int Id)
+        {
+            string situacao = SituacaoParceiroConstant.Ativo;
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoUsu=@situacaoUsu WHERE IDFor=@IDFor", conexao);
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
         public void Atualizar(Parceiro parceiro)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -47,6 +64,21 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
 
 
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
+        public void Desativar(int Id)
+        {
+            string situacao = SituacaoParceiroConstant.Inativo;
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoUsu=@situacaoUsu WHERE IDFor=@IDFor", conexao);
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -119,6 +151,6 @@ namespace HorizonTravel.Repository
                 }
                 return parceiroList;
             }
-            }
+        }
     }
 }

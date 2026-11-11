@@ -6,6 +6,8 @@ namespace HorizonTravel.Models
     {
         public int IDFor { get; set; }
 
+        public string? situacaoUsu { get; set; }
+
         [Display(Name = "CNPJ")]
         [Required(ErrorMessage = "O CNPJ é obrigatório.")]
         [RegularExpression("^\\d{2}\\.\\d{3}\\.\\d{3}/\\d{4}-\\d{2}$", ErrorMessage = "CNPJ inválido")]

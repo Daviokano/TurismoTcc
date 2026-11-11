@@ -71,7 +71,9 @@ CREATE TABLE Parceiro(
 
     nomeFor VARCHAR(100) NOT NULL,
 
-    emailFor VARCHAR(100) NOT NULL UNIQUE
+    emailFor VARCHAR(100) NOT NULL UNIQUE,
+    
+    situacaoFor CHAR(2) NOT NULL
 
 );
 
