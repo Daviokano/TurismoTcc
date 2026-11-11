@@ -1,0 +1,32 @@
+@model HorizonTravel.Models.Parceiro
+@{
+    ViewBag.Title = "Cadastrar Funcionario";
+    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Cadastrar Funcionário</h2>
+
+<form asp-action="Cadastrar" method="post">
+    <div class="form-group">
+        <label asp-for="CNPJFor" class="control-label"></label>
+        <input asp-for="CNPJFor" class="form-control" />
+        <span asp-validation-for="CNPJFor" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="nomeFor" class="control-label"></label>
+        <input asp-for="nomeFor" class="form-control" />
+        <span asp-validation-for="nomeFor" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="emailFor" class="control-label"></label>
+        <input asp-for="emailFor" class="form-control" />
+        <span asp-validation-for="emailFor" class="text-danger"></span>
+    </div>
+   
+    <button type="submit" class="btn btn-primary">Cadastrar</button>
+    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

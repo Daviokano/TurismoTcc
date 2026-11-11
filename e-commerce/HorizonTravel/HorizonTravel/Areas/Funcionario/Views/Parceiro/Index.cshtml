@@ -1,0 +1,108 @@
+﻿@using HorizonTravel.Models
+@model IEnumerable<HorizonTravel.Models.Parceiro>
+
+@{
+    ViewData["Title"] = "Parceiros";
+}
+
+<link rel="stylesheet" href="~/css/listaparceiro.css" asp-append-version="true" />
+
+<div class="pagina-lista">
+    <div class="cabecalho-lista">
+        <div>
+            <h1 class="titulo-lista">Parceiros</h1>
+            <p class="subtitulo-lista">Gerencie os parceiros cadastrados no sistema.</p>
+        </div>
+
+        <a asp-action="Cadastrar" class="botao-novo">
+            <span class="bi bi-person-plus" aria-hidden="true"></span>
+            <span>Cadastrar novo parceiro</span>
+        </a>
+    </div>
+
+    <div class="campo-busca">
+        <span class="bi bi-search icone-busca" aria-hidden="true"></span>
+        <input type="text" id="campoBusca" class="input-busca"
+               placeholder="Buscar parceiro por nome ou CNPJ..." autocomplete="off" />
+    </div>
+
+    <div class="cartao-tabela">
+        <table class="tabela-parceiros" id="tabelaParceiros">
+            <thead>
+                <tr>
+                    <th>Parceiro</th>
+                    <th>CNPJ</th>
+                    <th>E-mail</th>
+                    <th>Status</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Parceiro parceiro in Model)
+                {
+                    //pega as iniciais pra ficar no logo de identificação do parceiro
+                    string iniciais = "";
+                    if (!string.IsNullOrWhiteSpace(parceiro.nomeFor))
+                    {
+                        var partes = parceiro.nomeFor.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+                        iniciais = partes.Length > 1
+                            ? $"{partes[0][0]}{partes[partes.Length - 1][0]}"
+                            : $"{partes[0][0]}";
+                        iniciais = iniciais.ToUpper();
+                    }
+
+                    <tr class="linha-parceiro">
+                        <td>
+                            <div class="celula-parceiro">
+                                <span class="avatar-iniciais">@iniciais</span>
+                                <span class="nome-parceiro">@parceiro.nomeFor</span>
+                            </div>
+                        </td>
+                        <td class="cnpj-parceiro">@parceiro.CNPJFor</td>
+                        <td>@parceiro.emailFor</td>
+                        <td>
+                            @if (parceiro.situacaoFor == "A")
+                            {
+                                <span class="selo selo-ativo">Ativo</span>
+                            }
+                            else
+                            {
+                                <span class="selo selo-inativo">Inativo</span>
+                            }
+                        </td>
+                        <td>
+                            @if (parceiro.situacaoFor == "A")
+                            {
+                                <a asp-action="Desativar" asp-route-id="@parceiro.IDFor"
+                                   class="botao-acao botao-desativar"
+                                   onclick="return confirm('Realmente deseja desativar esse parceiro?');">Desativar</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Ativar" asp-route-id="@parceiro.IDFor"
+                                   class="botao-acao botao-ativar"
+                                   onclick="return confirm('Realmente deseja ativar esse parceiro?');">Ativar</a>
+                            }
+                        </td>
+                    </tr>
+                }
+
+                <tr id="linhaSemResultado" class="linha-sem-resultado" hidden>
+                    <td colspan="5">Nenhum parceiro encontrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- talvez tenha q tirar -->
+    <div class="paginacao">
+        <button type="button" class="botao-pagina" aria-label="Página anterior">&lsaquo;</button>
+        <button type="button" class="botao-pagina pagina-atual">1</button>
+        <button type="button" class="botao-pagina" aria-label="Próxima página">&rsaquo;</button>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/listaparceiro.js" asp-append-version="true"></script>
+}

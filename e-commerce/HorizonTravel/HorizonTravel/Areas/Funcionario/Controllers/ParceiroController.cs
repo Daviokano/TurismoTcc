@@ -20,6 +20,12 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View(_parceiroRepository.ObterTodosParceiros());
         }
 
+        [HttpGet]
+        public IActionResult Cadastrar()
+        {
+            return View();
+        }
+
         [ValidateHttpReferer]
         public IActionResult Ativar(int Id)
         {

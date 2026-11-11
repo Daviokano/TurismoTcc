@@ -67,7 +67,7 @@ CREATE TABLE Parceiro(
 
 	IDFor INT AUTO_INCREMENT PRIMARY KEY,
 
-    CNPJFor CHAR(14) PRIMARY KEY,
+    CNPJFor CHAR(14) NOT NULL,
 
     nomeFor VARCHAR(100) NOT NULL,
 
@@ -77,13 +77,12 @@ CREATE TABLE Parceiro(
 
 );
 
-INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor) VALUES
-('12345678000101', 'Hotel Recanto do Sol Ltda', 'contato@hotelrecantodosol.com.br'),
-('23456789000102', 'Aerovia Passagens Aéreas S.A.', 'parcerias@aeroviapassagens.com.br'),
-('34567890000103', 'Rota Segura Transportes e Turismo', 'comercial@rotasegura.com.br'),
-('45678901000104', 'Sabor da Viagem Alimentação e Eventos', 'atendimento@sabordaviagem.com.br');
-
-select * from parceiro;
+INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor, situacaoFor) VALUES
+('12345678000101', 'Hotel Recanto do Sol Ltda', 'contato@hotelrecantodosol.com.br', 'A'),
+('23456789000102', 'Aerovia Passagens Aéreas S.A.', 'parcerias@aeroviapassagens.com.br', 'A'),
+('34567890000103', 'Rota Segura Transportes e Turismo', 'comercial@rotasegura.com.br', 'A'),
+('45678901000104', 'Sabor da Viagem Alimentação e Eventos', 'atendimento@sabordaviagem.com.br', 'A');
+select * from Parceiro;
 
 CREATE TABLE Promocao(
 

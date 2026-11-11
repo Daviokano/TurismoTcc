@@ -26,67 +26,78 @@
 
 <link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
 
-<div class="cabecalho-pagina">
-    <div>
-        <h1 class="titulo-pagina">Funcionários</h1>
-        <p class="subtitulo-pagina">Gerencie os funcionários cadastrados no sistema.</p>
+<div class="pagina-lista">
+    <div class="cabecalho-lista">
+        <div>
+            <h1 class="titulo-lista">Funcionários</h1>
+            <p class="subtitulo-lista">Gerencie os funcionários cadastrados no sistema.</p>
+        </div>
+
+        <a asp-action="Cadastrar" class="botao-novo">
+            <span class="bi bi-person-plus" aria-hidden="true"></span>
+            <span>Novo Funcionário</span>
+        </a>
     </div>
 
-    <a asp-action="Cadastrar" class="botao-novo">Novo Funcionário</a>
+    <div class="campo-busca">
+        <span class="bi bi-search icone-busca" aria-hidden="true"></span>
+        <input type="text" id="campoBusca" class="input-busca"
+               placeholder="Buscar funcionário por nome ou CPF..." autocomplete="off" />
+    </div>
+
+    <div class="cartao-tabela">
+        <table class="tabela-funcionarios" id="tabelaFuncionarios">
+            <thead>
+                <tr>
+                    <th>Funcionário</th>
+                    <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
+                    <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr class="linha-funcionario">
+                        <td>
+                            <div class="celula-funcionario">
+                                <span class="avatar-iniciais">@ObterIniciais(item.nomeFun)</span>
+                                <span class="nome-funcionario">@item.nomeFun</span>
+                            </div>
+                        </td>
+                        <td class="cpf-funcionario">@item.CPFFun</td>
+                        <td>@item.emailFun</td>
+                        <td class="telefone-funcionario">@item.telefoneFun</td>
+                        <td class="data-funcionario">@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
+                        <td>
+                            <div class="grupo-acoes">
+                                <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
+                                <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
+                                <a asp-action="Excluir" asp-route-id="@item.IDFun" class="botao-acao botao-excluir"
+                                   onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+
+                <tr id="linhaSemResultado" class="linha-sem-resultado" hidden>
+                    <td colspan="6">Nenhum funcionário encontrado.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!-- talvez tenha q tirar -->
+    <div class="paginacao">
+        <button type="button" class="botao-pagina" aria-label="Página anterior">&lsaquo;</button>
+        <button type="button" class="botao-pagina pagina-atual">1</button>
+        <button type="button" class="botao-pagina" aria-label="Próxima página">&rsaquo;</button>
+    </div>
 </div>
 
-<form method="get" asp-action="Index" class="caixa-busca">
-    <i class="bi bi-search"></i>
-    <input type="text"
-           name="busca"
-           class="campo-busca"
-           value="@Context.Request.Query["busca"]"
-           placeholder="Buscar funcionário por nome ou CPF..." />
-</form>
-
-<div class="tabela-container">
-    <table class="tabela-funcionarios">
-        <thead>
-            <tr>
-                <th>Funcionário</th>
-                <th>@Html.DisplayNameFor(model => model.First().CPFFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
-                <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
-                <th>Ações</th>
-            </tr>
-        </thead>
-        <tbody>
-            @if (!Model.Any())
-            {
-                <tr>
-                    <td colspan="6" class="tabela-vazia">Nenhum funcionário encontrado.</td>
-                </tr>
-            }
-
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td>
-                        <div class="funcionario-info">
-                            <span class="avatar">@ObterIniciais(item.nomeFun)</span>
-                            <span>@item.nomeFun</span>
-                        </div>
-                    </td>
-                    <td>@item.CPFFun</td>
-                    <td>@item.emailFun</td>
-                    <td>@item.telefoneFun</td>
-                    <td>@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
-                    <td>
-                        <div class="grupo-acoes">
-                            <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
-                            <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
-                            <a asp-action="Excluir" asp-route-id="@item.IDFun" class="botao-acao botao-excluir"
-                               onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
-    </table>
-</div>
+@section Scripts {
+    <script src="~/js/listafuncionario.js" asp-append-version="true"></script>
+}

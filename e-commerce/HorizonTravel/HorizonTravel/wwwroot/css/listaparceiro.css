@@ -1,0 +1,290 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ===== Página (sem espaço extra no topo) ===== */
+.pagina-lista {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Cabeçalho ===== */
+.cabecalho-lista {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin: 0 0 24px;
+}
+
+.titulo-lista {
+    margin: 0 0 2px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.subtitulo-lista {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* ===== Botão de cadastro ===== */
+.botao-novo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 18px;
+    border-radius: 4px;
+    background: #f97316;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-decoration: none;
+    white-space: nowrap;
+    transition: background 0.2s;
+}
+
+.botao-novo:hover {
+    background: #ea6a0a;
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* ===== Campo de busca ===== */
+.campo-busca {
+    position: relative;
+    width: 100%;
+    margin-bottom: 28px;
+}
+
+.icone-busca {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #6b7280;
+    pointer-events: none;
+}
+
+.input-busca {
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 16px 0 44px;
+    border: 1px solid #d1d5db;
+    border-radius: 4px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+.input-busca::placeholder {
+    color: #6b7280;
+}
+
+.input-busca:focus {
+    outline: none;
+    border-color: #05053a;
+    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+}
+
+/* ===== Tabela ===== */
+.cartao-tabela {
+    width: 100%;
+    overflow-x: auto;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    background: #ffffff;
+}
+
+.tabela-parceiros {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.tabela-parceiros thead th {
+    padding: 16px 18px;
+    border-bottom: 1px solid #d1d5db;
+    background: #f5f5f5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+    color: #111827;
+}
+
+.tabela-parceiros tbody td {
+    padding: 16px 18px;
+    border-bottom: 1px solid #d1d5db;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+    color: #111827;
+}
+
+.tabela-parceiros tbody tr:last-child td {
+    border-bottom: 0;
+}
+
+.linha-parceiro:hover {
+    background: #fafafa;
+}
+
+.linha-sem-resultado td {
+    padding: 28px 18px;
+    text-align: center;
+    color: #6b7280;
+}
+
+/* ===== Parceiro com avatar ===== */
+.celula-parceiro {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    white-space: nowrap;
+}
+
+.avatar-iniciais {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #e5e7eb;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.nome-parceiro {
+    font-weight: 600;
+}
+
+.cnpj-parceiro {
+    white-space: nowrap;
+}
+
+/* ===== Selos de status ===== */
+.selo {
+    display: inline-block;
+    padding: 4px 14px;
+    border-radius: 999px;
+    font-size: 0.7rem;
+    font-weight: 700;
+    white-space: nowrap;
+}
+
+.selo-ativo {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+.selo-inativo {
+    background: #e5e7eb;
+    color: #4b5563;
+}
+
+/* ===== Botões de ação ===== */
+.botao-acao {
+    display: inline-block;
+    padding: 4px 14px;
+    border: 0;
+    border-radius: 999px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 700;
+    line-height: 1.5;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.botao-acao:hover {
+    filter: brightness(0.95);
+    text-decoration: none;
+}
+
+.botao-desativar {
+    background: #fee2e2;
+    color: #dc2626;
+}
+
+.botao-ativar {
+    background: #dcfce7;
+    color: #15803d;
+}
+
+/* ===== Paginação ===== */
+.paginacao {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 14px;
+}
+
+.botao-pagina {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 3px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    cursor: pointer;
+}
+
+.botao-pagina:hover {
+    background: #f3f4f6;
+}
+
+.pagina-atual {
+    border-color: #0000ff;
+    background: #0000ff;
+    color: #ffffff;
+}
+
+.pagina-atual:hover {
+    background: #0000ff;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 767.98px) {
+    .cabecalho-lista {
+        flex-direction: column;
+    }
+
+    .botao-novo {
+        justify-content: center;
+        width: 100%;
+    }
+}

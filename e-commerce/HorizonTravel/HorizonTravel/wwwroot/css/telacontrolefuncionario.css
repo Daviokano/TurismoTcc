@@ -16,30 +16,40 @@ html, body {
     display: none !important;
 }
 
-/* ===== Cabeçalho da página ===== */
-.cabecalho-pagina {
+/* ===== Página (sem espaço extra no topo) ===== */
+.pagina-lista {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Cabeçalho ===== */
+.cabecalho-lista {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 16px;
-    margin-bottom: 24px;
+    margin: 0 0 24px;
 }
 
-.titulo-pagina {
+.titulo-lista {
     margin: 0 0 2px;
     font-size: 1.1rem;
     font-weight: 700;
     color: #111827;
 }
 
-.subtitulo-pagina {
+.subtitulo-lista {
     margin: 0;
     font-size: 0.75rem;
     font-weight: 500;
     color: #6b7280;
 }
 
+/* ===== Botão de cadastro ===== */
 .botao-novo {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     padding: 9px 18px;
     border-radius: 4px;
     background: #f97316;
@@ -58,47 +68,48 @@ html, body {
     }
 
 /* ===== Campo de busca ===== */
-.caixa-busca {
+.campo-busca {
     position: relative;
     width: 100%;
     margin-bottom: 28px;
 }
 
-    .caixa-busca .bi {
-        position: absolute;
-        top: 50%;
-        left: 14px;
-        transform: translateY(-50%);
-        font-size: 0.85rem;
-        color: #6b7280;
-    }
+.icone-busca {
+    position: absolute;
+    top: 50%;
+    left: 16px;
+    transform: translateY(-50%);
+    font-size: 0.95rem;
+    color: #6b7280;
+    pointer-events: none;
+}
 
-.campo-busca {
+.input-busca {
     display: block;
     width: 100%;
-    height: 40px;
-    padding: 0 14px 0 38px;
+    height: 50px;
+    padding: 0 16px 0 44px;
     border: 1px solid #d1d5db;
     border-radius: 4px;
     background: #ffffff;
     font-family: inherit;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
     font-weight: 500;
     color: #111827;
 }
 
-    .campo-busca::placeholder {
+    .input-busca::placeholder {
         color: #6b7280;
     }
 
-    .campo-busca:focus {
+    .input-busca:focus {
         outline: none;
         border-color: #05053a;
         box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
     }
 
-/* ===== Tabela (funcionários e usuários) ===== */
-.tabela-container {
+/* ===== Tabela ===== */
+.cartao-tabela {
     width: 100%;
     overflow-x: auto;
     border: 1px solid #d1d5db;
@@ -106,14 +117,12 @@ html, body {
     background: #ffffff;
 }
 
-.tabela-funcionarios,
-.tabela-usuarios {
+.tabela-funcionarios {
     width: 100%;
     border-collapse: collapse;
 }
 
-    .tabela-funcionarios thead th,
-    .tabela-usuarios thead th {
+    .tabela-funcionarios thead th {
         padding: 16px 18px;
         border-bottom: 1px solid #d1d5db;
         background: #f5f5f5;
@@ -124,8 +133,7 @@ html, body {
         color: #111827;
     }
 
-    .tabela-funcionarios tbody td,
-    .tabela-usuarios tbody td {
+    .tabela-funcionarios tbody td {
         padding: 16px 18px;
         border-bottom: 1px solid #d1d5db;
         font-size: 0.75rem;
@@ -135,32 +143,29 @@ html, body {
         color: #111827;
     }
 
-    .tabela-funcionarios tbody tr:last-child td,
-    .tabela-usuarios tbody tr:last-child td {
+    .tabela-funcionarios tbody tr:last-child td {
         border-bottom: 0;
     }
 
-    .tabela-funcionarios tbody tr:hover,
-    .tabela-usuarios tbody tr:hover {
-        background: #fafafa;
-    }
+.linha-funcionario:hover {
+    background: #fafafa;
+}
 
-.tabela-vazia {
-    padding: 28px 18px !important;
-    text-align: center !important;
+.linha-sem-resultado td {
+    padding: 28px 18px;
+    text-align: center;
     color: #6b7280;
 }
 
-/* ===== Nome com avatar ===== */
-.funcionario-info,
-.usuario-info {
+/* ===== Funcionário com avatar ===== */
+.celula-funcionario {
     display: flex;
     align-items: center;
     gap: 12px;
     white-space: nowrap;
 }
 
-.avatar {
+.avatar-iniciais {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -174,24 +179,14 @@ html, body {
     color: #111827;
 }
 
-/* ===== Selos de situação ===== */
-.selo {
-    display: inline-block;
-    padding: 4px 14px;
-    border-radius: 999px;
-    font-size: 0.7rem;
-    font-weight: 700;
+.nome-funcionario {
+    font-weight: 600;
+}
+
+.cpf-funcionario,
+.telefone-funcionario,
+.data-funcionario {
     white-space: nowrap;
-}
-
-.selo-ativo {
-    background: #dcfce7;
-    color: #15803d;
-}
-
-.selo-inativo {
-    background: #e5e7eb;
-    color: #4b5563;
 }
 
 /* ===== Botões de ação ===== */
@@ -199,11 +194,8 @@ html, body {
     display: flex;
     align-items: center;
     gap: 6px;
+    white-space: nowrap;
 }
-
-    .grupo-acoes form {
-        margin: 0;
-    }
 
 .botao-acao {
     display: inline-block;
@@ -240,19 +232,53 @@ html, body {
     color: #dc2626;
 }
 
-.botao-ativar {
-    background: #dcfce7;
-    color: #15803d;
+/* ===== Paginação ===== */
+.paginacao {
+    display: flex;
+    justify-content: flex-end;
+    gap: 4px;
+    margin-top: 14px;
 }
+
+.botao-pagina {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    padding: 0;
+    border: 1px solid #d1d5db;
+    border-radius: 3px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    cursor: pointer;
+}
+
+    .botao-pagina:hover {
+        background: #f3f4f6;
+    }
+
+.pagina-atual {
+    border-color: #0000ff;
+    background: #0000ff;
+    color: #ffffff;
+}
+
+    .pagina-atual:hover {
+        background: #0000ff;
+    }
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {
-    .cabecalho-pagina {
+    .cabecalho-lista {
         flex-direction: column;
     }
 
     .botao-novo {
-        align-self: stretch;
-        text-align: center;
+        justify-content: center;
+        width: 100%;
     }
 }

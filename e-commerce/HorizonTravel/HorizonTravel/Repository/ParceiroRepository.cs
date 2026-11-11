@@ -22,8 +22,8 @@ namespace HorizonTravel.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoUsu=@situacaoUsu WHERE IDFor=@IDFor", conexao);
-                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE IDFor=@IDFor", conexao);
+                cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = situacao;
                 cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -36,13 +36,14 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, CNPJFor=@CNPJFor, emailFor=@emailFor
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, CNPJFor=@CNPJFor, emailFor=@emailFor, situacaoFor=@situacaoFor
                 WHERE IDFor=@IDFor");
 
                 cmd.Parameters.Add("@nomeFor", MySqlDbType.VarChar).Value = parceiro.nomeFor;
                 cmd.Parameters.Add("@CNPJFor", MySqlDbType.Int32).Value = parceiro.CNPJFor;
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
                 cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = parceiro.IDFor;
+                cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = parceiro.situacaoFor;
 
 
                 cmd.ExecuteNonQuery();
@@ -56,13 +57,13 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Parceiro(nomeFor, CNPJFor, emailFor)
-                        VALUES (@nomeFor, @CNPJFor, @emailFor)", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Parceiro(nomeFor, CNPJFor, emailFor, situacaoFor)
+                        VALUES (@nomeFor, @CNPJFor, @emailFor, @situacaoFor)", conexao);
 
                 cmd.Parameters.Add("@nomeFor", MySqlDbType.VarChar).Value = parceiro.nomeFor;
                 cmd.Parameters.Add("@CNPJFor", MySqlDbType.Int32).Value = parceiro.CNPJFor;
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
-
+                cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = parceiro.situacaoFor;
 
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -76,8 +77,8 @@ namespace HorizonTravel.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoUsu=@situacaoUsu WHERE IDFor=@IDFor", conexao);
-                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE IDFor=@IDFor", conexao);
+                cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = situacao;
                 cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -114,8 +115,9 @@ namespace HorizonTravel.Repository
                     {
                         parceiro.IDFor = (Int32)(dr["IDFor"]);
                         parceiro.nomeFor = (string)(dr["nomeFor"]);
-                        parceiro.CNPJFor = (Int32)(dr["CNPJFor"]);
+                        parceiro.CNPJFor = (string)(dr["CNPJFor"]);
                         parceiro.emailFor = (string)(dr["emailFor"]);
+                        parceiro.situacaoFor = (string)(dr["situacaoFor"]);
                     }
                 }
 
@@ -144,8 +146,9 @@ namespace HorizonTravel.Repository
                         {
                             IDFor = Convert.ToInt32(dr["IDFor"]),
                             nomeFor = (string)(dr["nomeFor"]),
-                            CNPJFor = Convert.ToInt32(dr["CNPJFor"]),
+                            CNPJFor = (string)(dr["CNPJFor"]),
                             emailFor = (string)(dr["emailFor"]),
+                            situacaoFor = (string)(dr["situacaoFor"])
                         }
                     );
                 }

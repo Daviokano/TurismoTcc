@@ -12,6 +12,7 @@ builder.Services.AddControllersWithViews();
 // add a interface como um serviço
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IFuncionarioRepositoty, FuncionarioRepository>();
+builder.Services.AddScoped<IParceiroRepository, ParceiroRepository>();
 
 builder.Services.AddDistributedMemoryCache();
 
