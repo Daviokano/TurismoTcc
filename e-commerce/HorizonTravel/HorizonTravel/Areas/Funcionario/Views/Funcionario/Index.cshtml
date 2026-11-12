@@ -33,16 +33,14 @@
             <p class="subtitulo-lista">Gerencie os funcionários cadastrados no sistema.</p>
         </div>
 
-        <a asp-action="Cadastrar" class="botao-novo">
-            <span class="bi bi-person-plus" aria-hidden="true"></span>
-            <span>Novo Funcionário</span>
-        </a>
     </div>
 
-    <div class="campo-busca">
-        <span class="bi bi-search icone-busca" aria-hidden="true"></span>
-        <input type="text" id="campoBusca" class="input-busca"
-               placeholder="Buscar funcionário por nome ou CPF..." autocomplete="off" />
+    <div class="area-busca">
+        <div class="campo-busca">
+            <span class="bi bi-search icone-busca" aria-hidden="true"></span>
+            <input type="text" id="campoBusca" class="input-busca"
+                   placeholder="Buscar funcionário por nome ou CPF..." autocomplete="off" />
+        </div>
     </div>
 
     <div class="cartao-tabela">
@@ -90,14 +88,8 @@
         </table>
     </div>
 
-    <!-- talvez tenha q tirar -->
-    <div class="paginacao">
-        <button type="button" class="botao-pagina" aria-label="Página anterior">&lsaquo;</button>
-        <button type="button" class="botao-pagina pagina-atual">1</button>
-        <button type="button" class="botao-pagina" aria-label="Próxima página">&rsaquo;</button>
-    </div>
+    <div class="paginacao" id="paginacao"></div>
 </div>
 
-@section Scripts {
-    <script src="~/js/listafuncionario.js" asp-append-version="true"></script>
-}
+
+ <script src="~/js/listafuncionario.js" asp-append-version="true"></script>

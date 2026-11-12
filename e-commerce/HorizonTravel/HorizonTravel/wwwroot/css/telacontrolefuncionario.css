@@ -98,15 +98,19 @@ html, body {
     color: #111827;
 }
 
-    .input-busca::placeholder {
-        color: #6b7280;
-    }
+.input-busca::placeholder {
+    color: #6b7280;
+}
 
-    .input-busca:focus {
-        outline: none;
-        border-color: #05053a;
-        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-    }
+.input-busca:focus {
+    outline: none;
+    border-color: #05053a;
+    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+}
+
+.botao-buscar:hover {
+    background: #ea6a0a;
+}
 
 /* ===== Tabela ===== */
 .cartao-tabela {
@@ -257,9 +261,9 @@ html, body {
     cursor: pointer;
 }
 
-    .botao-pagina:hover {
-        background: #f3f4f6;
-    }
+.botao-pagina:hover {
+    background: #f3f4f6;
+}
 
 .pagina-atual {
     border-color: #0000ff;
@@ -267,9 +271,20 @@ html, body {
     color: #ffffff;
 }
 
-    .pagina-atual:hover {
-        background: #0000ff;
-    }
+.pagina-atual:hover {
+    background: #0000ff;
+}
+
+.botao-pagina {
+    min-width: 24px;
+    width: auto;
+    padding: 0 6px;
+}
+
+.botao-pagina:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {
