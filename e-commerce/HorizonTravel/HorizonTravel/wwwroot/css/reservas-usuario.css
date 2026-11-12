@@ -1,0 +1,125 @@
+.pagina-usuario {
+    max-width: 980px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 46px 20px 80px;
+}
+
+.cabecalho-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    border-radius: 3px;
+    background: #1e3a8a;
+    color: #fff;
+}
+
+.avatar-usuario {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 50%;
+    background: #ff7417;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.cabecalho-usuario h1 {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.cabecalho-usuario p {
+    margin: 3px 0 0;
+    font-size: .78rem;
+}
+
+.abas-usuario {
+    display: flex;
+    gap: 24px;
+    margin: 12px 0 16px;
+    padding: 0 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px #0002;
+}
+
+.abas-usuario a {
+    padding: 12px 8px;
+    color: #222;
+    font-size: .76rem;
+    text-decoration: none;
+}
+
+.abas-usuario .aba-ativa {
+    border-radius: 3px;
+    background: #ff7417;
+    color: #fff;
+}
+
+.lista-reservas {
+    display: grid;
+    gap: 14px;
+}
+
+.cartao-reserva {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 18px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px #0002;
+}
+
+.cartao-reserva h2 {
+    margin: 0 0 8px;
+    font-size: .9rem;
+}
+
+.cartao-reserva p {
+    margin: 4px 0;
+    color: #666;
+    font-size: .7rem;
+}
+
+.cartao-reserva i {
+    margin-right: 5px;
+}
+
+.dados-reserva {
+    display: flex;
+    min-width: 100px;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.dados-reserva strong {
+    font-size: .85rem;
+}
+
+.status-reserva {
+    padding: 3px 7px;
+    border-radius: 10px;
+    background: #d7f8d8;
+    color: #16852b;
+    font-size: .58rem;
+}
+
+.dados-reserva small {
+    color: #777;
+    font-size: .58rem;
+}
+
+@media (max-width: 600px) {
+    .cartao-reserva {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .dados-reserva {
+        align-items: flex-start;
+    }
+}

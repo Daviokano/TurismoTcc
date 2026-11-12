@@ -11,7 +11,7 @@ namespace HorizonTravel.Controllers
 {
     public class HomeController : Controller
     {
-        //injeção de dependência
+        //injeï¿½ï¿½o de dependï¿½ncia
         private IUsuarioRepository _usuarioRepository;
         private LoginUsuario _usuarioLogin;
 
@@ -38,7 +38,7 @@ namespace HorizonTravel.Controllers
             }
             else
             {
-                ViewData["MSG_E"] = "O usuário não foi localizado, por fazer verifique o email e senha digitados!";
+                ViewData["MSG_E"] = "O usuï¿½rio nï¿½o foi localizado, por fazer verifique o email e senha digitados!";
                 return View();
             }
         }
@@ -49,6 +49,17 @@ namespace HorizonTravel.Controllers
             ViewBag.CPFUsu = _usuarioLogin.GetUsuario().CPFUsu;
             ViewBag.emailUsu = _usuarioLogin.GetUsuario().emailUsu;
             return View();
+        }
+        [UsuarioAutorizacaoAtributte]
+        public IActionResult MeuPerfil()
+        {
+            return View(_usuarioLogin.GetUsuario());
+        }
+
+        [UsuarioAutorizacaoAtributte]
+        public IActionResult MinhasReservas()
+        {
+            return View(_usuarioLogin.GetUsuario());
         }
 
         [UsuarioAutorizacaoAtributte]
@@ -83,13 +94,13 @@ namespace HorizonTravel.Controllers
             if (!string.IsNullOrWhiteSpace(CPFExistente))
             {
                 //cpf cadastrardo
-                ViewData["MSG_E"] = "Este CPF já está cadastrado!!";
+                ViewData["MSG_E"] = "Este CPF jï¿½ estï¿½ cadastrado!!";
                 return View();
             }
             else if (!string.IsNullOrWhiteSpace(EmailExistente))
             {
                 //email cadastrardo
-                ViewData["MSG_E"] = "Este email já está cadastrado!!";
+                ViewData["MSG_E"] = "Este email jï¿½ estï¿½ cadastrado!!";
                 return View();
             }
             else if(ModelState.IsValid)

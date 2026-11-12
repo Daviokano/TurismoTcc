@@ -1,0 +1,53 @@
+@model HorizonTravel.Models.Usuario
+
+@{
+    ViewData["Title"] = "Meu perfil";
+}
+
+<link rel="stylesheet" href="~/css/perfil-usuario.css" asp-append-version="true" />
+
+<section class="pagina-usuario">
+    <div class="cabecalho-usuario">
+        <div class="avatar-usuario">@Model.nomeUsu.Substring(0, 1).ToUpper()</div>
+        <div>
+            <h1>@Model.nomeUsu</h1>
+            <p>@Model.emailUsu</p>
+        </div>
+    </div>
+
+    <nav class="abas-usuario" aria-label="Navegação do usuário">
+        <a class="aba-ativa" asp-controller="Home" asp-action="MeuPerfil">Meu perfil</a>
+        <a asp-controller="Home" asp-action="MinhasReservas">Minhas reservas</a>
+        <a asp-controller="Home" asp-action="PainelUsuario">Histórico</a>
+    </nav>
+
+    <section class="cartao-perfil">
+        <h2>Informações pessoais</h2>
+
+        <form>
+            <div class="campos-perfil">
+                <label>
+                    Nome completo
+                    <input type="text" value="@Model.nomeUsu" readonly />
+                </label>
+
+                <label>
+                    Telefone
+                    <input type="text" value="@Model.telefoneUsu" readonly />
+                </label>
+
+                <label>
+                    E-mail
+                    <input type="email" value="@Model.emailUsu" readonly />
+                </label>
+
+                <label>
+                    CPF
+                    <input type="text" value="@Model.CPFUsu" readonly />
+                </label>
+            </div>
+
+            <button type="button" class="botao-perfil" disabled>Salvar alterações</button>
+        </form>
+    </section>
+</section>

@@ -59,8 +59,8 @@
                                         @_loginUsuario.GetUsuario().nomeUsu
                                     </a>
                                     <ul class="dropdown-menu dropdown-menu-end">
-                                        <li><a class="dropdown-item" href="#">Minhas reservas</a></li>
-                                        <li><a class="dropdown-item" href="#">Meu perfil</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="MinhasReservas">Minhas reservas</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="MeuPerfil">Meu perfil</a></li>
                                         <li><hr class="dropdown-divider" /></li>
                                         <li>
                                             <a class="dropdown-item" asp-controller="Home" asp-action="LogoutUsuario">Sair</a>
