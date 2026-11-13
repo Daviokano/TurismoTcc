@@ -5,6 +5,9 @@
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
 }
 
+
+<link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
+
 @functions {
     string ObterIniciais(string nome)
     {
@@ -24,17 +27,18 @@
     }
 }
 
-<link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
 
 <div class="pagina-lista">
+
+    <!-- ===== Cabeçalho ===== -->
     <div class="cabecalho-lista">
         <div>
             <h1 class="titulo-lista">Funcionários</h1>
             <p class="subtitulo-lista">Gerencie os funcionários cadastrados no sistema.</p>
         </div>
-
     </div>
 
+    <!-- ===== Busca ===== -->
     <div class="area-busca">
         <div class="campo-busca">
             <span class="bi bi-search icone-busca" aria-hidden="true"></span>
@@ -43,6 +47,7 @@
         </div>
     </div>
 
+    <!-- ===== Tabela ===== -->
     <div class="cartao-tabela">
         <table class="tabela-funcionarios" id="tabelaFuncionarios">
             <thead>
@@ -88,8 +93,108 @@
         </table>
     </div>
 
+    <!-- Os botões de página são gerados pelo listafuncionario.js -->
     <div class="paginacao" id="paginacao"></div>
+
+    <!-- ===== Cadastro de funcionário ===== -->
+    <section class="secao-cadastro">
+        <div class="cartao-cadastro">
+            <h2 class="titulo-cadastro">Cadastrar Funcionário</h2>
+
+            <!--
+                Como o model da página é uma lista (IEnumerable), não dá pra usar asp-for aqui.
+                Os campos usam "name" igual às propriedades de Funcionario, então o model binding
+                do POST Cadastrar(Funcionario) continua funcionando.
+            -->
+            <form asp-action="Cadastrar" method="post" id="formCadastroFuncionario" class="form-cadastro">
+                <div class="grade-cadastro">
+
+                    <div class="campo-form">
+                        <label for="nomeFun" class="rotulo-form">Nome Completo</label>
+                        <input type="text" id="nomeFun" name="nomeFun" class="input-form"
+                               placeholder="Digite o nome completo" maxlength="100" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="CPFFun" class="rotulo-form CPF">CPF</label>
+                        <input type="text" id="CPFFun" name="CPFFun" class="input-form"
+                               placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="emailFun" class="rotulo-form">E-mail</label>
+                        <input type="email" id="emailFun" name="emailFun" class="input-form"
+                               placeholder="exemplo@gmail.com" maxlength="100" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="telefoneFun" class="rotulo-form">Telefone</label>
+                        <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form"
+                               placeholder="(11) 99999-9999" maxlength="15" required />
+                    </div>
+
+                    
+
+                    <div class="campo-form">
+                        <label for="senhaFun" class="rotulo-form">Senha</label>
+                        <input type="password" id="senhaFun" name="senhaFun" class="input-form"
+                               placeholder="Digite a senha" maxlength="8" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                               placeholder="Confirme a senha" maxlength="8" required />
+                        <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
+                    </div>
+
+                    <!-- MUDAR AQUI O DATA TYPE -->
+                    <div class="campo-form">
+                        <label for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
+                        <input type="date" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form" required />
+                    </div>
+
+                </div>
+
+                <div class="acoes-form">
+                    <button type="reset" class="botao-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-cadastrar">Cadastrar Funcionário</button>
+                </div>
+            </form>
+        </div>
+    </section>
 </div>
 
+<script src="~/js/listafuncionario.js" asp-append-version="true"></script>
 
- <script src="~/js/listafuncionario.js" asp-append-version="true"></script>
+<script>
+    // Confere se "Senha" e "Confirmar senha" são iguais antes de enviar
+    (function () {
+        const form = document.getElementById('formCadastroFuncionario');
+        const senha = document.getElementById('senhaFun');
+        const confirmar = document.getElementById('confirmarSenha');
+        const erro = document.getElementById('erroSenha');
+
+        if (!form) return;
+
+        function senhasIguais() {
+            return senha.value === confirmar.value;
+        }
+
+        confirmar.addEventListener('input', function () {
+            erro.hidden = senhasIguais() || confirmar.value === '';
+        });
+
+        form.addEventListener('submit', function (e) {
+            if (!senhasIguais()) {
+                e.preventDefault();
+                erro.hidden = false;
+                confirmar.focus();
+            }
+        });
+
+        form.addEventListener('reset', function () {
+            erro.hidden = true;
+        });
+    })();
+</script>

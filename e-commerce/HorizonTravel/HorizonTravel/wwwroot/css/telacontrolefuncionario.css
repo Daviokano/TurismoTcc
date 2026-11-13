@@ -45,33 +45,19 @@ html, body {
     color: #6b7280;
 }
 
-/* ===== Botão de cadastro ===== */
-.botao-novo {
-    display: inline-flex;
+/* ===== Área de busca (campo + botão) ===== */
+.area-busca {
+    display: flex;
     align-items: center;
-    gap: 8px;
-    padding: 9px 18px;
-    border-radius: 4px;
-    background: #f97316;
-    font-size: 0.75rem;
-    font-weight: 600;
-    color: #ffffff;
-    text-decoration: none;
-    white-space: nowrap;
-    transition: background 0.2s;
-}
-
-    .botao-novo:hover {
-        background: #ea6a0a;
-        color: #ffffff;
-        text-decoration: none;
-    }
-
-/* ===== Campo de busca ===== */
-.campo-busca {
-    position: relative;
+    gap: 10px;
     width: 100%;
     margin-bottom: 28px;
+}
+
+.campo-busca {
+    position: relative;
+    flex: 1;
+    min-width: 0;
 }
 
 .icone-busca {
@@ -98,19 +84,39 @@ html, body {
     color: #111827;
 }
 
-.input-busca::placeholder {
-    color: #6b7280;
+    .input-busca::placeholder {
+        color: #6b7280;
+    }
+
+    .input-busca:focus {
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+    }
+
+/* ===== Botão de buscar ===== */
+.botao-buscar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    height: 50px;
+    padding: 0 22px;
+    border: 0;
+    border-radius: 4px;
+    background: #f97316;
+    font-family: inherit;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #ffffff;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s;
 }
 
-.input-busca:focus {
-    outline: none;
-    border-color: #05053a;
-    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-}
-
-.botao-buscar:hover {
-    background: #ea6a0a;
-}
+    .botao-buscar:hover {
+        background: #ea6a0a;
+    }
 
 /* ===== Tabela ===== */
 .cartao-tabela {
@@ -240,6 +246,7 @@ html, body {
 .paginacao {
     display: flex;
     justify-content: flex-end;
+    flex-wrap: wrap;
     gap: 4px;
     margin-top: 14px;
 }
@@ -248,9 +255,9 @@ html, body {
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
+    min-width: 24px;
     height: 24px;
-    padding: 0;
+    padding: 0 6px;
     border: 1px solid #d1d5db;
     border-radius: 3px;
     background: #ffffff;
@@ -261,9 +268,14 @@ html, body {
     cursor: pointer;
 }
 
-.botao-pagina:hover {
-    background: #f3f4f6;
-}
+    .botao-pagina:hover:not(:disabled) {
+        background: #f3f4f6;
+    }
+
+    .botao-pagina:disabled {
+        opacity: 0.4;
+        cursor: default;
+    }
 
 .pagina-atual {
     border-color: #0000ff;
@@ -271,20 +283,9 @@ html, body {
     color: #ffffff;
 }
 
-.pagina-atual:hover {
-    background: #0000ff;
-}
-
-.botao-pagina {
-    min-width: 24px;
-    width: auto;
-    padding: 0 6px;
-}
-
-.botao-pagina:disabled {
-    opacity: 0.4;
-    cursor: default;
-}
+    .pagina-atual:hover:not(:disabled) {
+        background: #0000ff;
+    }
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {
@@ -292,8 +293,167 @@ html, body {
         flex-direction: column;
     }
 
-    .botao-novo {
-        justify-content: center;
+    .botao-buscar {
+        padding: 0 16px;
+    }
+
+    .texto-botao-buscar {
+        display: none;
+    }
+}
+
+/* ===================================================== */
+/* ===== Cadastro de funcionário (formulário)       ===== */
+/* ===================================================== */
+
+.secao-cadastro {
+    margin-top: 40px;
+    padding: 32px;
+    border-radius: 6px;
+    background: #d9d9d9;
+}
+
+.cartao-cadastro {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 28px 28px;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.titulo-cadastro {
+    margin: 0 0 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.grade-cadastro {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 28px;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.rotulo-form {
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.input-form {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid #9ca3af;
+    border-radius: 3px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+    .input-form::placeholder {
+        color: #6b7280;
+    }
+
+    .input-form:focus {
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+    }
+
+select.input-form {
+    appearance: none;
+    -webkit-appearance: none;
+    padding-right: 32px;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 16 16' fill='%236b7280'><path d='M1.5 5.5l6.5 6.5 6.5-6.5-1-1L8 10 2.5 4.5z'/></svg>");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+}
+
+    select.input-form:invalid {
+        color: #6b7280;
+    }
+
+.erro-form {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #dc2626;
+}
+
+/* ===== Botões do formulário ===== */
+.acoes-form {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.botao-cancelar,
+.botao-cadastrar {
+    height: 34px;
+    padding: 0 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 600;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, filter 0.2s;
+}
+
+.botao-cancelar {
+    border: 1px solid #9ca3af;
+    background: #ffffff;
+    color: #111827;
+}
+
+    .botao-cancelar:hover {
+        background: #f3f4f6;
+    }
+
+.botao-cadastrar {
+    border: 0;
+    background: #f97316;
+    color: #ffffff;
+}
+
+    .botao-cadastrar:hover {
+        background: #ea6a0a;
+    }
+
+/* ===== Mobile (formulário) ===== */
+@media (max-width: 767.98px) {
+    .secao-cadastro {
+        padding: 16px;
+    }
+
+    .cartao-cadastro {
+        padding: 20px 16px;
+    }
+
+    .grade-cadastro {
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-form {
+        flex-direction: column-reverse;
+    }
+
+    .botao-cancelar,
+    .botao-cadastrar {
         width: 100%;
     }
 }
