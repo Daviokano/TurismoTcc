@@ -1,4 +1,5 @@
 ﻿using HorizonTravel.Libraries.Filtro;
+using HorizonTravel.Models;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -23,6 +24,17 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Cadastrar()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Cadastrar(Models.Usuario usuario)
+        {
+            usuario.situacaoUsu = "A";
+            _usuarioRepository.Cadastrar(usuario);
+            usuario.CPFUsu = new string(usuario.CPFUsu.Where(char.IsDigit).ToArray());
+
+            TempData["MSG_S"] = "Cadastro realizado com sucesso!";
+            return RedirectToAction(nameof(Index));
         }
 
         [ValidateHttpReferer]

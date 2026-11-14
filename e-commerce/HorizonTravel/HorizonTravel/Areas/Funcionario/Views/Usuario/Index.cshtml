@@ -7,25 +7,45 @@
 
 <link rel="stylesheet" href="~/css/listausuario.css" asp-append-version="true" />
 
+@functions {
+    string ObterIniciais(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+        {
+            return "?";
+        }
+
+        var partes = nome.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (partes.Length == 1)
+        {
+            return partes[0][0].ToString().ToUpper();
+        }
+
+        return (partes[0][0].ToString() + partes[partes.Length - 1][0].ToString()).ToUpper();
+    }
+}
+
 <div class="pagina-lista">
+
+    <!-- ===== Cabeçalho ===== -->
     <div class="cabecalho-lista">
         <div>
             <h1 class="titulo-lista">Usuários</h1>
             <p class="subtitulo-lista">Gerencie os usuários cadastrados no sistema.</p>
         </div>
-
-        <a asp-action="Cadastrar" class="botao-novo">
-            <span class="bi bi-person-plus" aria-hidden="true"></span>
-            <span>Cadastrar novo usuário</span>
-        </a>
     </div>
 
-    <div class="campo-busca">
-        <span class="bi bi-search icone-busca" aria-hidden="true"></span>
-        <input type="text" id="campoBusca" class="input-busca"
-               placeholder="Buscar usuário por nome ou CPF..." autocomplete="off" />
+    <!-- ===== Busca ===== -->
+    <div class="area-busca">
+        <div class="campo-busca">
+            <span class="bi bi-search icone-busca" aria-hidden="true"></span>
+            <input type="text" id="campoBusca" class="input-busca"
+                   placeholder="Buscar usuário por nome ou CPF..." autocomplete="off" />
+        </div>
     </div>
 
+    <!-- ===== Tabela ===== -->
     <div class="cartao-tabela">
         <table class="tabela-usuarios" id="tabelaUsuarios">
             <thead>
@@ -43,28 +63,17 @@
             <tbody>
                 @foreach (Usuario usuario in Model)
                 {
-                    //pega as iniciais pra ficar na lodo de identificação do usuario
-                    string iniciais = "";
-                    if (!string.IsNullOrWhiteSpace(usuario.nomeUsu))
-                    {
-                        var partes = usuario.nomeUsu.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                        iniciais = partes.Length > 1
-                            ? $"{partes[0][0]}{partes[partes.Length - 1][0]}"
-                            : $"{partes[0][0]}";
-                        iniciais = iniciais.ToUpper();
-                    }
-
                     <tr class="linha-usuario">
                         <td>
                             <div class="celula-usuario">
-                                <span class="avatar-iniciais">@iniciais</span>
+                                <span class="avatar-iniciais">@ObterIniciais(usuario.nomeUsu)</span>
                                 <span class="nome-usuario">@usuario.nomeUsu</span>
                             </div>
                         </td>
                         <td class="cpf-usuario">@usuario.CPFUsu</td>
                         <td>@usuario.emailUsu</td>
-                        <td>@usuario.telefoneUsu</td>
-                        <td>@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
+                        <td class="telefone-usuario">@usuario.telefoneUsu</td>
+                        <td class="data-usuario">@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
                         <td>
                             @if (usuario.situacaoUsu == "A")
                             {
@@ -76,18 +85,20 @@
                             }
                         </td>
                         <td>
-                            @if (usuario.situacaoUsu == "A")
-                            {
-                                <a asp-action="Desativar" asp-route-id="@usuario.IDUsu"
-                                   class="botao-acao botao-desativar"
-                                   onclick="return confirm('Realmente deseja desativar esse usuário?');">Desativar</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Ativar" asp-route-id="@usuario.IDUsu"
-                                   class="botao-acao botao-ativar"
-                                   onclick="return confirm('Realmente deseja ativar esse usuário?');">Ativar</a>
-                            }
+                            <div class="grupo-acoes">
+                                @if (usuario.situacaoUsu == "A")
+                                {
+                                    <a asp-action="Desativar" asp-route-id="@usuario.IDUsu"
+                                       class="botao-acao botao-desativar"
+                                       onclick="return confirm('Realmente deseja desativar esse usuário?');">Desativar</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Ativar" asp-route-id="@usuario.IDUsu"
+                                       class="botao-acao botao-ativar"
+                                       onclick="return confirm('Realmente deseja ativar esse usuário?');">Ativar</a>
+                                }
+                            </div>
                         </td>
                     </tr>
                 }
@@ -99,10 +110,75 @@
         </table>
     </div>
 
-    <!-- Os botões de página são gerados pelo listausuario.js -->
-    <div class="paginacao" id="paginacao"></div>
+    <!-- Os botões de página são gerados pelo listagem.js (data-por-pagina = registros por página) -->
+    <div class="paginacao" id="paginacao" data-por-pagina="3"></div>
+
+    <!-- ===== Cadastro de usuário ===== -->
+    <section class="secao-cadastro">
+        <div class="cartao-cadastro">
+            <h2 class="titulo-cadastro">Cadastrar Usuário</h2>
+
+            <!--
+                O model da página é uma lista (IEnumerable), então não dá pra usar asp-for aqui.
+                Os campos usam "name" igual às propriedades de Usuario, então o model binding
+                do POST Cadastrar(Usuario) continua funcionando.
+            -->
+            <form asp-action="Cadastrar" method="post" id="formCadastroUsuario" class="form-cadastro">
+                <input type="hidden" name="situacaoUsu" value="A" />
+
+                <div class="grade-cadastro">
+
+                    <div class="campo-form">
+                        <label for="nomeUsu" class="rotulo-form">Nome Completo</label>
+                        <input type="text" id="nomeUsu" name="nomeUsu" class="input-form"
+                               placeholder="Digite o nome completo" maxlength="100" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="CPFUsu" class="rotulo-form">CPF</label>
+                        <input type="text" id="CPFUsu" name="CPFUsu" class="input-form CPF"
+                               placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="emailUsu" class="rotulo-form">E-mail</label>
+                        <input type="email" id="emailUsu" name="emailUsu" class="input-form"
+                               placeholder="exemplo@gmail.com" maxlength="100" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="telefoneUsu" class="rotulo-form">Telefone</label>
+                        <input type="tel" id="telefoneUsu" name="telefoneUsu" class="input-form Telefone"
+                               placeholder="(11) 99999-9999" maxlength="15" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="dataNascimentoUsu" class="rotulo-form">Data de nascimento</label>
+                        <input type="text" id="dataNascimentoUsu" name="dataNascimentoUsu" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="senhaUsu" class="rotulo-form">Senha</label>
+                        <input type="password" id="senhaUsu" name="senhaUsu" class="input-form"
+                               placeholder="Digite a senha" maxlength="8" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                               placeholder="Confirme a senha" maxlength="8" required />
+                        <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
+                    </div>
+
+                </div>
+
+                <div class="acoes-form">
+                    <button type="reset" class="botao-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-cadastrar">Cadastrar Usuário</button>
+                </div>
+            </form>
+        </div>
+    </section>
 </div>
 
-@section Scripts {
-    <script src="~/js/listausuario.js" asp-append-version="true"></script>
-}
+<script src="~/js/listausuario.js" asp-append-version="true"></script>

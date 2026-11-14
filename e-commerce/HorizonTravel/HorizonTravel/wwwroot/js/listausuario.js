@@ -1,67 +1,29 @@
-﻿document.addEventListener('DOMContentLoaded', function () {
-    const campoBusca = document.getElementById('campoBusca');
-    const linhas = document.querySelectorAll('#tabelaUsuarios .linha-usuario');
-    const linhaSemResultado = document.getElementById('linhaSemResultado');
-
-    if (!campoBusca) return;
-
-    // remove acentos e deixa minúsculo
-    const normalizar = (texto) =>
-        (texto || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().trim();
-
-    // deixa só números (para buscar CPF com ou sem pontuação)
-    const soNumeros = (texto) => (texto || '').replace(/\D/g, '');
-
-    campoBusca.addEventListener('input', function () {
-        const termo = normalizar(campoBusca.value);
-        const termoNumeros = soNumeros(campoBusca.value);
-        let visiveis = 0;
-
-        linhas.forEach(function (linha) {
-            const nome = normalizar(linha.querySelector('.nome-usuario')?.textContent);
-            const cpf = soNumeros(linha.querySelector('.cpf-usuario')?.textContent);
-
-            const achouNome = nome.includes(termo);
-            const achouCpf = termoNumeros.length > 0 && cpf.includes(termoNumeros);
-            const mostrar = termo === '' || achouNome || achouCpf;
-
-            linha.hidden = !mostrar;
-            linha.style.display = mostrar ? '' : 'none';
-            if (mostrar) visiveis++;
-        });
-
-        linhaSemResultado.hidden = visiveis > 0;
-    });
-});
-
+﻿// Busca + paginação das listas (funcionários e usuários).
+// Funciona com as linhas .linha-funcionario / .linha-usuario.
+// Para mudar a quantidade por página, use data-por-pagina na div da paginação:
+//   <div class="paginacao" id="paginacao" data-por-pagina="10"></div>
 (function () {
-    const REGISTROS_POR_PAGINA = 10;
-
     const campoBusca = document.getElementById('campoBusca');
     const botaoBuscar = document.getElementById('botaoBuscar');
-    let paginacao = document.getElementById('paginacao');
+    const paginacao = document.getElementById('paginacao');
     const linhaSemResultado = document.getElementById('linhaSemResultado');
     const linhas = Array.from(document.querySelectorAll('.linha-funcionario, .linha-usuario'));
 
-    // Se a view não tiver a div da paginação, cria uma logo abaixo da tabela
-    if (!paginacao) {
-        paginacao = document.createElement('div');
-        paginacao.id = 'paginacao';
-        paginacao.className = 'paginacao';
-        const cartao = document.querySelector('.cartao-tabela');
-        if (cartao) cartao.insertAdjacentElement('afterend', paginacao);
-    }
+    if (!paginacao) return;
 
-    console.log('[lista funcionarios] linhas encontradas:', linhas.length);
+    const REGISTROS_POR_PAGINA = Number(paginacao.dataset.porPagina) || 10;
 
     let linhasFiltradas = linhas.slice();
     let paginaAtual = 1;
 
+    // tira acentos e deixa minúsculo, pra "jose" achar "José"
     function normalizar(texto) {
         return (texto || '')
-            .toLowerCase()
+            .toString()
             .normalize('NFD')
-            .replace(/[\u0300-\u036f]/g, '');
+            .replace(/[\u0300-\u036f]/g, '')
+            .toLowerCase()
+            .trim();
     }
 
     function somenteDigitos(texto) {
@@ -69,18 +31,20 @@
     }
 
     function filtrar() {
-        const termo = normalizar(campoBusca ? campoBusca.value.trim() : '');
+        const termo = normalizar(campoBusca ? campoBusca.value : '');
         const termoDigitos = somenteDigitos(termo);
 
         linhasFiltradas = linhas.filter(function (linha) {
             if (!termo) return true;
 
-            const nome = normalizar(linha.querySelector('.nome-funcionario, .nome-usuario').textContent);
-            const cpf = linha.querySelector('.cpf-funcionario, .cpf-usuario').textContent;
+            const elNome = linha.querySelector('.nome-funcionario, .nome-usuario');
+            const elCpf = linha.querySelector('.cpf-funcionario, .cpf-usuario');
+
+            const nome = normalizar(elNome ? elNome.textContent : '');
+            const cpf = somenteDigitos(elCpf ? elCpf.textContent : '');
 
             const achouNome = nome.includes(termo);
-            const achouCpf = termoDigitos.length > 0 &&
-                somenteDigitos(cpf).includes(termoDigitos);
+            const achouCpf = termoDigitos.length > 0 && cpf.includes(termoDigitos);
 
             return achouNome || achouCpf;
         });
@@ -104,7 +68,9 @@
             linha.hidden = false;
         });
 
-        linhaSemResultado.hidden = linhasFiltradas.length > 0;
+        if (linhaSemResultado) {
+            linhaSemResultado.hidden = linhasFiltradas.length > 0;
+        }
 
         renderizarPaginacao(totalPaginas);
     }
@@ -155,9 +121,50 @@
             }
         });
 
-        // Filtra enquanto digita; se preferir só no botão/Enter, apague este bloco
+        // filtra enquanto digita
         campoBusca.addEventListener('input', filtrar);
     }
 
     renderizar();
+})();
+
+
+// Confere se "Senha" e "Confirmar senha" são iguais antes de enviar o cadastro.
+// Serve para o formulário de funcionário e para o de usuário.
+(function () {
+    const formularios = [
+        { form: 'formCadastroFuncionario', senha: 'senhaFun' },
+        { form: 'formCadastroUsuario', senha: 'senhaUsu' }
+    ];
+
+    formularios.forEach(function (item) {
+        const form = document.getElementById(item.form);
+        if (!form) return; // esse formulário não está nesta página
+
+        const senha = document.getElementById(item.senha);
+        const confirmar = document.getElementById('confirmarSenha');
+        const erro = document.getElementById('erroSenha');
+
+        if (!senha || !confirmar || !erro) return;
+
+        function senhasIguais() {
+            return senha.value === confirmar.value;
+        }
+
+        confirmar.addEventListener('input', function () {
+            erro.hidden = senhasIguais() || confirmar.value === '';
+        });
+
+        form.addEventListener('submit', function (e) {
+            if (!senhasIguais()) {
+                e.preventDefault();
+                erro.hidden = false;
+                confirmar.focus();
+            }
+        });
+
+        form.addEventListener('reset', function () {
+            erro.hidden = true;
+        });
+    });
 })();

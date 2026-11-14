@@ -37,7 +37,9 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Models.Funcionario funcionario)
         {
+            funcionario.CPFFun = new string(funcionario.CPFFun.Where(char.IsDigit).ToArray());
             _funcionarioRepository.Cadastrar(funcionario);
+            
             TempData["MSG_S"] = "Cadastro realizado com sucesso!";
             return RedirectToAction(nameof(Index));
         }

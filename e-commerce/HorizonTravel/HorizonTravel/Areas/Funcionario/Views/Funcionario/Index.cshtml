@@ -97,7 +97,7 @@
     </div>
 
     <!-- Os botões de página são gerados pelo listafuncionario.js -->
-    <div class="paginacao" id="paginacao"></div>
+    <div class="paginacao" id="paginacao" data-por-pagina="3"></div>
 
     <!-- ===== Cadastro de funcionário ===== -->
     <section class="secao-cadastro">
@@ -119,8 +119,8 @@
                     </div>
 
                     <div class="campo-form">
-                        <label for="CPFFun" class="form-control CPF">CPF</label>
-                        <input type="text" id="CPFFun" name="CPFFun" class="input-form"
+                        <label for="CPFFun" class="rotulo-form">CPF</label>
+                        <input type="text" id="CPFFun" name="CPFFun" class="input-form CPF"
                                placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
                     </div>
 
@@ -131,8 +131,8 @@
                     </div>
 
                     <div class="campo-form">
-                        <label for="telefoneFun" class="form-control Telefone">Telefone</label>
-                        <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form"
+                        <label for="telefoneFun" class="rotulo-form">Telefone</label>
+                        <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form Telefone"
                                placeholder="(11) 99999-9999" maxlength="15" required />
                     </div>
 
@@ -153,8 +153,8 @@
 
                     <!-- MUDAR AQUI O DATA TYPE -->
                     <div class="campo-form">
-                        <label for="dataNascimentoFun" class="form-control DataNasc">Data de nascimento</label>
-                        <input type="text" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form" placeholder="dd/mm/aaaa" required />
+                        <label for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
+                        <input type="text" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
                     </div>
 
                 </div>
@@ -167,37 +167,5 @@
         </div>
     </section>
 </div>
-
-<script>
-    // Confere se "Senha" e "Confirmar senha" são iguais antes de enviar
-    (function () {
-        const form = document.getElementById('formCadastroFuncionario');
-        const senha = document.getElementById('senhaFun');
-        const confirmar = document.getElementById('confirmarSenha');
-        const erro = document.getElementById('erroSenha');
-
-        if (!form) return;
-
-        function senhasIguais() {
-            return senha.value === confirmar.value;
-        }
-
-        confirmar.addEventListener('input', function () {
-            erro.hidden = senhasIguais() || confirmar.value === '';
-        });
-
-        form.addEventListener('submit', function (e) {
-            if (!senhasIguais()) {
-                e.preventDefault();
-                erro.hidden = false;
-                confirmar.focus();
-            }
-        });
-
-        form.addEventListener('reset', function () {
-            erro.hidden = true;
-        });
-    })();
-</script>
 
 <script src="~/js/listafuncionario.js" asp-append-version="true"></script>

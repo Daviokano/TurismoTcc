@@ -115,6 +115,7 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
                 cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.Date).Value = usuario.dataNascimentoUsu.Date;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
                 cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = usuario.IDUsu;
 
                 cmd.ExecuteNonQuery();

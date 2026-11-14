@@ -354,12 +354,6 @@ html, body {
     color: #111827;
 }
 
-.form-control {
-    font-size: 0.7rem;
-    font-weight: 600;
-    color: #111827;
-}
-
 .input-form {
     display: block;
     width: 100%;
@@ -374,15 +368,15 @@ html, body {
     color: #111827;
 }
 
-    .input-form::placeholder {
-        color: #6b7280;
-    }
+.input-form::placeholder {
+    color: #6b7280;
+}
 
-    .input-form:focus {
-        outline: none;
-        border-color: #05053a;
-        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-    }
+.input-form:focus {
+    outline: none;
+    border-color: #05053a;
+    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+}
 
 select.input-form {
     appearance: none;

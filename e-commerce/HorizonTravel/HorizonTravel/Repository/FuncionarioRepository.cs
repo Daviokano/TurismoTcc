@@ -42,14 +42,16 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
+                string cpf = System.Text.RegularExpressions.Regex.Replace(funcionario.CPFFun, @"\D", "");
+
                 MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun)
                         VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun)", conexao);
 
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
-                cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = funcionario.CPFFun;
+                cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = cpf;
                 cmd.Parameters.Add("@emailFun", MySqlDbType.VarChar).Value = funcionario.emailFun;
                 cmd.Parameters.Add("@telefoneFun", MySqlDbType.VarChar).Value = funcionario.telefoneFun;
-                cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun;
+                cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun.ToString("yyyy-MM-dd");
                 cmd.Parameters.Add("@senhaFun", MySqlDbType.VarChar).Value = funcionario.senhaFun;
 
 
