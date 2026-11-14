@@ -55,6 +55,27 @@ namespace HorizonTravel.Controllers
         {
             return View(_usuarioLogin.GetUsuario());
         }
+        [HttpPost]
+        [UsuarioAutorizacaoAtributte]
+        public IActionResult MeuPerfil([FromForm] Usuario usuario)
+        {
+            Usuario usuarioLogado = _usuarioLogin.GetUsuario();
+
+            usuario.IDUsu = usuarioLogado.IDUsu;
+            usuario.senhaUsu = usuarioLogado.senhaUsu;
+            usuario.situacaoUsu = usuarioLogado.situacaoUsu;
+
+            if (ModelState.IsValid)
+            {
+                _usuarioRepository.Atualizar(usuario);
+                _usuarioLogin.Login(usuario);
+
+                TempData["MSG_S"] = "Informações atualizadas com sucesso!";
+                return RedirectToAction(nameof(MeuPerfil));
+            }
+
+            return View(usuario);
+        }
 
         [UsuarioAutorizacaoAtributte]
         public IActionResult MinhasReservas()

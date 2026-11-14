@@ -24,30 +24,55 @@
     <section class="cartao-perfil">
         <h2>Informações pessoais</h2>
 
-        <form>
+        @if (TempData["MSG_S"] != null)
+        {
+            <p class="mensagem-sucesso">@TempData["MSG_S"]</p>
+        }
+
+        <form asp-controller="Home" asp-action="MeuPerfil" method="post">
+            <input type="hidden" asp-for="IDUsu" />
+            <input type="hidden" asp-for="senhaUsu" />
+            <input type="hidden" asp-for="situacaoUsu" />
+
+            <div asp-validation-summary="ModelOnly" class="mensagem-erro"></div>
+
             <div class="campos-perfil">
-                <label>
-                    Nome completo
-                    <input type="text" value="@Model.nomeUsu" readonly />
-                </label>
-
-                <label>
-                    Telefone
-                    <input type="text" value="@Model.telefoneUsu" readonly />
-                </label>
-
-                <label>
-                    E-mail
-                    <input type="email" value="@Model.emailUsu" readonly />
-                </label>
-
-                <label>
+                <label asp-for="CPFUsu">
                     CPF
-                    <input type="text" value="@Model.CPFUsu" readonly />
+                    <input asp-for="CPFUsu" />
+                    <span asp-validation-for="CPFUsu"></span>
+                </label>
+
+                <label asp-for="nomeUsu">
+                    Nome completo
+                    <input asp-for="nomeUsu" />
+                    <span asp-validation-for="nomeUsu"></span>
+                </label>
+
+                <label asp-for="telefoneUsu">
+                    Telefone
+                    <input asp-for="telefoneUsu" />
+                    <span asp-validation-for="telefoneUsu"></span>
+                </label>
+
+                <label asp-for="emailUsu">
+                    E-mail
+                    <input asp-for="emailUsu" />
+                    <span asp-validation-for="emailUsu"></span>
+                </label>
+
+                <label asp-for="dataNascimentoUsu">
+                    Data de nascimento
+                    <input asp-for="dataNascimentoUsu" type="date" />
+                    <span asp-validation-for="dataNascimentoUsu"></span>
                 </label>
             </div>
 
-            <button type="button" class="botao-perfil" disabled>Salvar alterações</button>
+            <button type="submit" class="botao-perfil">Salvar alterações</button>
         </form>
     </section>
 </section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

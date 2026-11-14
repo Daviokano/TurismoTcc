@@ -1,4 +1,4 @@
-﻿using HorizonTravel.Models;
+using HorizonTravel.Models;
 using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
@@ -39,16 +39,17 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET nomeUsu=@nomeUsu, CPFUsu=@CPFUsu, emailUsu=@emailUsu, 
-                telefoneUsu=@telefoneUsu, dataNascimentoUsu=@dataNascimentoUsu, senhaUsu=@senhaUsu WHERE IDUsu=@IDUsu");
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET CPFUsu=@CPFUsu, nomeUsu=@nomeUsu, emailUsu=@emailUsu,
+                telefoneUsu=@telefoneUsu, dataNascimentoUsu=@dataNascimentoUsu, senhaUsu=@senhaUsu
+                WHERE IDUsu=@IDUsu", conexao);
 
                 cmd.Parameters.Add("@nomeUsu", MySqlDbType.VarChar).Value = usuario.nomeUsu;
                 cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = usuario.CPFUsu;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
-                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascimentoUsu;
-                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
+                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.Date).Value = usuario.dataNascimentoUsu.Date;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
+                cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = usuario.IDUsu;
 
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -112,9 +113,9 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@CPFUsu", MySqlDbType.VarChar).Value = cpf;
                 cmd.Parameters.Add("@emailUsu", MySqlDbType.VarChar).Value = usuario.emailUsu;
                 cmd.Parameters.Add("@telefoneUsu", MySqlDbType.VarChar).Value = usuario.telefoneUsu;
-                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.DateTime).Value = usuario.dataNascimentoUsu;
+                cmd.Parameters.Add("@dataNascimentoUsu", MySqlDbType.Date).Value = usuario.dataNascimentoUsu.Date;
                 cmd.Parameters.Add("@senhaUsu", MySqlDbType.VarChar).Value = usuario.senhaUsu;
-                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = usuario.situacaoUsu;
+                cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = usuario.IDUsu;
 
                 cmd.ExecuteNonQuery();
                 conexao.Close();
