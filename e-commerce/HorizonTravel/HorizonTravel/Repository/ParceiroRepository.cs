@@ -57,11 +57,13 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
+                string cnpj = System.Text.RegularExpressions.Regex.Replace(parceiro.CNPJFor, @"\D", "");
+
                 MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Parceiro(nomeFor, CNPJFor, emailFor, situacaoFor)
                         VALUES (@nomeFor, @CNPJFor, @emailFor, @situacaoFor)", conexao);
 
                 cmd.Parameters.Add("@nomeFor", MySqlDbType.VarChar).Value = parceiro.nomeFor;
-                cmd.Parameters.Add("@CNPJFor", MySqlDbType.Int32).Value = parceiro.CNPJFor;
+                cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = cnpj;
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
                 cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = parceiro.situacaoFor;
 

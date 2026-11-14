@@ -7,25 +7,45 @@
 
 <link rel="stylesheet" href="~/css/listaparceiro.css" asp-append-version="true" />
 
+@functions {
+    string ObterIniciais(string nome)
+    {
+        if (string.IsNullOrWhiteSpace(nome))
+        {
+            return "?";
+        }
+
+        var partes = nome.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (partes.Length == 1)
+        {
+            return partes[0][0].ToString().ToUpper();
+        }
+
+        return (partes[0][0].ToString() + partes[partes.Length - 1][0].ToString()).ToUpper();
+    }
+}
+
 <div class="pagina-lista">
+
+    <!-- ===== Cabeçalho ===== -->
     <div class="cabecalho-lista">
         <div>
             <h1 class="titulo-lista">Parceiros</h1>
             <p class="subtitulo-lista">Gerencie os parceiros cadastrados no sistema.</p>
         </div>
-
-        <a asp-action="Cadastrar" class="botao-novo">
-            <span class="bi bi-person-plus" aria-hidden="true"></span>
-            <span>Cadastrar novo parceiro</span>
-        </a>
     </div>
 
-    <div class="campo-busca">
-        <span class="bi bi-search icone-busca" aria-hidden="true"></span>
-        <input type="text" id="campoBusca" class="input-busca"
-               placeholder="Buscar parceiro por nome ou CNPJ..." autocomplete="off" />
+    <!-- ===== Busca ===== -->
+    <div class="area-busca">
+        <div class="campo-busca">
+            <span class="bi bi-search icone-busca" aria-hidden="true"></span>
+            <input type="text" id="campoBusca" class="input-busca"
+                   placeholder="Buscar parceiro por nome ou CNPJ..." autocomplete="off" />
+        </div>
     </div>
 
+    <!-- ===== Tabela ===== -->
     <div class="cartao-tabela">
         <table class="tabela-parceiros" id="tabelaParceiros">
             <thead>
@@ -41,21 +61,10 @@
             <tbody>
                 @foreach (Parceiro parceiro in Model)
                 {
-                    //pega as iniciais pra ficar no logo de identificação do parceiro
-                    string iniciais = "";
-                    if (!string.IsNullOrWhiteSpace(parceiro.nomeFor))
-                    {
-                        var partes = parceiro.nomeFor.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
-                        iniciais = partes.Length > 1
-                            ? $"{partes[0][0]}{partes[partes.Length - 1][0]}"
-                            : $"{partes[0][0]}";
-                        iniciais = iniciais.ToUpper();
-                    }
-
                     <tr class="linha-parceiro">
                         <td>
                             <div class="celula-parceiro">
-                                <span class="avatar-iniciais">@iniciais</span>
+                                <span class="avatar-iniciais">@ObterIniciais(parceiro.nomeFor)</span>
                                 <span class="nome-parceiro">@parceiro.nomeFor</span>
                             </div>
                         </td>
@@ -72,18 +81,20 @@
                             }
                         </td>
                         <td>
-                            @if (parceiro.situacaoFor == "A")
-                            {
-                                <a asp-action="Desativar" asp-route-id="@parceiro.IDFor"
-                                   class="botao-acao botao-desativar"
-                                   onclick="return confirm('Realmente deseja desativar esse parceiro?');">Desativar</a>
-                            }
-                            else
-                            {
-                                <a asp-action="Ativar" asp-route-id="@parceiro.IDFor"
-                                   class="botao-acao botao-ativar"
-                                   onclick="return confirm('Realmente deseja ativar esse parceiro?');">Ativar</a>
-                            }
+                            <div class="grupo-acoes">
+                                @if (parceiro.situacaoFor == "A")
+                                {
+                                    <a asp-action="Desativar" asp-route-id="@parceiro.IDFor"
+                                       class="botao-acao botao-desativar"
+                                       onclick="return confirm('Realmente deseja desativar esse parceiro?');">Desativar</a>
+                                }
+                                else
+                                {
+                                    <a asp-action="Ativar" asp-route-id="@parceiro.IDFor"
+                                       class="botao-acao botao-ativar"
+                                       onclick="return confirm('Realmente deseja ativar esse parceiro?');">Ativar</a>
+                                }
+                            </div>
                         </td>
                     </tr>
                 }
@@ -95,14 +106,51 @@
         </table>
     </div>
 
-    <!-- talvez tenha q tirar -->
-    <div class="paginacao">
-        <button type="button" class="botao-pagina" aria-label="Página anterior">&lsaquo;</button>
-        <button type="button" class="botao-pagina pagina-atual">1</button>
-        <button type="button" class="botao-pagina" aria-label="Próxima página">&rsaquo;</button>
-    </div>
+    <!-- Os botões de página são gerados pelo listagem.js (data-por-pagina = registros por página) -->
+    <div class="paginacao" id="paginacao" data-por-pagina="3"></div>
+
+    <!-- ===== Cadastro de parceiro ===== -->
+    <section class="secao-cadastro">
+        <div class="cartao-cadastro">
+            <h2 class="titulo-cadastro">Cadastrar Parceiro</h2>
+
+            <!--
+                O model da página é uma lista (IEnumerable), então não dá pra usar asp-for aqui.
+                Os campos usam "name" igual às propriedades de Parceiro, então o model binding
+                do POST Cadastrar(Parceiro) continua funcionando.
+            -->
+            <form asp-action="Cadastrar" method="post" id="formCadastroParceiro" class="form-cadastro">
+                <input type="hidden" name="situacaoFor" value="A" />
+
+                <div class="grade-cadastro">
+
+                    <div class="campo-form">
+                        <label for="nomeFor" class="rotulo-form">Nome do parceiro</label>
+                        <input type="text" id="nomeFor" name="nomeFor" class="input-form"
+                               placeholder="Digite o nome do parceiro" maxlength="100" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="CNPJFor" class="rotulo-form">CNPJ</label>
+                        <input type="text" id="CNPJFor" name="CNPJFor" class="input-form CNPJ"
+                               placeholder="00.000.000/0000-00" inputmode="numeric" maxlength="18" required />
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="emailFor" class="rotulo-form">E-mail</label>
+                        <input type="email" id="emailFor" name="emailFor" class="input-form"
+                               placeholder="exemplo@gmail.com" maxlength="100" required />
+                    </div>
+
+                </div>
+
+                <div class="acoes-form">
+                    <button type="reset" class="botao-cancelar">Cancelar</button>
+                    <button type="submit" class="botao-cadastrar">Cadastrar Parceiro</button>
+                </div>
+            </form>
+        </div>
+    </section>
 </div>
 
-@section Scripts {
-    <script src="~/js/listaparceiro.js" asp-append-version="true"></script>
-}
+<script src="~/js/listaparceiro.js" asp-append-version="true"></script>

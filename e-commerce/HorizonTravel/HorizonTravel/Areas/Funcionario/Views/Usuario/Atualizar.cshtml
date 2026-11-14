@@ -1,0 +1,65 @@
+@model HorizonTravel.Models.Usuario
+@{
+    ViewBag.Title = "Atualizar Usuário";
+    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Atualizar Usuário</h2>
+<form asp-action="Cadastrar" method="post" id="formCadastroUsuario" class="form-cadastro">
+    <input type="hidden" name="situacaoUsu" value="A" />
+
+    <div class="grade-cadastro">
+
+        <div class="campo-form">
+            <label for="nomeUsu" class="rotulo-form">Nome Completo</label>
+            <input type="text" id="nomeUsu" name="nomeUsu" class="input-form"
+                   placeholder="Digite o nome completo" maxlength="100" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="CPFUsu" class="rotulo-form">CPF</label>
+            <input type="text" id="CPFUsu" name="CPFUsu" class="input-form CPF"
+                   placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="emailUsu" class="rotulo-form">E-mail</label>
+            <input type="email" id="emailUsu" name="emailUsu" class="input-form"
+                   placeholder="exemplo@gmail.com" maxlength="100" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="telefoneUsu" class="rotulo-form">Telefone</label>
+            <input type="tel" id="telefoneUsu" name="telefoneUsu" class="input-form Telefone"
+                   placeholder="(11) 99999-9999" maxlength="15" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="dataNascimentoUsu" class="rotulo-form">Data de nascimento</label>
+            <input type="text" id="dataNascimentoUsu" name="dataNascimentoUsu" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="senhaUsu" class="rotulo-form">Senha</label>
+            <input type="password" id="senhaUsu" name="senhaUsu" class="input-form"
+                   placeholder="Digite a senha" maxlength="8" required />
+        </div>
+
+        <div class="campo-form">
+            <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
+            <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                   placeholder="Confirme a senha" maxlength="8" required />
+            <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
+        </div>
+
+    </div>
+
+    <div class="acoes-form">
+        <button type="reset" class="botao-cancelar">Cancelar</button>
+        <button type="submit" class="botao-cadastrar">Atualizar</button>
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

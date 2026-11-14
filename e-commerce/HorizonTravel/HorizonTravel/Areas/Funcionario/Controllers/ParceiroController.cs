@@ -26,6 +26,17 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Cadastrar(Models.Parceiro parceiro)
+        {
+            parceiro.situacaoFor = "A";
+            parceiro.CNPJFor = new string(parceiro.CNPJFor.Where(char.IsDigit).ToArray());
+            _parceiroRepository.Cadastrar(parceiro);
+            TempData["MSG_S"] = "Cadastro realizado com sucesso!";
+            return RedirectToAction(nameof(Index));
+        }
+
+
         [ValidateHttpReferer]
         public IActionResult Ativar(int Id)
         {

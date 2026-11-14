@@ -5,6 +5,7 @@
 
 $(document).ready(function () {
     $('.CPF').mask('000.000.000-00');
+    $('.CNPJ').mask('00.000.000/0000-00');
     $('.CEP').mask('0000-000', { reverse: true });
     $('.Dinheiro').mask('000.000.000.000.000,00', { reverse: true });
     $('.Telefone').mask('(00) 00000-0000');
