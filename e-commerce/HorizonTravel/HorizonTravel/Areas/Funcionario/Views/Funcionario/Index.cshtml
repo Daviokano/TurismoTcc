@@ -62,25 +62,28 @@
             </thead>
 
             <tbody>
-                @foreach (var item in Model)
+                @foreach (Funcionario funcionario in Model)
                 {
                     <tr class="linha-funcionario">
                         <td>
                             <div class="celula-funcionario">
-                                <span class="avatar-iniciais">@ObterIniciais(item.nomeFun)</span>
-                                <span class="nome-funcionario">@item.nomeFun</span>
+                                <span class="avatar-iniciais">@ObterIniciais(funcionario.nomeFun)</span>
+                                <span class="nome-funcionario">@funcionario.nomeFun</span>
                             </div>
                         </td>
-                        <td class="cpf-funcionario">@item.CPFFun</td>
-                        <td>@item.emailFun</td>
-                        <td class="telefone-funcionario">@item.telefoneFun</td>
-                        <td class="data-funcionario">@item.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
+                        <td class="cpf-funcionario">@funcionario.CPFFun</td>
+                        <td>@funcionario.emailFun</td>
+                        <td class="telefone-funcionario">@funcionario.telefoneFun</td>
+                        <td class="data-funcionario">@funcionario.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
                         <td>
                             <div class="grupo-acoes">
-                                <a asp-action="Atualizar" asp-route-id="@item.IDFun" class="botao-acao botao-editar">Editar</a>
-                                <a asp-action="Detalhes" asp-route-id="@item.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
-                                <a asp-action="Excluir" asp-route-id="@item.IDFun" class="botao-acao botao-excluir"
-                                   onclick="return confirm('Tem certeza que deseja excluir este funcionário?')">Excluir</a>
+                                <a asp-action="Atualizar" asp-route-id="@funcionario.IDFun" class="botao-acao botao-editar">Editar</a>
+                                <a asp-action="Detalhes" asp-route-id="@funcionario.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
+
+                                <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
+                                      onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                    <button type="submit" class="botao-acao botao-excluir">Excluir</button>
+                                </form>
                             </div>
                         </td>
                     </tr>
@@ -116,7 +119,7 @@
                     </div>
 
                     <div class="campo-form">
-                        <label for="CPFFun" class="rotulo-form CPF">CPF</label>
+                        <label for="CPFFun" class="form-control CPF">CPF</label>
                         <input type="text" id="CPFFun" name="CPFFun" class="input-form"
                                placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
                     </div>
@@ -128,7 +131,7 @@
                     </div>
 
                     <div class="campo-form">
-                        <label for="telefoneFun" class="rotulo-form">Telefone</label>
+                        <label for="telefoneFun" class="form-control Telefone">Telefone</label>
                         <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form"
                                placeholder="(11) 99999-9999" maxlength="15" required />
                     </div>
@@ -150,8 +153,8 @@
 
                     <!-- MUDAR AQUI O DATA TYPE -->
                     <div class="campo-form">
-                        <label for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
-                        <input type="date" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form" required />
+                        <label for="dataNascimentoFun" class="form-control DataNasc">Data de nascimento</label>
+                        <input type="text" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form" placeholder="dd/mm/aaaa" required />
                     </div>
 
                 </div>
@@ -164,8 +167,6 @@
         </div>
     </section>
 </div>
-
-<script src="~/js/listafuncionario.js" asp-append-version="true"></script>
 
 <script>
     // Confere se "Senha" e "Confirmar senha" são iguais antes de enviar
@@ -198,3 +199,5 @@
         });
     })();
 </script>
+
+<script src="~/js/listafuncionario.js" asp-append-version="true"></script>
