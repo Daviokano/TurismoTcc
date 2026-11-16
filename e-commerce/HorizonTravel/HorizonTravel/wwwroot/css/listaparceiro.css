@@ -221,6 +221,11 @@ html, body {
         text-decoration: none;
     }
 
+.botao-editar {
+    background: #fef3c7;
+    color: #b45309;
+}
+
 .botao-desativar {
     background: #fee2e2;
     color: #dc2626;
@@ -391,9 +396,9 @@ html, body {
     color: #ffffff;
 }
 
-    .botao-cadastrar:hover {
-        background: #ea6a0a;
-    }
+.botao-cadastrar:hover {
+    background: #ea6a0a;
+}
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {

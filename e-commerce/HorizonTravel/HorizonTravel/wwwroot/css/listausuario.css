@@ -223,6 +223,11 @@ html, body {
         text-decoration: none;
     }
 
+.botao-editar {
+    background: #fef3c7;
+    color: #b45309;
+}
+
 .botao-desativar {
     background: #fee2e2;
     color: #dc2626;
@@ -340,15 +345,15 @@ html, body {
     color: #111827;
 }
 
-.input-form::placeholder {
-    color: #6b7280;
-}
+    .input-form::placeholder {
+        color: #6b7280;
+    }
 
-.input-form:focus {
-    outline: none;
-    border-color: #05053a;
-    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-}
+    .input-form:focus {
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+    }
 
 .erro-form {
     font-size: 0.65rem;
@@ -383,9 +388,9 @@ html, body {
     color: #111827;
 }
 
-.botao-cancelar:hover {
-    background: #f3f4f6;
-}
+    .botao-cancelar:hover {
+        background: #f3f4f6;
+    }
 
 .botao-cadastrar {
     border: 0;
@@ -393,9 +398,9 @@ html, body {
     color: #ffffff;
 }
 
-.botao-cadastrar:hover {
-    background: #ea6a0a;
-}
+    .botao-cadastrar:hover {
+        background: #ea6a0a;
+    }
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {

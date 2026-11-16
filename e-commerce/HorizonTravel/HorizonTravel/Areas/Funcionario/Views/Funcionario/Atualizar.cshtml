@@ -4,44 +4,81 @@
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Atualizar Funcionário</h2>
+<link rel="stylesheet" href="~/css/atualizar.css" asp-append-version="true" />
 
-<form asp-action="Atualizar" method="post">
-    <input type="hidden" asp-for="IDFun" />
-    <div class="form-group">
-        <label asp-for="CPFFun" class="control-label"></label>
-        <input asp-for="CPFFun" class="form-control" />
-        <span asp-validation-for="CPFFun" class="text-danger"></span>
+<div class="pagina-atualizar">
+
+    <div class="cabecalho-atualizar">
+        <h1 class="titulo-atualizar">Atualizar Funcionário</h1>
+        <p class="subtitulo-atualizar">Edite os dados do funcionário e salve as alterações.</p>
     </div>
-    <div class="form-group">
-        <label asp-for="nomeFun" class="control-label"></label>
-        <input asp-for="nomeFun" class="form-control" />
-        <span asp-validation-for="nomeFun" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="emailFun" class="control-label"></label>
-        <input asp-for="emailFun" class="form-control" />
-        <span asp-validation-for="emailFun" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="telefoneFun" class="control-label"></label>
-        <input asp-for="telefoneFun" class="form-control" />
-        <span asp-validation-for="telefoneFun" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="dataNascimentoFun" class="control-label"></label>
-        <input asp-for="dataNascimentoFun" class="form-control" type="date" />
-        <span asp-validation-for="dataNascimentoFun" class="text-danger"></span>
-    </div>
-    <div class="form-group">
-        <label asp-for="senhaFun" class="control-label"></label>
-        <input asp-for="senhaFun" class="form-control" type="password" maxlength="8" />
-        <span asp-validation-for="senhaFun" class="text-danger"></span>
-    </div>
-    <button type="submit" class="btn btn-primary">Salvar</button>
-    <a asp-action="Index" class="btn btn-secondary">Voltar</a>
-</form>
+
+    <section class="secao-atualizar">
+        <div class="cartao-atualizar">
+            <h2 class="titulo-cartao">Dados do funcionário</h2>
+
+            <form asp-action="Atualizar" method="post" id="formAtualizarFuncionario">
+                <input type="hidden" asp-for="IDFun" />
+
+                <div class="grade-atualizar">
+
+                    <div class="campo-form">
+                        <label asp-for="nomeFun" class="rotulo-form">Nome Completo</label>
+                        <input asp-for="nomeFun" class="input-form" placeholder="Digite o nome completo" maxlength="100" />
+                        <span asp-validation-for="nomeFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label asp-for="CPFFun" class="rotulo-form">CPF</label>
+                        <input asp-for="CPFFun" class="input-form CPF" placeholder="000.000.000-00"
+                               inputmode="numeric" maxlength="14" />
+                        <span asp-validation-for="CPFFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label asp-for="emailFun" class="rotulo-form">E-mail</label>
+                        <input asp-for="emailFun" class="input-form" placeholder="exemplo@gmail.com" maxlength="100" />
+                        <span asp-validation-for="emailFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label asp-for="telefoneFun" class="rotulo-form">Telefone</label>
+                        <input asp-for="telefoneFun" class="input-form Telefone" placeholder="(11) 99999-9999" maxlength="15" />
+                        <span asp-validation-for="telefoneFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label asp-for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
+                        <input asp-for="dataNascimentoFun" class="input-form DataNasc" type="text" />
+                        <span asp-validation-for="dataNascimentoFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label asp-for="senhaFun" class="rotulo-form">Senha</label>
+                        <input asp-for="senhaFun" class="input-form" type="password" placeholder="Digite a senha" maxlength="8" />
+                        <span asp-validation-for="senhaFun" class="erro-form"></span>
+                    </div>
+
+                    <div class="campo-form">
+                        <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
+                        <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                               placeholder="Confirme a senha" maxlength="8" />
+                        <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
+                    </div>
+
+                </div>
+
+                <div class="acoes-form">
+                    <a asp-action="Index" class="botao-cancelar">Voltar</a>
+                    <button type="submit" class="botao-salvar">Salvar alterações</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</div>
 
 @section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

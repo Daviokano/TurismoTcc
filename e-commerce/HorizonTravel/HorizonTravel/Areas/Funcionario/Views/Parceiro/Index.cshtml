@@ -82,6 +82,8 @@
                         </td>
                         <td>
                             <div class="grupo-acoes">
+                                <a asp-action="Atualizar" asp-route-id="@parceiro.IDFor" class="botao-acao botao-editar">Editar</a>
+
                                 @if (parceiro.situacaoFor == "A")
                                 {
                                     <a asp-action="Desativar" asp-route-id="@parceiro.IDFor"
@@ -153,4 +155,4 @@
     </section>
 </div>
 
-<script src="~/js/listaparceiro.js" asp-append-version="true"></script>
+<script src="~/js/listagem.js" asp-append-version="true"></script>

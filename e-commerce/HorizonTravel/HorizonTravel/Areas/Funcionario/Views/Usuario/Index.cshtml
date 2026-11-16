@@ -86,6 +86,8 @@
                         </td>
                         <td>
                             <div class="grupo-acoes">
+                                <a asp-action="Atualizar" asp-route-id="@usuario.IDUsu" class="botao-acao botao-editar">Editar</a>
+
                                 @if (usuario.situacaoUsu == "A")
                                 {
                                     <a asp-action="Desativar" asp-route-id="@usuario.IDUsu"
@@ -136,7 +138,7 @@
 
                     <div class="campo-form">
                         <label for="CPFUsu" class="rotulo-form">CPF</label>
-                        <input type="text" id="CPFUsu" name="CPFUsu" class="input-form CPF"
+                        <input type="text" id="CPFUsu" name="CPFUsu" class="input-form"
                                placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
                     </div>
 
@@ -148,13 +150,13 @@
 
                     <div class="campo-form">
                         <label for="telefoneUsu" class="rotulo-form">Telefone</label>
-                        <input type="tel" id="telefoneUsu" name="telefoneUsu" class="input-form Telefone"
+                        <input type="tel" id="telefoneUsu" name="telefoneUsu" class="input-form"
                                placeholder="(11) 99999-9999" maxlength="15" required />
                     </div>
 
                     <div class="campo-form">
                         <label for="dataNascimentoUsu" class="rotulo-form">Data de nascimento</label>
-                        <input type="text" id="dataNascimentoUsu" name="dataNascimentoUsu" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
+                        <input type="date" id="dataNascimentoUsu" name="dataNascimentoUsu" class="input-form" required />
                     </div>
 
                     <div class="campo-form">
@@ -181,4 +183,5 @@
     </section>
 </div>
 
-<script src="~/js/listausuario.js" asp-append-version="true"></script>
+<script src="~/js/listagem.js" asp-append-version="true"></script>
+<script src="~/js/cadastrousuario.js" asp-append-version="true"></script>

@@ -13,6 +13,8 @@
 
     const REGISTROS_POR_PAGINA = Number(paginacao.dataset.porPagina) || 10;
 
+    console.log('[listagem] linhas:', linhas.length, '| por página:', REGISTROS_POR_PAGINA);
+
     let linhasFiltradas = linhas.slice();
     let paginaAtual = 1;
 
@@ -134,7 +136,9 @@
 (function () {
     const formularios = [
         { form: 'formCadastroFuncionario', senha: 'senhaFun' },
-        { form: 'formCadastroUsuario', senha: 'senhaUsu' }
+        { form: 'formCadastroUsuario', senha: 'senhaUsu' },
+        { form: 'formAtualizarFuncionario', senha: 'senhaFun' },
+        { form: 'formAtualizarUsuario', senha: 'senhaUsu' }
     ];
 
     formularios.forEach(function (item) {

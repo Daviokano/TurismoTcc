@@ -37,6 +37,28 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         }
 
 
+        [HttpGet]
+        public IActionResult Atualizar(int Id)
+        {
+            Models.Parceiro parceiro = _parceiroRepository.ObterParceiro(Id);
+            return View(parceiro);
+        }
+
+        [HttpPost]
+        public IActionResult Atualizar([FromForm] Models.Parceiro parceiro)
+        {
+            parceiro.CNPJFor = new string(parceiro.CNPJFor.Where(char.IsDigit).ToArray());
+
+            if (ModelState.IsValid)
+            {
+                _parceiroRepository.Atualizar(parceiro);
+                TempData["MSG_S"] = "Cadastro atualizado com sucesso!";
+                return RedirectToAction(nameof(Index));
+            }
+
+            return View(parceiro);
+        }
+
         [ValidateHttpReferer]
         public IActionResult Ativar(int Id)
         {

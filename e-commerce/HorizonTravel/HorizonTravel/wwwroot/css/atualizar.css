@@ -1,0 +1,212 @@
+﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ===================================================== */
+/* ===== Telas de atualização (funcionário, usuário e   ===== */
+/* ===== parceiro) - um único CSS para as três          ===== */
+/* ===================================================== */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+/* ===== Página ===== */
+.pagina-atualizar {
+    margin: 0;
+    padding: 0;
+}
+
+/* ===== Cabeçalho ===== */
+.cabecalho-atualizar {
+    margin: 0 0 24px;
+}
+
+.titulo-atualizar {
+    margin: 0 0 2px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+.subtitulo-atualizar {
+    margin: 0;
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: #6b7280;
+}
+
+/* ===== Painel cinza + card branco ===== */
+.secao-atualizar {
+    padding: 32px;
+    border-radius: 6px;
+    background: #d9d9d9;
+}
+
+.cartao-atualizar {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 24px 28px 28px;
+    border-radius: 6px;
+    background: #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12);
+}
+
+.titulo-cartao {
+    margin: 0 0 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #111827;
+}
+
+/* ===== Grade do formulário (2 colunas) ===== */
+.grade-atualizar {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 28px;
+}
+
+/* campo que ocupa a linha inteira (use junto com campo-form) */
+.campo-largo {
+    grid-column: 1 / -1;
+}
+
+.campo-form {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    min-width: 0;
+}
+
+.rotulo-form {
+    margin: 0;
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: #111827;
+}
+
+.input-form {
+    display: block;
+    width: 100%;
+    height: 34px;
+    padding: 0 12px;
+    border: 1px solid #9ca3af;
+    border-radius: 3px;
+    background: #ffffff;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: #111827;
+}
+
+    .input-form::placeholder {
+        color: #6b7280;
+    }
+
+    .input-form:focus {
+        outline: none;
+        border-color: #05053a;
+        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+    }
+
+    /* campo travado (ex.: se quiser deixar o CPF/CNPJ só para leitura) */
+    .input-form:read-only {
+        background: #f3f4f6;
+        color: #6b7280;
+        cursor: not-allowed;
+    }
+
+    /* o ASP.NET adiciona essa classe quando o campo está inválido */
+    .input-form.input-validation-error {
+        border-color: #dc2626;
+    }
+
+/* mensagens de erro (asp-validation-for e erro da confirmação de senha) */
+.erro-form {
+    font-size: 0.65rem;
+    font-weight: 500;
+    color: #dc2626;
+}
+
+/* ===== Botões ===== */
+.acoes-form {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 24px;
+}
+
+.botao-cancelar,
+.botao-salvar {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 34px;
+    padding: 0 20px;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition: background 0.2s, filter 0.2s;
+}
+
+/* "Voltar" pode ser um <a> ou um <button> */
+.botao-cancelar {
+    border: 1px solid #9ca3af;
+    background: #ffffff;
+    color: #111827;
+}
+
+    .botao-cancelar:hover {
+        background: #f3f4f6;
+        color: #111827;
+        text-decoration: none;
+    }
+
+.botao-salvar {
+    border: 0;
+    background: #f97316;
+    color: #ffffff;
+}
+
+    .botao-salvar:hover {
+        background: #ea6a0a;
+    }
+
+/* ===== Mobile ===== */
+@media (max-width: 767.98px) {
+    .secao-atualizar {
+        padding: 16px;
+    }
+
+    .cartao-atualizar {
+        padding: 20px 16px;
+    }
+
+    .grade-atualizar {
+        grid-template-columns: 1fr;
+    }
+
+    .acoes-form {
+        flex-direction: column-reverse;
+    }
+
+    .botao-cancelar,
+    .botao-salvar {
+        width: 100%;
+    }
+}
