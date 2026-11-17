@@ -1,0 +1,80 @@
+@model IEnumerable<HorizonTravel.Models.Pacote>
+
+@{
+    ViewData["Title"] = "Pacotes";
+}
+
+<link rel="stylesheet" href="~/css/pacotes-funcionario.css" asp-append-version="true" />
+
+<div class="pagina-lista-pacotes">
+    <div class="cabecalho-lista-pacotes">
+        <div>
+            <h1 class="titulo-lista-pacotes">Pacotes</h1>
+            <p class="subtitulo-lista-pacotes">
+                Cadastre e gerencie os pacotes oferecidos aos clientes.
+            </p>
+        </div>
+
+        <a class="botao-novo-pacote" asp-action="Cadastrar">
+            Novo pacote
+        </a>
+    </div>
+
+<form class="area-busca-pacotes" method="get">
+    <div class="campo-busca-pacotes">
+        <span class="bi bi-search icone-busca-pacotes" aria-hidden="true"></span>
+        <input type="search"
+               name="busca"
+               value="@ViewBag.Busca"
+               class="input-busca-pacotes"
+               placeholder="Buscar pacote por destino ou descrição..." />
+    </div>
+</form>
+
+@if (TempData["MSG_S"] is string mensagem)
+{
+    <div class="mensagem-sucesso-pacotes">
+        @mensagem
+    </div>
+}
+
+<section class="grade-pacotes-funcionario">
+    @foreach (var pacote in Model)
+    {
+        <article class="cartao-pacote-funcionario">
+            @if (!string.IsNullOrWhiteSpace(pacote.fotoPac))
+            {
+                <img src="~/@pacote.fotoPac"
+                     alt="Pacote para @pacote.destinoPac" />
+            }
+            else
+            {
+                <div class="imagem-pacote-vazia">
+                    Sem imagem
+                </div>
+            }
+            <div class="conteudo-cartao-pacote-funcionario">
+                <h2>@pacote.destinoPac</h2>
+                <p>
+                    Data: @pacote.dataPac.ToString("dd/MM/yyyy")
+                </p>
+                <strong>R$ @pacote.precoPac.ToString("N2")</strong>
+                <span>
+                    @pacote.quantidadePac vagas disponíveis
+                </span>
+                <div class="acoes-pacote">
+                    <a asp-action="Detalhes"
+                       asp-route-id="@pacote.IDPac">
+                        Visualizar
+                    </a>
+                    <a class="botao-editar-pacote"
+                       asp-action="Atualizar"
+                       asp-route-id="@pacote.IDPac">
+                        Editar
+                    </a>
+                </div>
+            </div>
+        </article>
+    }
+</section>
+</div>

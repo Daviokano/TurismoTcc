@@ -6,11 +6,11 @@ namespace HorizonTravel.Repository.Contract
     {
         void Cadastrar(Parceiro parceiro);
         void Atualizar(Parceiro parceiro);
-        void Excluir(int Id);
-        Parceiro ObterParceiro(int Id);
+        void Excluir(string cnpj);
+        Parceiro ObterParceiro(string cnpj);
         IEnumerable<Parceiro> ObterTodosParceiros();
 
-        void Ativar(int Id);
-        void Desativar(int Id);
+        void Ativar(string cnpj);
+        void Desativar(string cnpj);
     }
 }

@@ -82,17 +82,17 @@
                         </td>
                         <td>
                             <div class="grupo-acoes">
-                                <a asp-action="Atualizar" asp-route-id="@parceiro.IDFor" class="botao-acao botao-editar">Editar</a>
+                                <a asp-action="Atualizar" asp-route-id="@parceiro.CNPJFor" class="botao-acao botao-editar">Editar</a>
 
                                 @if (parceiro.situacaoFor == "A")
                                 {
-                                    <a asp-action="Desativar" asp-route-id="@parceiro.IDFor"
+                                    <a asp-action="Desativar" asp-route-id="@parceiro.CNPJFor"
                                        class="botao-acao botao-desativar"
                                        onclick="return confirm('Realmente deseja desativar esse parceiro?');">Desativar</a>
                                 }
                                 else
                                 {
-                                    <a asp-action="Ativar" asp-route-id="@parceiro.IDFor"
+                                    <a asp-action="Ativar" asp-route-id="@parceiro.CNPJFor"
                                        class="botao-acao botao-ativar"
                                        onclick="return confirm('Realmente deseja ativar esse parceiro?');">Ativar</a>
                                 }

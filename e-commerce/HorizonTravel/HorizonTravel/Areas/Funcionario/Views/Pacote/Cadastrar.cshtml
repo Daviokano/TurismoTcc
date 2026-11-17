@@ -1,0 +1,89 @@
+@model HorizonTravel.Models.Pacote
+
+@{
+    ViewData["Title"] = "Cadastrar pacote";
+}
+
+<link rel="stylesheet" href="~/css/pacotes-funcionario.css" asp-append-version="true" />
+
+<div class="pagina-formulario-pacote">
+    <div class="cabecalho-lista-pacotes">
+        <div>
+            <h1 class="titulo-form-pacote">Cadastrar pacote</h1>
+            <p class="subtitulo-form-pacote">Preencha os dados do pacote.</p>
+        </div>
+    </div>
+
+    <section class="cartao-form-pacote">
+        <form asp-action="Cadastrar" method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="grade-form-pacote">
+            <div class="campo-form-pacote">
+                <label asp-for="destinoPac" class="rotulo-form-pacote">Destino</label>
+                <input asp-for="destinoPac" class="input-form-pacote" />
+                <span asp-validation-for="destinoPac" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="dataPac" class="rotulo-form-pacote">Data</label>
+                <input asp-for="dataPac" type="date" class="input-form-pacote" />
+                <span asp-validation-for="dataPac" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="precoPac" class="rotulo-form-pacote">Preço</label>
+                <input asp-for="precoPac" type="number" step="0.01" class="input-form-pacote" />
+                <span asp-validation-for="precoPac" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="quantidadePac" class="rotulo-form-pacote">Quantidade</label>
+                <input asp-for="quantidadePac" type="number" min="0" class="input-form-pacote" />
+                <span asp-validation-for="quantidadePac" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="IDFun" class="rotulo-form-pacote">ID do funcionário</label>
+                <input asp-for="IDFun" type="number" min="1" class="input-form-pacote" />
+                <span asp-validation-for="IDFun" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="CNPJFor" class="rotulo-form-pacote">CNPJ do parceiro</label>
+                <input asp-for="CNPJFor" class="input-form-pacote" />
+                <span asp-validation-for="CNPJFor" class="erro-form-pacote"></span>
+            </div>
+        </div>
+
+        <div class="campo-form-pacote campo-form-pacote-completo">
+            <label asp-for="fotoPac" class="rotulo-form-pacote">Caminho da imagem</label>
+            <input asp-for="fotoPac"
+                   class="input-form-pacote"
+                   placeholder="img/pacotes/nome.jpg" />
+            <span asp-validation-for="fotoPac" class="erro-form-pacote"></span>
+        </div>
+
+        <div class="campo-form-pacote campo-form-pacote-completo">
+            <label asp-for="descricaoPac" class="rotulo-form-pacote">Descrição</label>
+            <textarea asp-for="descricaoPac"
+                      rows="6"
+                      class="textarea-form-pacote"></textarea>
+            <span asp-validation-for="descricaoPac" class="erro-form-pacote"></span>
+        </div>
+
+        <div class="acoes-form-pacote">
+            <a asp-action="Index" class="botao-voltar-pacote">
+                Cancelar
+            </a>
+            <button type="submit" class="botao-salvar-pacote">
+                Salvar pacote
+            </button>
+        </div>
+        </form>
+    </section>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

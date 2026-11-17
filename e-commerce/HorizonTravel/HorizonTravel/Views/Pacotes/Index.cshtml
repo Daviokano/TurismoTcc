@@ -1,3 +1,5 @@
+@model IEnumerable<HorizonTravel.Models.Pacote>
+
 @{
     ViewData["Title"] = "Pacotes";
 }
@@ -54,45 +56,42 @@
         </select>
     </section>
 
-    <p class="total-pacotes"><strong>48</strong> pacotes encontrados</p>
+    <p class="total-pacotes"><strong>@Model.Count()</strong> pacotes encontrados</p>
 
     <section class="grade-pacotes">
-        @foreach (var pacote in new[] { 
-            ("Rio de Janeiro", "pacote-rio.jpg"), 
-            ("São Paulo", "pacote-sao-paulo.jpg"), 
-            ("Salvador", "pacote-salvador.jpg"), 
-            ("Amazônia", "pacote-amazonia.jpg"), 
-            ("Paris", "pacote-paris.jpg"), 
-            ("Londres", "pacote-londres.jpg"), 
-            ("Veneza", "pacote-veneza.jpg"), 
-            ("Roma", "pacote-roma.jpg"), 
-            ("Nova Iorque", "pacote-nova-iorque.jpg"), 
-            ("Disney", "pacote-disney.jpg"), 
-            ("Los Angeles", "pacote-los-angeles.jpg"), 
-            ("Miami", "pacote-miami.jpg"), 
-            ("Japão", "pacote-japao.jpg"), 
-            ("Quioto", "pacote-quioto.jpg"), 
-            ("Tóquio", "pacote-toquio.jpg"), 
-            ("Brasil", "pacote-brasil.jpg") 
-        })
+        @foreach (var pacote in Model)
         {
             <article class="cartao-pacote">
-                <img src="~/img/@pacote.Item2" alt="Pacote para @pacote.Item1" />
+                @if (!string.IsNullOrWhiteSpace(pacote.fotoPac))
+                {
+                    <img src="~/@pacote.fotoPac" alt="Pacote para @pacote.destinoPac" />
+                }
+
                 <div class="corpo-cartao-pacote">
-                    <h2>Pacote @pacote.Item1</h2>
-                    <p>Brasil - Rio de janeiro</p>
+                    <h2>Pacote @pacote.destinoPac</h2>
+                    <p>@pacote.destinoPac</p>
+
                     <div class="detalhes-pacote">
-                        <span><i class="bi bi-clock"></i> 14 dias</span>
-                        <span>até 4x</span>
+                        <span>
+                            <i class="bi bi-calendar-event"></i>
+                            @pacote.dataPac.ToString("dd/MM/yyyy")
+                        </span>
+                        <span>@pacote.quantidadePac vagas</span>
                     </div>
-                    <b class="estrelas-pacote">★★★★★</b>
+
                     <div class="rodape-cartao-pacote">
-                        <span>A partir de<strong>4.500</strong></span>
-                    <a asp-controller="Pacotes" asp-action="Detalhes">Ver pacote</a>
+                        <span>
+                            A partir de
+                            <strong>R$ @pacote.precoPac.ToString("N2")</strong>
+                        </span>
+                        <a asp-action="Detalhes" asp-route-id="@pacote.IDPac">
+                            Ver pacote
+                        </a>
                     </div>
                 </div>
             </article>
         }
     </section>
+
 </main>
 

@@ -7,11 +7,11 @@
 <section class="banner-detalhes-pacote">
     <img src="~/img/img banner.jpg" alt="Paisagem do destino" />
     <div class="conteudo-banner-detalhes">
-        <h1>RIO DE JANEIRO</h1>
+        <h1>@Model.destinoPac</h1>
         <div class="informacoes-pacote">
-            <span><i class="bi bi-geo-alt"></i> Rio de Janeiro, Brasil</span>
-            <span><i class="bi bi-clock"></i> 14 dias</span>
-            <span><i class="bi bi-people"></i> até 2 pessoas</span>
+            <span><i class="bi bi-geo-alt"></i> @Model.destinoPac</span>
+            <span><i class="bi bi-calendar-event"></i> @Model.dataPac.ToString("dd/MM/yyyy")</span>
+            <span><i class="bi bi-people"></i> @Model.quantidadePac vagas</span>
         </div>
         <p><i class="bi bi-building"></i> Hotel Windsor Atlantica <span class="estrelas">★★★★</span></p>
     </div>
@@ -21,37 +21,15 @@
     <div class="conteudo-detalhes">
         <section class="cartao-detalhes">
             <h2>Pacote Rio de Janeiro</h2>
-            <p>
-                Viva o melhor da Cidade Maravilhosa neste pacote completo de 14 dias! Cristo Redentor, Pão de Açúcar, 
-                as praias de Copacabana e Ipanema, o bairro boêmio da Lapa, Santa Teresa e muito mais.
-            </p>
-            <p>Com guia local brasileiro, hotel 4 estrelas à beira-mar e transportes incluídos.</p>
-            <p>
-                Durante a viagem, você poderá conhecer os principais pontos turísticos do Rio de Janeiro,
-                aproveitar as praias mais famosas da cidade e explorar experiências culturais e gastronômicas
-                especialmente selecionadas para tornar sua estadia ainda mais completa.
-            </p>
-            <p>
-                O pacote foi planejado para oferecer conforto, segurança e praticidade em todos os momentos,
-                com suporte da nossa equipe durante toda a viagem e horários organizados para que você aproveite
-                cada paisagem da Cidade Maravilhosa.
-            </p>
-
-            <h3>O que está incluso?</h3>
-            <div class="itens-inclusos">
-                <span><i class="bi bi-airplane"></i> Passagem aérea ida e volta</span>
-                <span><i class="bi bi-car-front-fill"></i> Transporte</span>
-                <span><i class="bi bi-building"></i> Hotel 4 estrelas</span>
-                <span><i class="bi bi-person-badge"></i> Guia turístico brasileiro</span>
-            </div>
+            <p>@Model.descricaoPac</p>
         </section>
 
     </div>
 
     <div class="cartao-detalhes reserva-pacote">
         <span class="a-partir">a partir de:</span>
-        <strong class="preco">4.500</strong>
-        <span class="por-pessoa">por pessoa / 14 dias</span>
+        <strong class="preco">R$ @Model.precoPac.ToString("N2")</strong>
+        <span class="por-pessoa">por pacote</span>
         <hr />
         
         <label>
@@ -69,10 +47,10 @@
         </label>
         
         <form asp-controller="Carrinho" asp-action="Adicionar" method="post">
-            <input type="hidden" name="IdPacote" value="1" />
-            <input type="hidden" name="NomePacote" value="Pacote Rio de Janeiro" />
-            <input type="hidden" name="Destino" value="Rio de Janeiro, Brasil" />
-            <input type="hidden" name="Preco" value="4500" />
+            <input type="hidden" name="IdPacote" value="@Model.IDPac" />
+            <input type="hidden" name="NomePacote" value="Pacote @Model.destinoPac" />
+            <input type="hidden" name="Destino" value="@Model.destinoPac" />
+            <input type="hidden" name="Preco" value="@Model.precoPac" />
             <button type="submit">Adicionar ao carrinho</button>
         </form>
         

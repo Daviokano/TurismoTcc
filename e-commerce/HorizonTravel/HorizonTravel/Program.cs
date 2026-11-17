@@ -9,20 +9,21 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-// add a interface como um serviço
+// add a interface como um serviï¿½o
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddScoped<IFuncionarioRepositoty, FuncionarioRepository>();
 builder.Services.AddScoped<IParceiroRepository, ParceiroRepository>();
+builder.Services.AddScoped<IPacoteRepository, PacoteRepository>();
 
 builder.Services.AddDistributedMemoryCache();
 
 //corrigindo peoblemas com o TEMPDATA
 builder.Services.AddSession(options =>
 {
-    //definindo tempo pra duração
+    //definindo tempo pra duraï¿½ï¿½o
     options.IdleTimeout = TimeSpan.FromSeconds(60);
     options.Cookie.HttpOnly = true;
-    //mostrarndo pro navegador que o cokkie é essencial
+    //mostrarndo pro navegador que o cokkie ï¿½ essencial
     options.Cookie.IsEssential = true;
 });
 builder.Services.AddMvc().AddSessionStateTempDataProvider();
@@ -34,7 +35,7 @@ builder.Services.AddScoped<HorizonTravel.Libraries.Login.LoginUsuario>();
 builder.Services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
 builder.Services.AddDistributedMemoryCache();
 
-//add para manipular a sessão
+//add para manipular a sessï¿½o
 builder.Services.AddHttpContextAccessor();
 
 var app = builder.Build();

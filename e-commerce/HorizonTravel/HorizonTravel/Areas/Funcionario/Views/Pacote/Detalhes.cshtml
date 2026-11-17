@@ -1,0 +1,42 @@
+@model HorizonTravel.Models.Pacote
+
+@{
+    ViewData["Title"] = "Detalhes do pacote";
+}
+
+<link rel="stylesheet" href="~/css/pacotes-funcionario.css" asp-append-version="true" />
+
+<div class="detalhes-pacote-funcionario">
+    <h1>Detalhes do pacote</h1>
+    <p>
+        <strong>Destino:</strong>
+        @Model.destinoPac
+    </p>
+
+    <p>
+        <strong>Data:</strong>
+        @Model.dataPac.ToString("dd/MM/yyyy")
+    </p>
+
+    <p>
+        <strong>Preço:</strong>
+        R$ @Model.precoPac.ToString("N2")
+    </p>
+
+    <p>
+        <strong>Quantidade disponível:</strong>
+        @Model.quantidadePac
+    </p>
+
+    <p>
+        <strong>Descrição:</strong>
+        @Model.descricaoPac
+    </p>
+
+    @if (!string.IsNullOrWhiteSpace(Model.fotoPac))
+    {
+        <img src="~/@Model.fotoPac" alt="Pacote para @Model.destinoPac" />
+    }
+
+    <a asp-action="Index">Voltar para pacotes</a>
+</div>

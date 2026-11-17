@@ -15,16 +15,16 @@ namespace HorizonTravel.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
         }
 
-        public void Ativar(int Id)
+        public void Ativar(string cnpj)
         {
             string situacao = SituacaoParceiroConstant.Ativo;
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE IDFor=@IDFor", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE CNPJFor=@CNPJFor", conexao);
                 cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = situacao;
-                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
+                cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = cnpj;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -36,13 +36,12 @@ namespace HorizonTravel.Repository
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, CNPJFor=@CNPJFor, emailFor=@emailFor, situacaoFor=@situacaoFor
-                WHERE IDFor=@IDFor");
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, emailFor=@emailFor, situacaoFor=@situacaoFor
+                WHERE CNPJFor=@CNPJFor", conexao);
 
                 cmd.Parameters.Add("@nomeFor", MySqlDbType.VarChar).Value = parceiro.nomeFor;
-                cmd.Parameters.Add("@CNPJFor", MySqlDbType.Int32).Value = parceiro.CNPJFor;
+                cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = parceiro.CNPJFor;
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
-                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = parceiro.IDFor;
                 cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = parceiro.situacaoFor;
 
 
@@ -72,42 +71,42 @@ namespace HorizonTravel.Repository
             }
         }
 
-        public void Desativar(int Id)
+        public void Desativar(string cnpj)
         {
             string situacao = SituacaoParceiroConstant.Inativo;
 
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE IDFor=@IDFor", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET situacaoFor=@situacaoFor WHERE CNPJFor=@CNPJFor", conexao);
                 cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = situacao;
-                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
+                cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = cnpj;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
         }
 
-        public void Excluir(int Id)
+        public void Excluir(string cnpj)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"DELETE FROM Parceiro WHERE IDFor=@IDFor", conexao);
-                cmd.Parameters.Add("@IDFor", MySqlDbType.Int32).Value = Id;
+                MySqlCommand cmd = new MySqlCommand(@"DELETE FROM Parceiro WHERE CNPJFor=@CNPJFor", conexao);
+                cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = cnpj;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
         }
 
 
-        public Parceiro ObterParceiro(int Id)
+        public Parceiro ObterParceiro(string cnpj)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Parceiro WHERE IDFor=@IDFor", conexao);
-                cmd.Parameters.AddWithValue("@IDFor", Id);
+                MySqlCommand cmd = new MySqlCommand("SELECT * FROM Parceiro WHERE CNPJFor=@CNPJFor", conexao);
+                cmd.Parameters.AddWithValue("@CNPJFor", cnpj);
 
                 Parceiro parceiro = new Parceiro();
 
@@ -115,7 +114,6 @@ namespace HorizonTravel.Repository
                 {
                     while (dr.Read())
                     {
-                        parceiro.IDFor = (Int32)(dr["IDFor"]);
                         parceiro.nomeFor = (string)(dr["nomeFor"]);
                         parceiro.CNPJFor = (string)(dr["CNPJFor"]);
                         parceiro.emailFor = (string)(dr["emailFor"]);
@@ -146,7 +144,6 @@ namespace HorizonTravel.Repository
                     parceiroList.Add(
                         new Parceiro
                         {
-                            IDFor = Convert.ToInt32(dr["IDFor"]),
                             nomeFor = (string)(dr["nomeFor"]),
                             CNPJFor = (string)(dr["CNPJFor"]),
                             emailFor = (string)(dr["emailFor"]),

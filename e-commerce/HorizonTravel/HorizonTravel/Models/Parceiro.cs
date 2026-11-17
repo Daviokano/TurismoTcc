@@ -4,8 +4,6 @@ namespace HorizonTravel.Models
 {
     public class Parceiro
     {
-        public int IDFor { get; set; }
-
         public string? situacaoFor { get; set; }
 
         [Display(Name = "CNPJ")]

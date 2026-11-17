@@ -38,9 +38,9 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
 
         [HttpGet]
-        public IActionResult Atualizar(int Id)
+        public IActionResult Atualizar(string id)
         {
-            Models.Parceiro parceiro = _parceiroRepository.ObterParceiro(Id);
+            Models.Parceiro parceiro = _parceiroRepository.ObterParceiro(id);
             return View(parceiro);
         }
 
@@ -60,16 +60,16 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         }
 
         [ValidateHttpReferer]
-        public IActionResult Ativar(int Id)
+        public IActionResult Ativar(string id)
         {
-            _parceiroRepository.Ativar(Id);
+            _parceiroRepository.Ativar(id);
             return RedirectToAction(nameof(Index));
         }
 
         [ValidateHttpReferer]
-        public IActionResult Desativar(int Id)
+        public IActionResult Desativar(string id)
         {
-            _parceiroRepository.Desativar(Id);
+            _parceiroRepository.Desativar(id);
             return RedirectToAction(nameof(Index));
         }
     }
