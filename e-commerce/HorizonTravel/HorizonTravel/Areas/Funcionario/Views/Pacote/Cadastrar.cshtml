@@ -26,6 +26,15 @@
             </div>
 
             <div class="campo-form-pacote">
+                <label asp-for="origemPac" class="rotulo-form-pacote">Origem</label>
+                <input asp-for="origemPac"
+                       class="input-form-pacote"
+                       maxlength="200"
+                       placeholder="Local de saída da viagem" />
+                <span asp-validation-for="origemPac" class="erro-form-pacote"></span>
+            </div>
+
+            <div class="campo-form-pacote">
                 <label asp-for="dataPac" class="rotulo-form-pacote">Data</label>
                 <input asp-for="dataPac" type="date" class="input-form-pacote" />
                 <span asp-validation-for="dataPac" class="erro-form-pacote"></span>

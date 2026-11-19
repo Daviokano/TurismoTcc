@@ -1,0 +1,138 @@
+@model HorizonTravel.Models.ReservaDetalhesViewModel
+
+@{
+    ViewData["Title"] = "Detalhes da reserva";
+    string codigoReserva = $"HT{Model.Reserva.IDRes:000000}";
+}
+
+<link rel="stylesheet" href="~/css/historico-cliente.css" asp-append-version="true" />
+
+<section class="client-history-page">
+    <header class="client-history-heading">
+        <h1>Reserva #@codigoReserva</h1>
+        <p>Dados do cliente, passageiros, pagamento e histórico da reserva.</p>
+    </header>
+
+    @if (TempData["MSG_S"] is string mensagem)
+    {
+        <div class="mensagem-sucesso">@mensagem</div>
+    }
+
+    <section class="client-summary-card">
+        <div class="client-summary-profile">
+            <span class="client-summary-avatar">@Model.Reserva.nomeUsu.Substring(0, 1).ToUpper()</span>
+            <div>
+                <h2>@Model.Reserva.nomeUsu</h2>
+                <p>@Model.Reserva.emailUsu</p>
+                <p>@Model.Reserva.telefoneUsu</p>
+            </div>
+        </div>
+        <div class="client-summary-metric">
+            <span>Pacote</span>
+            <strong>@Model.Reserva.destinoPac</strong>
+        </div>
+        <div class="client-summary-metric">
+            <span>Valor</span>
+            <strong>R$ @Model.Reserva.valorPag.ToString("N2")</strong>
+        </div>
+    </section>
+
+    <div class="grade-gerenciamento-reserva">
+        <section class="cartao-gerenciamento">
+            <h2>Status da reserva</h2>
+            <p>Status atual: <strong>@Model.Reserva.statusRes</strong></p>
+            <form asp-action="AtualizarStatus" method="post">
+                <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
+                <select name="statusRes">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Confirmada">Confirmada</option>
+                    <option value="Cancelada">Cancelada</option>
+                </select>
+                <button type="submit">Atualizar reserva</button>
+            </form>
+        </section>
+
+        <section class="cartao-gerenciamento">
+            <h2>Pagamento</h2>
+            <p>Método: <strong>@Model.Reserva.metodoPag</strong></p>
+            <p>Status atual: <strong>@Model.Reserva.statusPag</strong></p>
+            <form asp-action="AtualizarPagamento" method="post">
+                <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
+                <select name="statusPag">
+                    <option value="Pendente">Pendente</option>
+                    <option value="Pago">Pago</option>
+                    <option value="Cancelado">Cancelado</option>
+                </select>
+                <button type="submit">Atualizar pagamento</button>
+            </form>
+        </section>
+    </div>
+
+    <section class="client-history-table-section">
+        <div class="client-history-table-heading">
+            <h2>Passageiros</h2>
+            <span>@Model.Passageiros.Count() passageiro(s)</span>
+        </div>
+        <div class="client-history-table-wrap">
+        <table class="client-history-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>CPF</th>
+                    <th>Data de nascimento</th>
+                    <th>Passaporte</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var passageiro in Model.Passageiros)
+                {
+                    <tr>
+                        <td>@passageiro.nomeCompleto</td>
+                        <td>@passageiro.CPF</td>
+                        <td>@passageiro.dataNascimento.ToString("dd/MM/yyyy")</td>
+                        <td>@(passageiro.passaporte ?? "Não informado")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        </div>
+    </section>
+
+    <section class="client-history-table-section">
+        <div class="client-history-table-heading">
+            <h2>Histórico de alterações</h2>
+        </div>
+        @if (!Model.Historico.Any())
+        {
+            <div class="client-history-empty">
+                <p>Nenhuma alteração de status foi registrada.</p>
+            </div>
+        }
+        else
+        {
+            <div class="client-history-table-wrap">
+            <table class="client-history-table">
+                <thead>
+                    <tr>
+                        <th>Data</th>
+                        <th>Status anterior</th>
+                        <th>Novo status</th>
+                        <th>Responsável</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.Historico)
+                    {
+                        <tr>
+                            <td>@item.dataModificacao.ToString("dd/MM/yyyy HH:mm")</td>
+                            <td>@item.statusAnterior</td>
+                            <td>@item.statusNovo</td>
+                            <td>@(item.nomeFun ?? "Sistema/cliente")</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+            </div>
+        }
+    </section>
+</section>

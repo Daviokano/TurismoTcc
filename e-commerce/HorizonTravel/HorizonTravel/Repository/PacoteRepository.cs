@@ -22,10 +22,10 @@ namespace HorizonTravel.Repository
             const string sql = @"
                 INSERT INTO Pacote
                     (IDFun, CNPJFor, IDPromo, precoPac, quantidadePac,
-                     descricaoPac, avaliacaoPac, fotoPac, destinoPac, dataPac)
+                    descricaoPac, avaliacaoPac, fotoPac, destinoPac, origemPac, dataPac, situacaoPac)
                 VALUES
                     (@IDFun, @CNPJFor, @IDPromo, @precoPac, @quantidadePac,
-                     @descricaoPac, @avaliacaoPac, @fotoPac, @destinoPac, @dataPac)";
+                    @descricaoPac, @avaliacaoPac, @fotoPac, @destinoPac, @origemPac, @dataPac, @situacaoPac)";
 
             using var comando = new MySqlCommand(sql, conexao);
             AdicionarParametros(comando, pacote, incluirId: false);
@@ -48,7 +48,9 @@ namespace HorizonTravel.Repository
                     avaliacaoPac = @avaliacaoPac,
                     fotoPac = @fotoPac,
                     destinoPac = @destinoPac,
-                    dataPac = @dataPac
+                    origemPac = @origemPac,
+                    dataPac = @dataPac,
+                    situacaoPac = @situacaoPac
                 WHERE IDPac = @IDPac";
 
             using var comando = new MySqlCommand(sql, conexao);
@@ -112,10 +114,11 @@ namespace HorizonTravel.Repository
             comando.Parameters.Add("@descricaoPac", MySqlDbType.Text).Value = pacote.descricaoPac;
             comando.Parameters.Add("@avaliacaoPac", MySqlDbType.Decimal).Value =
                 pacote.avaliacaoPac.HasValue ? pacote.avaliacaoPac.Value : DBNull.Value;
-            comando.Parameters.Add("@fotoPac", MySqlDbType.VarChar).Value =
-                string.IsNullOrWhiteSpace(pacote.fotoPac) ? DBNull.Value : pacote.fotoPac;
+            comando.Parameters.Add("@fotoPac", MySqlDbType.VarChar).Value = pacote.fotoPac;
             comando.Parameters.Add("@destinoPac", MySqlDbType.VarChar).Value = pacote.destinoPac;
+            comando.Parameters.Add("@origemPac", MySqlDbType.VarChar).Value = pacote.origemPac;
             comando.Parameters.Add("@dataPac", MySqlDbType.Date).Value = pacote.dataPac.Date;
+            comando.Parameters.Add("@situacaoPac", MySqlDbType.VarChar).Value = pacote.situacaoPac;
         }
 
         private static Pacote Mapear(IDataRecord registro)
@@ -132,7 +135,11 @@ namespace HorizonTravel.Repository
                 avaliacaoPac = registro["avaliacaoPac"] == DBNull.Value ? null : Convert.ToDecimal(registro["avaliacaoPac"]),
                 fotoPac = registro["fotoPac"] == DBNull.Value ? null : Convert.ToString(registro["fotoPac"]),
                 destinoPac = Convert.ToString(registro["destinoPac"]),
-                dataPac = Convert.ToDateTime(registro["dataPac"])
+                origemPac = registro["origemPac"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(registro["origemPac"]),
+                dataPac = Convert.ToDateTime(registro["dataPac"]),
+                situacaoPac = Convert.ToString(registro["situacaoPac"])
             };
         }
     }

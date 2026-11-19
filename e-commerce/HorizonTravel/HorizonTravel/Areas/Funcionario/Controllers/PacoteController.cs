@@ -10,10 +10,17 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
     public class PacoteController : Controller
     {
         private readonly IPacoteRepository _pacoteRepository;
+        private readonly IFuncionarioRepositoty _funcionarioRepository;
+        private readonly IParceiroRepository _parceiroRepository;
 
-        public PacoteController(IPacoteRepository pacoteRepository)
+        public PacoteController(
+            IPacoteRepository pacoteRepository,
+            IFuncionarioRepositoty funcionarioRepository,
+            IParceiroRepository parceiroRepository)
         {
             _pacoteRepository = pacoteRepository;
+            _funcionarioRepository = funcionarioRepository;
+            _parceiroRepository = parceiroRepository;
         }
 
         public IActionResult Index(string busca)
@@ -41,6 +48,11 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Cadastrar(Pacote pacote)
         {
+            pacote.CNPJFor = RemoverCaracteresNaoNumericos(pacote.CNPJFor);
+            pacote.situacaoPac = "A";
+            ModelState.Remove(nameof(pacote.CNPJFor));
+            ValidarRelacionamentos(pacote);
+
             if (!ModelState.IsValid)
             {
                 return View(pacote);
@@ -63,10 +75,23 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Atualizar(Pacote pacote)
         {
+            pacote.CNPJFor = RemoverCaracteresNaoNumericos(pacote.CNPJFor);
+            ModelState.Remove(nameof(pacote.CNPJFor));
+            ValidarRelacionamentos(pacote);
+
             if (!ModelState.IsValid)
             {
                 return View(pacote);
             }
+
+            var pacoteAtual = _pacoteRepository.ObterPacote(pacote.IDPac);
+
+            if (pacoteAtual == null)
+            {
+                return NotFound();
+            }
+
+            pacote.situacaoPac = pacoteAtual.situacaoPac;
 
             _pacoteRepository.Atualizar(pacote);
             TempData["MSG_S"] = "Pacote atualizado com sucesso!";
@@ -78,6 +103,36 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             var pacote = _pacoteRepository.ObterPacote(id);
 
             return pacote == null ? NotFound() : View(pacote);
+        }
+
+        private void ValidarRelacionamentos(Pacote pacote)
+        {
+            if (pacote.CNPJFor.Length != 14)
+            {
+                ModelState.AddModelError(nameof(pacote.CNPJFor), "Informe um CNPJ válido.");
+                return;
+            }
+
+            if (_funcionarioRepository.ObterFuncionario(pacote.IDFun).IDFun == 0)
+            {
+                ModelState.AddModelError(nameof(pacote.IDFun), "Informe um funcionário cadastrado.");
+            }
+
+            var parceiro = _parceiroRepository.ObterParceiro(pacote.CNPJFor);
+
+            if (string.IsNullOrWhiteSpace(parceiro.CNPJFor))
+            {
+                ModelState.AddModelError(nameof(pacote.CNPJFor), "Informe um parceiro cadastrado.");
+            }
+            else if (parceiro.situacaoFor != "A")
+            {
+                ModelState.AddModelError(nameof(pacote.CNPJFor), "O parceiro informado está inativo.");
+            }
+        }
+
+        private static string RemoverCaracteresNaoNumericos(string? valor)
+        {
+            return new string((valor ?? string.Empty).Where(char.IsDigit).ToArray());
         }
     }
 }

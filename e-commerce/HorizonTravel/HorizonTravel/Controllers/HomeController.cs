@@ -14,11 +14,16 @@ namespace HorizonTravel.Controllers
         //inje��o de depend�ncia
         private IUsuarioRepository _usuarioRepository;
         private LoginUsuario _usuarioLogin;
+        private IReservaRepository _reservaRepository;
 
-        public HomeController(IUsuarioRepository usuarioRepository, LoginUsuario loginUsuario)
+        public HomeController(
+            IUsuarioRepository usuarioRepository,
+            LoginUsuario loginUsuario,
+            IReservaRepository reservaRepository)
         {
             _usuarioRepository = usuarioRepository;
             _usuarioLogin = loginUsuario;
+            _reservaRepository = reservaRepository;
         }
 
         public IActionResult Login()
@@ -80,7 +85,15 @@ namespace HorizonTravel.Controllers
         [UsuarioAutorizacaoAtributte]
         public IActionResult MinhasReservas()
         {
-            return View(_usuarioLogin.GetUsuario());
+            Usuario usuario = _usuarioLogin.GetUsuario();
+
+            var modelo = new MinhasReservasViewModel
+            {
+                Usuario = usuario,
+                Reservas = _reservaRepository.ObterReservasPorUsuario(usuario.IDUsu)
+            };
+
+            return View(modelo);
         }
 
         [UsuarioAutorizacaoAtributte]

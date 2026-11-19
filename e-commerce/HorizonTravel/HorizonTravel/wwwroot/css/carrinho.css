@@ -158,6 +158,19 @@
     color: #fff;
     font-size: .95rem;
     font-weight: 700;
+    text-decoration: none !important;
+    cursor: pointer;
+}
+
+.botao-finalizar:hover,
+.botao-finalizar:focus {
+    color: #fff;
+    text-decoration: none !important;
+}
+
+.botao-finalizar.disabled {
+    pointer-events: none;
+    opacity: 0.55;
 }
 
 .compra-segura {

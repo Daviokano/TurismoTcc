@@ -20,18 +20,24 @@ namespace HorizonTravel.Models
         [Range(0, 5, ErrorMessage = "A avaliação deve ser entre 0 e 5")]
         public decimal? avaliacaoPac { get; set; }
 
+        [Required(ErrorMessage = "Informe o caminho da imagem")]
         [StringLength(255)]
-        public string? fotoPac { get; set; }
+        public string fotoPac { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Informe o destino")]
         [StringLength(100)]
         public string destinoPac { get; set; }
+
+        [Required(ErrorMessage = "Informe a origem")]
+        [StringLength(200)]
+        public string origemPac { get; set; } = string.Empty;
 
         [Required(ErrorMessage = "Informe a data")]
         [DataType(DataType.Date)]
         public DateTime dataPac { get; set; }
 
         // Fks
+        [Range(1, int.MaxValue, ErrorMessage = "Informe um funcionário válido")]
         public int IDFun { get; set; }
 
         [Required]
@@ -39,5 +45,9 @@ namespace HorizonTravel.Models
         public string CNPJFor { get; set; }
 
         public int? IDPromo { get; set; }   // opcional (pode ser NULL no banco)
+
+        [Required]
+        [StringLength(1)]
+        public string situacaoPac { get; set; } = "A";
     }
 }

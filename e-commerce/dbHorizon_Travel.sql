@@ -2,233 +2,149 @@ CREATE DATABASE dbHorizon_Travel;
 -- DROP DATABASE dbHorizon_Travel;
 USE dbHorizon_Travel;
 
-CREATE TABLE Usuario(
+CREATE DATABASE dbHorizon_Travel;
 
+USE dbHorizon_Travel;
+
+CREATE TABLE Usuario (
     IDUsu INT AUTO_INCREMENT PRIMARY KEY,
-
     CPFUsu CHAR(11) NOT NULL UNIQUE,
-
     nomeUsu VARCHAR(100) NOT NULL,
-
     emailUsu VARCHAR(100) NOT NULL UNIQUE,
-
     telefoneUsu VARCHAR(20) NOT NULL,
-
     dataNascimentoUsu DATE NOT NULL,
-
     senhaUsu VARCHAR(255) NOT NULL,
-    
     situacaoUsu CHAR(2) NOT NULL
-
 );
 
-select * from usuario;
-
--- ADD CAMPO PERMISSÃO
-CREATE TABLE Funcionario(
-
+CREATE TABLE Funcionario (
     IDFun INT AUTO_INCREMENT PRIMARY KEY,
-
     CPFFun CHAR(11) NOT NULL UNIQUE,
-
     nomeFun VARCHAR(100) NOT NULL,
-
     telefoneFun VARCHAR(20) NOT NULL,
-
     emailFun VARCHAR(100) NOT NULL UNIQUE,
-
     senhaFun VARCHAR(8) NOT NULL,
-
     dataNascimentoFun DATE NOT NULL
-
 );
 
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678903', 'Lavinia Lis', '(11) 12345-4321', 'lizlavinia@email.com', '12345678', '2008-06-01');
-
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678902', 'Ana Silva', '(11) 54321-1234', 'silvaana@email.com', '12345678', '2008-07-01');
-
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678901', 'Luiza Scolar', '(11) 54321-1234', 'scolarluiza@email.com', '12345678', '2008-05-01');
-
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678904', 'Davi Okano', '(11) 54321-1234', 'okanodavi@email.com', '12345678', '2008-09-30');
-
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678906', 'Isabelli Melo', '(11) 54321-1234', 'meloisabelli@email.com', '12345678', '2007-05-01');
-
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, dataNascimentoFun)
-VALUES ('12345678907', 'Palloma Tiodosio', '(11) 54321-1234', 'tiodosiopalloma@email.com', '12345678', '2008-05-01');
-
-select * from funcionario;
-
-CREATE TABLE Parceiro(
-
-	IDFor INT AUTO_INCREMENT PRIMARY KEY,
-
-    CNPJFor CHAR(14) NOT NULL,
-
+CREATE TABLE Parceiro (
+    CNPJFor CHAR(14) PRIMARY KEY,
     nomeFor VARCHAR(100) NOT NULL,
-
     emailFor VARCHAR(100) NOT NULL UNIQUE,
-    
-    situacaoFor CHAR(2) NOT NULL
-
+    situacaoFor CHAR(1) NOT NULL DEFAULT 'A'
 );
 
-INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor, situacaoFor) VALUES
-('12345678000101', 'Hotel Recanto do Sol Ltda', 'contato@hotelrecantodosol.com.br', 'A'),
-('23456789000102', 'Aerovia Passagens Aéreas S.A.', 'parcerias@aeroviapassagens.com.br', 'A'),
-('34567890000103', 'Rota Segura Transportes e Turismo', 'comercial@rotasegura.com.br', 'A'),
-('45678901000104', 'Sabor da Viagem Alimentação e Eventos', 'atendimento@sabordaviagem.com.br', 'A');
-select * from Parceiro;
-
-CREATE TABLE Promocao(
-
+CREATE TABLE Promocao (
     IDPromo INT AUTO_INCREMENT PRIMARY KEY,
-
     porcentagemDesconto DECIMAL(5,2) NOT NULL,
-
     dataValidade DATE NOT NULL,
 
-    CHECK(porcentagemDesconto >= 0),
-
-    CHECK(porcentagemDesconto <=100)
-
+    CHECK (porcentagemDesconto >= 0),
+    CHECK (porcentagemDesconto <= 100)
 );
 
-CREATE TABLE Pacote(
-
+CREATE TABLE Pacote (
     IDPac INT AUTO_INCREMENT PRIMARY KEY,
-
     IDFun INT NOT NULL,
-
     CNPJFor CHAR(14) NOT NULL,
-
     IDPromo INT,
-
     precoPac DECIMAL(10,2) NOT NULL,
-
     quantidadePac INT NOT NULL,
-
     descricaoPac TEXT NOT NULL,
-
     avaliacaoPac DECIMAL(2,1),
-
     fotoPac VARCHAR(255),
-
     destinoPac VARCHAR(100) NOT NULL,
-
     dataPac DATE NOT NULL,
 
     CONSTRAINT FK_PacoteFuncionario
-        FOREIGN KEY(IDFun)
+        FOREIGN KEY (IDFun)
         REFERENCES Funcionario(IDFun),
 
     CONSTRAINT FK_PacoteParceiro
-        FOREIGN KEY(CNPJFor)
+        FOREIGN KEY (CNPJFor)
         REFERENCES Parceiro(CNPJFor),
 
     CONSTRAINT FK_PacotePromocao
-        FOREIGN KEY(IDPromo)
+        FOREIGN KEY (IDPromo)
         REFERENCES Promocao(IDPromo),
 
-    CHECK(precoPac > 0),
-
-    CHECK(quantidadePac >=0),
-
-    CHECK(avaliacaoPac BETWEEN 0 AND 5)
-
+    CHECK (precoPac > 0),
+    CHECK (quantidadePac >= 0),
+    CHECK (avaliacaoPac BETWEEN 0 AND 5)
 );
 
-CREATE TABLE Reserva(
-
+CREATE TABLE Reserva (
     IDRes INT AUTO_INCREMENT PRIMARY KEY,
-
     IDUsu INT NOT NULL,
-
     IDPac INT NOT NULL,
-
     dataRes DATE NOT NULL,
-
     statusRes VARCHAR(40) NOT NULL,
 
     CONSTRAINT FK_ReservaUsuario
-        FOREIGN KEY(IDUsu)
+        FOREIGN KEY (IDUsu)
         REFERENCES Usuario(IDUsu),
 
     CONSTRAINT FK_ReservaPacote
-        FOREIGN KEY(IDPac)
+        FOREIGN KEY (IDPac)
         REFERENCES Pacote(IDPac)
-
 );
 
-CREATE TABLE Pagamento(
+CREATE TABLE Passageiro (
+    IDPassageiro INT AUTO_INCREMENT PRIMARY KEY,
+    IDRes INT NOT NULL,
+    nomeCompleto VARCHAR(150) NOT NULL,
+    CPF CHAR(11) NOT NULL,
+    dataNascimento DATE NOT NULL,
+    passaporte VARCHAR(30),
 
+    CONSTRAINT FK_PassageiroReserva
+        FOREIGN KEY (IDRes)
+        REFERENCES Reserva(IDRes)
+);
+
+CREATE TABLE Pagamento (
     IDPag INT AUTO_INCREMENT PRIMARY KEY,
-
     IDRes INT NOT NULL UNIQUE,
-
     valorPag DECIMAL(10,2) NOT NULL,
-
     dataPag DATE NOT NULL,
-
     metodoPag VARCHAR(50) NOT NULL,
-
     statusPag VARCHAR(30) NOT NULL,
 
     CONSTRAINT FK_PagamentoReserva
-        FOREIGN KEY(IDRes)
+        FOREIGN KEY (IDRes)
         REFERENCES Reserva(IDRes),
 
-    CHECK(valorPag >0)
-
+    CHECK (valorPag > 0)
 );
 
-
-
-CREATE TABLE Historico(
-
+CREATE TABLE Historico (
     IDHist INT AUTO_INCREMENT PRIMARY KEY,
-
     IDRes INT NOT NULL,
-
     statusAnterior VARCHAR(40),
-
     dataModificacao DATETIME NOT NULL,
 
     CONSTRAINT FK_HistoricoReserva
-        FOREIGN KEY(IDRes)
+        FOREIGN KEY (IDRes)
         REFERENCES Reserva(IDRes)
-
 );
 
-
-CREATE TABLE Avaliacao(
-
+CREATE TABLE Avaliacao (
     IDAvaliacao INT AUTO_INCREMENT PRIMARY KEY,
-
     IDUsu INT NOT NULL,
-
     IDPac INT NOT NULL,
-
     notaAva DECIMAL(2,1) NOT NULL,
-
     comentarioAva TEXT,
-
     dataAva DATE NOT NULL,
 
     CONSTRAINT FK_AvaliacaoUsuario
-        FOREIGN KEY(IDUsu)
+        FOREIGN KEY (IDUsu)
         REFERENCES Usuario(IDUsu),
 
     CONSTRAINT FK_AvaliacaoPacote
-        FOREIGN KEY(IDPac)
+        FOREIGN KEY (IDPac)
         REFERENCES Pacote(IDPac),
 
-       CHECK(notaAva BETWEEN 0 AND 5)
-
+    CHECK (notaAva BETWEEN 0 AND 5)
 );
 
 -- Cadastrar um novo usuário

@@ -1,0 +1,10 @@
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.csproj.AssemblyReference.cache
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\rpswa.dswa.cache.json
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.AssemblyInfoInputs.cache
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.AssemblyInfo.cs
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.csproj.CoreCompileInputs.cache
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.RazorAssemblyInfo.cache
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.RazorAssemblyInfo.cs
+C:\Users\win\Downloads\TurismoTcc\e-commerce\HorizonTravel\build-check-obj\Debug\net10.0\HorizonTravel.sourcelink.json

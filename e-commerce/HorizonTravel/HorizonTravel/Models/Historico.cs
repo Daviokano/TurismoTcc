@@ -9,11 +9,18 @@ namespace HorizonTravel.Models
         [StringLength(40)]
         public string? statusAnterior { get; set; }
 
+        [StringLength(40)]
+        public string? statusNovo { get; set; }
+
         [Required(ErrorMessage = "Informe a data da modificação")]
         [DataType(DataType.DateTime)]
         public DateTime dataModificacao { get; set; }
 
         // Fk
         public int IDRes { get; set; }
+
+        public int? IDFun { get; set; }
+
+        public string? nomeFun { get; set; }
     }
 }

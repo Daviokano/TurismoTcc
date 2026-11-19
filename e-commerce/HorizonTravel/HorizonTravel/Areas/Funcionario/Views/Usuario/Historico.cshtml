@@ -1,7 +1,149 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+@model HorizonTravel.Models.HistoricoClienteViewModel
+
 @{
-    ViewData["Title"] = "Histórico de Clientes";
-    Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+    ViewData["Title"] = "Histórico por cliente";
 }
+
+<link rel="stylesheet" href="~/css/historico-cliente.css" asp-append-version="true" />
+
+<section class="client-history-page">
+    <header class="client-history-heading">
+        <h1>Histórico por cliente</h1>
+        <p>Consulte todas as reservas realizadas por um cliente.</p>
+    </header>
+
+    <form class="client-search" method="get">
+        <label class="client-search-input">
+            <i class="bi bi-search"></i>
+            <input name="busca" value="@Model.Busca" placeholder="Buscar cliente por nome ou CPF..." autocomplete="off" />
+        </label>
+        <button type="submit">Buscar</button>
+    </form>
+
+    @if (!string.IsNullOrWhiteSpace(Model.Busca) && !Model.ResultadosBusca.Any())
+    {
+        <section class="client-history-empty">
+            <i class="bi bi-person-x"></i>
+            <p>Nenhum cliente foi encontrado para a busca informada.</p>
+        </section>
+    }
+
+    @if (Model.Cliente == null)
+    {
+        <section class="client-list-section">
+            <div class="client-list-heading">
+                <h2>Clientes cadastrados</h2>
+                <span>@Model.Clientes.Count() cliente(s)</span>
+            </div>
+            <div class="client-list-wrap">
+                <table class="client-list-table">
+                    <thead>
+                        <tr>
+                            <th>Cliente</th>
+                            <th>CPF</th>
+                            <th>E-mail</th>
+                            <th>Telefone</th>
+                            <th>Data de nascimento</th>
+                            <th>Ação</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var usuario in Model.Clientes)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="client-list-profile">
+                                        <span class="client-list-avatar">@usuario.nomeUsu.Substring(0, 1).ToUpper()</span>
+                                        <strong>@usuario.nomeUsu</strong>
+                                    </div>
+                                </td>
+                                <td>@usuario.CPFUsu</td>
+                                <td>@usuario.emailUsu</td>
+                                <td>@usuario.telefoneUsu</td>
+                                <td>@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
+                                <td>
+                                    <a class="client-list-action" asp-action="Historico" asp-route-id="@usuario.IDUsu">Ver histórico</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    }
+
+    @if (Model.Cliente != null)
+    {
+        <section class="client-summary-card">
+            <div class="client-summary-profile">
+                <span class="client-summary-avatar">@Model.Cliente.nomeUsu[..1].ToUpper()</span>
+                <div>
+                    <h2>@Model.Cliente.nomeUsu</h2>
+                    <p>E-mail: @Model.Cliente.emailUsu</p>
+                    <p>Telefone: @Model.Cliente.telefoneUsu</p>
+                </div>
+            </div>
+            <div class="client-summary-metric">
+                <span>Total de reservas</span>
+                <strong>@Model.TotalReservas</strong>
+            </div>
+            <div class="client-summary-metric">
+                <span>Valor total</span>
+                <strong>R$ @Model.ValorTotal.ToString("N2")</strong>
+            </div>
+        </section>
+
+        <section class="client-history-table-section">
+            <div class="client-history-table-heading">
+                <h2>Histórico de reservas</h2>
+                <span>@Model.TotalReservas reserva(s)</span>
+            </div>
+
+            @if (!Model.Reservas.Any())
+            {
+                <section class="client-history-empty">
+                    <i class="bi bi-calendar-x"></i>
+                    <p>Este cliente ainda não possui reservas.</p>
+                </section>
+            }
+            else
+            {
+                <div class="client-history-table-wrap">
+                    <table class="client-history-table">
+                        <thead>
+                            <tr>
+                                <th>Reserva</th>
+                                <th>Pacote</th>
+                                <th>Data</th>
+                                <th>Valor</th>
+                                <th>Status</th>
+                                <th>Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var reserva in Model.Reservas)
+                            {
+                                var codigoReserva = $"HT{reserva.IDRes:000000}";
+                                <tr>
+                                    <td>#@codigoReserva</td>
+                                    <td>@reserva.destinoPac</td>
+                                    <td>@reserva.dataRes.ToString("dd/MM/yyyy")</td>
+                                    <td>R$ @reserva.valorPag.ToString("N2")</td>
+                                    <td><span class="reservation-status">@reserva.statusRes</span></td>
+                                    <td>
+                                        <a asp-area="Funcionario"
+                                           asp-controller="Reserva"
+                                           asp-action="Detalhes"
+                                           asp-route-id="@reserva.IDRes">
+                                            Visualizar
+                                        </a>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            }
+        </section>
+    }
+</section>

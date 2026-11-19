@@ -1,0 +1,97 @@
+@model HorizonTravel.Models.ReservaDetalhesViewModel
+
+@{
+    ViewData["Title"] = "Confirmação da reserva";
+    bool pagamentoPendente = Model.Reserva.statusPag == "Pendente";
+    bool pagamentoCancelado = Model.Reserva.statusPag == "Cancelado";
+    string codigoReserva = $"HT{Model.Reserva.IDRes:000000}";
+}
+
+<link rel="stylesheet" href="~/css/reserva-checkout.css" asp-append-version="true" />
+
+<main class="checkout-page">
+    <section class="checkout-heading">
+        <h1>Reservar Pacote</h1>
+        <p>Confira os dados da sua reserva.</p>
+    </section>
+
+    <ol class="checkout-progress" aria-label="Etapas da reserva">
+        <li class="is-complete">
+            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Passageiros</span>
+        </li>
+        <li class="is-complete">
+            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Pagamento</span>
+        </li>
+        <li class="is-active">
+            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Confirmação</span>
+        </li>
+    </ol>
+
+    <section class="checkout-card checkout-confirmation-card">
+        <div class="confirmation-icon @(pagamentoCancelado ? "is-cancelled" : string.Empty)">
+            <i class="bi @(pagamentoCancelado ? "bi-x-lg" : "bi-patch-check-fill")"></i>
+        </div>
+
+        <h2>
+            @(pagamentoCancelado
+                ? "Pagamento cancelado"
+                : pagamentoPendente
+                    ? "Aguardando confirmação"
+                    : "Reserva confirmada!")
+        </h2>
+
+        <p class="confirmation-description">
+            @(pagamentoCancelado
+                ? "A reserva foi cancelada e as vagas voltaram a ficar disponíveis."
+                : pagamentoPendente
+                    ? "Simule a confirmação do pagamento para finalizar sua reserva."
+                    : "Seu pagamento foi confirmado e sua reserva está garantida.")
+        </p>
+
+        <div class="reservation-code">
+            <span>Código da reserva</span>
+            <strong>@codigoReserva</strong>
+        </div>
+
+        <dl class="confirmation-summary">
+            <div>
+                <dt>Pacote</dt>
+                <dd>@Model.Reserva.destinoPac</dd>
+            </div>
+            <div>
+                <dt>Valor</dt>
+                <dd>R$ @Model.Reserva.valorPag.ToString("N2")</dd>
+            </div>
+            <div>
+                <dt>Pagamento</dt>
+                <dd>@Model.Reserva.metodoPag</dd>
+            </div>
+            <div>
+                <dt>Status</dt>
+                <dd>@Model.Reserva.statusPag</dd>
+            </div>
+        </dl>
+
+        @if (pagamentoPendente)
+        {
+            <div class="checkout-actions checkout-actions-stacked">
+                <form asp-action="ConfirmarPagamento" method="post">
+                    <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
+                    <button type="submit" class="checkout-button checkout-button-primary">Simular pagamento aprovado</button>
+                </form>
+                <form asp-action="CancelarPagamento" method="post">
+                    <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
+                    <button type="submit" class="checkout-button checkout-button-outline">Cancelar pagamento</button>
+                </form>
+            </div>
+        }
+
+        <div class="checkout-actions">
+            <a asp-controller="Home" asp-action="MinhasReservas" class="checkout-button checkout-button-secondary">Minhas reservas</a>
+            <a asp-controller="Home" asp-action="Index" class="checkout-button checkout-button-primary">Voltar ao início</a>
+        </div>
+    </section>
+</main>

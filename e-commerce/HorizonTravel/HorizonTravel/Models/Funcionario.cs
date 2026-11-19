@@ -33,7 +33,13 @@ namespace HorizonTravel.Models
         [Display(Name = "Senha do funcionário")]
         [Required(ErrorMessage = "A senha é obrigatória.")]
         [DataType(DataType.Password)]
-        [StringLength(8, ErrorMessage = "A senha deve ter 8 caracteres.")]
+        [StringLength(255, ErrorMessage = "A senha deve ter no máximo 255 caracteres.")]
         public string senhaFun { get; set; }
+
+        [StringLength(25)]
+        public string? permissaoFun { get; set; }
+
+        [StringLength(1)]
+        public string? situacaoFun { get; set; }
     }
 }

@@ -1,0 +1,122 @@
+@model HorizonTravel.Models.ReservaCheckout
+
+@{
+    ViewData["Title"] = "Pagamento";
+}
+
+<link rel="stylesheet" href="~/css/reserva-checkout.css" asp-append-version="true" />
+
+<main class="checkout-page">
+    <section class="checkout-heading">
+        <h1>Reservar Pacote</h1>
+        <p>Preencha os dados para concluir sua reserva.</p>
+    </section>
+
+    <ol class="checkout-progress" aria-label="Etapas da reserva">
+        <li class="is-complete">
+            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Passageiros</span>
+        </li>
+        <li class="is-active">
+            <span class="checkout-progress-icon"><i class="bi bi-credit-card"></i></span>
+            <span>Pagamento</span>
+        </li>
+        <li>
+            <span class="checkout-progress-icon"><i class="bi bi-check-circle"></i></span>
+            <span>Confirmação</span>
+        </li>
+    </ol>
+
+    <form asp-action="Pagamento" method="post" class="checkout-card checkout-payment-card">
+        <input asp-for="IDPac" type="hidden" />
+        <input asp-for="ValorTotal" type="hidden" />
+
+        <div asp-validation-summary="ModelOnly" class="checkout-validation"></div>
+
+        <h2>Dados de pagamento</h2>
+
+        <div class="payment-methods" role="group" aria-label="Método de pagamento">
+            <button type="button" class="payment-method is-selected" data-metodo="Cartão de crédito">
+                Cartão de Crédito
+            </button>
+            <button type="button" class="payment-method" data-metodo="Cartão de débito">
+                Cartão de Débito
+            </button>
+            <button type="button" class="payment-method" data-metodo="PIX">
+                PIX
+            </button>
+        </div>
+
+        <input asp-for="metodoPag" type="hidden" value="Cartão de crédito" />
+
+        <section id="dados-cartao" class="payment-fields">
+            <div class="payment-field payment-field-full">
+                <label asp-for="nomeTitular">Nome do titular</label>
+                <input asp-for="nomeTitular" placeholder="Como no cartão" autocomplete="cc-name" />
+                <span asp-validation-for="nomeTitular"></span>
+            </div>
+
+            <div class="payment-field payment-field-full">
+                <label asp-for="numeroCartao">Número do cartão</label>
+                <input asp-for="numeroCartao" placeholder="0000 0000 0000 0000" autocomplete="cc-number" inputmode="numeric" />
+                <span asp-validation-for="numeroCartao"></span>
+            </div>
+
+            <div class="payment-field-grid">
+                <div class="payment-field">
+                    <label asp-for="validadeCartao">Validade</label>
+                    <input asp-for="validadeCartao" placeholder="MM/AA" autocomplete="cc-exp" inputmode="numeric" />
+                    <span asp-validation-for="validadeCartao"></span>
+                </div>
+                <div class="payment-field">
+                    <label asp-for="cvv">CVV</label>
+                    <input asp-for="cvv" placeholder="123" autocomplete="cc-csc" inputmode="numeric" />
+                    <span asp-validation-for="cvv"></span>
+                </div>
+            </div>
+        </section>
+
+        <section id="dados-pix" class="payment-pix" hidden>
+            <i class="bi bi-qr-code"></i>
+            <h3>Pagamento via PIX</h3>
+            <p>Depois de concluir, confirme o pagamento na próxima etapa.</p>
+            <code>00020126580014BR.GOV.BCB.PIX0136HORIZONTRAVELPAGAMENTO123</code>
+        </section>
+
+        <div class="checkout-total">
+            <span>Total da reserva</span>
+            <strong>R$ @Model.ValorTotal.ToString("N2")</strong>
+        </div>
+
+        <div class="checkout-actions">
+            <a asp-action="Passageiros" class="checkout-button checkout-button-secondary">Voltar</a>
+            <button type="submit" class="checkout-button checkout-button-primary">Continuar pagamento <i class="bi bi-arrow-right"></i></button>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+
+    <script>
+        const paymentMethods = document.querySelectorAll(".payment-method");
+        const paymentMethodInput = document.getElementById("metodoPag");
+        const cardFields = document.getElementById("dados-cartao");
+        const pixFields = document.getElementById("dados-pix");
+
+        paymentMethods.forEach(function (method) {
+            method.addEventListener("click", function () {
+                paymentMethods.forEach(function (item) {
+                    item.classList.remove("is-selected");
+                });
+
+                method.classList.add("is-selected");
+                paymentMethodInput.value = method.dataset.metodo;
+
+                const isPix = method.dataset.metodo === "PIX";
+                cardFields.hidden = isPix;
+                pixFields.hidden = !isPix;
+            });
+        });
+    </script>
+}

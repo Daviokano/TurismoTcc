@@ -1,0 +1,76 @@
+@model HorizonTravel.Models.ReservaCheckout
+@{
+    ViewData["Title"] = "Passageiros";
+}
+
+<link rel="stylesheet" href="~/css/reserva-checkout.css" asp-append-version="true" />
+
+<main class="checkout-page">
+    <section class="checkout-heading">
+        <h1>Reservar Pacote</h1>
+        <p>Preencha os dados para concluir sua reserva.</p>
+    </section>
+
+    <ol class="checkout-progress" aria-label="Etapas da reserva">
+        <li class="is-active">
+            <span class="checkout-progress-icon"><i class="bi bi-people"></i></span>
+            <span>Passageiros</span>
+        </li>
+        <li>
+            <span class="checkout-progress-icon"><i class="bi bi-credit-card"></i></span>
+            <span>Pagamento</span>
+        </li>
+        <li>
+            <span class="checkout-progress-icon"><i class="bi bi-check-circle"></i></span>
+            <span>Confirmação</span>
+        </li>
+    </ol>
+
+    <form asp-action="Passageiros"
+          method="post"
+          class="checkout-card checkout-passengers-card"
+          id="form-passageiros">
+        <input asp-for="IDPac" type="hidden" />
+        <input asp-for="ValorTotal" type="hidden" />
+        <div asp-validation-summary="ModelOnly" class="checkout-validation"></div>
+
+        @for (int i = 0; i < Model.Passageiros.Count; i++)
+        {
+            <section class="passenger-section" data-passageiro-index="@i">
+                <h2><span>@(i + 1)</span> Passageiro @(i + 1)</h2>
+
+                <div class="passenger-fields">
+                    <div class="payment-field payment-field-full">
+                        <label asp-for="Passageiros[i].nomeCompleto">Nome completo</label>
+                        <input asp-for="Passageiros[i].nomeCompleto" placeholder="Nome completo" />
+                        <span asp-validation-for="Passageiros[i].nomeCompleto"></span>
+                    </div>
+                    <div class="payment-field">
+                        <label asp-for="Passageiros[i].CPF">CPF</label>
+                        <input asp-for="Passageiros[i].CPF" placeholder="000.000.000-00" />
+                        <span asp-validation-for="Passageiros[i].CPF"></span>
+                    </div>
+                    <div class="payment-field">
+                        <label asp-for="Passageiros[i].passaporte">Passaporte</label>
+                        <input asp-for="Passageiros[i].passaporte" placeholder="BR000000" />
+                        <span asp-validation-for="Passageiros[i].passaporte"></span>
+                    </div>
+                    <div class="payment-field payment-field-full">
+                        <label asp-for="Passageiros[i].dataNascimento">Data de nascimento</label>
+                        <input asp-for="Passageiros[i].dataNascimento" type="date" />
+                        <span asp-validation-for="Passageiros[i].dataNascimento"></span>
+                    </div>
+                </div>
+            </section>
+        }
+
+        <div class="checkout-actions">
+            <a asp-controller="Carrinho" asp-action="Index" class="checkout-button checkout-button-secondary">Voltar</a>
+            <button type="submit" class="checkout-button checkout-button-primary">Continuar para pagamento <i class="bi bi-arrow-right"></i></button>
+        </div>
+    </form>
+</main>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

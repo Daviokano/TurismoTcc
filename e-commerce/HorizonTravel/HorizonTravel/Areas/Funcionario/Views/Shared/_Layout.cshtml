@@ -37,7 +37,7 @@
 
         <ul class="barra-lateral-menu">
             <li>
-                <a asp-controller="Home"asp-action="PainelFuncionario">
+                <a asp-area="Funcionario" asp-controller="Home" asp-action="PainelFuncionario">
                     <i class="bi bi-house-door"></i>
                     Painel de Controle
                 </a>
@@ -67,7 +67,7 @@
                 </a>
             </li>
             <li>
-                <a asp-controller="Usuario" asp-action="Histórico">
+                <a asp-area="Funcionario" asp-controller="Usuario" asp-action="Historico">
                     <i class="bi bi-clock-history"></i>
                     Histórico por cliente
                 </a>
@@ -85,10 +85,6 @@
             Sair
         </a>
     </aside>
-
-    <main class="conteudo-principal">
-        @RenderBody()
-    </main>
 
     <main class="conteudo-principal">
         @RenderBody()

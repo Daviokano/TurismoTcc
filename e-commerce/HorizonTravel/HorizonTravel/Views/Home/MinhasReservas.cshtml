@@ -1,4 +1,4 @@
-@model HorizonTravel.Models.Usuario
+@model HorizonTravel.Models.MinhasReservasViewModel
 
 @{
     ViewData["Title"] = "Minhas reservas";
@@ -8,10 +8,10 @@
 
 <section class="pagina-usuario">
     <div class="cabecalho-usuario">
-        <div class="avatar-usuario">@Model.nomeUsu.Substring(0, 1).ToUpper()</div>
+        <div class="avatar-usuario">@Model.Usuario.nomeUsu.Substring(0, 1).ToUpper()</div>
         <div>
-            <h1>@Model.nomeUsu</h1>
-            <p>@Model.emailUsu</p>
+            <h1>@Model.Usuario.nomeUsu</h1>
+            <p>@Model.Usuario.emailUsu</p>
         </div>
     </div>
 
@@ -22,43 +22,28 @@
     </nav>
 
     <section class="lista-reservas" aria-label="Lista de reservas">
-        <article class="cartao-reserva">
-            <div>
-                <h2>Pacote Rio de Janeiro</h2>
-                <p><i class="bi bi-geo-alt"></i> Rio de Janeiro - Brasil</p>
-                <p><i class="bi bi-calendar3"></i> Partida: 15/01/2027 - 2 passageiros</p>
-            </div>
-            <div class="dados-reserva">
-                <strong>R$ 9.000</strong>
-                <span class="status-reserva">Confirmado</span>
-                <small>#HT1294821</small>
-            </div>
-        </article>
-
-        <article class="cartao-reserva">
-            <div>
-                <h2>Paris</h2>
-                <p><i class="bi bi-geo-alt"></i> Paris - França</p>
-                <p><i class="bi bi-calendar3"></i> Partida: 20/11/2026 - 1 passageiro</p>
-            </div>
-            <div class="dados-reserva">
-                <strong>R$ 17.800</strong>
-                <span class="status-reserva">Confirmado</span>
-                <small>#HT1297721</small>
-            </div>
-        </article>
-
-        <article class="cartao-reserva">
-            <div>
-                <h2>Turquia</h2>
-                <p><i class="bi bi-geo-alt"></i> Turquia - Japão</p>
-                <p><i class="bi bi-calendar3"></i> Partida: 08/12/2026 - 2 passageiros</p>
-            </div>
-            <div class="dados-reserva">
-                <strong>R$ 11.500</strong>
-                <span class="status-reserva">Confirmado</span>
-                <small>#HT004821</small>
-            </div>
-        </article>
+        @if (!Model.Reservas.Any())
+        {
+            <p>Você ainda não possui reservas.</p>
+        }
+        else
+        {
+            @foreach (var reserva in Model.Reservas)
+            {
+                var codigoReserva = $"HT{reserva.IDRes:000000}";
+                <article class="cartao-reserva">
+                    <div>
+                        <h2>@reserva.destinoPac</h2>
+                        <p><i class="bi bi-calendar3"></i> Partida: @reserva.dataPac.ToString("dd/MM/yyyy") - @reserva.quantidadePassageiros passageiro(s)</p>
+                        <p>Pagamento: @reserva.metodoPag (@reserva.statusPag)</p>
+                    </div>
+                    <div class="dados-reserva">
+                        <strong>R$ @reserva.valorPag.ToString("N2")</strong>
+                        <span class="status-reserva">@reserva.statusRes</span>
+                        <small>#@codigoReserva</small>
+                    </div>
+                </article>
+            }
+        }
     </section>
 </section>

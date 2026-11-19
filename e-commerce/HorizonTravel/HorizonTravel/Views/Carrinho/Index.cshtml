@@ -69,10 +69,12 @@
             <strong>R$ @subtotal.ToString("N2")</strong>
         </div>
 
-        <button type="button" class="botao-finalizar" @(Model.Any() ? null : "disabled")>
+        <a asp-controller="Reserva"
+           asp-action="Passageiros"
+           class="botao-finalizar @(Model.Any() ? string.Empty : "disabled")">
             <i class="bi bi-bag"></i>
             Finalizar compra
-        </button>
+        </a>
         <p class="compra-segura">Ambiente 100% seguro</p>
     </section>
 </main>

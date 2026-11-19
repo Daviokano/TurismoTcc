@@ -1,12 +1,10 @@
 using HorizonTravel.Libraries.CarrinhoCompra;
 using HorizonTravel.Libraries.Cookie;
-using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorizonTravel.Controllers;
 
-[UsuarioAutorizacaoAtributte]
 public class CarrinhoController : Controller
 {
     private CarrinhoCompra _carrinhoCompra;
