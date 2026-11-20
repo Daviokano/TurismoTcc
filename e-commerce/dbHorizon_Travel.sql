@@ -1,9 +1,8 @@
-CREATE DATABASE dbHorizon_Travel;
--- DROP DATABASE dbHorizon_Travel;
-USE dbHorizon_Travel;
+-- ATENÇÃO:
+-- Execute o comando abaixo somente se puder apagar o banco existente.
+DROP DATABASE IF EXISTS dbHorizon_Travel;
 
-CREATE DATABASE dbHorizon_Travel;
-
+CREATE DATABASE IF NOT EXISTS dbHorizon_Travel;
 USE dbHorizon_Travel;
 
 CREATE TABLE Usuario (
@@ -14,7 +13,7 @@ CREATE TABLE Usuario (
     telefoneUsu VARCHAR(20) NOT NULL,
     dataNascimentoUsu DATE NOT NULL,
     senhaUsu VARCHAR(255) NOT NULL,
-    situacaoUsu CHAR(2) NOT NULL
+    situacaoUsu CHAR(2) NOT NULL DEFAULT 'A'
 );
 
 CREATE TABLE Funcionario (
@@ -23,9 +22,14 @@ CREATE TABLE Funcionario (
     nomeFun VARCHAR(100) NOT NULL,
     telefoneFun VARCHAR(20) NOT NULL,
     emailFun VARCHAR(100) NOT NULL UNIQUE,
-    senhaFun VARCHAR(8) NOT NULL,
-    dataNascimentoFun DATE NOT NULL
+    senhaFun VARCHAR(255) NOT NULL,
+    dataNascimentoFun DATE NOT NULL,
+    permissaoFun VARCHAR(25),
+    situacaoFun CHAR(1) NOT NULL DEFAULT 'A'
 );
+
+INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, permissaoFun, situacaoFun, dataNascimentoFun)
+VALUES ('12345678901', 'Carlos Silva', '(11) 98765-4321', 'carlos@exemplo.com', '123456', 'Administrador', 'A', '1992-08-15');
 
 CREATE TABLE Parceiro (
     CNPJFor CHAR(14) PRIMARY KEY,
@@ -33,6 +37,9 @@ CREATE TABLE Parceiro (
     emailFor VARCHAR(100) NOT NULL UNIQUE,
     situacaoFor CHAR(1) NOT NULL DEFAULT 'A'
 );
+
+INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor, situacaoFor) 
+VALUES ('12345678000199', 'Agência Parceira', 'contato@parceira.com', 'A');
 
 CREATE TABLE Promocao (
     IDPromo INT AUTO_INCREMENT PRIMARY KEY,
@@ -52,9 +59,11 @@ CREATE TABLE Pacote (
     quantidadePac INT NOT NULL,
     descricaoPac TEXT NOT NULL,
     avaliacaoPac DECIMAL(2,1),
-    fotoPac VARCHAR(255),
+    fotoPac VARCHAR(255) NOT NULL,
+    origemPac VARCHAR(200) NOT NULL,
     destinoPac VARCHAR(100) NOT NULL,
     dataPac DATE NOT NULL,
+    situacaoPac CHAR(1) NOT NULL DEFAULT 'A',
 
     CONSTRAINT FK_PacoteFuncionario
         FOREIGN KEY (IDFun)
@@ -73,6 +82,13 @@ CREATE TABLE Pacote (
     CHECK (avaliacaoPac BETWEEN 0 AND 5)
 );
 
+INSERT INTO Pacote (IDPac, IDFun, CNPJFor, precoPac, quantidadePac, descricaoPac, fotoPac, origemPac, destinoPac, dataPac, situacaoPac) 
+VALUES 
+(1, 1, '12345678000199', 2500.00, 4, 'Descubra praias e natureza.', 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=600', 'São Paulo', 'Brasil', '2024-12-01', 'A'),
+(2, 1, '12345678000199', 8500.00, 4, 'Elegância e história.', 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600', 'Rio de Janeiro', 'França', '2024-12-15', 'A'),
+(3, 1, '12345678000199', 12000.00, 4, 'Tradição e tecnologia.', 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=600', 'Brasília', 'Japão', '2025-01-10', 'A'),
+(4, 1, '12345678000199', 6000.00, 4, 'Cores e cultura.', 'https://images.unsplash.com/photo-1512813195182-25c6e84c5671?q=80&w=600', 'Salvador', 'México', '2024-11-20', 'A');
+
 CREATE TABLE Reserva (
     IDRes INT AUTO_INCREMENT PRIMARY KEY,
     IDUsu INT NOT NULL,
@@ -87,19 +103,6 @@ CREATE TABLE Reserva (
     CONSTRAINT FK_ReservaPacote
         FOREIGN KEY (IDPac)
         REFERENCES Pacote(IDPac)
-);
-
-CREATE TABLE Passageiro (
-    IDPassageiro INT AUTO_INCREMENT PRIMARY KEY,
-    IDRes INT NOT NULL,
-    nomeCompleto VARCHAR(150) NOT NULL,
-    CPF CHAR(11) NOT NULL,
-    dataNascimento DATE NOT NULL,
-    passaporte VARCHAR(30),
-
-    CONSTRAINT FK_PassageiroReserva
-        FOREIGN KEY (IDRes)
-        REFERENCES Reserva(IDRes)
 );
 
 CREATE TABLE Pagamento (
@@ -128,6 +131,19 @@ CREATE TABLE Historico (
         REFERENCES Reserva(IDRes)
 );
 
+CREATE TABLE Passageiro (
+    IDPassageiro INT AUTO_INCREMENT PRIMARY KEY,
+    IDRes INT NOT NULL,
+    nomeCompleto VARCHAR(150) NOT NULL,
+    CPF CHAR(11) NOT NULL,
+    dataNascimento DATE NOT NULL,
+    passaporte VARCHAR(30),
+
+    CONSTRAINT FK_PassageiroReserva
+        FOREIGN KEY (IDRes)
+        REFERENCES Reserva(IDRes)
+);
+
 CREATE TABLE Avaliacao (
     IDAvaliacao INT AUTO_INCREMENT PRIMARY KEY,
     IDUsu INT NOT NULL,
@@ -147,47 +163,57 @@ CREATE TABLE Avaliacao (
     CHECK (notaAva BETWEEN 0 AND 5)
 );
 
--- Cadastrar um novo usuário
-
 DELIMITER $$
 
-CREATE PROCEDURE ht_CadastrarUsuario(
+USE dbHorizon_Travel;
 
-IN pCPF CHAR(11),
-IN pNome VARCHAR(100),
-IN pEmail VARCHAR(100),
-IN pTelefone VARCHAR(20),
-IN pDataNascimento DATE,
-IN pSenha VARCHAR(255)
+DROP TRIGGER IF EXISTS trg_HistoricoReserva;
 
+ALTER TABLE Historico
+    ADD COLUMN statusNovo VARCHAR(40) NULL AFTER statusAnterior,
+    ADD COLUMN IDFun INT NULL AFTER IDRes,
+    ADD CONSTRAINT FK_HistoricoFuncionario
+        FOREIGN KEY (IDFun) REFERENCES Funcionario(IDFun);
+
+CREATE PROCEDURE ht_CadastrarUsuario (
+    IN pCPF CHAR(11),
+    IN pNome VARCHAR(100),
+    IN pEmail VARCHAR(100),
+    IN pTelefone VARCHAR(20),
+    IN pDataNascimento DATE,
+    IN pSenha VARCHAR(255)
 )
-
 BEGIN
-
-INSERT INTO Usuario
-(CPFUsu,nomeUsu,emailUsu,telefoneUsu,dataNascimentoUsu,senhaUsu)
-
-VALUES
-(pCPF,pNome,pEmail,pTelefone,pDataNascimento,pSenha);
-
+    INSERT INTO Usuario (
+        CPFUsu,
+        nomeUsu,
+        emailUsu,
+        telefoneUsu,
+        dataNascimentoUsu,
+        senhaUsu,
+        situacaoUsu
+    )
+    VALUES (
+        pCPF,
+        pNome,
+        pEmail,
+        pTelefone,
+        pDataNascimento,
+        pSenha,
+        'A'
+    );
 END $$
 
 DELIMITER ;
 
--- realizar uma reserva
-
 DELIMITER $$
 
-CREATE PROCEDURE ht_RealizarReserva(
-
+CREATE PROCEDURE ht_RealizarReserva (
     IN pIDUsu INT,
     IN pIDPac INT,
     IN pData DATE
-
 )
-
 BEGIN
-
     DECLARE vQuantidade INT;
 
     SELECT quantidadePac
@@ -197,11 +223,18 @@ BEGIN
 
     IF vQuantidade > 0 THEN
 
-        INSERT INTO Reserva
-        (IDUsu, IDPac, dataRes, statusRes)
-
-        VALUES
-        (pIDUsu, pIDPac, pData, 'Pendente');
+        INSERT INTO Reserva (
+            IDUsu,
+            IDPac,
+            dataRes,
+            statusRes
+        )
+        VALUES (
+            pIDUsu,
+            pIDPac,
+            pData,
+            'Pendente'
+        );
 
         UPDATE Pacote
         SET quantidadePac = quantidadePac - 1
@@ -213,126 +246,163 @@ BEGIN
         SET MESSAGE_TEXT = 'Pacote esgotado.';
 
     END IF;
-
 END $$
 
 DELIMITER ;
 
--- Serve par guardar o histórico quando tiver alguma alteração
 DELIMITER $$
 
 CREATE TRIGGER trg_HistoricoReserva
-
 AFTER UPDATE ON Reserva
-
 FOR EACH ROW
-
 BEGIN
-
-IF OLD.statusRes <> NEW.statusRes THEN
-
-INSERT INTO Historico
-(IDRes,statusAnterior,dataModificacao)
-
-VALUES
-(
-OLD.IDRes,
-OLD.statusRes,
-NOW()
-);
-
-END IF;
-
-END$$
-
-DELIMITER ;
-
-
--- atualizar automaticamente quando mudar a media da nota da empresa
-DELIMITER $$
-
-CREATE TRIGGER trg_AtualizarMedia
-
-AFTER INSERT ON Avaliacao
-
-FOR EACH ROW
-
-BEGIN
-
-    UPDATE Pacote
-
-    SET avaliacaoPac = (
-
-        SELECT ROUND(AVG(notaAva),1)
-
-        FROM Avaliacao
-
-        WHERE IDPac = NEW.IDPac
-
-    )
-
-    WHERE IDPac = NEW.IDPac;
-
+    IF OLD.statusRes <> NEW.statusRes THEN
+        INSERT INTO Historico (
+            IDRes,
+            statusAnterior,
+            dataModificacao
+        )
+        VALUES (
+            OLD.IDRes,
+            OLD.statusRes,
+            NOW()
+        );
+    END IF;
 END $$
 
 DELIMITER ;
 
--- Update da média
+DELIMITER $$
+
+CREATE TRIGGER trg_AtualizarMedia
+AFTER INSERT ON Avaliacao
+FOR EACH ROW
+BEGIN
+    UPDATE Pacote
+    SET avaliacaoPac = (
+        SELECT ROUND(AVG(notaAva), 1)
+        FROM Avaliacao
+        WHERE IDPac = NEW.IDPac
+    )
+    WHERE IDPac = NEW.IDPac;
+END $$
+
+DELIMITER ;
 
 DELIMITER $$
 
 CREATE TRIGGER trg_AtualizarMediaUpdate
-
 AFTER UPDATE ON Avaliacao
-
 FOR EACH ROW
-
 BEGIN
-
     UPDATE Pacote
-
     SET avaliacaoPac = (
-
-        SELECT ROUND(AVG(notaAva),1)
-
+        SELECT ROUND(AVG(notaAva), 1)
         FROM Avaliacao
-
         WHERE IDPac = NEW.IDPac
-
     )
-
     WHERE IDPac = NEW.IDPac;
-
 END $$
 
 DELIMITER ;
-
--- Caso seja apagada a notaa, tem q atualizar a média
 
 DELIMITER $$
 
 CREATE TRIGGER trg_AtualizarMediaDelete
-
 AFTER DELETE ON Avaliacao
-
 FOR EACH ROW
-
 BEGIN
-
     UPDATE Pacote
-
     SET avaliacaoPac = (
-
-        SELECT ROUND(AVG(notaAva),1)
-
+        SELECT ROUND(AVG(notaAva), 1)
         FROM Avaliacao
-
         WHERE IDPac = OLD.IDPac
-
     )
-
     WHERE IDPac = OLD.IDPac;
-
 END $$
 
 DELIMITER ;
+
+INSERT INTO Funcionario (
+    CPFFun,
+    nomeFun,
+    telefoneFun,
+    emailFun,
+    senhaFun,
+    permissaoFun,
+    situacaoFun,
+    dataNascimentoFun
+)
+VALUES (
+    '12345678901',
+    'Carlos Silva',
+    '(11) 98765-4321',
+    'carlos.silva@exemplo.com',
+    '123456',
+    'Administrador',
+    'A',
+    '1992-08-15'
+);
+
+
+INSERT INTO Funcionario (
+    CPFFun,
+    nomeFun,
+    telefoneFun,
+    emailFun,
+    senhaFun,
+    permissaoFun,
+    situacaoFun,
+    dataNascimentoFun
+)
+VALUES (
+    '12345678902',
+    'Carlos Silva',
+    '(11) 98765-4321',
+    'carlos@exemplo.com',
+    '123456',
+    'Administrador',
+    'A',
+    '1992-08-15'
+);
+
+INSERT INTO Funcionario (
+    CPFFun,
+    nomeFun,
+    telefoneFun,
+    emailFun,
+    senhaFun,
+    permissaoFun,
+    situacaoFun,
+    dataNascimentoFun
+)
+VALUES (
+    '12345678903',
+    'Carlos Silva',
+    '(11) 98765-4321',
+    'carlos@exemplo1.com',
+    '23456789',
+    'Administrador',
+    'A',
+    '1992-08-15'
+);
+
+DESCRIBE Usuario;
+DESCRIBE Funcionario;
+DESCRIBE Parceiro;
+DESCRIBE Pacote;
+DESCRIBE Reserva;
+DESCRIBE Pagamento;
+DESCRIBE Historico;
+DESCRIBE Passageiro;
+DESCRIBE Avaliacao;
+
+SELECT * FROM Usuario;
+SELECT * FROM Funcionario;
+SELECT * FROM Parceiro;
+SELECT * FROM Pacote;
+SELECT * FROM Reserva;
+SELECT * FROM Pagamento;
+SELECT * FROM Historico;
+SELECT * FROM Passageiro;
+SELECT * FROM Avaliacao;

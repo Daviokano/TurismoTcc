@@ -11,7 +11,7 @@ namespace HorizonTravel.Controllers
 {
     public class HomeController : Controller
     {
-        //inje��o de depend�ncia
+        //injeção de dependencia
         private IUsuarioRepository _usuarioRepository;
         private LoginUsuario _usuarioLogin;
         private IReservaRepository _reservaRepository;
@@ -43,7 +43,7 @@ namespace HorizonTravel.Controllers
             }
             else
             {
-                ViewData["MSG_E"] = "O usu�rio n�o foi localizado, por fazer verifique o email e senha digitados!";
+                ViewData["MSG_E"] = "O usuário não foi localizado, por fazer verifique o email e senha digitados!";
                 return View();
             }
         }

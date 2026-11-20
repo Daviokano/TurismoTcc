@@ -1,27 +1,34 @@
-using Microsoft.AspNetCore.Mvc;
-using HorizonTravel.Repository.Contract;
 using HorizonTravel.Models;
+using HorizonTravel.Repository.Contract; // Ou o seu Contexto do banco
+using Microsoft.AspNetCore.Mvc;
 
-namespace HorizonTravel.Controllers;
-
-public class PacotesController : Controller
+namespace HorizonTravel.Controllers
 {
-    private readonly IPacoteRepository _pacoteRepository;
-
-    public PacotesController(IPacoteRepository pacoteRepository)
+    public class PacotesController : Controller
     {
-        _pacoteRepository = pacoteRepository;
-    }
+        // Se você usa Repository:
+        private readonly IPacoteRepository _pacoteRepository;
 
-    public IActionResult Index()
-    {
-        return View(_pacoteRepository.ObterTodosPacotes());
-    }
+        public PacotesController(IPacoteRepository pacoteRepository)
+        {
+            _pacoteRepository = pacoteRepository;
+        }
 
-    public IActionResult Detalhes(int id)
-    {
-        Pacote pacote = _pacoteRepository.ObterPacote(id);
+        // A URL acessada será: localhost:porta/Pacotes
+        public IActionResult Index()
+        {
+            // Busca os pacotes reais do banco
+            var pacotes = _pacoteRepository.ObterTodosPacotes();
 
-        return pacote == null ? NotFound() : View(pacote);
+            // Retorna a View "Index.cshtml" que está em Views/Pacotes/
+            return View(pacotes);
+        }
+
+        // Action de detalhes que você já deve ter
+        public IActionResult Detalhes(int id)
+        {
+            // ... lógica
+            return View();
+        }
     }
 }

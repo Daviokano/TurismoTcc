@@ -1,0 +1,52 @@
+﻿@model HorizonTravel.Models.Avaliacao
+
+@{
+    ViewData["Title"] = "Avaliar Pacote";
+}
+
+<section class="container-avaliacao" style="max-width: 600px; margin: 50px auto; padding: 30px; background: #fff; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <h2 class="text-center mb-4">Avaliar Pacote</h2>
+    <p class="text-muted text-center mb-4">Sua opinião é muito importante para nós!</p>
+
+    <!-- O form aponta para a própria Index via POST -->
+    <form asp-action="Index" method="post">
+        
+        <!-- Campo oculto para o ID do Pacote -->
+        <input type="hidden" asp-for="IDPac" />
+        <input type="hidden" asp-for="dataAva" />
+
+        <!-- Seleção de Nota (0 a 5) -->
+        <div class="mb-3">
+            <label asp-for="notaAva" class="form-label fw-bold">Nota (de 0 a 5)</label>
+            <select asp-for="notaAva" class="form-select" required>
+                <option value="">Selecione uma nota...</option>
+                <option value="5">5 - Excelente</option>
+                <option value="4">4 - Muito Bom</option>
+                <option value="3">3 - Bom</option>
+                <option value="2">2 - Regular</option>
+                <option value="1">1 - Ruim</option>
+                <option value="0">0 - Péssimo</option>
+            </select>
+            <span asp-validation-for="notaAva" class="text-danger"></span>
+        </div>
+
+        <!-- Comentário -->
+        <div class="mb-4">
+            <label asp-for="comentarioAva" class="form-label fw-bold">Seu Comentário (Opcional)</label>
+            <textarea asp-for="comentarioAva" class="form-control" rows="4" placeholder="Conte-nos como foi sua viagem..."></textarea>
+            <span asp-validation-for="comentarioAva" class="text-danger"></span>
+        </div>
+
+        <!-- Botões -->
+        <div class="d-flex justify-content-between">
+            <a asp-controller="Pacotes" asp-action="Index" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary" style="background-color: #f97316; border-color: #f97316;">Enviar Avaliação</button>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

@@ -2,12 +2,15 @@
 
 @{
     ViewData["Title"] = "Pacotes";
+    
+    // Usa o que vem do banco. Se estiver vazio, não quebra a tela.
+    var listaExibicao = Model ?? new List<HorizonTravel.Models.Pacote>();
 }
 
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
 
 <section class="banner-pacotes">
-    <img src="~/img/bannerPacote.png" alt="Paisagem de viagem" />
+    <img src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=1600&auto=format&fit=crop" alt="Paisagem de viagem" />
     <div class="conteudo-banner-pacotes">
         <h1>NOSSOS<br />PACOTES</h1>
         <p>Encontre o seu destino ideal.<br />Mais de 30 pacotes para você.</p>
@@ -56,44 +59,82 @@
         </select>
     </section>
 
-    <p class="total-pacotes"><strong>@Model.Count()</strong> pacotes encontrados</p>
+    <p class="total-pacotes"><strong>@listaExibicao.Count()</strong> pacotes encontrados</p>
 
     <section class="grade-pacotes">
-        @foreach (var pacote in Model)
+        @if (listaExibicao.Any())
         {
-            <article class="cartao-pacote">
-                @if (!string.IsNullOrWhiteSpace(pacote.fotoPac))
-                {
-                    <img src="~/@pacote.fotoPac" alt="Pacote para @pacote.destinoPac" />
-                }
-
-                <div class="corpo-cartao-pacote">
-                    <h2>Pacote @pacote.destinoPac</h2>
-                    <p>
-                        @pacote.origemPac → @pacote.destinoPac
-                    </p>
-
-                    <div class="detalhes-pacote">
-                        <span>
-                            <i class="bi bi-calendar-event"></i>
-                            @pacote.dataPac.ToString("dd/MM/yyyy")
-                        </span>
-                        <span>@pacote.quantidadePac vagas</span>
+            @foreach (var pacote in listaExibicao)
+            {
+                <article class="cartao-pacote">
+                    <div class="container-imagem-pacote">
+                        <img src="@(string.IsNullOrWhiteSpace(pacote.fotoPac) ? "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600" : pacote.fotoPac)" alt="Pacote para @pacote.destinoPac" />
+                        <span class="etiqueta-destino">@pacote.destinoPac</span>
                     </div>
 
-                    <div class="rodape-cartao-pacote">
-                        <span>
-                            A partir de
-                            <strong>R$ @pacote.precoPac.ToString("N2")</strong>
-                        </span>
-                        <a asp-action="Detalhes" asp-route-id="@pacote.IDPac">
-                            Ver pacote
-                        </a>
+                    <div class="corpo-cartao-pacote">
+                        <h2>@pacote.destinoPac</h2>
+                        
+                        <p class="descricao-pacote">
+                            @if (pacote.destinoPac == "Brasil")
+                            {
+                                <text>Descubra praias, natureza e experiências inesquecíveis.</text>
+                            }
+                            else if (pacote.destinoPac == "França")
+                            {
+
+                                <text>Encante-se com elegância, história e charme.</text>
+                            }
+                            else if (pacote.destinoPac == "Japão")
+                            {
+
+                                <text>Tradição, tecnologia e paisagens surpreendentes.</text>
+                            }
+                            else if (pacote.destinoPac == "México")
+                            {
+
+                                <text>Cores, cultura e paisagens fascinantes.</text>
+                            }
+                            else
+                            {
+
+                                <text>@pacote.origemPac → @pacote.destinoPac</text>
+                            }
+                        </p>
+
+                        <!-- ===== ÁREA DE AVALIAÇÃO ===== -->
+                        <div class="rodape-cartao-pacote">
+                            <div class="area-avaliacao">
+                                <div class="avaliacao-estrelas">
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                    <i class="bi bi-star-fill"></i>
+                                </div>
+                                <!-- Link correto apontando para a Controller Avaliacao, Action Index -->
+                                <a asp-controller="Avaliacao" asp-action="Index" asp-route-id="@pacote.IDPac" class="link-avaliar">
+                                    Avaliar pacote
+                                </a>
+                            </div>
+                            <span class="qtd-vagas">@pacote.quantidadePac pacotes</span>
+                        </div>
+                        
+                        <div class="preco-acao">
+                            <span>A partir de <strong>R$ @pacote.precoPac.ToString("N2")</strong></span>
+                            <!-- Corrigido para apontar para a Action Detalhes -->
+                            <a asp-controller="Pacotes" asp-action="Detalhes" asp-route-id="@pacote.IDPac" class="btn-ver-pacote">Ver pacote</a>
+                        </div>
                     </div>
-                </div>
-            </article>
+                </article>
+            }
+        }
+        else
+        {
+            <div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666;">
+                <h3>Nenhum pacote encontrado no momento.</h3>
+                <p>Adicione pacotes no banco de dados para vê-los aqui.</p>
+            </div>
         }
     </section>
-
 </main>
-
