@@ -48,12 +48,18 @@ namespace HorizonTravel.Controllers
             }
         }
 
+        [UsuarioAutorizacaoAtributte]
         public IActionResult PainelUsuario()
         {
-            ViewBag.nomeUsu = _usuarioLogin.GetUsuario().nomeUsu;
-            ViewBag.CPFUsu = _usuarioLogin.GetUsuario().CPFUsu;
-            ViewBag.emailUsu = _usuarioLogin.GetUsuario().emailUsu;
-            return View();
+            Usuario usuario = _usuarioLogin.GetUsuario();
+
+            var modelo = new MinhasReservasViewModel
+            {
+                Usuario = usuario,
+                Reservas = _reservaRepository.ObterReservasPorUsuario(usuario.IDUsu)
+            };
+
+            return View("Historico", modelo);
         }
         [UsuarioAutorizacaoAtributte]
         public IActionResult MeuPerfil()

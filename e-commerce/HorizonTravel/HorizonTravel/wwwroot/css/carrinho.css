@@ -59,6 +59,14 @@
     background: #dfe8f1;
 }
 
+.imagem-item-carrinho img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: inherit;
+}
+
 .informacoes-item-carrinho h2 {
     margin: 0 0 4px;
     font-size: .8rem;

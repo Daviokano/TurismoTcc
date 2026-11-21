@@ -30,7 +30,10 @@
             foreach (var item in Model)
             {
                 <article class="item-carrinho">
-                    <div class="imagem-item-carrinho" role="img" aria-label="Imagem do pacote @item.NomePacote"></div>
+                    <div class="imagem-item-carrinho" role="img" aria-label="Imagem do pacote @item.NomePacote">
+                        <img src="@(string.IsNullOrWhiteSpace(item.Imagem) ? "~/img/fotoBanner.png" : Url.Content("~/" + item.Imagem.TrimStart('~', '/')) )"
+                             alt="@item.NomePacote" />
+                    </div>
 
                     <div class="informacoes-item-carrinho">
                         <h2>@item.NomePacote</h2>

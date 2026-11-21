@@ -253,6 +253,97 @@
     font-size: 0.75rem;
 }
 
+.cabecalho-detalhes-pacote-funcionario {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 28px;
+}
+
+.cabecalho-detalhes-pacote-funcionario h1 {
+    margin: 5px 0 6px;
+    color: #111827;
+}
+
+.cabecalho-detalhes-pacote-funcionario p,
+.rotulo-detalhes-pacote-funcionario {
+    margin: 0;
+    color: #6b7280;
+}
+
+.rotulo-detalhes-pacote-funcionario {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.status-detalhes-pacote-funcionario {
+    padding: 8px 12px;
+    border-radius: 999px;
+    background: #e8f7ee;
+    color: #18794e;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.resumo-detalhes-pacote-funcionario {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 28px;
+}
+
+.resumo-detalhes-pacote-funcionario div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    background: #f9fafb;
+}
+
+.resumo-detalhes-pacote-funcionario span {
+    color: #6b7280;
+    font-size: .78rem;
+}
+
+.resumo-detalhes-pacote-funcionario strong {
+    color: #111827;
+    font-size: 1.05rem;
+}
+
+.descricao-detalhes-pacote-funcionario {
+    margin-bottom: 24px;
+}
+
+.descricao-detalhes-pacote-funcionario h2 {
+    margin: 0 0 8px;
+    color: #111827;
+    font-size: 1rem;
+}
+
+.descricao-detalhes-pacote-funcionario p {
+    margin: 0;
+    color: #4b5563;
+    line-height: 1.6;
+}
+
+.botao-voltar-detalhes-pacote-funcionario {
+    display: inline-block;
+    color: #243f91;
+    font-size: .82rem;
+    text-decoration: none;
+}
+
+@media (max-width: 760px) {
+    .resumo-detalhes-pacote-funcionario {
+        grid-template-columns: 1fr;
+    }
+}
+
 @media (max-width: 760px) {
     .cabecalho-lista-pacotes {
         align-items: flex-start;

@@ -1,0 +1,62 @@
+@model HorizonTravel.Models.MinhasReservasViewModel
+
+@{
+    ViewData["Title"] = "Histórico";
+}
+
+<link rel="stylesheet" href="~/css/historico-usuario.css" asp-append-version="true" />
+
+<section class="historico-usuario">
+    <header class="cabecalho-historico-usuario">
+        <div class="avatar-historico-usuario">
+            @Model.Usuario.nomeUsu.Substring(0, 1).ToUpper()
+        </div>
+        <div>
+            <h1>@Model.Usuario.nomeUsu</h1>
+            <p>@Model.Usuario.emailUsu - Cliente Horizon Travel</p>
+        </div>
+    </header>
+
+    <nav class="abas-usuario" aria-label="Navegação do usuário">
+        <a asp-controller="Home" asp-action="MeuPerfil">Meu perfil</a>
+        <a asp-controller="Home" asp-action="MinhasReservas">Minhas reservas</a>
+        <a class="aba-ativa" asp-controller="Home" asp-action="PainelUsuario">Histórico</a>
+    </nav>
+
+    <section class="lista-historico-usuario" aria-label="Histórico de viagens">
+        @if (!Model.Reservas.Any())
+        {
+            <div class="historico-vazio">
+                <i class="bi bi-clock-history"></i>
+                <p>Você ainda não possui viagens no histórico.</p>
+            </div>
+        }
+        else
+        {
+            @foreach (var reserva in Model.Reservas)
+            {
+                <article class="cartao-historico-usuario">
+                    <div class="dados-historico-usuario">
+                        <h2>@reserva.destinoPac</h2>
+                        <p><i class="bi bi-geo-alt"></i> @reserva.destinoPac</p>
+                        <p>Realizada em: @reserva.dataRes.ToString("dd/MM/yyyy")</p>
+                    </div>
+                    <div class="resumo-historico-usuario">
+                        <strong>R$ @reserva.valorPag.ToString("N2")</strong>
+                        @if (reserva.statusRes.Equals("Confirmada", StringComparison.OrdinalIgnoreCase))
+                        {
+                            <span class="texto-avaliacao">Sua avaliação:</span>
+                            <a asp-controller="Avaliacao" asp-action="Index" asp-route-id="@reserva.IDPac" class="estrelas-avaliacao" aria-label="Avaliar pacote">
+                                ★ ★ ★ ★ ★
+                            </a>
+                        }
+                        else
+                        {
+                            <a asp-controller="Avaliacao" asp-action="Index" asp-route-id="@reserva.IDPac" class="botao-avaliar">Avalie</a>
+                        }
+                    </div>
+                </article>
+            }
+        }
+    </section>
+</section>

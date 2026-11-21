@@ -37,36 +37,33 @@
         </div>
     </section>
 
-    <div class="grade-gerenciamento-reserva">
-        <section class="cartao-gerenciamento">
-            <h2>Status da reserva</h2>
-            <p>Status atual: <strong>@Model.Reserva.statusRes</strong></p>
-            <form asp-action="AtualizarStatus" method="post">
-                <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
-                <select name="statusRes">
-                    <option value="Pendente">Pendente</option>
-                    <option value="Confirmada">Confirmada</option>
-                    <option value="Cancelada">Cancelada</option>
-                </select>
-                <button type="submit">Atualizar reserva</button>
-            </form>
-        </section>
+    <section class="informacoes-pacote-reserva">
+        <div class="cabecalho-informacoes-pacote-reserva">
+            <div>
+                <span>Resumo da viagem</span>
+                <h2>Pacote para @Model.Reserva.destinoPac</h2>
+            </div>
+        </div>
 
-        <section class="cartao-gerenciamento">
-            <h2>Pagamento</h2>
-            <p>Método: <strong>@Model.Reserva.metodoPag</strong></p>
-            <p>Status atual: <strong>@Model.Reserva.statusPag</strong></p>
-            <form asp-action="AtualizarPagamento" method="post">
-                <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
-                <select name="statusPag">
-                    <option value="Pendente">Pendente</option>
-                    <option value="Pago">Pago</option>
-                    <option value="Cancelado">Cancelado</option>
-                </select>
-                <button type="submit">Atualizar pagamento</button>
-            </form>
-        </section>
-    </div>
+        <div class="grade-informacoes-pacote-reserva">
+            <div>
+                <span>Destino</span>
+                <strong>@Model.Reserva.destinoPac</strong>
+            </div>
+            <div>
+                <span>Data de partida</span>
+                <strong>@Model.Reserva.dataPac.ToString("dd/MM/yyyy")</strong>
+            </div>
+            <div>
+                <span>Passageiros</span>
+                <strong>@Model.Passageiros.Count()</strong>
+            </div>
+            <div>
+                <span>Valor total</span>
+                <strong>R$ @Model.Reserva.valorPag.ToString("N2")</strong>
+            </div>
+        </div>
+    </section>
 
     <section class="client-history-table-section">
         <div class="client-history-table-heading">
@@ -98,41 +95,4 @@
         </div>
     </section>
 
-    <section class="client-history-table-section">
-        <div class="client-history-table-heading">
-            <h2>Histórico de alterações</h2>
-        </div>
-        @if (!Model.Historico.Any())
-        {
-            <div class="client-history-empty">
-                <p>Nenhuma alteração de status foi registrada.</p>
-            </div>
-        }
-        else
-        {
-            <div class="client-history-table-wrap">
-            <table class="client-history-table">
-                <thead>
-                    <tr>
-                        <th>Data</th>
-                        <th>Status anterior</th>
-                        <th>Novo status</th>
-                        <th>Responsável</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach (var item in Model.Historico)
-                    {
-                        <tr>
-                            <td>@item.dataModificacao.ToString("dd/MM/yyyy HH:mm")</td>
-                            <td>@item.statusAnterior</td>
-                            <td>@item.statusNovo</td>
-                            <td>@(item.nomeFun ?? "Sistema/cliente")</td>
-                        </tr>
-                    }
-                </tbody>
-            </table>
-            </div>
-        }
-    </section>
 </section>

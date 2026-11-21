@@ -7,36 +7,30 @@
 <link rel="stylesheet" href="~/css/pacotes-funcionario.css" asp-append-version="true" />
 
 <div class="detalhes-pacote-funcionario">
-    <h1>Detalhes do pacote</h1>
-    <p>
-        <strong>Destino:</strong>
-        @Model.destinoPac
-    </p>
+    <div class="cabecalho-detalhes-pacote-funcionario">
+        <div>
+            <span class="rotulo-detalhes-pacote-funcionario">Visualização do pacote</span>
+            <h1>@Model.destinoPac</h1>
+            <p>@Model.origemPac → @Model.destinoPac</p>
+        </div>
+        <span class="status-detalhes-pacote-funcionario">@(Model.quantidadePac > 0 ? "Disponível" : "Esgotado")</span>
+    </div>
 
-    <p>
-        <strong>Data:</strong>
-        @Model.dataPac.ToString("dd/MM/yyyy")
-    </p>
+    <div class="resumo-detalhes-pacote-funcionario">
+        <div><span>Data de partida</span><strong>@Model.dataPac.ToString("dd/MM/yyyy")</strong></div>
+        <div><span>Preço</span><strong>R$ @Model.precoPac.ToString("N2")</strong></div>
+        <div><span>Vagas disponíveis</span><strong>@Model.quantidadePac</strong></div>
+    </div>
 
-    <p>
-        <strong>Preço:</strong>
-        R$ @Model.precoPac.ToString("N2")
-    </p>
-
-    <p>
-        <strong>Quantidade disponível:</strong>
-        @Model.quantidadePac
-    </p>
-
-    <p>
-        <strong>Descrição:</strong>
-        @Model.descricaoPac
-    </p>
+    <section class="descricao-detalhes-pacote-funcionario">
+        <h2>Descrição</h2>
+        <p>@Model.descricaoPac</p>
+    </section>
 
     @if (!string.IsNullOrWhiteSpace(Model.fotoPac))
     {
         <img src="~/@Model.fotoPac" alt="Pacote para @Model.destinoPac" />
     }
 
-    <a asp-action="Index">Voltar para pacotes</a>
+    <a class="botao-voltar-detalhes-pacote-funcionario" asp-action="Index">Voltar para pacotes</a>
 </div>

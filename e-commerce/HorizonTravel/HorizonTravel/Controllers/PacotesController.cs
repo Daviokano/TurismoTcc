@@ -18,7 +18,10 @@ namespace HorizonTravel.Controllers
         public IActionResult Index()
         {
             // Busca os pacotes reais do banco
-            var pacotes = _pacoteRepository.ObterTodosPacotes();
+            var pacotes = _pacoteRepository
+                .ObterTodosPacotes()
+                .Where(pacote => pacote.quantidadePac > 0)
+                .ToList();
 
             // Retorna a View "Index.cshtml" que está em Views/Pacotes/
             return View(pacotes);
@@ -27,8 +30,12 @@ namespace HorizonTravel.Controllers
         // Action de detalhes que você já deve ter
         public IActionResult Detalhes(int id)
         {
-            // ... lógica
-            return View();
+            var pacote = _pacoteRepository.ObterPacote(id);
+
+            if (pacote == null)
+                return NotFound();
+
+            return View(pacote);
         }
     }
 }

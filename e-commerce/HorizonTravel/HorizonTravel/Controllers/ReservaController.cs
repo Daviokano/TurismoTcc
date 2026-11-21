@@ -52,9 +52,9 @@ namespace HorizonTravel.Controllers
             var modelo = new ReservaCheckout
             {
                 IDPac = item.IdPacote,
-                ValorTotal = item.Preco * item.Quantidade,
+                ValorTotal = pacote.precoPac * pacote.quantidadePac,
                 Passageiros = Enumerable
-                    .Range(0, item.Quantidade)
+                    .Range(0, pacote.quantidadePac)
                     .Select(_ => new Passageiro())
                     .ToList()
             };
@@ -77,11 +77,11 @@ namespace HorizonTravel.Controllers
 
             var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
 
-            if (pacote == null || modelo.Passageiros.Count != item.Quantidade)
+            if (pacote == null || modelo.Passageiros.Count != pacote.quantidadePac)
             {
                 ModelState.AddModelError(
                     string.Empty,
-                    $"Cadastre exatamente {item.Quantidade} passageiros.");
+                    $"Cadastre exatamente {pacote?.quantidadePac ?? 0} passageiros.");
             }
 
             if (!ModelState.IsValid || modelo.Passageiros.Count == 0)

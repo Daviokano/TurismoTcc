@@ -1,3 +1,5 @@
+@model HorizonTravel.Models.Pacote
+
 @{
     ViewData["Title"] = "Detalhes do pacote";
 }
@@ -32,25 +34,22 @@
         <span class="por-pessoa">por pacote</span>
         <hr />
         
-        <label>
-            data de partida
-            <input type="date" />
-        </label>
-        
-        <label>
-            número de pessoas
-            <select>
-                <option>1 pessoa</option>
-                <option>2 pessoas</option>
-                <option>3 pessoas</option>
-            </select>
-        </label>
+        <div class="informacao-fixa-pacote">
+            <span class="rotulo-informacao-pacote">data de partida</span>
+            <strong><i class="bi bi-calendar-event"></i> @Model.dataPac.ToString("dd/MM/yyyy")</strong>
+        </div>
+
+        <div class="informacao-fixa-pacote">
+            <span class="rotulo-informacao-pacote">vagas disponíveis</span>
+            <strong><i class="bi bi-people"></i> @Model.quantidadePac pessoas</strong>
+        </div>
         
         <form asp-controller="Carrinho" asp-action="Adicionar" method="post">
             <input type="hidden" name="IdPacote" value="@Model.IDPac" />
             <input type="hidden" name="NomePacote" value="Pacote @Model.destinoPac" />
             <input type="hidden" name="Destino" value="@Model.destinoPac" />
             <input type="hidden" name="Preco" value="@Model.precoPac" />
+            <input type="hidden" name="Imagem" value="@Model.fotoPac" />
             <button type="submit">Adicionar ao carrinho</button>
         </form>
         

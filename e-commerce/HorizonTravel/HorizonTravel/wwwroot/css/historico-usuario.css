@@ -1,0 +1,144 @@
+.historico-usuario {
+    width: min(100%, 720px);
+    min-height: 620px;
+    margin: 0 auto;
+    padding: 34px 20px 80px;
+}
+
+.cabecalho-historico-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 20px 30px;
+    border-radius: 4px;
+    background: #243f91;
+    color: #fff;
+}
+
+.avatar-historico-usuario {
+    display: grid;
+    width: 50px;
+    height: 50px;
+    place-items: center;
+    border-radius: 50%;
+    background: #ff7417;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.cabecalho-historico-usuario h1,
+.cabecalho-historico-usuario p {
+    margin: 0;
+}
+
+.cabecalho-historico-usuario h1 {
+    font-size: 1.12rem;
+}
+
+.cabecalho-historico-usuario p {
+    margin-top: 4px;
+    font-size: .76rem;
+}
+
+.historico-usuario .abas-usuario {
+    margin: 14px 0 25px;
+}
+
+.lista-historico-usuario {
+    display: grid;
+    gap: 24px;
+}
+
+.cartao-historico-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 18px 26px;
+    border-radius: 8px;
+    background: #fff;
+    box-shadow: 0 2px 10px #0002;
+}
+
+.dados-historico-usuario h2,
+.dados-historico-usuario p {
+    margin: 0;
+}
+
+.dados-historico-usuario h2 {
+    font-size: .92rem;
+}
+
+.dados-historico-usuario p {
+    margin-top: 6px;
+    color: #666;
+    font-size: .72rem;
+}
+
+.dados-historico-usuario i {
+    margin-right: 5px;
+}
+
+.resumo-historico-usuario {
+    display: flex;
+    min-width: 120px;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.resumo-historico-usuario strong {
+    font-size: .88rem;
+}
+
+.texto-avaliacao {
+    color: #666;
+    font-size: .7rem;
+}
+
+.estrelas-avaliacao {
+    color: #f5a900;
+    font-size: .86rem;
+    letter-spacing: 2px;
+    text-decoration: none;
+}
+
+.botao-avaliar {
+    padding: 6px 20px;
+    border-radius: 4px;
+    background: #ff7417;
+    color: #fff;
+    font-size: .72rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.historico-vazio {
+    display: grid;
+    justify-items: center;
+    gap: 8px;
+    padding: 36px;
+    color: #666;
+    text-align: center;
+}
+
+.historico-vazio i {
+    color: #ff7417;
+    font-size: 1.6rem;
+}
+
+.historico-vazio p {
+    margin: 0;
+    font-size: .82rem;
+}
+
+@media (max-width: 600px) {
+    .cartao-historico-usuario {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .resumo-historico-usuario {
+        align-items: flex-start;
+    }
+}
