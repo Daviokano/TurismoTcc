@@ -323,48 +323,6 @@ END $$
 
 DELIMITER ;
 
-INSERT INTO Funcionario (
-    CPFFun,
-    nomeFun,
-    telefoneFun,
-    emailFun,
-    senhaFun,
-    permissaoFun,
-    situacaoFun,
-    dataNascimentoFun
-)
-VALUES (
-    '12345678901',
-    'Carlos Silva',
-    '(11) 98765-4321',
-    'carlos.silva@exemplo.com',
-    '123456',
-    'Administrador',
-    'A',
-    '1992-08-15'
-);
-
-
-INSERT INTO Funcionario (
-    CPFFun,
-    nomeFun,
-    telefoneFun,
-    emailFun,
-    senhaFun,
-    permissaoFun,
-    situacaoFun,
-    dataNascimentoFun
-)
-VALUES (
-    '12345678902',
-    'Carlos Silva',
-    '(11) 98765-4321',
-    'carlos@exemplo.com',
-    '123456',
-    'Administrador',
-    'A',
-    '1992-08-15'
-);
 
 INSERT INTO Funcionario (
     CPFFun,
@@ -385,6 +343,27 @@ VALUES (
     'Administrador',
     'A',
     '1992-08-15'
+);
+
+INSERT INTO Funcionario (
+    CPFFun,
+    nomeFun,
+    telefoneFun,
+    emailFun,
+    senhaFun,
+    permissaoFun,
+    situacaoFun,
+    dataNascimentoFun
+)
+VALUES (
+    '12345678904',
+    'Maria Souza',
+    '(11) 91234-5678',
+    'maria@exemplo.com',
+    '12345678',
+    'Funcionario',
+    'A',
+    '1995-03-20'
 );
 
 DESCRIBE Usuario;

@@ -1,4 +1,5 @@
 ﻿using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -45,8 +46,8 @@ namespace HorizonTravel.Repository
 
                 string cpf = System.Text.RegularExpressions.Regex.Replace(funcionario.CPFFun, @"\D", "");
 
-                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun)
-                        VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun)", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun, permissaoFun)
+                    VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun, @permissaoFun)", conexao);
 
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
                 cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = cpf;
@@ -54,6 +55,7 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@telefoneFun", MySqlDbType.VarChar).Value = funcionario.telefoneFun;
                 cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun.ToString("yyyy-MM-dd");
                 cmd.Parameters.Add("@senhaFun", MySqlDbType.VarChar).Value = funcionario.senhaFun;
+                cmd.Parameters.Add("@permissaoFun", MySqlDbType.VarChar).Value = PermissaoFunConstant.Funcionario;
 
 
                 cmd.ExecuteNonQuery();
@@ -101,6 +103,7 @@ namespace HorizonTravel.Repository
                     funcionario.telefoneFun = Convert.ToString(dr["telefoneFun"]);
                     funcionario.dataNascimentoFun = Convert.ToDateTime(dr["dataNascimentoFun"]);
                     funcionario.senhaFun = Convert.ToString(dr["senhaFun"]);
+                    funcionario.permissaoFun = Convert.ToString(dr["permissaoFun"]);
                 }
                 return funcionario;
             }
@@ -128,6 +131,7 @@ namespace HorizonTravel.Repository
                         funcionario.telefoneFun = (string)(dr["telefoneFun"]);
                         funcionario.dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]);
                         funcionario.senhaFun = (string)(dr["senhaFun"]);
+                        funcionario.permissaoFun = Convert.ToString(dr["permissaoFun"]);
                     }
                 }
 
@@ -161,6 +165,7 @@ namespace HorizonTravel.Repository
                             telefoneFun = (string)(dr["telefoneFun"]),
                             dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]),
                             senhaFun = (string)(dr["senhaFun"]),
+                            permissaoFun = (string)(dr["permissaoFun"]),
                         }
                     );
                 }

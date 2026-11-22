@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace HorizonTravel.Areas.Funcionario.Controllers
 {
     [Area("Funcionario")]
-    [FuncionarioAutorizacaoAtributte]
+    [FuncionarioAutorizacao]
     public class ReservaController : Controller
     {
         private readonly IReservaRepository _reservaRepository;

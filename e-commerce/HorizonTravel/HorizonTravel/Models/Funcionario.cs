@@ -37,9 +37,9 @@ namespace HorizonTravel.Models
         public string senhaFun { get; set; }
 
         [StringLength(25)]
-        public string? permissaoFun { get; set; }
+        public string permissaoFun { get; set; }
 
         [StringLength(1)]
-        public string? situacaoFun { get; set; }
+        public string situacaoFun { get; set; }
     }
 }

@@ -1,32 +1,25 @@
+@using HorizonTravel.Models.Constant
 @model IEnumerable<HorizonTravel.Models.Funcionario>
-
+@inject HorizonTravel.Libraries.Login.LoginFuncionario _login
 @{
     ViewData["Title"] = "Funcionários";
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
+    
+    // Variável para facilitar a verificação no HTML
+    var isAdmin = _login.GetFuncionario()?.permissaoFun == PermissaoFunConstant.Administrador;
 }
-
 
 <link rel="stylesheet" href="~/css/telacontrolefuncionario.css" asp-append-version="true" />
 
 @functions {
     string ObterIniciais(string nome)
     {
-        if (string.IsNullOrWhiteSpace(nome))
-        {
-            return "?";
-        }
-
+        if (string.IsNullOrWhiteSpace(nome)) return "?";
         var partes = nome.Split(' ', StringSplitOptions.RemoveEmptyEntries);
-
-        if (partes.Length == 1)
-        {
-            return partes[0][0].ToString().ToUpper();
-        }
-
+        if (partes.Length == 1) return partes[0][0].ToString().ToUpper();
         return (partes[0][0].ToString() + partes[partes.Length - 1][0].ToString()).ToUpper();
     }
 }
-
 
 <div class="pagina-lista">
 
@@ -77,13 +70,22 @@
                         <td class="data-funcionario">@funcionario.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
                         <td>
                             <div class="grupo-acoes">
-                                <a asp-action="Atualizar" asp-route-id="@funcionario.IDFun" class="botao-acao botao-editar">Editar</a>
+                                <!-- O botão Editar agora só aparece se for Admin OU se o Admin estiver editando ele mesmo -->
+                                @if (isAdmin)
+                                {
+                                    <a asp-action="Atualizar" asp-route-id="@funcionario.IDFun" class="botao-acao botao-editar">Editar</a>
+                                }
+                                
                                 <a asp-action="Detalhes" asp-route-id="@funcionario.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
 
-                                <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
-                                      onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
-                                    <button type="submit" class="botao-acao botao-excluir">Excluir</button>
-                                </form>
+                                <!-- Botão Excluir só aparece se for Admin E não for a própria conta E o alvo não for Admin -->
+                                @if (isAdmin && funcionario.permissaoFun != PermissaoFunConstant.Administrador)
+                                {
+                                    <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
+                                          onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                        <button type="submit" class="botao-acao botao-excluir">Excluir</button>
+                                    </form>
+                                }
                             </div>
                         </td>
                     </tr>
@@ -100,72 +102,68 @@
     <div class="paginacao" id="paginacao" data-por-pagina="3"></div>
 
     <!-- ===== Cadastro de funcionário ===== -->
-    <section class="secao-cadastro">
-        <div class="cartao-cadastro">
-            <h2 class="titulo-cadastro">Cadastrar Funcionário</h2>
+    <!-- Só exibe a seção de cadastro se o usuário for Administrador -->
+    @if (isAdmin)
+    {
+        <section class="secao-cadastro">
+            <div class="cartao-cadastro">
+                <h2 class="titulo-cadastro">Cadastrar Funcionário</h2>
 
-            <!--
-                Como o model da página é uma lista (IEnumerable), não dá pra usar asp-for aqui.
-                Os campos usam "name" igual às propriedades de Funcionario, então o model binding
-                do POST Cadastrar(Funcionario) continua funcionando.
-            -->
-            <form asp-action="Cadastrar" method="post" id="formCadastroFuncionario" class="form-cadastro">
-                <div class="grade-cadastro">
+                <form asp-action="Cadastrar" method="post" id="formCadastroFuncionario" class="form-cadastro">
+                    <div class="grade-cadastro">
 
-                    <div class="campo-form">
-                        <label for="nomeFun" class="rotulo-form">Nome Completo</label>
-                        <input type="text" id="nomeFun" name="nomeFun" class="input-form"
-                               placeholder="Digite o nome completo" maxlength="100" required />
+                        <div class="campo-form">
+                            <label for="nomeFun" class="rotulo-form">Nome Completo</label>
+                            <input type="text" id="nomeFun" name="nomeFun" class="input-form"
+                                   placeholder="Digite o nome completo" maxlength="100" required />
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="CPFFun" class="rotulo-form">CPF</label>
+                            <input type="text" id="CPFFun" name="CPFFun" class="input-form CPF"
+                                   placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="emailFun" class="rotulo-form">E-mail</label>
+                            <input type="email" id="emailFun" name="emailFun" class="input-form"
+                                   placeholder="exemplo@gmail.com" maxlength="100" required />
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="telefoneFun" class="rotulo-form">Telefone</label>
+                            <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form Telefone"
+                                   placeholder="(11) 99999-9999" maxlength="15" required />
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="senhaFun" class="rotulo-form">Senha</label>
+                            <input type="password" id="senhaFun" name="senhaFun" class="input-form"
+                                   placeholder="Digite a senha" maxlength="8" required />
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
+                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                                   placeholder="Confirme a senha" maxlength="8" required />
+                            <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
+                        </div>
+
+                        <div class="campo-form">
+                            <label for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
+                            <input type="text" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
+                        </div>
+
                     </div>
 
-                    <div class="campo-form">
-                        <label for="CPFFun" class="rotulo-form">CPF</label>
-                        <input type="text" id="CPFFun" name="CPFFun" class="input-form CPF"
-                               placeholder="000.000.000-00" inputmode="numeric" maxlength="14" required />
+                    <div class="acoes-form">
+                        <button type="reset" class="botao-cancelar">Cancelar</button>
+                        <button type="submit" class="botao-cadastrar">Cadastrar Funcionário</button>
                     </div>
-
-                    <div class="campo-form">
-                        <label for="emailFun" class="rotulo-form">E-mail</label>
-                        <input type="email" id="emailFun" name="emailFun" class="input-form"
-                               placeholder="exemplo@gmail.com" maxlength="100" required />
-                    </div>
-
-                    <div class="campo-form">
-                        <label for="telefoneFun" class="rotulo-form">Telefone</label>
-                        <input type="tel" id="telefoneFun" name="telefoneFun" class="input-form Telefone"
-                               placeholder="(11) 99999-9999" maxlength="15" required />
-                    </div>
-
-                    
-
-                    <div class="campo-form">
-                        <label for="senhaFun" class="rotulo-form">Senha</label>
-                        <input type="password" id="senhaFun" name="senhaFun" class="input-form"
-                               placeholder="Digite a senha" maxlength="8" required />
-                    </div>
-
-                    <div class="campo-form">
-                        <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
-                        <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
-                               placeholder="Confirme a senha" maxlength="8" required />
-                        <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
-                    </div>
-
-                    <!-- MUDAR AQUI O DATA TYPE -->
-                    <div class="campo-form">
-                        <label for="dataNascimentoFun" class="rotulo-form">Data de nascimento</label>
-                        <input type="text" id="dataNascimentoFun" name="dataNascimentoFun" class="input-form DataNasc" placeholder="dd/mm/aaaa" required />
-                    </div>
-
-                </div>
-
-                <div class="acoes-form">
-                    <button type="reset" class="botao-cancelar">Cancelar</button>
-                    <button type="submit" class="botao-cadastrar">Cadastrar Funcionário</button>
-                </div>
-            </form>
-        </div>
-    </section>
+                </form>
+            </div>
+        </section>
+    }
 </div>
 
 <script src="~/js/listagem.js" asp-append-version="true"></script>

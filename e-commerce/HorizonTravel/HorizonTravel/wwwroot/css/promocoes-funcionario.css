@@ -2,7 +2,7 @@
 .pagina-formulario-promocao {
     max-width: 1180px;
     margin: 0 auto;
-    padding: 34px 28px 60px;
+    padding: 20px 28px 60px; /* Subiu os elementos: padding-top reduzido de 34px para 20px */
 }
 
 .cabecalho-promocoes-funcionario {
@@ -10,29 +10,29 @@
     align-items: flex-start;
     justify-content: space-between;
     gap: 24px;
-    margin-bottom: 26px;
+    margin-bottom: 20px; /* Reduzido de 26px para aproximar a tabela do topo */
 }
 
-.cabecalho-promocoes-funcionario h1 {
-    margin: 0 0 5px;
-    color: #111827;
-    font-size: 1.25rem;
-}
+    .cabecalho-promocoes-funcionario h1 {
+        margin: 0 0 4px;
+        color: #111827;
+        font-size: 1.15rem; /* Letra diminuída: era 1.25rem */
+    }
 
-.cabecalho-promocoes-funcionario p {
-    margin: 0;
-    color: #6b7280;
-    font-size: .78rem;
-}
+    .cabecalho-promocoes-funcionario p {
+        margin: 0;
+        color: #6b7280;
+        font-size: .75rem; /* Letra diminuída: era .78rem */
+    }
 
 .botao-nova-promocao,
 .acoes-formulario-promocao button {
     border: 0;
     border-radius: 5px;
-    padding: 10px 16px;
+    padding: 8px 14px; /* Botão levemente mais compacto */
     background: #ff7419;
     color: #fff;
-    font-size: .78rem;
+    font-size: .75rem; /* Letra diminuída: era .78rem */
     font-weight: 700;
     text-decoration: none;
 }
@@ -48,36 +48,43 @@
     width: 100%;
     min-width: 700px;
     border-collapse: collapse;
-    font-size: .78rem;
+    font-size: .75rem; /* Letra diminuída: era .78rem */
 }
 
-.tabela-promocoes th,
-.tabela-promocoes td {
-    padding: 15px 14px;
-    border-bottom: 1px solid #e5e7eb;
-    text-align: left;
-}
+    .tabela-promocoes th,
+    .tabela-promocoes td {
+        padding: 12px 14px; /* Reduzido de 15px para 12px para compactar as linhas */
+        border-bottom: 1px solid #e5e7eb;
+        text-align: left;
+    }
 
-.tabela-promocoes th {
-    background: #f8f8f8;
-    color: #111827;
-    font-size: .72rem;
-}
+    .tabela-promocoes th {
+        background: #f8f8f8;
+        color: #111827;
+        font-size: .7rem; /* Letra diminuída: era .72rem */
+    }
 
-.tabela-promocoes tr:last-child td {
-    border-bottom: 0;
-}
+    .tabela-promocoes tr:last-child td {
+        border-bottom: 0;
+    }
 
 .status-promocao {
     display: inline-block;
-    padding: 5px 10px;
+    padding: 4px 8px;
     border-radius: 999px;
-    font-size: .68rem;
+    font-size: .65rem; /* Letra diminuída: era .68rem */
     font-weight: 700;
 }
 
-.status-promocao.ativa { background: #dcfce7; color: #18713b; }
-.status-promocao.expirada { background: #fee2e2; color: #b42318; }
+    .status-promocao.ativa {
+        background: #dcfce7;
+        color: #18713b;
+    }
+
+    .status-promocao.expirada {
+        background: #fee2e2;
+        color: #b42318;
+    }
 
 .acoes-promocao {
     display: flex;
@@ -85,35 +92,39 @@
     gap: 12px;
 }
 
-.acoes-promocao a {
-    color: #243f91;
-    font-weight: 700;
-    text-decoration: none;
-}
+    .acoes-promocao a {
+        color: #243f91;
+        font-weight: 700;
+        text-decoration: none;
+        font-size: .75rem; /* Adicionado para garantir consistência */
+    }
 
-.acoes-promocao form { margin: 0; }
+    .acoes-promocao form {
+        margin: 0;
+    }
 
-.acoes-promocao button {
-    border: 0;
-    background: transparent;
-    color: #b42318;
-    cursor: pointer;
-    font: inherit;
-    font-weight: 700;
-}
+    .acoes-promocao button {
+        border: 0;
+        background: transparent;
+        color: #b42318;
+        cursor: pointer;
+        font: inherit;
+        font-size: .75rem; /* Garantindo tamanho da fonte do botão excluir */
+        font-weight: 700;
+    }
 
 .mensagem-sucesso-promocao {
     margin-bottom: 20px;
-    padding: 12px;
+    padding: 10px 12px;
     border-radius: 5px;
     background: #dcfce7;
     color: #166534;
-    font-size: .8rem;
+    font-size: .75rem; /* Letra diminuída: era .8rem */
 }
 
 .cartao-formulario-promocao {
-    max-width: 620px;
-    padding: 28px;
+    max-width: 600px; /* Levemente mais estreito */
+    padding: 24px; /* Reduzido de 28px para 24px */
     border: 1px solid #e5e7eb;
     border-radius: 7px;
     background: #fff;
@@ -123,26 +134,27 @@
 .campo-promocao {
     display: flex;
     flex-direction: column;
-    gap: 6px;
-    margin-bottom: 18px;
+    gap: 4px;
+    margin-bottom: 14px; /* Reduzido de 18px para compactar */
 }
 
-.campo-promocao label {
-    color: #374151;
-    font-size: .78rem;
-    font-weight: 700;
-}
+    .campo-promocao label {
+        color: #374151;
+        font-size: .75rem; /* Letra diminuída: era .78rem */
+        font-weight: 700;
+    }
 
-.campo-promocao input {
-    min-height: 38px;
-    padding: 8px 10px;
-    border: 1px solid #cfd3d8;
-    border-radius: 4px;
-}
+    .campo-promocao input {
+        min-height: 36px; /* Reduzido de 38px */
+        padding: 6px 10px;
+        border: 1px solid #cfd3d8;
+        border-radius: 4px;
+        font-size: .75rem; /* Adicionado para o texto dentro do input */
+    }
 
 .erro-promocao {
     color: #b42318;
-    font-size: .72rem;
+    font-size: .7rem; /* Letra diminuída: era .72rem */
 }
 
 .acoes-formulario-promocao {
@@ -150,18 +162,27 @@
     justify-content: flex-end;
     align-items: center;
     gap: 14px;
-    margin-top: 26px;
+    margin-top: 20px; /* Reduzido de 26px */
 }
 
 .acoes-formulario-promocao a {
     color: #243f91;
-    font-size: .78rem;
+    font-size: .75rem; /* Letra diminuída: era .78rem */
     text-decoration: none;
 }
 
 @media (max-width: 700px) {
     .pagina-promocoes-funcionario,
-    .pagina-formulario-promocao { padding: 24px 16px 50px; }
-    .cabecalho-promocoes-funcionario { flex-direction: column; }
-    .botao-nova-promocao { align-self: flex-start; }
+    .pagina-formulario-promocao {
+        padding: 16px 16px 50px; /* Mais próximo do topo em celulares */
+    }
+
+    .cabecalho-promocoes-funcionario {
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .botao-nova-promocao {
+        align-self: flex-start;
+    }
 }

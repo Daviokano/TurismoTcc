@@ -357,12 +357,12 @@
         grid-template-columns: 1fr 1fr;
     }
 
-        /* Botão vira uma barra cheia na parte de baixo */
-        .barra-busca-pacotes .btn {
-            grid-column: 1 / -1;
-            height: 48px;
-            margin-top: 4px;
-        }
+    /* Botão vira uma barra cheia na parte de baixo */
+    .barra-busca-pacotes .btn {
+        grid-column: 1 / -1;
+        height: 48px;
+        margin-top: 4px;
+    }
 }
 
 /* Celular (Até 600px) */

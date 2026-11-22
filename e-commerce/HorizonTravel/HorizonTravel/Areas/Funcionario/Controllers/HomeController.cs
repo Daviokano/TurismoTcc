@@ -46,7 +46,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         }
 
 
-        [FuncionarioAutorizacaoAtributte]
+        [FuncionarioAutorizacao]
         public IActionResult PainelFuncionario()
         {
             ViewBag.nomeFun = _loginFuncionario.GetFuncionario().nomeFun;
@@ -55,20 +55,20 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View();
         }
 
-        [FuncionarioAutorizacaoAtributte]
+        [FuncionarioAutorizacao]
         public IActionResult Painel()
         {
             return View();
         }
 
         //verificar se deve ser criada outra index que mostre os dados dos funcionarios, como atualização
-        [FuncionarioAutorizacaoAtributte]
+        [FuncionarioAutorizacao]
         public IActionResult Index()
         {
             return View();
         }
 
-        [FuncionarioAutorizacaoAtributte]
+        [FuncionarioAutorizacao]
         public IActionResult Logout()
         {
             _loginFuncionario.Logout();
