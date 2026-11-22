@@ -6,14 +6,14 @@
 
 <link rel="stylesheet" href="~/css/historico-cliente.css" asp-append-version="true" />
 
-<section class="client-history-page">
-    <header class="client-history-heading">
+<section class="pagina-historico-cliente">
+    <header class="cabecalho-historico-cliente">
         <h1>Histórico por cliente</h1>
         <p>Consulte todas as reservas realizadas por um cliente.</p>
     </header>
 
-    <form class="client-search" method="get">
-        <label class="client-search-input">
+    <form class="busca-cliente" method="get">
+        <label class="entrada-busca-cliente">
             <i class="bi bi-search"></i>
             <input name="busca" value="@Model.Busca" placeholder="Buscar cliente por nome ou CPF..." autocomplete="off" />
         </label>
@@ -22,7 +22,7 @@
 
     @if (!string.IsNullOrWhiteSpace(Model.Busca) && !Model.ResultadosBusca.Any())
     {
-        <section class="client-history-empty">
+        <section class="historico-cliente-vazio">
             <i class="bi bi-person-x"></i>
             <p>Nenhum cliente foi encontrado para a busca informada.</p>
         </section>
@@ -30,13 +30,13 @@
 
     @if (Model.Cliente == null)
     {
-        <section class="client-list-section">
-            <div class="client-list-heading">
+        <section class="secao-lista-clientes">
+            <div class="cabecalho-lista-clientes">
                 <h2>Clientes cadastrados</h2>
                 <span>@Model.Clientes.Count() cliente(s)</span>
             </div>
-            <div class="client-list-wrap">
-                <table class="client-list-table">
+            <div class="envoltorio-lista-clientes">
+                <table class="tabela-lista-clientes">
                     <thead>
                         <tr>
                             <th>Cliente</th>
@@ -52,8 +52,8 @@
                         {
                             <tr>
                                 <td>
-                                    <div class="client-list-profile">
-                                        <span class="client-list-avatar">@usuario.nomeUsu.Substring(0, 1).ToUpper()</span>
+                                    <div class="perfil-lista-clientes">
+                                        <span class="avatar-lista-clientes">@usuario.nomeUsu.Substring(0, 1).ToUpper()</span>
                                         <strong>@usuario.nomeUsu</strong>
                                     </div>
                                 </td>
@@ -62,7 +62,7 @@
                                 <td>@usuario.telefoneUsu</td>
                                 <td>@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
                                 <td>
-                                    <a class="client-list-action" asp-action="Historico" asp-route-id="@usuario.IDUsu">Ver histórico</a>
+                                    <a class="acao-lista-clientes" asp-action="Historico" asp-route-id="@usuario.IDUsu">Ver histórico</a>
                                 </td>
                             </tr>
                         }
@@ -74,42 +74,42 @@
 
     @if (Model.Cliente != null)
     {
-        <section class="client-summary-card">
-            <div class="client-summary-profile">
-                <span class="client-summary-avatar">@Model.Cliente.nomeUsu[..1].ToUpper()</span>
+        <section class="cartao-resumo-cliente">
+            <div class="perfil-resumo-cliente">
+                <span class="avatar-resumo-cliente">@Model.Cliente.nomeUsu[..1].ToUpper()</span>
                 <div>
                     <h2>@Model.Cliente.nomeUsu</h2>
                     <p>E-mail: @Model.Cliente.emailUsu</p>
                     <p>Telefone: @Model.Cliente.telefoneUsu</p>
                 </div>
             </div>
-            <div class="client-summary-metric">
+            <div class="metrica-resumo-cliente">
                 <span>Total de reservas</span>
                 <strong>@Model.TotalReservas</strong>
             </div>
-            <div class="client-summary-metric">
+            <div class="metrica-resumo-cliente">
                 <span>Valor total</span>
                 <strong>R$ @Model.ValorTotal.ToString("N2")</strong>
             </div>
         </section>
 
-        <section class="client-history-table-section">
-            <div class="client-history-table-heading">
+        <section class="secao-tabela-historico-cliente">
+            <div class="cabecalho-tabela-historico-cliente">
                 <h2>Histórico de reservas</h2>
                 <span>@Model.TotalReservas reserva(s)</span>
             </div>
 
             @if (!Model.Reservas.Any())
             {
-                <section class="client-history-empty">
+                <section class="historico-cliente-vazio">
                     <i class="bi bi-calendar-x"></i>
                     <p>Este cliente ainda não possui reservas.</p>
                 </section>
             }
             else
             {
-                <div class="client-history-table-wrap">
-                    <table class="client-history-table">
+                <div class="envoltorio-tabela-historico-cliente">
+                    <table class="tabela-historico-cliente">
                         <thead>
                             <tr>
                                 <th>Reserva</th>
