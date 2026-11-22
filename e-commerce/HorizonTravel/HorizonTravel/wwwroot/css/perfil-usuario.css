@@ -52,6 +52,11 @@
     text-decoration: none;
 }
 
+.abas-usuario a:hover,
+.abas-usuario a:focus {
+    text-decoration: none;
+}
+
 .abas-usuario .aba-ativa {
     border-radius: 3px;
     background: #ff7417;

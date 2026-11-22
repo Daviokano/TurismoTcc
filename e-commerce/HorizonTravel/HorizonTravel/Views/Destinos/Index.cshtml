@@ -35,7 +35,8 @@
             ("Argentina", "destino-argentina.png", "Paisagens incríveis, cultura e sabor.")
         })
         {
-            <article class="cartao-destino">
+            <a class="link-destino" asp-controller="Pacotes" asp-action="Index" asp-route-destino="@destino.Item1" aria-label="Ver pacotes para @destino.Item1">
+                <article class="cartao-destino">
                 <img src="~/img/@destino.Item2" alt="Destino turístico: @destino.Item1" />
                 <div class="corpo-cartao-destino">
                     <span>@destino.Item1</span>
@@ -46,7 +47,8 @@
                         <small>4 pacotes</small>
                     </div>
                 </div>
-            </article>
+                </article>
+            </a>
         }
     </div>
 </section>

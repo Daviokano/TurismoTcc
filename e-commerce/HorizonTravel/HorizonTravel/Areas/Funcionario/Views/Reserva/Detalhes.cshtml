@@ -7,8 +7,8 @@
 
 <link rel="stylesheet" href="~/css/historico-cliente.css" asp-append-version="true" />
 
-<section class="client-history-page">
-    <header class="client-history-heading">
+<section class="pagina-historico-cliente">
+    <header class="cabecalho-historico-cliente">
         <h1>Reserva #@codigoReserva</h1>
         <p>Dados do cliente, passageiros, pagamento e histórico da reserva.</p>
     </header>
@@ -18,20 +18,20 @@
         <div class="mensagem-sucesso">@mensagem</div>
     }
 
-    <section class="client-summary-card">
-        <div class="client-summary-profile">
-            <span class="client-summary-avatar">@Model.Reserva.nomeUsu.Substring(0, 1).ToUpper()</span>
+    <section class="cartao-resumo-cliente">
+        <div class="perfil-resumo-cliente">
+            <span class="avatar-resumo-cliente">@Model.Reserva.nomeUsu.Substring(0, 1).ToUpper()</span>
             <div>
                 <h2>@Model.Reserva.nomeUsu</h2>
                 <p>@Model.Reserva.emailUsu</p>
                 <p>@Model.Reserva.telefoneUsu</p>
             </div>
         </div>
-        <div class="client-summary-metric">
+        <div class="metrica-resumo-cliente">
             <span>Pacote</span>
             <strong>@Model.Reserva.destinoPac</strong>
         </div>
-        <div class="client-summary-metric">
+        <div class="metrica-resumo-cliente">
             <span>Valor</span>
             <strong>R$ @Model.Reserva.valorPag.ToString("N2")</strong>
         </div>
@@ -65,13 +65,13 @@
         </div>
     </section>
 
-    <section class="client-history-table-section">
-        <div class="client-history-table-heading">
+    <section class="secao-tabela-historico-cliente">
+        <div class="cabecalho-tabela-historico-cliente">
             <h2>Passageiros</h2>
             <span>@Model.Passageiros.Count() passageiro(s)</span>
         </div>
-        <div class="client-history-table-wrap">
-        <table class="client-history-table">
+        <div class="envoltorio-tabela-historico-cliente">
+        <table class="tabela-historico-cliente">
             <thead>
                 <tr>
                     <th>Nome</th>

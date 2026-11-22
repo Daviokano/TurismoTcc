@@ -9,29 +9,29 @@
 
 <link rel="stylesheet" href="~/css/reserva-checkout.css" asp-append-version="true" />
 
-<main class="checkout-page">
-    <section class="checkout-heading">
+<main class="pagina-reserva">
+    <section class="cabecalho-reserva">
         <h1>Reservar Pacote</h1>
         <p>Confira os dados da sua reserva.</p>
     </section>
 
-    <ol class="checkout-progress" aria-label="Etapas da reserva">
-        <li class="is-complete">
-            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+    <ol class="progresso-reserva" aria-label="Etapas da reserva">
+        <li class="concluido">
+            <span class="icone-progresso-reserva"><i class="bi bi-check-lg"></i></span>
             <span>Passageiros</span>
         </li>
-        <li class="is-complete">
-            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+        <li class="concluido">
+            <span class="icone-progresso-reserva"><i class="bi bi-check-lg"></i></span>
             <span>Pagamento</span>
         </li>
-        <li class="is-active">
-            <span class="checkout-progress-icon"><i class="bi bi-check-lg"></i></span>
+        <li class="ativo">
+            <span class="icone-progresso-reserva"><i class="bi bi-check-lg"></i></span>
             <span>Confirmação</span>
         </li>
     </ol>
 
-    <section class="checkout-card checkout-confirmation-card">
-        <div class="confirmation-icon @(pagamentoCancelado ? "is-cancelled" : string.Empty)">
+    <section class="cartao-reserva cartao-confirmacao-reserva">
+        <div class="icone-confirmacao @(pagamentoCancelado ? "cancelado" : string.Empty)">
             <i class="bi @(pagamentoCancelado ? "bi-x-lg" : "bi-patch-check-fill")"></i>
         </div>
 
@@ -43,7 +43,7 @@
                     : "Reserva confirmada!")
         </h2>
 
-        <p class="confirmation-description">
+        <p class="descricao-confirmacao">
             @(pagamentoCancelado
                 ? "A reserva foi cancelada e as vagas voltaram a ficar disponíveis."
                 : pagamentoPendente
@@ -51,12 +51,12 @@
                     : "Seu pagamento foi confirmado e sua reserva está garantida.")
         </p>
 
-        <div class="reservation-code">
+        <div class="codigo-reserva">
             <span>Código da reserva</span>
             <strong>@codigoReserva</strong>
         </div>
 
-        <dl class="confirmation-summary">
+        <dl class="resumo-confirmacao">
             <div>
                 <dt>Pacote</dt>
                 <dd>@Model.Reserva.destinoPac</dd>
@@ -77,21 +77,21 @@
 
         @if (pagamentoPendente)
         {
-            <div class="checkout-actions checkout-actions-stacked">
+            <div class="acoes-reserva acoes-reserva-empilhadas">
                 <form asp-action="ConfirmarPagamento" method="post">
                     <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
-                    <button type="submit" class="checkout-button checkout-button-primary">Simular pagamento aprovado</button>
+                    <button type="submit" class="botao-reserva botao-reserva-principal">Simular pagamento aprovado</button>
                 </form>
                 <form asp-action="CancelarPagamento" method="post">
                     <input name="id" type="hidden" value="@Model.Reserva.IDRes" />
-                    <button type="submit" class="checkout-button checkout-button-outline">Cancelar pagamento</button>
+                    <button type="submit" class="botao-reserva botao-reserva-contorno">Cancelar pagamento</button>
                 </form>
             </div>
         }
 
-        <div class="checkout-actions">
-            <a asp-controller="Home" asp-action="MinhasReservas" class="checkout-button checkout-button-secondary">Minhas reservas</a>
-            <a asp-controller="Home" asp-action="Index" class="checkout-button checkout-button-primary">Voltar ao início</a>
+        <div class="acoes-reserva">
+            <a asp-controller="Home" asp-action="MinhasReservas" class="botao-reserva botao-reserva-secundario">Minhas reservas</a>
+            <a asp-controller="Home" asp-action="Index" class="botao-reserva botao-reserva-principal">Voltar ao início</a>
         </div>
     </section>
 </main>

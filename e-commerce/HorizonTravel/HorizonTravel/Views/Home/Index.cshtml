@@ -22,22 +22,22 @@
 
 <!-- BUSCA DE PACOTES/ DESTINOS -->
 <section class="envoltorio-busca-pacotes">
-    <form class="barra-busca-pacotes">
+    <form class="barra-busca-pacotes" asp-controller="Pacotes" asp-action="Index" method="get">
         <div class="campo-busca">
             <i class="bi bi-geo-alt text-secondary"></i>
-            <input type="text" placeholder="Origem" aria-label="Origem" />
+            <input type="text" name="origem" placeholder="Origem" aria-label="Origem" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-geo-alt text-secondary"></i>
-            <input type="text" placeholder="Destino" aria-label="Destino" />
+            <input type="text" name="destino" placeholder="Destino" aria-label="Destino" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-calendar-event text-secondary"></i>
-            <input type="text" placeholder="Data" aria-label="Data" />
+            <input type="date" name="data" aria-label="Data" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-people text-secondary"></i>
-            <input type="number" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
+            <input type="number" name="pessoas" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
         </div>
         <button type="submit" class="btn btn-login">Buscar</button>
     </form>

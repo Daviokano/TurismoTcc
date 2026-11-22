@@ -20,22 +20,22 @@
 </section>
 
 <section class="envoltorio-busca-pacotes">
-    <form class="barra-busca-pacotes">
+    <form class="barra-busca-pacotes" asp-controller="Pacotes" asp-action="Index" method="get">
         <div class="campo-busca">
             <i class="bi bi-geo-alt text-secondary"></i>
-            <input type="text" placeholder="Origem" aria-label="Origem" />
+            <input type="text" name="origem" value="@Context.Request.Query["origem"]" placeholder="Origem" aria-label="Origem" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-geo-alt text-secondary"></i>
-            <input type="text" placeholder="Destino" aria-label="Destino" />
+            <input type="text" name="destino" value="@Context.Request.Query["destino"]" placeholder="Destino" aria-label="Destino" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-calendar-event text-secondary"></i>
-            <input type="text" placeholder="Data" aria-label="Data" />
+            <input type="date" name="data" value="@Context.Request.Query["data"]" aria-label="Data" />
         </div>
         <div class="campo-busca">
             <i class="bi bi-people text-secondary"></i>
-            <input type="number" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
+            <input type="number" name="pessoas" min="1" value="@Context.Request.Query["pessoas"]" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
         </div>
         <button type="submit" class="btn btn-login">Buscar</button>
     </form>
@@ -46,19 +46,25 @@
         <div>
             <i class="bi bi-sliders"></i>
             <span>Filtrar por:</span>
-            <button class="filtro-ativo">todos</button>
-            <button>Brasil</button>
-            <button>Japão</button>
-            <button>EAU</button>
-            <button>Itália</button>
-            <button>França</button>
-            <button>Tailândia</button>
+            <a class="filtro-pacote @(string.IsNullOrEmpty(Context.Request.Query["destino"]) ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index">Todos</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Brasil" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Brasil">Brasil</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Japão" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Japão">Japão</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Estados Unidos" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Estados Unidos">Estados Unidos</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "França" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="França">França</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Itália" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Itália">Itália</a>
+            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Inglaterra" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Inglaterra">Inglaterra</a>
         </div>
-        <select aria-label="Ordenar pacotes">
-            <option>Popularidade</option>
-            <option>Menor preço</option>
-            <option>Maior preço</option>
-        </select>
+        <form class="formulario-ordenacao" asp-controller="Pacotes" asp-action="Index" method="get">
+            <input type="hidden" name="origem" value="@Context.Request.Query["origem"]" />
+            <input type="hidden" name="destino" value="@Context.Request.Query["destino"]" />
+            <input type="hidden" name="data" value="@Context.Request.Query["data"]" />
+            <input type="hidden" name="pessoas" value="@Context.Request.Query["pessoas"]" />
+            <select name="ordenacao" aria-label="Ordenar pacotes" onchange="this.form.submit()">
+                <option value="popularidade" selected="@(string.IsNullOrEmpty(Context.Request.Query["ordenacao"]) || Context.Request.Query["ordenacao"] == "popularidade")">Popularidade</option>
+                <option value="menor-preco" selected="@(Context.Request.Query["ordenacao"] == "menor-preco")">Menor preço</option>
+                <option value="maior-preco" selected="@(Context.Request.Query["ordenacao"] == "maior-preco")">Maior preço</option>
+            </select>
+        </form>
     </section>
 
     <p class="total-pacotes"><strong>@listaExibicao.Count()</strong> pacotes encontrados</p>

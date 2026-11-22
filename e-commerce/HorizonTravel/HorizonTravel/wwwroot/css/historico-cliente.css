@@ -1,35 +1,35 @@
-.client-history-page {
+.pagina-historico-cliente {
     width: 100%;
     max-width: none;
     min-height: calc(100vh - 48px);
     padding: 2px 0 30px;
 }
 
-.client-history-heading {
+.cabecalho-historico-cliente {
     margin-bottom: 30px;
 }
 
-.client-history-heading h1 {
+.cabecalho-historico-cliente h1 {
     margin: 0 0 3px;
     color: #111827;
     font-size: 1.28rem;
     font-weight: 700;
 }
 
-.client-history-heading p {
+.cabecalho-historico-cliente p {
     margin: 0;
     color: #4b5563;
     font-size: 0.78rem;
 }
 
-.client-search {
+.busca-cliente {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 115px;
     gap: 16px;
     margin-bottom: 24px;
 }
 
-.client-search-input {
+.entrada-busca-cliente {
     display: flex;
     align-items: center;
     gap: 9px;
@@ -40,12 +40,12 @@
     background: #ffffff;
 }
 
-.client-search-input i {
+.entrada-busca-cliente i {
     color: #5f6368;
     font-size: 0.8rem;
 }
 
-.client-search-input input {
+.entrada-busca-cliente input {
     width: 100%;
     border: 0;
     outline: 0;
@@ -54,7 +54,7 @@
     font-size: 0.76rem;
 }
 
-.client-search button {
+.busca-cliente button {
     min-height: 40px;
     border: 0;
     border-radius: 4px;
@@ -66,41 +66,41 @@
     font-weight: 700;
 }
 
-.client-search button:hover {
+.busca-cliente button:hover {
     background: #e96511;
 }
 
-.client-list-section {
+.secao-lista-clientes {
     margin-top: 8px;
 }
 
-.client-list-heading {
+.cabecalho-lista-clientes {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
 }
 
-.client-list-heading h2 {
+.cabecalho-lista-clientes h2 {
     margin: 0;
     color: #111827;
     font-size: 0.92rem;
     font-weight: 700;
 }
 
-.client-list-heading span {
+.cabecalho-lista-clientes span {
     color: #6b7280;
     font-size: 0.72rem;
 }
 
-.client-list-wrap {
+.envoltorio-lista-clientes {
     overflow-x: auto;
     border: 1px solid #d1d5db;
     border-radius: 6px;
     background: #ffffff;
 }
 
-.client-list-table {
+.tabela-lista-clientes {
     width: 100%;
     min-width: 850px;
     border-collapse: collapse;
@@ -108,40 +108,40 @@
     font-size: 0.75rem;
 }
 
-.client-list-table th,
-.client-list-table td {
+.tabela-lista-clientes th,
+.tabela-lista-clientes td {
     padding: 16px 18px;
     border-bottom: 1px solid #d1d5db;
     text-align: left;
     vertical-align: middle;
 }
 
-.client-list-table th {
+.tabela-lista-clientes th {
     background: #f5f5f5;
     font-weight: 700;
     white-space: nowrap;
 }
 
-.client-list-table td {
+.tabela-lista-clientes td {
     font-weight: 600;
 }
 
-.client-list-table tr:last-child td {
+.tabela-lista-clientes tr:last-child td {
     border-bottom: 0;
 }
 
-.client-list-table tbody tr:hover {
+.tabela-lista-clientes tbody tr:hover {
     background: #fafafa;
 }
 
-.client-list-profile {
+.perfil-lista-clientes {
     display: flex;
     align-items: center;
     gap: 12px;
     white-space: nowrap;
 }
 
-.client-list-avatar {
+.avatar-lista-clientes {
     display: inline-grid;
     width: 32px;
     height: 32px;
@@ -154,7 +154,7 @@
     font-weight: 700;
 }
 
-.client-list-action {
+.acao-lista-clientes {
     display: inline-block;
     padding: 5px 13px;
     border-radius: 999px;
@@ -166,18 +166,18 @@
     white-space: nowrap;
 }
 
-.client-list-action:hover {
+.acao-lista-clientes:hover {
     background: #bfdbfe;
     color: #1d4ed8;
 }
 
-.client-search-results {
+.resultados-busca-cliente {
     display: grid;
     gap: 8px;
     margin: -8px 0 22px;
 }
 
-.client-search-results a {
+.resultados-busca-cliente a {
     display: grid;
     grid-template-columns: 38px 1fr auto;
     align-items: center;
@@ -190,19 +190,19 @@
     text-decoration: none;
 }
 
-.client-search-results strong,
-.client-search-results small {
+.resultados-busca-cliente strong,
+.resultados-busca-cliente small {
     display: block;
 }
 
-.client-search-results small {
+.resultados-busca-cliente small {
     margin-top: 2px;
     color: #6b7280;
     font-size: 0.7rem;
 }
 
-.client-result-avatar,
-.client-summary-avatar {
+.avatar-resultado-cliente,
+.avatar-resumo-cliente {
     display: inline-grid;
     place-items: center;
     border-radius: 50%;
@@ -211,13 +211,13 @@
     font-weight: 700;
 }
 
-.client-result-avatar {
+.avatar-resultado-cliente {
     width: 32px;
     height: 32px;
     font-size: 0.75rem;
 }
 
-.client-summary-card {
+.cartao-resumo-cliente {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 142px 146px;
     align-items: center;
@@ -228,120 +228,120 @@
     background: #ffffff;
 }
 
-.client-summary-profile {
+.perfil-resumo-cliente {
     display: flex;
     align-items: center;
     gap: 16px;
 }
 
-.client-summary-avatar {
+.avatar-resumo-cliente {
     width: 42px;
     height: 42px;
     font-size: 0.9rem;
 }
 
-.client-summary-profile h2,
-.client-summary-profile p {
+.perfil-resumo-cliente h2,
+.perfil-resumo-cliente p {
     margin: 0;
 }
 
-.client-summary-profile h2 {
+.perfil-resumo-cliente h2 {
     color: #111827;
     font-size: 0.9rem;
     font-weight: 700;
 }
 
-.client-summary-profile p {
+.perfil-resumo-cliente p {
     color: #4b5563;
     font-size: 0.72rem;
     line-height: 1.5;
 }
 
-.client-summary-metric {
+.metrica-resumo-cliente {
     min-height: 50px;
     padding-left: 14px;
     border-left: 1px solid #cfd3d8;
 }
 
-.client-summary-metric span {
+.metrica-resumo-cliente span {
     display: block;
     margin-bottom: 5px;
     color: #4b5563;
     font-size: 0.7rem;
 }
 
-.client-summary-metric strong {
+.metrica-resumo-cliente strong {
     color: #111111;
     font-size: 1rem;
 }
 
-.client-history-table-section {
+.secao-tabela-historico-cliente {
     margin-top: 55px;
 }
 
-.client-history-table-heading {
+.cabecalho-tabela-historico-cliente {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 12px;
 }
 
-.client-history-table-heading h2 {
+.cabecalho-tabela-historico-cliente h2 {
     margin: 0;
     color: #161616;
     font-size: 0.92rem;
     font-weight: 700;
 }
 
-.client-history-table-heading span {
+.cabecalho-tabela-historico-cliente span {
     color: #6b7280;
     font-size: 0.72rem;
 }
 
-.client-history-table-wrap {
+.envoltorio-tabela-historico-cliente {
     overflow-x: auto;
     border: 1px solid #7e838b;
     border-radius: 4px;
     background: #ffffff;
 }
 
-.client-history-table {
+.tabela-historico-cliente {
     width: 100%;
     min-width: 740px;
     border-collapse: collapse;
     font-size: 0.75rem;
 }
 
-.client-history-table th,
-.client-history-table td {
+.tabela-historico-cliente th,
+.tabela-historico-cliente td {
     padding: 17px 14px;
     border-bottom: 1px solid #cfd3d8;
     text-align: left;
     vertical-align: middle;
 }
 
-.client-history-table th {
+.tabela-historico-cliente th {
     background: #f8f8f8;
     color: #252525;
     font-weight: 700;
 }
 
-.client-history-table tr:last-child td {
+.tabela-historico-cliente tr:last-child td {
     border-bottom: 0;
 }
 
-.client-history-table td:first-child,
-.client-history-table td:nth-child(2) {
+.tabela-historico-cliente td:first-child,
+.tabela-historico-cliente td:nth-child(2) {
     font-weight: 700;
 }
 
-.client-history-table a {
+.tabela-historico-cliente a {
     color: #1f4195;
     font-weight: 700;
     text-decoration: none;
 }
 
-.reservation-status {
+.status-reserva {
     display: inline-flex;
     min-width: 68px;
     justify-content: center;
@@ -353,7 +353,7 @@
     font-weight: 700;
 }
 
-.client-history-empty {
+.historico-cliente-vazio {
     display: grid;
     justify-items: center;
     gap: 9px;
@@ -364,12 +364,12 @@
     text-align: center;
 }
 
-.client-history-empty i {
+.historico-cliente-vazio i {
     color: #ff7419;
     font-size: 1.5rem;
 }
 
-.client-history-empty p {
+.historico-cliente-vazio p {
     margin: 0;
     font-size: 0.8rem;
 }
@@ -501,14 +501,14 @@
 }
 
 @media (max-width: 780px) {
-    .client-search,
-    .client-summary-card,
+    .busca-cliente,
+    .cartao-resumo-cliente,
     .grade-gerenciamento-reserva,
     .grade-informacoes-pacote-reserva {
         grid-template-columns: 1fr;
     }
 
-    .client-summary-metric {
+    .metrica-resumo-cliente {
         padding-left: 0;
         border-left: 0;
     }

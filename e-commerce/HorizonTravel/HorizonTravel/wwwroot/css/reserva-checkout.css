@@ -1,27 +1,27 @@
-.checkout-page {
+.pagina-reserva {
     width: min(100% - 48px, 1040px);
     margin: 0 auto;
     padding: 42px 0 72px;
 }
 
-.checkout-heading {
+.cabecalho-reserva {
     margin-bottom: 30px;
 }
 
-.checkout-heading h1 {
+.cabecalho-reserva h1 {
     margin: 0;
     color: #111111;
     font-size: clamp(2rem, 3vw, 2.5rem);
     font-weight: 700;
 }
 
-.checkout-heading p {
+.cabecalho-reserva p {
     margin: 4px 0 0;
     color: #9ca3af;
     font-size: 1rem;
 }
 
-.checkout-progress {
+.progresso-reserva {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin: 0 0 30px;
@@ -32,7 +32,7 @@
     box-shadow: 0 4px 13px rgba(0, 0, 0, 0.15);
 }
 
-.checkout-progress li {
+.progresso-reserva li {
     position: relative;
     display: flex;
     align-items: center;
@@ -43,7 +43,7 @@
     white-space: nowrap;
 }
 
-.checkout-progress li:not(:last-child)::after {
+.progresso-reserva li:not(:last-child)::after {
     position: absolute;
     top: 50%;
     left: calc(50% + 76px);
@@ -53,12 +53,12 @@
     content: "";
 }
 
-.checkout-progress li.is-complete:not(:last-child)::after,
-.checkout-progress li.is-active:not(:last-child)::after {
+.progresso-reserva li.concluido:not(:last-child)::after,
+.progresso-reserva li.ativo:not(:last-child)::after {
     background: #ff7419;
 }
 
-.checkout-progress-icon {
+.icone-progresso-reserva {
     display: inline-grid;
     width: 28px;
     height: 28px;
@@ -69,17 +69,17 @@
     font-size: 0.75rem;
 }
 
-.checkout-progress .is-complete,
-.checkout-progress .is-active {
+.progresso-reserva .concluido,
+.progresso-reserva .ativo {
     color: #272727;
 }
 
-.checkout-progress .is-complete .checkout-progress-icon,
-.checkout-progress .is-active .checkout-progress-icon {
+.progresso-reserva .concluido .icone-progresso-reserva,
+.progresso-reserva .ativo .icone-progresso-reserva {
     background: #ff7419;
 }
 
-.checkout-card {
+.cartao-reserva {
     width: min(100%, 640px);
     margin: 0 auto;
     padding: 30px 26px 24px;
@@ -89,27 +89,27 @@
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.14);
 }
 
-.checkout-card h2 {
+.cartao-reserva h2 {
     margin: 0 0 20px;
     color: #151515;
     font-size: 1rem;
     font-weight: 700;
 }
 
-.checkout-validation {
+.validacao-reserva {
     margin-bottom: 16px;
     color: #c62828;
     font-size: 0.82rem;
 }
 
-.payment-methods {
+.metodos-pagamento {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
     margin-bottom: 24px;
 }
 
-.payment-method {
+.metodo-pagamento {
     min-height: 40px;
     border: 1px solid #cfcfcf;
     border-radius: 2px;
@@ -121,30 +121,30 @@
     transition: border-color 0.2s, color 0.2s, background 0.2s;
 }
 
-.payment-method:hover,
-.payment-method.is-selected {
+.metodo-pagamento:hover,
+.metodo-pagamento.selecionado {
     border-color: #ff7419;
     background: #fffaf7;
     color: #ff7419;
     font-weight: 700;
 }
 
-.payment-fields {
+.campos-pagamento {
     display: grid;
     gap: 14px;
 }
 
-.payment-field {
+.campo-pagamento {
     display: grid;
     gap: 7px;
 }
 
-.payment-field label {
+.campo-pagamento label {
     color: #585858;
     font-size: 0.78rem;
 }
 
-.payment-field input {
+.campo-pagamento input {
     width: 100%;
     min-height: 40px;
     padding: 9px 11px;
@@ -155,28 +155,28 @@
     font-size: 0.8rem;
 }
 
-.payment-field input:focus {
+.campo-pagamento input:focus {
     border-color: #ff7419;
     outline: 2px solid rgba(255, 116, 25, 0.12);
 }
 
-.payment-field span {
+.campo-pagamento span {
     color: #c62828;
     font-size: 0.72rem;
 }
 
-.payment-field-grid,
-.passenger-fields {
+.grade-campos-pagamento,
+.campos-passageiro {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px 26px;
 }
 
-.payment-field-full {
+.campo-pagamento-completo {
     grid-column: 1 / -1;
 }
 
-.payment-pix {
+.pagamento-pix {
     display: grid;
     justify-items: center;
     gap: 10px;
@@ -186,33 +186,33 @@
     text-align: center;
 }
 
-.payment-pix i {
+.pagamento-pix i {
     color: #ff7419;
     font-size: 2.5rem;
 }
 
-.payment-pix h3,
-.payment-pix p {
+.pagamento-pix h3,
+.pagamento-pix p {
     margin: 0;
 }
 
-.payment-pix h3 {
+.pagamento-pix h3 {
     font-size: 1rem;
 }
 
-.payment-pix p {
+.pagamento-pix p {
     color: #6b7280;
     font-size: 0.8rem;
 }
 
-.payment-pix code {
+.pagamento-pix code {
     max-width: 100%;
     overflow-wrap: anywhere;
     color: #244294;
     font-size: 0.72rem;
 }
 
-.checkout-total {
+.total-reserva {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -223,23 +223,23 @@
     font-size: 0.84rem;
 }
 
-.checkout-total strong {
+.total-reserva strong {
     color: #111111;
     font-size: 1.1rem;
 }
 
-.checkout-actions {
+.acoes-reserva {
     display: grid;
     grid-template-columns: minmax(120px, 1fr) minmax(220px, 2.6fr);
     gap: 12px;
     margin-top: 24px;
 }
 
-.checkout-actions form {
+.acoes-reserva form {
     display: contents;
 }
 
-.checkout-button {
+.botao-reserva {
     display: inline-flex;
     min-height: 42px;
     align-items: center;
@@ -255,60 +255,60 @@
     transition: background 0.2s, border-color 0.2s, color 0.2s;
 }
 
-.checkout-button:hover,
-.checkout-button:focus {
+.botao-reserva:hover,
+.botao-reserva:focus {
     text-decoration: none;
 }
 
-.checkout-button-primary {
+.botao-reserva-principal {
     background: #ff7419;
     color: #ffffff;
 }
 
-.checkout-button-primary:hover,
-.checkout-button-primary:focus {
+.botao-reserva-principal:hover,
+.botao-reserva-principal:focus {
     background: #e65f09;
     color: #ffffff;
 }
 
-.checkout-button-secondary {
+.botao-reserva-secundario {
     border-color: #d7d7d7;
     background: #ffffff;
     color: #6b6b6b;
 }
 
-.checkout-button-secondary:hover,
-.checkout-button-secondary:focus,
-.checkout-button-outline:hover,
-.checkout-button-outline:focus {
+.botao-reserva-secundario:hover,
+.botao-reserva-secundario:focus,
+.botao-reserva-contorno:hover,
+.botao-reserva-contorno:focus {
     border-color: #244294;
     color: #244294;
 }
 
-.checkout-button-outline {
+.botao-reserva-contorno {
     border-color: #d7d7d7;
     background: #ffffff;
     color: #4b5563;
 }
 
-.passenger-section {
+.secao-passageiro {
     padding-bottom: 24px;
     margin-bottom: 24px;
     border-bottom: 1px solid #ededed;
 }
 
-.passenger-section:last-of-type {
+.secao-passageiro:last-of-type {
     margin-bottom: 0;
 }
 
-.passenger-section h2 {
+.secao-passageiro h2 {
     display: flex;
     align-items: center;
     gap: 8px;
     margin-bottom: 18px;
 }
 
-.passenger-section h2 span {
+.secao-passageiro h2 span {
     display: inline-grid;
     width: 25px;
     height: 25px;
@@ -319,12 +319,12 @@
     font-size: 0.75rem;
 }
 
-.checkout-confirmation-card {
+.cartao-confirmacao-reserva {
     padding: 34px 42px;
     text-align: center;
 }
 
-.confirmation-icon {
+.icone-confirmacao {
     display: inline-grid;
     width: 58px;
     height: 58px;
@@ -336,16 +336,16 @@
     font-size: 1.35rem;
 }
 
-.confirmation-icon.is-cancelled {
+.icone-confirmacao.cancelado {
     background: #ef4444;
 }
 
-.checkout-confirmation-card h2 {
+.cartao-confirmacao-reserva h2 {
     margin-bottom: 8px;
     font-size: 1.35rem;
 }
 
-.confirmation-description {
+.descricao-confirmacao {
     max-width: 360px;
     margin: 0 auto;
     color: #6b7280;
@@ -353,7 +353,7 @@
     line-height: 1.6;
 }
 
-.reservation-code {
+.codigo-reserva {
     display: inline-grid;
     gap: 5px;
     margin-top: 22px;
@@ -361,17 +361,17 @@
     border: 1px solid #d7d7d7;
 }
 
-.reservation-code span {
+.codigo-reserva span {
     color: #9ca3af;
     font-size: 0.72rem;
 }
 
-.reservation-code strong {
+.codigo-reserva strong {
     color: #244294;
     font-size: 1.1rem;
 }
 
-.confirmation-summary {
+.resumo-confirmacao {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 10px;
@@ -379,71 +379,71 @@
     text-align: left;
 }
 
-.confirmation-summary div {
+.resumo-confirmacao div {
     padding: 12px;
     border: 1px solid #ececec;
     border-radius: 4px;
 }
 
-.confirmation-summary dt {
+.resumo-confirmacao dt {
     color: #9ca3af;
     font-size: 0.7rem;
 }
 
-.confirmation-summary dd {
+.resumo-confirmacao dd {
     margin: 4px 0 0;
     color: #232323;
     font-size: 0.83rem;
     font-weight: 700;
 }
 
-.checkout-actions-stacked {
+.acoes-reserva-empilhadas {
     grid-template-columns: 1fr;
 }
 
-.checkout-actions-stacked form {
+.acoes-reserva-empilhadas form {
     display: block;
 }
 
-.checkout-actions-stacked .checkout-button {
+.acoes-reserva-empilhadas .botao-reserva {
     width: 100%;
 }
 
 @media (max-width: 700px) {
-    .checkout-page {
+    .pagina-reserva {
         width: min(100% - 28px, 1040px);
         padding: 28px 0 48px;
     }
 
-    .checkout-progress {
+    .progresso-reserva {
         padding: 14px;
     }
 
-    .checkout-progress li {
+    .progresso-reserva li {
         flex-direction: column;
         gap: 5px;
         font-size: 0.68rem;
     }
 
-    .checkout-progress li:not(:last-child)::after {
+    .progresso-reserva li:not(:last-child)::after {
         left: calc(50% + 42px);
         width: calc(100% - 70px);
     }
 
-    .checkout-card,
-    .checkout-confirmation-card {
+    .cartao-reserva,
+    .cartao-confirmacao-reserva {
         padding: 24px 18px;
     }
 
-    .payment-methods,
-    .payment-field-grid,
-    .passenger-fields,
-    .confirmation-summary,
-    .checkout-actions {
+    .metodos-pagamento,
+    .grade-campos-pagamento,
+    .campos-passageiro,
+    .resumo-confirmacao,
+    .acoes-reserva {
         grid-template-columns: 1fr;
     }
 
-    .payment-methods {
+    .metodos-pagamento {
         gap: 8px;
     }
 }

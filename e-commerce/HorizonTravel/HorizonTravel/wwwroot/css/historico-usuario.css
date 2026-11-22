@@ -44,6 +44,19 @@
     margin: 14px 0 25px;
 }
 
+.historico-usuario .abas-usuario a,
+.historico-usuario .abas-usuario a:hover,
+.historico-usuario .abas-usuario a:focus {
+    color: #222;
+    text-decoration: none;
+}
+
+.historico-usuario .abas-usuario .aba-ativa,
+.historico-usuario .abas-usuario .aba-ativa:hover,
+.historico-usuario .abas-usuario .aba-ativa:focus {
+    color: #fff;
+}
+
 .lista-historico-usuario {
     display: grid;
     gap: 24px;

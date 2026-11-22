@@ -18,13 +18,26 @@ namespace HorizonTravel.Controllers
         }
 
         // A URL acessada será: localhost:porta/Pacotes
-        public IActionResult Index()
+        public IActionResult Index(string? origem, string? destino, DateTime? data, int? pessoas, string? ordenacao)
         {
             // Busca os pacotes reais do banco
             var pacotes = _pacoteRepository
                 .ObterTodosPacotes()
                 .Where(pacote => pacote.quantidadePac > 0)
+                .Where(pacote => string.IsNullOrWhiteSpace(origem)
+                    || pacote.origemPac.Contains(origem, StringComparison.OrdinalIgnoreCase))
+                .Where(pacote => string.IsNullOrWhiteSpace(destino)
+                    || pacote.destinoPac.Contains(destino, StringComparison.OrdinalIgnoreCase))
+                .Where(pacote => !data.HasValue || pacote.dataPac.Date == data.Value.Date)
+                .Where(pacote => !pessoas.HasValue || pacote.quantidadePac >= pessoas.Value)
                 .ToList();
+
+            pacotes = ordenacao switch
+            {
+                "menor-preco" => pacotes.OrderBy(pacote => pacote.precoPac).ToList(),
+                "maior-preco" => pacotes.OrderByDescending(pacote => pacote.precoPac).ToList(),
+                _ => pacotes
+            };
 
             ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas()
                 .ToDictionary(promocao => promocao.IDPromo);

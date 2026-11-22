@@ -68,6 +68,12 @@ main {
     color: #696969;
 }
 
+.dropdown-menu .dropdown-item,
+.dropdown-menu .dropdown-item:hover,
+.dropdown-menu .dropdown-item:focus {
+    text-decoration: none;
+}
+
 .header-actions {
     gap: 20px;
     margin: 0;
