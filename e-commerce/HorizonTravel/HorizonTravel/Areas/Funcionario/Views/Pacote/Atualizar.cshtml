@@ -63,6 +63,17 @@
                     <input asp-for="CNPJFor" class="input-form-pacote" />
                     <span asp-validation-for="CNPJFor" class="erro-form-pacote"></span>
                 </div>
+
+            <div class="campo-form-pacote">
+                <label asp-for="IDPromo" class="rotulo-form-pacote">Promoção</label>
+                <select asp-for="IDPromo" class="input-form-pacote">
+                    <option value="">Sem promoção</option>
+                    @foreach (var promocao in ViewBag.Promocoes)
+                    {
+                        <option value="@promocao.IDPromo">@promocao.porcentagemDesconto% até @promocao.dataValidade.ToString("dd/MM/yyyy")</option>
+                    }
+                </select>
+            </div>
             </div>
 
             <div class="campo-form-pacote campo-form-pacote-completo">

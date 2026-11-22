@@ -1,0 +1,11 @@
+@model IEnumerable<HorizonTravel.Models.Promocao>
+@{ ViewData["Title"] = "Promoções"; }
+<link rel="stylesheet" href="~/css/promocoes-funcionario.css" asp-append-version="true" />
+<div class="pagina-promocoes-funcionario">
+    <div class="cabecalho-promocoes-funcionario"><div><h1>Promoções</h1><p>Cadastre e acompanhe as promoções disponíveis.</p></div><a class="botao-nova-promocao" asp-action="Cadastrar">Nova promoção</a></div>
+    @if (TempData["MSG_S"] is string mensagem) { <div class="mensagem-sucesso-promocao">@mensagem</div> }
+    <section class="tabela-promocoes-wrap"><table class="tabela-promocoes"><thead><tr><th>Promoção</th><th>Desconto</th><th>Validade</th><th>Status</th><th>Ações</th></tr></thead><tbody>
+    @foreach (var promocao in Model) { bool ativa = promocao.dataValidade.Date >= DateTime.Today;
+        <tr><td>Promoção #@promocao.IDPromo</td><td>@promocao.porcentagemDesconto.ToString("0.##")%</td><td>Até @promocao.dataValidade.ToString("dd/MM/yyyy")</td><td><span class="status-promocao @(ativa ? "ativa" : "expirada")">@(ativa ? "Ativa" : "Expirada")</span></td><td class="acoes-promocao"><a asp-action="Atualizar" asp-route-id="@promocao.IDPromo">Editar</a><form asp-action="Remover" method="post"><input type="hidden" name="id" value="@promocao.IDPromo" /><button type="submit">Excluir</button></form></td></tr>
+    }</tbody></table></section>
+</div>

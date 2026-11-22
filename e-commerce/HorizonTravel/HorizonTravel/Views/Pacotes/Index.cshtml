@@ -5,6 +5,8 @@
     
     // Usa o que vem do banco. Se estiver vazio, não quebra a tela.
     var listaExibicao = Model ?? new List<HorizonTravel.Models.Pacote>();
+    var promocoes = ViewBag.Promocoes as IDictionary<int, HorizonTravel.Models.Promocao>
+        ?? new Dictionary<int, HorizonTravel.Models.Promocao>();
 }
 
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
@@ -66,10 +68,20 @@
         {
             @foreach (var pacote in listaExibicao)
             {
+                var promocao = pacote.IDPromo.HasValue && promocoes.TryGetValue(pacote.IDPromo.Value, out var promocaoAtiva)
+                    ? promocaoAtiva
+                    : null;
+                var precoPromocional = promocao == null
+                    ? pacote.precoPac
+                    : Math.Round(pacote.precoPac * (1 - promocao.porcentagemDesconto / 100), 2);
                 <article class="cartao-pacote">
                     <div class="container-imagem-pacote">
                         <img src="@(string.IsNullOrWhiteSpace(pacote.fotoPac) ? "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?q=80&w=600" : pacote.fotoPac)" alt="Pacote para @pacote.destinoPac" />
                         <span class="etiqueta-destino">@pacote.destinoPac</span>
+                        @if (promocao != null)
+                        {
+                            <span class="etiqueta-promocao">@promocao.porcentagemDesconto.ToString("0.##")% OFF</span>
+                        }
                     </div>
 
                     <div class="corpo-cartao-pacote">
@@ -121,7 +133,14 @@
                         </div>
                         
                         <div class="preco-acao">
-                            <span>A partir de <strong>R$ @pacote.precoPac.ToString("N2")</strong></span>
+                            <span>
+                                A partir de
+                                @if (promocao != null)
+                                {
+                                    <del>R$ @pacote.precoPac.ToString("N2")</del>
+                                }
+                                <strong>R$ @precoPromocional.ToString("N2")</strong>
+                            </span>
                             <!-- Corrigido para apontar para a Action Detalhes -->
                             <a asp-controller="Pacotes" asp-action="Detalhes" asp-route-id="@pacote.IDPac" class="btn-ver-pacote">Ver pacote</a>
                         </div>

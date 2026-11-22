@@ -5,6 +5,7 @@ using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
 using HorizonTravel.Models;
 using HorizonTravel.Repository.Contract;
+using HorizonTravel.Libraries.Promocao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorizonTravel.Controllers
@@ -18,17 +19,20 @@ namespace HorizonTravel.Controllers
         private readonly IReservaRepository _reservaRepository;
         private readonly IPacoteRepository _pacoteRepository;
         private readonly LoginUsuario _loginUsuario;
+        private readonly IPromocaoRepository _promocaoRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
 
         public ReservaController(
             IReservaRepository reservaRepository,
             IPacoteRepository pacoteRepository,
             LoginUsuario loginUsuario,
-            IHttpContextAccessor context)
+            IHttpContextAccessor context,
+            IPromocaoRepository promocaoRepository)
         {
             _reservaRepository = reservaRepository;
             _pacoteRepository = pacoteRepository;
             _loginUsuario = loginUsuario;
+            _promocaoRepository = promocaoRepository;
             _carrinhoCompra = new CarrinhoCompra(new Cookie(context));
         }
 
@@ -52,7 +56,7 @@ namespace HorizonTravel.Controllers
             var modelo = new ReservaCheckout
             {
                 IDPac = item.IdPacote,
-                ValorTotal = pacote.precoPac * pacote.quantidadePac,
+                ValorTotal = ObterPrecoAtual(pacote) * pacote.quantidadePac,
                 Passageiros = Enumerable
                     .Range(0, pacote.quantidadePac)
                     .Select(_ => new Passageiro())
@@ -116,7 +120,7 @@ namespace HorizonTravel.Controllers
             var modelo = new ReservaCheckout
             {
                 IDPac = pacote.IDPac,
-                ValorTotal = pacote.precoPac * passageiros.Count
+                ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count
             };
 
             return View(modelo);
@@ -139,7 +143,7 @@ namespace HorizonTravel.Controllers
             }
 
             modelo.IDPac = pacote.IDPac;
-            modelo.ValorTotal = pacote.precoPac * passageiros.Count;
+            modelo.ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count;
 
             ValidarPagamento(modelo);
 
@@ -236,6 +240,15 @@ namespace HorizonTravel.Controllers
                 ? new List<Passageiro>()
                 : JsonSerializer.Deserialize<List<Passageiro>>(passageirosJson)
                     ?? new List<Passageiro>();
+        }
+
+        private decimal ObterPrecoAtual(Pacote pacote)
+        {
+            var promocao = pacote.IDPromo.HasValue
+                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
+                : null;
+
+            return PromocaoCalculadora.CalcularPreco(pacote, promocao);
         }
 
         private void ValidarPagamento(ReservaCheckout modelo)

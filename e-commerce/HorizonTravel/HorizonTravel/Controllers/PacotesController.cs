@@ -1,4 +1,5 @@
 using HorizonTravel.Models;
+using HorizonTravel.Libraries.Promocao;
 using HorizonTravel.Repository.Contract; // Ou o seu Contexto do banco
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,10 +9,12 @@ namespace HorizonTravel.Controllers
     {
         // Se você usa Repository:
         private readonly IPacoteRepository _pacoteRepository;
+        private readonly IPromocaoRepository _promocaoRepository;
 
-        public PacotesController(IPacoteRepository pacoteRepository)
+        public PacotesController(IPacoteRepository pacoteRepository, IPromocaoRepository promocaoRepository)
         {
             _pacoteRepository = pacoteRepository;
+            _promocaoRepository = promocaoRepository;
         }
 
         // A URL acessada será: localhost:porta/Pacotes
@@ -23,7 +26,9 @@ namespace HorizonTravel.Controllers
                 .Where(pacote => pacote.quantidadePac > 0)
                 .ToList();
 
-            // Retorna a View "Index.cshtml" que está em Views/Pacotes/
+            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas()
+                .ToDictionary(promocao => promocao.IDPromo);
+
             return View(pacotes);
         }
 
@@ -34,6 +39,10 @@ namespace HorizonTravel.Controllers
 
             if (pacote == null)
                 return NotFound();
+
+            ViewBag.Promocao = pacote.IDPromo.HasValue
+                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
+                : null;
 
             return View(pacote);
         }

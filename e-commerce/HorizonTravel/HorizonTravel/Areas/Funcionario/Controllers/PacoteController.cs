@@ -12,15 +12,18 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         private readonly IPacoteRepository _pacoteRepository;
         private readonly IFuncionarioRepositoty _funcionarioRepository;
         private readonly IParceiroRepository _parceiroRepository;
+        private readonly IPromocaoRepository _promocaoRepository;
 
         public PacoteController(
             IPacoteRepository pacoteRepository,
             IFuncionarioRepositoty funcionarioRepository,
-            IParceiroRepository parceiroRepository)
+            IParceiroRepository parceiroRepository,
+            IPromocaoRepository promocaoRepository)
         {
             _pacoteRepository = pacoteRepository;
             _funcionarioRepository = funcionarioRepository;
             _parceiroRepository = parceiroRepository;
+            _promocaoRepository = promocaoRepository;
         }
 
         public IActionResult Index(string busca)
@@ -41,6 +44,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpGet]
         public IActionResult Cadastrar()
         {
+            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas();
             return View(new Pacote { dataPac = DateTime.Today });
         }
 
@@ -55,6 +59,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas();
                 return View(pacote);
             }
 
@@ -68,7 +73,13 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         {
             var pacote = _pacoteRepository.ObterPacote(id);
 
-            return pacote == null ? NotFound() : View(pacote);
+            if (pacote == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas();
+            return View(pacote);
         }
 
         [HttpPost]
@@ -81,6 +92,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
             if (!ModelState.IsValid)
             {
+                ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas();
                 return View(pacote);
             }
 

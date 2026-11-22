@@ -190,6 +190,24 @@
     height: 180px;
 }
 
+.etiqueta-promocao {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    padding: 6px 9px;
+    border-radius: 999px;
+    background: #ff7417;
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+}
+
+.preco-acao del {
+    margin-right: 5px;
+    color: #888;
+    font-size: .78rem;
+}
+
     .container-imagem-pacote img {
         width: 100%;
         height: 100%;

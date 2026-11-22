@@ -1,0 +1,167 @@
+.pagina-promocoes-funcionario,
+.pagina-formulario-promocao {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 34px 28px 60px;
+}
+
+.cabecalho-promocoes-funcionario {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 24px;
+    margin-bottom: 26px;
+}
+
+.cabecalho-promocoes-funcionario h1 {
+    margin: 0 0 5px;
+    color: #111827;
+    font-size: 1.25rem;
+}
+
+.cabecalho-promocoes-funcionario p {
+    margin: 0;
+    color: #6b7280;
+    font-size: .78rem;
+}
+
+.botao-nova-promocao,
+.acoes-formulario-promocao button {
+    border: 0;
+    border-radius: 5px;
+    padding: 10px 16px;
+    background: #ff7419;
+    color: #fff;
+    font-size: .78rem;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.tabela-promocoes-wrap {
+    overflow-x: auto;
+    border: 1px solid #d1d5db;
+    border-radius: 5px;
+    background: #fff;
+}
+
+.tabela-promocoes {
+    width: 100%;
+    min-width: 700px;
+    border-collapse: collapse;
+    font-size: .78rem;
+}
+
+.tabela-promocoes th,
+.tabela-promocoes td {
+    padding: 15px 14px;
+    border-bottom: 1px solid #e5e7eb;
+    text-align: left;
+}
+
+.tabela-promocoes th {
+    background: #f8f8f8;
+    color: #111827;
+    font-size: .72rem;
+}
+
+.tabela-promocoes tr:last-child td {
+    border-bottom: 0;
+}
+
+.status-promocao {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 999px;
+    font-size: .68rem;
+    font-weight: 700;
+}
+
+.status-promocao.ativa { background: #dcfce7; color: #18713b; }
+.status-promocao.expirada { background: #fee2e2; color: #b42318; }
+
+.acoes-promocao {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.acoes-promocao a {
+    color: #243f91;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.acoes-promocao form { margin: 0; }
+
+.acoes-promocao button {
+    border: 0;
+    background: transparent;
+    color: #b42318;
+    cursor: pointer;
+    font: inherit;
+    font-weight: 700;
+}
+
+.mensagem-sucesso-promocao {
+    margin-bottom: 20px;
+    padding: 12px;
+    border-radius: 5px;
+    background: #dcfce7;
+    color: #166534;
+    font-size: .8rem;
+}
+
+.cartao-formulario-promocao {
+    max-width: 620px;
+    padding: 28px;
+    border: 1px solid #e5e7eb;
+    border-radius: 7px;
+    background: #fff;
+    box-shadow: 0 1px 3px #0001;
+}
+
+.campo-promocao {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 18px;
+}
+
+.campo-promocao label {
+    color: #374151;
+    font-size: .78rem;
+    font-weight: 700;
+}
+
+.campo-promocao input {
+    min-height: 38px;
+    padding: 8px 10px;
+    border: 1px solid #cfd3d8;
+    border-radius: 4px;
+}
+
+.erro-promocao {
+    color: #b42318;
+    font-size: .72rem;
+}
+
+.acoes-formulario-promocao {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.acoes-formulario-promocao a {
+    color: #243f91;
+    font-size: .78rem;
+    text-decoration: none;
+}
+
+@media (max-width: 700px) {
+    .pagina-promocoes-funcionario,
+    .pagina-formulario-promocao { padding: 24px 16px 50px; }
+    .cabecalho-promocoes-funcionario { flex-direction: column; }
+    .botao-nova-promocao { align-self: flex-start; }
+}

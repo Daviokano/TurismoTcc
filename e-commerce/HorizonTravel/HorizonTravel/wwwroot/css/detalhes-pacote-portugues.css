@@ -148,6 +148,29 @@
     background: #f7f7f7;
 }
 
+.preco-original {
+    color: #888;
+    font-size: .82rem;
+    text-decoration: line-through;
+}
+
+.etiqueta-desconto-detalhes {
+    align-self: flex-start;
+    padding: 4px 8px;
+    border-radius: 999px;
+    background: #ff7417;
+    color: #fff;
+    font-size: .7rem;
+    font-weight: 700;
+}
+
+.validade-promocao {
+    display: block;
+    margin: 4px 0 10px;
+    color: #18713b;
+    font-size: .75rem;
+}
+
 .rotulo-informacao-pacote {
     color: #888;
     font-size: .78rem;

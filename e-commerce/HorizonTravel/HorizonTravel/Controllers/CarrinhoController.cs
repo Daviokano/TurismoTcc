@@ -2,6 +2,7 @@ using HorizonTravel.Libraries.CarrinhoCompra;
 using HorizonTravel.Libraries.Cookie;
 using HorizonTravel.Models;
 using HorizonTravel.Repository.Contract;
+using HorizonTravel.Libraries.Promocao;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorizonTravel.Controllers;
@@ -10,19 +11,41 @@ public class CarrinhoController : Controller
 {
     private CarrinhoCompra _carrinhoCompra;
     private readonly IPacoteRepository _pacoteRepository;
+    private readonly IPromocaoRepository _promocaoRepository;
 
     public CarrinhoController(
         IHttpContextAccessor context,
-        IPacoteRepository pacoteRepository)
+        IPacoteRepository pacoteRepository,
+        IPromocaoRepository promocaoRepository)
     {
         _carrinhoCompra = new CarrinhoCompra(
             new HorizonTravel.Libraries.Cookie.Cookie(context));
         _pacoteRepository = pacoteRepository;
+        _promocaoRepository = promocaoRepository;
     }
 
     public IActionResult Index()
     {
-        return View(_carrinhoCompra.Consultar());
+        var itens = _carrinhoCompra.Consultar();
+
+        foreach (var item in itens)
+        {
+            var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
+
+            if (pacote == null)
+            {
+                continue;
+            }
+
+            var promocao = pacote.IDPromo.HasValue
+                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
+                : null;
+
+            item.Preco = PromocaoCalculadora.CalcularPreco(pacote, promocao);
+        }
+
+        _carrinhoCompra.Salvar(itens);
+        return View(itens);
     }
 
     [HttpPost]
@@ -37,7 +60,11 @@ public class CarrinhoController : Controller
 
         item.NomePacote = $"Pacote {pacote.destinoPac}";
         item.Destino = pacote.destinoPac;
-        item.Preco = pacote.precoPac;
+        var promocao = pacote.IDPromo.HasValue
+            ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
+            : null;
+
+        item.Preco = PromocaoCalculadora.CalcularPreco(pacote, promocao);
         item.Imagem = pacote.fotoPac;
 
         _carrinhoCompra.Cadastrar(item);
