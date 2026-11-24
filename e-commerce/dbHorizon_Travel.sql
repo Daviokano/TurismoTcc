@@ -1,8 +1,10 @@
 -- ATENÇÃO:
--- Execute o comando abaixo somente se puder apagar o banco existente.
+-- Este script apaga e recria o banco dbHorizon_Travel.
+
 DROP DATABASE IF EXISTS dbHorizon_Travel;
 
-CREATE DATABASE IF NOT EXISTS dbHorizon_Travel;
+CREATE DATABASE dbHorizon_Travel;
+
 USE dbHorizon_Travel;
 
 CREATE TABLE Usuario (
@@ -28,9 +30,6 @@ CREATE TABLE Funcionario (
     situacaoFun CHAR(1) NOT NULL DEFAULT 'A'
 );
 
-INSERT INTO Funcionario (CPFFun, nomeFun, telefoneFun, emailFun, senhaFun, permissaoFun, situacaoFun, dataNascimentoFun)
-VALUES ('12345678901', 'Carlos Silva', '(11) 98765-4321', 'carlos@exemplo.com', '123456', 'Administrador', 'A', '1992-08-15');
-
 CREATE TABLE Parceiro (
     CNPJFor CHAR(14) PRIMARY KEY,
     nomeFor VARCHAR(100) NOT NULL,
@@ -38,11 +37,9 @@ CREATE TABLE Parceiro (
     situacaoFor CHAR(1) NOT NULL DEFAULT 'A'
 );
 
-INSERT INTO Parceiro (CNPJFor, nomeFor, emailFor, situacaoFor) 
-VALUES ('12345678000199', 'Agência Parceira', 'contato@parceira.com', 'A');
-
 CREATE TABLE Promocao (
     IDPromo INT AUTO_INCREMENT PRIMARY KEY,
+    nomePromocao VARCHAR(100) NOT NULL,
     porcentagemDesconto DECIMAL(5,2) NOT NULL,
     dataValidade DATE NOT NULL,
 
@@ -54,7 +51,7 @@ CREATE TABLE Pacote (
     IDPac INT AUTO_INCREMENT PRIMARY KEY,
     IDFun INT NOT NULL,
     CNPJFor CHAR(14) NOT NULL,
-    IDPromo INT,
+    IDPromo INT NULL,
     precoPac DECIMAL(10,2) NOT NULL,
     quantidadePac INT NOT NULL,
     descricaoPac TEXT NOT NULL,
@@ -81,13 +78,6 @@ CREATE TABLE Pacote (
     CHECK (quantidadePac >= 0),
     CHECK (avaliacaoPac BETWEEN 0 AND 5)
 );
-
-INSERT INTO Pacote (IDPac, IDFun, CNPJFor, precoPac, quantidadePac, descricaoPac, fotoPac, origemPac, destinoPac, dataPac, situacaoPac) 
-VALUES 
-(1, 1, '12345678000199', 2500.00, 4, 'Descubra praias e natureza.', 'https://images.unsplash.com/photo-1483729558449-99ef09a8c325?q=80&w=600', 'São Paulo', 'Brasil', '2024-12-01', 'A'),
-(2, 1, '12345678000199', 8500.00, 4, 'Elegância e história.', 'https://images.unsplash.com/photo-1502602898657-3e91760cbb34?q=80&w=600', 'Rio de Janeiro', 'França', '2024-12-15', 'A'),
-(3, 1, '12345678000199', 12000.00, 4, 'Tradição e tecnologia.', 'https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=600', 'Brasília', 'Japão', '2025-01-10', 'A'),
-(4, 1, '12345678000199', 6000.00, 4, 'Cores e cultura.', 'https://images.unsplash.com/photo-1512813195182-25c6e84c5671?q=80&w=600', 'Salvador', 'México', '2024-11-20', 'A');
 
 CREATE TABLE Reserva (
     IDRes INT AUTO_INCREMENT PRIMARY KEY,
@@ -123,12 +113,18 @@ CREATE TABLE Pagamento (
 CREATE TABLE Historico (
     IDHist INT AUTO_INCREMENT PRIMARY KEY,
     IDRes INT NOT NULL,
+    IDFun INT NULL,
     statusAnterior VARCHAR(40),
+    statusNovo VARCHAR(40),
     dataModificacao DATETIME NOT NULL,
 
     CONSTRAINT FK_HistoricoReserva
         FOREIGN KEY (IDRes)
-        REFERENCES Reserva(IDRes)
+        REFERENCES Reserva(IDRes),
+
+    CONSTRAINT FK_HistoricoFuncionario
+        FOREIGN KEY (IDFun)
+        REFERENCES Funcionario(IDFun)
 );
 
 CREATE TABLE Passageiro (
@@ -163,17 +159,29 @@ CREATE TABLE Avaliacao (
     CHECK (notaAva BETWEEN 0 AND 5)
 );
 
+INSERT INTO Funcionario (
+    CPFFun,
+    nomeFun,
+    telefoneFun,
+    emailFun,
+    senhaFun,
+    permissaoFun,
+    situacaoFun,
+    dataNascimentoFun
+)
+VALUES (
+    '12345678901',
+    'Carlos Silva',
+    '(11) 98765-4321',
+    'carlos@exemplo.com',
+    '23456789',
+    'Administrador',
+    'A',
+    '1992-08-15'
+);
+
+
 DELIMITER $$
-
-USE dbHorizon_Travel;
-
-DROP TRIGGER IF EXISTS trg_HistoricoReserva;
-
-ALTER TABLE Historico
-    ADD COLUMN statusNovo VARCHAR(40) NULL AFTER statusAnterior,
-    ADD COLUMN IDFun INT NULL AFTER IDRes,
-    ADD CONSTRAINT FK_HistoricoFuncionario
-        FOREIGN KEY (IDFun) REFERENCES Funcionario(IDFun);
 
 CREATE PROCEDURE ht_CadastrarUsuario (
     IN pCPF CHAR(11),
@@ -203,10 +211,6 @@ BEGIN
         'A'
     );
 END $$
-
-DELIMITER ;
-
-DELIMITER $$
 
 CREATE PROCEDURE ht_RealizarReserva (
     IN pIDUsu INT,
@@ -248,10 +252,6 @@ BEGIN
     END IF;
 END $$
 
-DELIMITER ;
-
-DELIMITER $$
-
 CREATE TRIGGER trg_HistoricoReserva
 AFTER UPDATE ON Reserva
 FOR EACH ROW
@@ -260,19 +260,17 @@ BEGIN
         INSERT INTO Historico (
             IDRes,
             statusAnterior,
+            statusNovo,
             dataModificacao
         )
         VALUES (
             OLD.IDRes,
             OLD.statusRes,
+            NEW.statusRes,
             NOW()
         );
     END IF;
 END $$
-
-DELIMITER ;
-
-DELIMITER $$
 
 CREATE TRIGGER trg_AtualizarMedia
 AFTER INSERT ON Avaliacao
@@ -287,10 +285,6 @@ BEGIN
     WHERE IDPac = NEW.IDPac;
 END $$
 
-DELIMITER ;
-
-DELIMITER $$
-
 CREATE TRIGGER trg_AtualizarMediaUpdate
 AFTER UPDATE ON Avaliacao
 FOR EACH ROW
@@ -303,10 +297,6 @@ BEGIN
     )
     WHERE IDPac = NEW.IDPac;
 END $$
-
-DELIMITER ;
-
-DELIMITER $$
 
 CREATE TRIGGER trg_AtualizarMediaDelete
 AFTER DELETE ON Avaliacao
@@ -324,51 +314,26 @@ END $$
 DELIMITER ;
 
 
-INSERT INTO Funcionario (
-    CPFFun,
-    nomeFun,
-    telefoneFun,
-    emailFun,
-    senhaFun,
-    permissaoFun,
-    situacaoFun,
-    dataNascimentoFun
-)
-VALUES (
-    '12345678903',
-    'Carlos Silva',
-    '(11) 98765-4321',
-    'carlos@exemplo1.com',
-    '23456789',
-    'Administrador',
-    'A',
-    '1992-08-15'
-);
+ALTER TABLE Pacote
+ADD COLUMN quantidadePassageirosPac INT NOT NULL DEFAULT 1
+AFTER quantidadePac;
 
-INSERT INTO Funcionario (
-    CPFFun,
-    nomeFun,
-    telefoneFun,
-    emailFun,
-    senhaFun,
-    permissaoFun,
-    situacaoFun,
-    dataNascimentoFun
-)
-VALUES (
-    '12345678904',
-    'Maria Souza',
-    '(11) 91234-5678',
-    'maria@exemplo.com',
-    '12345678',
-    'Funcionario',
-    'A',
-    '1995-03-20'
-);
+ALTER TABLE Pacote
+ADD CONSTRAINT CK_PacoteQuantidadePassageiros
+CHECK (quantidadePassageirosPac > 0);
+
+ALTER TABLE Promocao
+ADD COLUMN abrangenciaPromocao VARCHAR(100) NOT NULL DEFAULT 'Todos'
+AFTER nomePromocao;
+
+ALTER TABLE Promocao
+ADD COLUMN situacaoPromocao CHAR(1) NOT NULL DEFAULT 'A'
+AFTER dataValidade;
 
 DESCRIBE Usuario;
 DESCRIBE Funcionario;
 DESCRIBE Parceiro;
+DESCRIBE Promocao;
 DESCRIBE Pacote;
 DESCRIBE Reserva;
 DESCRIBE Pagamento;
@@ -379,6 +344,7 @@ DESCRIBE Avaliacao;
 SELECT * FROM Usuario;
 SELECT * FROM Funcionario;
 SELECT * FROM Parceiro;
+SELECT * FROM Promocao;
 SELECT * FROM Pacote;
 SELECT * FROM Reserva;
 SELECT * FROM Pagamento;

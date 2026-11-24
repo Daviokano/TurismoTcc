@@ -1,5 +1,55 @@
 @model HorizonTravel.Models.Promocao
 @{ ViewData["Title"] = "Cadastrar promoção"; }
 <link rel="stylesheet" href="~/css/promocoes-funcionario.css" asp-append-version="true" />
-<div class="pagina-formulario-promocao"><div class="cabecalho-promocoes-funcionario"><div><h1>Cadastrar promoção</h1><p>A validade começa a ser considerada a partir de hoje.</p></div></div><section class="cartao-formulario-promocao"><form asp-action="Cadastrar" method="post"><div asp-validation-summary="ModelOnly" class="erro-promocao"></div><div class="campo-promocao"><label asp-for="porcentagemDesconto">Desconto (%)</label><input asp-for="porcentagemDesconto" type="number" min="0" max="100" step="0.01" /><span asp-validation-for="porcentagemDesconto" class="erro-promocao"></span></div><div class="campo-promocao"><label asp-for="dataValidade">Data limite</label><input asp-for="dataValidade" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" /><span asp-validation-for="dataValidade" class="erro-promocao"></span></div><div class="acoes-formulario-promocao"><a asp-action="Index">Cancelar</a><button type="submit">Salvar promoção</button></div></form></section></div>
+<div class="pagina-formulario-promocao">
+    <div class="cabecalho-promocoes-funcionario">
+        <div>
+            <h1>Cadastrar promoção</h1>
+            <p>A validade começa a ser considerada a partir de hoje.</p>
+        </div>
+    </div>
+
+    <section class="cartao-formulario-promocao">
+        <form asp-action="Cadastrar" method="post">
+            <div asp-validation-summary="ModelOnly" class="erro-promocao"></div>
+
+            <div class="campo-promocao">
+                <label asp-for="nomePromocao">Nome da promoção</label>
+                <input asp-for="nomePromocao" maxlength="100" />
+                <span asp-validation-for="nomePromocao" class="erro-promocao"></span>
+            </div>
+
+            <div class="campo-promocao">
+                <label asp-for="abrangenciaPromocao">Aplicar para</label>
+                <select asp-for="abrangenciaPromocao">
+                    <option value="Todos">Todos os pacotes</option>
+                    <option value="Nacionais">Pacotes nacionais</option>
+                    <option value="Internacionais">Pacotes internacionais</option>
+                    <option value="Brasil">Brasil</option>
+                    <option value="França">França</option>
+                    <option value="Japão">Japão</option>
+                    <option value="México">México</option>
+                </select>
+                <span asp-validation-for="abrangenciaPromocao" class="erro-promocao"></span>
+            </div>
+
+            <div class="campo-promocao">
+                <label asp-for="porcentagemDesconto">Desconto (%)</label>
+                <input asp-for="porcentagemDesconto" type="number" min="0" max="100" step="0.01" />
+                <span asp-validation-for="porcentagemDesconto" class="erro-promocao"></span>
+            </div>
+
+            <div class="campo-promocao">
+                <label asp-for="dataValidade">Data limite</label>
+                <input asp-for="dataValidade" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
+                <span asp-validation-for="dataValidade" class="erro-promocao"></span>
+            </div>
+
+            <div class="acoes-formulario-promocao">
+                <a asp-action="Index">Cancelar</a>
+                <button type="submit">Salvar promoção</button>
+            </div>
+        </form>
+    </section>
+</div>
 @section Scripts { <partial name="_ValidationScriptsPartial" /> }

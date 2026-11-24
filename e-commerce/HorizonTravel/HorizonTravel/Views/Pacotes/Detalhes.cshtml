@@ -2,7 +2,10 @@
 
 @{
     ViewData["Title"] = "Detalhes do pacote";
-    var promocao = ViewBag.Promocao as HorizonTravel.Models.Promocao;
+    var promocoes = ViewBag.Promocoes as IEnumerable<HorizonTravel.Models.Promocao>
+        ?? Enumerable.Empty<HorizonTravel.Models.Promocao>();
+    var promocao = HorizonTravel.Libraries.Promocao.PromocaoCalculadora
+        .ObterMelhorPromocao(Model, promocoes);
     var precoPromocional = promocao == null
         ? Model.precoPac
         : Math.Round(Model.precoPac * (1 - promocao.porcentagemDesconto / 100), 2);
@@ -37,7 +40,7 @@
         @if (promocao != null)
         {
             <span class="preco-original">R$ @Model.precoPac.ToString("N2")</span>
-            <span class="etiqueta-desconto-detalhes">@promocao.porcentagemDesconto.ToString("0.##")% OFF</span>
+            <span class="etiqueta-desconto-detalhes">@promocao.nomePromocao - @promocao.porcentagemDesconto.ToString("0.##")% OFF</span>
         }
         <strong class="preco">R$ @precoPromocional.ToString("N2")</strong>
         <span class="por-pessoa">por pacote</span>

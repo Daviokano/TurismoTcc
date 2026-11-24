@@ -21,10 +21,10 @@ namespace HorizonTravel.Repository
 
             const string sql = @"
                 INSERT INTO Pacote
-                    (IDFun, CNPJFor, IDPromo, precoPac, quantidadePac,
+                    (IDFun, CNPJFor, IDPromo, precoPac, quantidadePac, quantidadePassageirosPac,
                     descricaoPac, avaliacaoPac, fotoPac, destinoPac, origemPac, dataPac, situacaoPac)
                 VALUES
-                    (@IDFun, @CNPJFor, @IDPromo, @precoPac, @quantidadePac,
+                    (@IDFun, @CNPJFor, @IDPromo, @precoPac, @quantidadePac, @quantidadePassageirosPac,
                     @descricaoPac, @avaliacaoPac, @fotoPac, @destinoPac, @origemPac, @dataPac, @situacaoPac)";
 
             using var comando = new MySqlCommand(sql, conexao);
@@ -44,6 +44,7 @@ namespace HorizonTravel.Repository
                     IDPromo = @IDPromo,
                     precoPac = @precoPac,
                     quantidadePac = @quantidadePac,
+                    quantidadePassageirosPac = @quantidadePassageirosPac,
                     descricaoPac = @descricaoPac,
                     avaliacaoPac = @avaliacaoPac,
                     fotoPac = @fotoPac,
@@ -111,6 +112,7 @@ namespace HorizonTravel.Repository
                 pacote.IDPromo.HasValue ? pacote.IDPromo.Value : DBNull.Value;
             comando.Parameters.Add("@precoPac", MySqlDbType.Decimal).Value = pacote.precoPac;
             comando.Parameters.Add("@quantidadePac", MySqlDbType.Int32).Value = pacote.quantidadePac;
+            comando.Parameters.Add("@quantidadePassageirosPac", MySqlDbType.Int32).Value = pacote.quantidadePassageirosPac;
             comando.Parameters.Add("@descricaoPac", MySqlDbType.Text).Value = pacote.descricaoPac;
             comando.Parameters.Add("@avaliacaoPac", MySqlDbType.Decimal).Value =
                 pacote.avaliacaoPac.HasValue ? pacote.avaliacaoPac.Value : DBNull.Value;
@@ -131,6 +133,7 @@ namespace HorizonTravel.Repository
                 IDPromo = registro["IDPromo"] == DBNull.Value ? null : Convert.ToInt32(registro["IDPromo"]),
                 precoPac = Convert.ToDecimal(registro["precoPac"]),
                 quantidadePac = Convert.ToInt32(registro["quantidadePac"]),
+                quantidadePassageirosPac = Convert.ToInt32(registro["quantidadePassageirosPac"]),
                 descricaoPac = Convert.ToString(registro["descricaoPac"]),
                 avaliacaoPac = registro["avaliacaoPac"] == DBNull.Value ? null : Convert.ToDecimal(registro["avaliacaoPac"]),
                 fotoPac = registro["fotoPac"] == DBNull.Value ? null : Convert.ToString(registro["fotoPac"]),

@@ -5,8 +5,8 @@
     
     // Usa o que vem do banco. Se estiver vazio, não quebra a tela.
     var listaExibicao = Model ?? new List<HorizonTravel.Models.Pacote>();
-    var promocoes = ViewBag.Promocoes as IDictionary<int, HorizonTravel.Models.Promocao>
-        ?? new Dictionary<int, HorizonTravel.Models.Promocao>();
+    var promocoes = ViewBag.Promocoes as IEnumerable<HorizonTravel.Models.Promocao>
+        ?? Enumerable.Empty<HorizonTravel.Models.Promocao>();
 }
 
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
@@ -74,9 +74,8 @@
         {
             @foreach (var pacote in listaExibicao)
             {
-                var promocao = pacote.IDPromo.HasValue && promocoes.TryGetValue(pacote.IDPromo.Value, out var promocaoAtiva)
-                    ? promocaoAtiva
-                    : null;
+                var promocao = HorizonTravel.Libraries.Promocao.PromocaoCalculadora
+                    .ObterMelhorPromocao(pacote, promocoes);
                 var precoPromocional = promocao == null
                     ? pacote.precoPac
                     : Math.Round(pacote.precoPac * (1 - promocao.porcentagemDesconto / 100), 2);
@@ -86,7 +85,7 @@
                         <span class="etiqueta-destino">@pacote.destinoPac</span>
                         @if (promocao != null)
                         {
-                            <span class="etiqueta-promocao">@promocao.porcentagemDesconto.ToString("0.##")% OFF</span>
+                            <span class="etiqueta-promocao">@promocao.nomePromocao - @promocao.porcentagemDesconto.ToString("0.##")% OFF</span>
                         }
                     </div>
 

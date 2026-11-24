@@ -39,8 +39,7 @@ namespace HorizonTravel.Controllers
                 _ => pacotes
             };
 
-            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas()
-                .ToDictionary(promocao => promocao.IDPromo);
+            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas().ToList();
 
             return View(pacotes);
         }
@@ -53,9 +52,7 @@ namespace HorizonTravel.Controllers
             if (pacote == null)
                 return NotFound();
 
-            ViewBag.Promocao = pacote.IDPromo.HasValue
-                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
-                : null;
+            ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas().ToList();
 
             return View(pacote);
         }

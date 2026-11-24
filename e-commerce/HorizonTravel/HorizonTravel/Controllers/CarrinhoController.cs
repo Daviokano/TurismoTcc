@@ -37,9 +37,9 @@ public class CarrinhoController : Controller
                 continue;
             }
 
-            var promocao = pacote.IDPromo.HasValue
-                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
-                : null;
+            var promocao = PromocaoCalculadora.ObterMelhorPromocao(
+                pacote,
+                _promocaoRepository.ObterPromocoesAtivas());
 
             item.Preco = PromocaoCalculadora.CalcularPreco(pacote, promocao);
         }
@@ -60,9 +60,9 @@ public class CarrinhoController : Controller
 
         item.NomePacote = $"Pacote {pacote.destinoPac}";
         item.Destino = pacote.destinoPac;
-        var promocao = pacote.IDPromo.HasValue
-            ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
-            : null;
+        var promocao = PromocaoCalculadora.ObterMelhorPromocao(
+            pacote,
+            _promocaoRepository.ObterPromocoesAtivas());
 
         item.Preco = PromocaoCalculadora.CalcularPreco(pacote, promocao);
         item.Imagem = pacote.fotoPac;

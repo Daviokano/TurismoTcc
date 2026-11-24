@@ -20,8 +20,8 @@ namespace HorizonTravel.Repository
             conexao.Open();
 
             const string sql = @"
-                INSERT INTO Promocao (porcentagemDesconto, dataValidade)
-                VALUES (@porcentagemDesconto, @dataValidade)";
+                INSERT INTO Promocao (nomePromocao, abrangenciaPromocao, porcentagemDesconto, dataValidade, situacaoPromocao)
+                VALUES (@nomePromocao, @abrangenciaPromocao, @porcentagemDesconto, @dataValidade, @situacaoPromocao)";
 
             using var comando = new MySqlCommand(sql, conexao);
             AdicionarParametros(comando, promocao);
@@ -35,8 +35,11 @@ namespace HorizonTravel.Repository
 
             const string sql = @"
                 UPDATE Promocao
-                SET porcentagemDesconto = @porcentagemDesconto,
-                    dataValidade = @dataValidade
+                SET nomePromocao = @nomePromocao,
+                    abrangenciaPromocao = @abrangenciaPromocao,
+                    porcentagemDesconto = @porcentagemDesconto,
+                    dataValidade = @dataValidade,
+                    situacaoPromocao = @situacaoPromocao
                 WHERE IDPromo = @IDPromo";
 
             using var comando = new MySqlCommand(sql, conexao);
@@ -50,9 +53,46 @@ namespace HorizonTravel.Repository
             using var conexao = new MySqlConnection(_conexaoMySQL);
             conexao.Open();
 
-            const string sql = "DELETE FROM Promocao WHERE IDPromo = @IDPromo";
+            using var transacao = conexao.BeginTransaction();
+
+            try
+            {
+                const string desvincularPacotes = @"
+                    UPDATE Pacote
+                    SET IDPromo = NULL
+                    WHERE IDPromo = @IDPromo";
+
+                using var comandoDesvincular = new MySqlCommand(desvincularPacotes, conexao, transacao);
+                comandoDesvincular.Parameters.Add("@IDPromo", MySqlDbType.Int32).Value = id;
+                comandoDesvincular.ExecuteNonQuery();
+
+                const string removerPromocao = "DELETE FROM Promocao WHERE IDPromo = @IDPromo";
+                using var comandoRemover = new MySqlCommand(removerPromocao, conexao, transacao);
+                comandoRemover.Parameters.Add("@IDPromo", MySqlDbType.Int32).Value = id;
+                comandoRemover.ExecuteNonQuery();
+
+                transacao.Commit();
+            }
+            catch
+            {
+                transacao.Rollback();
+                throw;
+            }
+        }
+
+        public void AlterarSituacao(int id, string situacao)
+        {
+            using var conexao = new MySqlConnection(_conexaoMySQL);
+            conexao.Open();
+
+            const string sql = @"
+                UPDATE Promocao
+                SET situacaoPromocao = @situacaoPromocao
+                WHERE IDPromo = @IDPromo";
+
             using var comando = new MySqlCommand(sql, conexao);
             comando.Parameters.Add("@IDPromo", MySqlDbType.Int32).Value = id;
+            comando.Parameters.Add("@situacaoPromocao", MySqlDbType.VarChar).Value = situacao;
             comando.ExecuteNonQuery();
         }
 
@@ -117,8 +157,11 @@ namespace HorizonTravel.Repository
 
         private static void AdicionarParametros(MySqlCommand comando, Promocao promocao)
         {
+            comando.Parameters.Add("@nomePromocao", MySqlDbType.VarChar).Value = promocao.nomePromocao;
+            comando.Parameters.Add("@abrangenciaPromocao", MySqlDbType.VarChar).Value = promocao.abrangenciaPromocao;
             comando.Parameters.Add("@porcentagemDesconto", MySqlDbType.Decimal).Value = promocao.porcentagemDesconto;
             comando.Parameters.Add("@dataValidade", MySqlDbType.Date).Value = promocao.dataValidade.Date;
+            comando.Parameters.Add("@situacaoPromocao", MySqlDbType.VarChar).Value = promocao.situacaoPromocao;
         }
 
         private static Promocao Mapear(IDataRecord registro)
@@ -126,8 +169,11 @@ namespace HorizonTravel.Repository
             return new Promocao
             {
                 IDPromo = Convert.ToInt32(registro["IDPromo"]),
+                nomePromocao = Convert.ToString(registro["nomePromocao"]) ?? string.Empty,
+                abrangenciaPromocao = Convert.ToString(registro["abrangenciaPromocao"]) ?? "Todos",
                 porcentagemDesconto = Convert.ToDecimal(registro["porcentagemDesconto"]),
-                dataValidade = Convert.ToDateTime(registro["dataValidade"])
+                dataValidade = Convert.ToDateTime(registro["dataValidade"]),
+                situacaoPromocao = Convert.ToString(registro["situacaoPromocao"]) ?? "A"
             };
         }
     }

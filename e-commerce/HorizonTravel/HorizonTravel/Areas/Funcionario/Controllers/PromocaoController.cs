@@ -85,6 +85,26 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return RedirectToAction(nameof(Index));
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AlterarSituacao(int id)
+        {
+            var promocao = _promocaoRepository.ObterPromocao(id);
+
+            if (promocao == null)
+            {
+                return NotFound();
+            }
+
+            string novaSituacao = promocao.situacaoPromocao == "A" ? "I" : "A";
+            _promocaoRepository.AlterarSituacao(id, novaSituacao);
+            TempData["MSG_S"] = novaSituacao == "A"
+                ? "Promoção ativada com sucesso!"
+                : "Promoção desativada com sucesso!";
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private void ValidarData(Promocao promocao)
         {
             if (promocao.dataValidade.Date < DateTime.Today)

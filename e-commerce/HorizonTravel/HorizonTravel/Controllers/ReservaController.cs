@@ -48,7 +48,7 @@ namespace HorizonTravel.Controllers
 
             var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
 
-            if (pacote == null || pacote.quantidadePac <= 0)
+            if (pacote == null || pacote.quantidadePac < pacote.quantidadePassageirosPac)
             {
                 return RedirectToAction("Index", "Carrinho");
             }
@@ -56,9 +56,9 @@ namespace HorizonTravel.Controllers
             var modelo = new ReservaCheckout
             {
                 IDPac = item.IdPacote,
-                ValorTotal = ObterPrecoAtual(pacote) * pacote.quantidadePac,
+                ValorTotal = ObterPrecoAtual(pacote) * pacote.quantidadePassageirosPac,
                 Passageiros = Enumerable
-                    .Range(0, pacote.quantidadePac)
+                    .Range(0, pacote.quantidadePassageirosPac)
                     .Select(_ => new Passageiro())
                     .ToList()
             };
@@ -81,11 +81,11 @@ namespace HorizonTravel.Controllers
 
             var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
 
-            if (pacote == null || modelo.Passageiros.Count != pacote.quantidadePac)
+            if (pacote == null || modelo.Passageiros.Count != pacote.quantidadePassageirosPac)
             {
                 ModelState.AddModelError(
                     string.Empty,
-                    $"Cadastre exatamente {pacote?.quantidadePac ?? 0} passageiros.");
+                    $"Cadastre exatamente {pacote?.quantidadePassageirosPac ?? 0} passageiros.");
             }
 
             if (!ModelState.IsValid || modelo.Passageiros.Count == 0)
@@ -244,9 +244,9 @@ namespace HorizonTravel.Controllers
 
         private decimal ObterPrecoAtual(Pacote pacote)
         {
-            var promocao = pacote.IDPromo.HasValue
-                ? _promocaoRepository.ObterPromocao(pacote.IDPromo.Value)
-                : null;
+            var promocao = PromocaoCalculadora.ObterMelhorPromocao(
+                pacote,
+                _promocaoRepository.ObterPromocoesAtivas());
 
             return PromocaoCalculadora.CalcularPreco(pacote, promocao);
         }

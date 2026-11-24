@@ -14,6 +14,10 @@ namespace HorizonTravel.Models
         [Range(0, int.MaxValue, ErrorMessage = "A quantidade não pode ser negativa")]
         public int quantidadePac { get; set; }
 
+        [Required(ErrorMessage = "Informe a quantidade de passageiros")]
+        [Range(1, int.MaxValue, ErrorMessage = "A quantidade de passageiros deve ser maior que zero")]
+        public int quantidadePassageirosPac { get; set; }
+
         [Required(ErrorMessage = "Informe a descrição")]
         public string descricaoPac { get; set; }
 
