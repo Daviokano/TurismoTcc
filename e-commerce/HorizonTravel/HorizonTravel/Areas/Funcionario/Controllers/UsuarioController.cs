@@ -64,6 +64,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
                 modelo.Cliente = cliente;
                 modelo.Reservas = _reservaRepository.ObterReservasPorUsuario(cliente.IDUsu);
+                modelo.Historicos = _reservaRepository.BuscarHistoricoPorCliente(cliente.IDUsu);
             }
 
             return View(modelo);

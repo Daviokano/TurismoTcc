@@ -12,6 +12,8 @@ namespace HorizonTravel.Models
 
         public IEnumerable<ReservaResumo> Reservas { get; set; } = Enumerable.Empty<ReservaResumo>();
 
+        public IEnumerable<Historico> Historicos { get; set; } = Enumerable.Empty<Historico>();
+
         public int TotalReservas => Reservas.Count();
 
         public decimal ValorTotal => Reservas.Sum(reserva => reserva.valorPag);

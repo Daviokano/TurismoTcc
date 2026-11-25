@@ -3,6 +3,9 @@
     min-height: 650px;
     margin: 0 auto;
     padding: 46px 20px 80px;
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+    font-style: normal;
 }
 
 .cabecalho-usuario {
@@ -29,11 +32,13 @@
 .cabecalho-usuario h1 {
     margin: 0;
     font-size: 1.15rem;
+    font-weight: 600;
 }
 
 .cabecalho-usuario p {
     margin: 3px 0 0;
     font-size: .78rem;
+    font-weight: 600;
 }
 
 .abas-usuario {
@@ -49,6 +54,7 @@
     padding: 12px 8px;
     color: #222;
     font-size: .76rem;
+    font-weight: 600;
     text-decoration: none;
 }
 
@@ -75,13 +81,15 @@
 
 .cartao-reserva h2 {
     margin: 0 0 8px;
-    font-size: .9rem;
+    font-size: 1rem;
+    font-weight: 600;
 }
 
 .cartao-reserva p {
     margin: 4px 0;
     color: #666;
-    font-size: .7rem;
+    font-size: .8rem;
+    font-weight: 600;
 }
 
 .cartao-reserva i {
@@ -98,6 +106,7 @@
 
 .dados-reserva strong {
     font-size: .85rem;
+    font-weight: 700;
 }
 
 .status-reserva {

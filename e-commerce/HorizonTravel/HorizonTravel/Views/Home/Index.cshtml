@@ -56,51 +56,83 @@
 <div class="container py-5">
     <div class="row g-4 mt-1">
 
-        <!-- card1 -->
         <div class="col-12 col-sm-6 col-lg-3">
             <article class="card card-destino">
-                <img src="~/img/card paris.jpg" asp-append-version="true" class="card-img" alt="img" />
+                <img src="~/img/card paris.jpg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Paris, França" />
                 <div class="card-img-overlay">
                     <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Paris, França</h3>
                     <p class="texto-card">Cidade, Luz e Romance</p>
                 </div>
-                <a href="#" class="btn-card" aria-label="Ver Paris"><i class="bi bi-arrow-right"></i></a>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="França"
+                   aria-label="Ver pacotes para a França">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </article>
         </div>
 
-        <!-- card2 -->
         <div class="col-12 col-sm-6 col-lg-3">
             <article class="card card-destino">
-                <img src="~/img/card orlando.jpeg" asp-append-version="true" class="card-img" alt="img" />
+                <img src="~/img/card orlando.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Orlando, Estados Unidos" />
                 <div class="card-img-overlay">
                     <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Orlando, EUA</h3>
                     <p class="texto-card">Parque da Disney</p>
                 </div>
-                <a href="#" class="btn-card" aria-label="Ver Orlando"><i class="bi bi-arrow-right"></i></a>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Estados Unidos"
+                   aria-label="Ver pacotes para os Estados Unidos">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </article>
         </div>
 
-        <!-- card3 -->
         <div class="col-12 col-sm-6 col-lg-3">
             <article class="card card-destino">
-                <img src="~/img/card copacabana.jpeg" asp-append-version="true" class="card-img" alt="img" />
+                <img src="~/img/card copacabana.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Copacabana, Brasil" />
                 <div class="card-img-overlay">
                     <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Copacabana, Brasil</h3>
                     <p class="texto-card">Praias incríveis</p>
                 </div>
-                <a href="#" class="btn-card" aria-label="Ver Copacabana"><i class="bi bi-arrow-right"></i></a>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Brasil"
+                   aria-label="Ver pacotes para o Brasil">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </article>
         </div>
 
-        <!-- card4 -->
         <div class="col-12 col-sm-6 col-lg-3">
             <article class="card card-destino">
-                <img src="~/img/card pisa.jpeg" asp-append-version="true" class="card-img" alt="img" />
+                <img src="~/img/card pisa.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Pisa, Itália" />
                 <div class="card-img-overlay">
                     <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Pisa, Itália</h3>
                     <p class="texto-card">Cidade da famosa torre</p>
                 </div>
-                <a href="#" class="btn-card" aria-label="Ver Pisa"><i class="bi bi-arrow-right"></i></a>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Itália"
+                   aria-label="Ver pacotes para a Itália">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
             </article>
         </div>
     </div>

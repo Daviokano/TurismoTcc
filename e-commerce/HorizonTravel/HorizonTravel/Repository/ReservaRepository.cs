@@ -198,6 +198,67 @@ namespace HorizonTravel.Repository
             return LerReservas(comando);
         }
 
+        public IEnumerable<Historico> BuscarHistoricoPorCliente(int idUsuario)
+        {
+            using var conexao = new MySqlConnection(_conexaoMySQL);
+            conexao.Open();
+
+            const string sql = @"
+                SELECT h.IDHist,
+                       h.IDRes,
+                       h.IDFun,
+                       h.statusAnterior,
+                       h.statusNovo,
+                       h.dataModificacao,
+                       f.nomeFun
+                FROM Historico h
+                INNER JOIN Reserva r
+                    ON r.IDRes = h.IDRes
+                LEFT JOIN Funcionario f
+                    ON f.IDFun = h.IDFun
+                WHERE r.IDUsu = @IDUsu
+                ORDER BY h.dataModificacao DESC,
+                         h.IDHist DESC";
+
+            using var comando = new MySqlCommand(sql, conexao);
+            comando.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = idUsuario;
+
+            using var leitor = comando.ExecuteReader();
+            var historicos = new List<Historico>();
+
+            while (leitor.Read())
+            {
+                historicos.Add(MapearHistorico(leitor));
+            }
+
+            return historicos;
+        }
+
+        public void RegistrarAlteracao(
+            int idReserva,
+            int? idFuncionario,
+            string? statusAnterior,
+            string statusNovo)
+        {
+            using var conexao = new MySqlConnection(_conexaoMySQL);
+            conexao.Open();
+
+            const string sql = @"
+                INSERT INTO Historico
+                    (IDRes, IDFun, statusAnterior, statusNovo, dataModificacao)
+                VALUES
+                    (@IDRes, @IDFun, @statusAnterior, @statusNovo, NOW())";
+
+            using var comando = new MySqlCommand(sql, conexao);
+            AdicionarParametrosHistorico(
+                comando,
+                idReserva,
+                idFuncionario,
+                statusAnterior,
+                statusNovo);
+            comando.ExecuteNonQuery();
+        }
+
         public ReservaDetalhesViewModel? ObterDetalhesReserva(int idReserva)
         {
             const string sqlReserva = @"
@@ -410,19 +471,47 @@ namespace HorizonTravel.Repository
 
             while (leitor.Read())
             {
-                historico.Add(new Historico
-                {
-                    IDHist = Convert.ToInt32(leitor["IDHist"]),
-                    IDRes = Convert.ToInt32(leitor["IDRes"]),
-                    IDFun = leitor["IDFun"] == DBNull.Value ? null : Convert.ToInt32(leitor["IDFun"]),
-                    statusAnterior = leitor["statusAnterior"] == DBNull.Value ? null : Convert.ToString(leitor["statusAnterior"]),
-                    statusNovo = leitor["statusNovo"] == DBNull.Value ? null : Convert.ToString(leitor["statusNovo"]),
-                    dataModificacao = Convert.ToDateTime(leitor["dataModificacao"]),
-                    nomeFun = leitor["nomeFun"] == DBNull.Value ? null : Convert.ToString(leitor["nomeFun"])
-                });
+                historico.Add(MapearHistorico(leitor));
             }
 
             return historico;
+        }
+
+        private static Historico MapearHistorico(IDataRecord registro)
+        {
+            return new Historico
+            {
+                IDHist = Convert.ToInt32(registro["IDHist"]),
+                IDRes = Convert.ToInt32(registro["IDRes"]),
+                IDFun = registro["IDFun"] == DBNull.Value
+                    ? null
+                    : Convert.ToInt32(registro["IDFun"]),
+                statusAnterior = registro["statusAnterior"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(registro["statusAnterior"]),
+                statusNovo = registro["statusNovo"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(registro["statusNovo"]),
+                dataModificacao = Convert.ToDateTime(registro["dataModificacao"]),
+                nomeFun = registro["nomeFun"] == DBNull.Value
+                    ? null
+                    : Convert.ToString(registro["nomeFun"])
+            };
+        }
+
+        private static void AdicionarParametrosHistorico(
+            MySqlCommand comando,
+            int idReserva,
+            int? idFuncionario,
+            string? statusAnterior,
+            string statusNovo)
+        {
+            comando.Parameters.Add("@IDRes", MySqlDbType.Int32).Value = idReserva;
+            comando.Parameters.Add("@IDFun", MySqlDbType.Int32).Value =
+                idFuncionario.HasValue ? idFuncionario.Value : DBNull.Value;
+            comando.Parameters.Add("@statusAnterior", MySqlDbType.VarChar).Value =
+                statusAnterior ?? (object)DBNull.Value;
+            comando.Parameters.Add("@statusNovo", MySqlDbType.VarChar).Value = statusNovo;
         }
 
         private static void AtualizarStatusReservaInterno(
@@ -474,11 +563,12 @@ namespace HorizonTravel.Repository
                     (@IDRes, @IDFun, @statusAnterior, @statusNovo, NOW())";
 
             using var comandoHistorico = new MySqlCommand(sqlHistorico, conexao, transacao);
-            comandoHistorico.Parameters.Add("@IDRes", MySqlDbType.Int32).Value = idReserva;
-            comandoHistorico.Parameters.Add("@IDFun", MySqlDbType.Int32).Value =
-                idFuncionario.HasValue ? idFuncionario.Value : DBNull.Value;
-            comandoHistorico.Parameters.Add("@statusAnterior", MySqlDbType.VarChar).Value = statusAnterior;
-            comandoHistorico.Parameters.Add("@statusNovo", MySqlDbType.VarChar).Value = statusNovo;
+            AdicionarParametrosHistorico(
+                comandoHistorico,
+                idReserva,
+                idFuncionario,
+                statusAnterior,
+                statusNovo);
             comandoHistorico.ExecuteNonQuery();
         }
     }

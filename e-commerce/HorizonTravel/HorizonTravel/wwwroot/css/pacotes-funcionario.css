@@ -127,7 +127,7 @@
 
 .grade-pacotes-funcionario {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(320px, 380px));
     gap: 20px;
 }
 
@@ -259,25 +259,36 @@
 /* --- FIM DO FORMULÁRIO --- */
 
 /* --- DETALHES --- */
+.detalhes-pacote-funcionario {
+    width: 100%;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 0 60px;
+    color: #111827;
+    font-family: "Poppins", sans-serif;
+}
+
 .cabecalho-detalhes-pacote-funcionario {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 28px;
 }
 
     .cabecalho-detalhes-pacote-funcionario h1 {
-        margin: 5px 0 6px;
+        margin: 8px 0 6px;
         color: #111827;
-        font-size: 1.4rem; /* Adicionado tamanho para não ficar gigante */
+        font-size: 1.6rem;
+        font-weight: 700;
     }
 
     .cabecalho-detalhes-pacote-funcionario p,
     .rotulo-detalhes-pacote-funcionario {
         margin: 0;
         color: #6b7280;
-        font-size: 0.82rem; /* Adicionado */
+        font-size: 0.8rem;
+        font-weight: 500;
     }
 
 .rotulo-detalhes-pacote-funcionario {
@@ -300,51 +311,81 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 16px;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
 }
 
-    .resumo-detalhes-pacote-funcionario div {
+    .resumo-detalhes-pacote-funcionario .item-resumo-pacote {
         display: flex;
         flex-direction: column;
         gap: 6px;
-        padding: 14px;
+        min-height: 82px;
+        padding: 16px 18px;
         border: 1px solid #e5e7eb;
-        border-radius: 8px;
+        border-radius: 6px;
         background: #f9fafb;
     }
 
     .resumo-detalhes-pacote-funcionario span {
         color: #6b7280;
-        font-size: .75rem; /* Era .78rem */
+        font-size: .75rem;
+        font-weight: 500;
     }
 
     .resumo-detalhes-pacote-funcionario strong {
         color: #111827;
-        font-size: 1rem; /* Era 1.05rem */
+        font-size: 1rem;
+        font-weight: 700;
     }
 
 .descricao-detalhes-pacote-funcionario {
-    margin-bottom: 20px;
+    max-width: 780px;
+    margin-bottom: 18px;
 }
 
     .descricao-detalhes-pacote-funcionario h2 {
         margin: 0 0 8px;
         color: #111827;
-        font-size: 0.95rem; /* Era 1rem */
+        font-size: 1rem;
+        font-weight: 700;
     }
 
     .descricao-detalhes-pacote-funcionario p {
         margin: 0;
         color: #4b5563;
-        font-size: 0.82rem; /* Adicionado */
+        font-size: 0.85rem;
+        font-weight: 500;
         line-height: 1.5;
     }
 
 .botao-voltar-detalhes-pacote-funcionario {
     display: inline-block;
+    padding: 8px 14px;
+    border: 1px solid #243f91;
+    border-radius: 4px;
     color: #243f91;
-    font-size: .78rem; /* Era .82rem */
+    font-size: .75rem;
+    font-weight: 600;
     text-decoration: none;
+}
+
+.botao-voltar-detalhes-pacote-funcionario:hover {
+    background: #243f91;
+    color: #fff;
+    text-decoration: none;
+}
+
+.imagem-detalhes-pacote {
+    width: min(100%, 780px);
+    margin: 0 0 20px;
+    overflow: hidden;
+    border-radius: 6px;
+}
+
+.imagem-detalhes-pacote img {
+    display: block;
+    width: 100%;
+    max-height: 460px;
+    object-fit: cover;
 }
 
 @media (max-width: 1200px) {
@@ -354,6 +395,15 @@
 }
 
 @media (max-width: 760px) {
+    .detalhes-pacote-funcionario {
+        padding: 0 16px 50px;
+    }
+
+    .cabecalho-detalhes-pacote-funcionario {
+        flex-direction: column;
+        gap: 16px;
+    }
+
     .resumo-detalhes-pacote-funcionario {
         grid-template-columns: 1fr;
     }
