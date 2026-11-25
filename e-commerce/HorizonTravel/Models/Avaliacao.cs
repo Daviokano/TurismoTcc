@@ -8,7 +8,7 @@ namespace HorizonTravel.Models
 
         [Required(ErrorMessage = "Informe a nota")]
         [Range(0, 5, ErrorMessage = "A nota deve ser entre 0 e 5")]
-        public decimal notaAva { get; set; }
+        public decimal? notaAva { get; set; }
 
         public string? comentarioAva { get; set; }
 

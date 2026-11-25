@@ -183,9 +183,38 @@ html, body {
     color: #ffffff;
 }
 
-    .botao-salvar:hover {
-        background: #ea6a0a;
-    }
+.botao-salvar:hover {
+    background: #ea6a0a;
+}
+
+.campo-senha-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-senha-wrapper .input-form {
+    padding-right: 40px; 
+}
+
+.botao-olho {
+    position: absolute;
+    right: 10px;
+    background: transparent;
+    border: none;
+    color: #6b7280;
+    cursor: pointer;
+    font-size: 1rem;
+    padding: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.2s;
+}
+
+.botao-olho:hover {
+    color: #111827;
+}
 
 /* ===== Mobile ===== */
 @media (max-width: 767.98px) {

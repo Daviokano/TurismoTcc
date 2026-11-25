@@ -89,7 +89,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         }
 
 
-        //Para atualizar dados de clientes
+        // para atualizar dados de clientes
         [HttpGet]
         public IActionResult Atualizar(int Id)
         {
@@ -101,7 +101,19 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Atualizar([FromForm] Models.Usuario usuario)
         {
             usuario.CPFUsu = new string(usuario.CPFUsu.Where(char.IsDigit).ToArray());
-            ModelState.Remove(nameof(usuario.senhaUsu)); // senha em branco = manter a atual
+
+            // se o campo continuar vazio, mantém a senha atual cadastrada no banco.
+            if (string.IsNullOrWhiteSpace(usuario.senhaUsu))
+            {
+                var usuarioBanco = _usuarioRepository.ObterUsuario(usuario.IDUsu);
+                if (usuarioBanco != null)
+                {
+                    usuario.senhaUsu = usuarioBanco.senhaUsu;
+                }
+            }
+
+            // removendo a validação do ModelState para o campo senha, já que ele agora é opcional na tela.
+            ModelState.Remove(nameof(usuario.senhaUsu));
 
             if (ModelState.IsValid)
             {

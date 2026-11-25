@@ -4,7 +4,7 @@ using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
-using System; // Necessário para StringComparison
+using System; 
 using System.Linq;
 
 namespace HorizonTravel.Areas.Funcionario.Controllers
@@ -36,7 +36,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View(funcionarios);
         }
 
-        // --- PROTEÇÃO: Apenas Administrador pode acessar a tela e cadastrar ---
+        // restrição para admin
         [HttpGet]
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
         public IActionResult Cadastrar()
@@ -55,7 +55,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        // --- PROTEÇÃO: Apenas Administrador pode acessar a tela de atualizar ---
+        // restriçaõ para dmin
         [HttpGet]
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
         public IActionResult Atualizar(int Id)
@@ -68,6 +68,18 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
         public IActionResult Atualizar([FromForm] Models.Funcionario funcionario)
         {
+            // se o campo continuar vazio, mantém a senha no banco.
+            if (string.IsNullOrWhiteSpace(funcionario.senhaFun))
+            {
+                var funcionarioBanco = _funcionarioRepository.ObterFuncionario(funcionario.IDFun);
+                if (funcionarioBanco != null)
+                {
+                    funcionario.senhaFun = funcionarioBanco.senhaFun;
+                }
+            }
+            // removendo a validação do ModelState para o campo senha, já que ele agora é opcional na tela.
+            ModelState.Remove(nameof(funcionario.senhaFun));
+
             if (ModelState.IsValid)
             {
                 _funcionarioRepository.Atualizar(funcionario);
@@ -78,7 +90,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return View(funcionario);
         }
 
-        // O Excluir já estava protegido corretamente no seu código
+        // algumas restrições para admin
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]

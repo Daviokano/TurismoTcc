@@ -5,7 +5,7 @@
     ViewData["Title"] = "Funcionários";
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
     
-    // Variável para facilitar a verificação no HTML
+    // variavel para verificação do admin
     var isAdmin = _login.GetFuncionario()?.permissaoFun == PermissaoFunConstant.Administrador;
 }
 
@@ -23,7 +23,6 @@
 
 <div class="pagina-lista">
 
-    <!-- ===== Cabeçalho ===== -->
     <div class="cabecalho-lista">
         <div>
             <h1 class="titulo-lista">Funcionários</h1>
@@ -31,7 +30,6 @@
         </div>
     </div>
 
-    <!-- ===== Busca ===== -->
     <div class="area-busca">
         <div class="campo-busca">
             <span class="bi bi-search icone-busca" aria-hidden="true"></span>
@@ -40,7 +38,6 @@
         </div>
     </div>
 
-    <!-- ===== Tabela ===== -->
     <div class="cartao-tabela">
         <table class="tabela-funcionarios" id="tabelaFuncionarios">
             <thead>
@@ -70,15 +67,13 @@
                         <td class="data-funcionario">@funcionario.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
                         <td>
                             <div class="grupo-acoes">
-                                <!-- O botão Editar agora só aparece se for Admin OU se o Admin estiver editando ele mesmo -->
+                                <!-- só aparece se for admin -->
                                 @if (isAdmin)
                                 {
                                     <a asp-action="Atualizar" asp-route-id="@funcionario.IDFun" class="botao-acao botao-editar">Editar</a>
                                 }
                                 
-                                <a asp-action="Detalhes" asp-route-id="@funcionario.IDFun" class="botao-acao botao-detalhes">Detalhes</a>
-
-                                <!-- Botão Excluir só aparece se for Admin E não for a própria conta E o alvo não for Admin -->
+                                <!-- só aparece se for admin -->
                                 @if (isAdmin && funcionario.permissaoFun != PermissaoFunConstant.Administrador)
                                 {
                                     <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
@@ -98,11 +93,9 @@
         </table>
     </div>
 
-    <!-- Os botões de página são gerados pelo listafuncionario.js -->
     <div class="paginacao" id="paginacao" data-por-pagina="3"></div>
 
-    <!-- ===== Cadastro de funcionário ===== -->
-    <!-- Só exibe a seção de cadastro se o usuário for Administrador -->
+    <!-- só aparece se for admin -->
     @if (isAdmin)
     {
         <section class="secao-cadastro">

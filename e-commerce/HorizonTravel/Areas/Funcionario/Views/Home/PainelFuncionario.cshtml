@@ -1,11 +1,75 @@
 ﻿@{
     ViewData["Title"] = "Painel Funcionario";
+
+    string nome = ViewBag.nomeFun ?? "";
+    var partes = nome.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+    string iniciais = partes.Length == 0 ? "?"
+        : partes.Length == 1 ? partes[0].Substring(0, 1).ToUpper()
+        : (partes[0].Substring(0, 1) + partes[partes.Length - 1].Substring(0, 1)).ToUpper();
 }
 
-<h2>Painel do Funcionário</h2>
+<link rel="stylesheet" href="~/css/painelfuncionario.css" />
 
-Seja Bem-vindo(a), <span>@ViewBag.nomeFun</span>
-<p>CPF: @ViewBag.CPFFun</p>
-<p>Email: @ViewBag.emailFun</p>
+<div class="painel">
 
-<br />
+    <h2 class="painel-titulo">Painel do Funcionário</h2>
+
+    <section class="painel-grade">
+
+        <!-- Perfil -->
+        <div class="cartao-perfil">
+            <div class="perfil-avatar">@iniciais</div>
+            <div>
+                Seja Bem-vindo(a), <span class="perfil-nome">@ViewBag.nomeFun</span>
+                <p class="perfil-cargo">@ViewBag.permissaoFun</p>
+                <p><i class="bi bi-person-vcard"></i> CPF: @ViewBag.CPFFun</p>
+                <p><i class="bi bi-envelope"></i> Email: @ViewBag.emailFun</p>
+                <p><i class="bi bi-telephone"></i> Telefone: @ViewBag.telefoneFun</p>
+            </div>
+        </div>
+
+        <!-- Cards ao lado do perfil -->
+        <div class="cartao-resumo cartao-destaque">
+            <i class="bi bi-calendar-check cartao-icone"></i>
+            <div>
+                <strong class="cartao-numero">@(ViewBag.reservasMes ?? 0)</strong>
+                <span class="cartao-texto">Reservas neste mês</span>
+            </div>
+        </div>
+
+        <div class="cartao-resumo">
+            <i class="bi bi-people cartao-icone"></i>
+            <div>
+                <strong class="cartao-numero">@(ViewBag.totalClientes ?? 0)</strong>
+                <span class="cartao-texto">Clientes cadastrados</span>
+            </div>
+        </div>
+
+        <!-- Cards abaixo -->
+        <div class="cartao-resumo">
+            <i class="bi bi-box-seam cartao-icone"></i>
+            <div>
+                <strong class="cartao-numero">@(ViewBag.totalPacotes ?? 0)</strong>
+                <span class="cartao-texto">Pacotes disponíveis</span>
+            </div>
+        </div>
+
+        <div class="cartao-resumo">
+            <i class="bi bi-megaphone cartao-icone"></i>
+            <div>
+                <strong class="cartao-numero">@(ViewBag.promocoesAtivas ?? 0)</strong>
+                <span class="cartao-texto">Promoções ativas</span>
+            </div>
+        </div>
+
+        <div class="cartao-resumo">
+            <i class="bi bi-diagram-3 cartao-icone"></i>
+            <div>
+                <strong class="cartao-numero">@(ViewBag.parceirosAtivos ?? 0)</strong>
+                <span class="cartao-texto">Parceiros ativos</span>
+            </div>
+        </div>
+
+    </section>
+
+</div>

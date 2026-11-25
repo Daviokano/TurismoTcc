@@ -1,0 +1,202 @@
+﻿/* ===================================================== */
+/* ===== Página de Avaliação de Pacote                  ===== */
+/* ===================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* ===== Reset e base ===== */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+body {
+    font-family: "Poppins", sans-serif;
+    background: #f3f4f6;
+    margin: 0;
+}
+
+/* ===== Wrapper para centralizar vertical + horizontal ===== */
+/* Usamos o próprio <section> como flex container da tela toda */
+.container-avaliacao {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 24px 16px;
+}
+
+    /* ===== Card do formulário ===== */
+    .container-avaliacao form {
+        width: 100%;
+        max-width: 560px;
+        padding: 32px 36px 34px;
+        background: #ffffff;
+        border: 1px solid #e5e7eb;
+        border-radius: 12px;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    /* ===== Título e subtítulo ===== */
+    .container-avaliacao h2 {
+        margin: 0 0 6px;
+        color: #111827;
+        font-size: 1.35rem;
+        font-weight: 700;
+        text-align: center;
+    }
+
+    .container-avaliacao p.text-muted {
+        margin: 0 0 26px;
+        color: #6b7280 !important;
+        font-size: 0.88rem;
+        font-weight: 500;
+        text-align: center;
+        line-height: 1.5;
+    }
+
+    /* ===== Labels ===== */
+    .container-avaliacao .form-label {
+        display: block;
+        margin: 0 0 6px;
+        color: #111827;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    /* ===== Inputs (select e textarea) ===== */
+    .container-avaliacao .form-select,
+    .container-avaliacao .form-control {
+        display: block;
+        width: 100%;
+        min-height: 46px;
+        padding: 10px 14px;
+        border: 1px solid #d1d5db;
+        border-radius: 8px;
+        background: #ffffff;
+        color: #111827;
+        font-family: inherit;
+        font-size: 0.9rem;
+        font-weight: 500;
+        outline: none;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .container-avaliacao .form-control {
+        resize: vertical;
+        min-height: 110px;
+        line-height: 1.5;
+        padding-top: 12px;
+    }
+
+        .container-avaliacao .form-select:focus,
+        .container-avaliacao .form-control:focus {
+            border-color: #f97316;
+            box-shadow: 0 0 0 4px rgba(249, 115, 22, 0.15);
+        }
+
+        .container-avaliacao .form-select::placeholder,
+        .container-avaliacao .form-control::placeholder {
+            color: #9ca3af;
+        }
+
+    /* ===== Espaçamento entre campos ===== */
+    .container-avaliacao .mb-3,
+    .container-avaliacao .mb-4 {
+        margin-bottom: 18px !important;
+    }
+
+    /* ===== Mensagens de erro ===== */
+    .container-avaliacao .text-danger {
+        display: block;
+        margin-top: 5px;
+        color: #dc2626 !important;
+        font-size: 0.78rem;
+        font-weight: 500;
+    }
+
+    /* ===== Linha de botões ===== */
+    .container-avaliacao .d-flex {
+        display: flex;
+        gap: 12px;
+        margin-top: 24px !important;
+        justify-content: space-between !important;
+    }
+
+    /* ===== Botões ===== */
+    .container-avaliacao .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0 24px;
+        border: 0;
+        border-radius: 8px;
+        font-family: inherit;
+        font-size: 0.88rem;
+        font-weight: 600;
+        text-decoration: none;
+        cursor: pointer;
+        transition: background 0.2s, transform 0.1s;
+    }
+
+        .container-avaliacao .btn:hover {
+            text-decoration: none;
+            transform: translateY(-1px);
+        }
+
+        .container-avaliacao .btn:active {
+            transform: translateY(0);
+        }
+
+    .container-avaliacao .btn-secondary {
+        background: #f3f4f6;
+        color: #374151;
+        border: 1px solid #d1d5db;
+    }
+
+        .container-avaliacao .btn-secondary:hover {
+            background: #e5e7eb;
+            color: #111827;
+        }
+
+    .container-avaliacao .btn-primary {
+        background-color: #f97316 !important;
+        border-color: #f97316 !important;
+        color: #ffffff;
+    }
+
+        .container-avaliacao .btn-primary:hover {
+            background-color: #ea6a0a !important;
+            border-color: #ea6a0a !important;
+        }
+
+/* ===== Responsivo ===== */
+@media (max-width: 600px) {
+    .container-avaliacao {
+        padding: 16px 12px;
+    }
+
+        .container-avaliacao form {
+            padding: 24px 20px;
+            border-radius: 10px;
+        }
+
+        .container-avaliacao h2 {
+            font-size: 1.2rem;
+        }
+
+        .container-avaliacao .d-flex {
+            flex-direction: column-reverse;
+        }
+
+        .container-avaliacao .btn {
+            width: 100%;
+        }
+}

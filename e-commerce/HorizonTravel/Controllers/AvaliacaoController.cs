@@ -1,4 +1,6 @@
-﻿using HorizonTravel.Models;
+﻿using HorizonTravel.Libraries.Filtro;
+using HorizonTravel.Libraries.Login;
+using HorizonTravel.Models;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -7,44 +9,57 @@ namespace HorizonTravel.Controllers
     public class AvaliacaoController : Controller
     {
         private readonly IAvaliacaoRepository _avaliacaoRepository;
+        private readonly LoginUsuario _loginUsuario;
 
-        public AvaliacaoController(IAvaliacaoRepository avaliacaoRepository)
+        public AvaliacaoController(
+            IAvaliacaoRepository avaliacaoRepository,
+            LoginUsuario loginUsuario)
         {
             _avaliacaoRepository = avaliacaoRepository;
+            _loginUsuario = loginUsuario;
         }
 
-        // GET: /Avaliacao?id=5
         [HttpGet]
+        [UsuarioAutorizacaoAtributte] 
         public IActionResult Index(int id)
         {
             if (id == 0)
-            {
                 return NotFound();
-            }
+
+            var usuario = _loginUsuario.GetUsuario();
 
             var avaliacao = new Avaliacao
             {
                 IDPac = id,
-                dataAva = DateTime.Now
+                IDUsu = usuario.IDUsu,
+                dataAva = DateTime.Now,
+                notaAva = null  
             };
 
             return View(avaliacao);
         }
 
-        // POST: /Avaliacao
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [UsuarioAutorizacaoAtributte]  
         public IActionResult Index(Avaliacao avaliacao)
         {
+            var usuario = _loginUsuario.GetUsuario();
+
+            // usando id da sessão para preencher o ID do usuário na avaliação
+            avaliacao.IDUsu = usuario.IDUsu;
+
+            if (!avaliacao.notaAva.HasValue)
+            {
+                ModelState.AddModelError(nameof(avaliacao.notaAva), "Selecione uma nota.");
+            }
+
             if (ModelState.IsValid)
             {
-                // SUBSTITUA PELA SUA LÓGICA DE SESSÃO DE USUÁRIO LOGADO (Mudar Depois)
-                avaliacao.IDUsu = 1;
                 avaliacao.dataAva = DateTime.Now;
 
                 _avaliacaoRepository.Cadastrar(avaliacao);
 
-                // Redireciona de volta para a tela de pacotes
                 return RedirectToAction("Index", "Pacotes");
             }
 

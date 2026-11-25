@@ -16,10 +16,7 @@ namespace HorizonTravel.Controllers
         private LoginUsuario _usuarioLogin;
         private IReservaRepository _reservaRepository;
 
-        public HomeController(
-            IUsuarioRepository usuarioRepository,
-            LoginUsuario loginUsuario,
-            IReservaRepository reservaRepository)
+        public HomeController(IUsuarioRepository usuarioRepository, LoginUsuario loginUsuario, IReservaRepository reservaRepository)
         {
             _usuarioRepository = usuarioRepository;
             _usuarioLogin = loginUsuario;

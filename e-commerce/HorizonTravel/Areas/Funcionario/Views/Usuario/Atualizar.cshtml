@@ -54,16 +54,28 @@
                         <span asp-validation-for="dataNascimentoUsu" class="erro-form"></span>
                     </div>
 
+                    <!-- CAMPO DE SENHA COM OLHINHO -->
                     <div class="campo-form">
-                        <label asp-for="senhaUsu" class="rotulo-form">Senha</label>
-                        <input asp-for="senhaUsu" class="input-form" type="password" placeholder="Digite a senha" maxlength="8" />
+                        <label asp-for="senhaUsu" class="rotulo-form">Nova Senha (opcional)</label>
+                        <div class="campo-senha-wrapper">
+                            <input asp-for="senhaUsu" class="input-form" type="password" placeholder="Deixe em branco para manter a atual" maxlength="8" />
+                            <button type="button" class="botao-olho toggle-senha" title="Mostrar/Ocultar senha">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                         <span asp-validation-for="senhaUsu" class="erro-form"></span>
                     </div>
 
+                    <!-- CONFIRMAR SENHA COM OLHINHO -->
                     <div class="campo-form">
-                        <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
-                        <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
-                               placeholder="Confirme a senha" maxlength="8" />
+                        <label for="confirmarSenha" class="rotulo-form">Confirmar nova senha</label>
+                        <div class="campo-senha-wrapper">
+                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                                   placeholder="Confirme a nova senha" maxlength="8" />
+                            <button type="button" class="botao-olho toggle-senha" title="Mostrar/Ocultar senha">
+                                <i class="bi bi-eye"></i>
+                            </button>
+                        </div>
                         <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
                     </div>
 
@@ -82,4 +94,24 @@
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const botoesOlho = document.querySelectorAll('.toggle-senha');
+
+            botoesOlho.forEach(botao => {
+                botao.addEventListener('click', function() {
+                    const input = this.parentElement.querySelector('input');
+
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        this.innerHTML = '<i class="bi bi-eye-slash"></i>';
+                    } else {
+                        input.type = 'password';
+                        this.innerHTML = '<i class="bi bi-eye"></i>';
+                    }
+                });
+            });
+        });
+    </script>
 }
