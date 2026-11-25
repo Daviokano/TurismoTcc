@@ -1,50 +1,144 @@
-﻿<!DOCTYPE html>
+@inject HorizonTravel.Libraries.Login.LoginFuncionario _loginFuncionario
+@inject HorizonTravel.Libraries.Login.LoginUsuario _loginUsuario
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - HorizonTravel</title>
+    <title>@ViewData["Title"] - HorizonTravel </title>
     <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/HorizonTravel.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">HorizonTravel</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
+    <!--TIRA O HEADER DE UMA DETERMINADA PAGINA-->
+    @if (ViewData["SemLayout"] == null)
+        {
+        <header>
+
+            <nav class="navbar navbar-expand-lg py-3">
+                <div class="container">
+                    <a class="navbar-brand d-flex align-items-center" asp-controller="Home" asp-action="Index">
+                        <img src="~/img/logo horizon.jpg" alt="logo" class="logo-image" />
+                        <span class="logo-text">
+                            <span class="logo-horizon">Horizon</span> <span class="logo-travel">Travel</span>
+                        </span>
+                    </a>
+
+                    <button class="navbar-toggler"
+                            type="button"
+                            data-bs-toggle="collapse"
+                            data-bs-target="#navbarNav"
+                            aria-controls="navbarNav"
+                            aria-expanded="false"
+                            aria-label="Abrir menu">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Destinos" asp-action="Index">Destinos</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Pacotes" asp-action="Index">Pacotes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Sobre" asp-action="Index">Sobre</a>
+                            </li>
+                        </ul>
+                        <ul class="navbar-nav d-flex flex-row align-items-center header-actions">
+                            <li class="nav-item dropdown">
+                                @if (_loginUsuario.GetUsuario() != null)
+                                {
+                                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                        @_loginUsuario.GetUsuario().nomeUsu
+                                    </a>
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="MinhasReservas">Minhas reservas</a></li>
+                                        <li><a class="dropdown-item" asp-controller="Home" asp-action="MeuPerfil">Meu perfil</a></li>
+                                        <li><hr class="dropdown-divider" /></li>
+                                        <li>
+                                            <a class="dropdown-item" asp-controller="Home" asp-action="LogoutUsuario">Sair</a>
+                                        </li>
+                                    </ul>
+                                }
+                                else
+                                {
+                                    <a class="btn btn-login" asp-controller="Home" asp-action="Login">Login</a>
+                                }
+                            </li>
+                            <li class="nav-item">
+                                <a class="cart-icon" asp-controller="Carrinho" asp-action="Index"><i class="bi bi-cart3"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>
+
+        </header>
+
+    }
+
+
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
+
+    <!--TIRA O FOOTTER DE UMA DETERMINADA PAGINA-->
+     @if (ViewData["SemLayout"] == null)
+        {
+        <footer class="footer-horizon">
+            <div class="footer-container">
+                <div class="footer-col footer-brand">
+                    <h5><i class="bi bi-airplane-fill"></i> Horizon Travel</h5>
+                    <p>Sua agência de confiança para descobrir os melhores destinos do mundo com segurança e praticidade</p>
+                </div>
+
+                <div class="footer-col">
+                    <h6>Sobre nós</h6>
+                    <ul class="footer-links">
+                        <li><a asp-controller="Sobre" asp-action="Index">Quem somos?</a></li>
+                        <li><a asp-controller="Sobre" asp-action="Index">Nossa história</a></li>
+                        <li><a asp-controller="Sobre" asp-action="Index">Trabalhe conosco</a></li>
                     </ul>
                 </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
 
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2026 - HorizonTravel - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-        </div>
-    </footer>
+                <div class="footer-col">
+                    <h6>Contato</h6>
+                    <p>Entre em contato conosco para avaliação e dúvidas, e siga nossas redes</p>
+                    <p>HorizonTravel@gmail.com</p>
+                    <div class="footer-social">
+                        <a href="#" aria-label="Instagram"><i class="bi bi-instagram"></i></a>
+                        <a href="#" aria-label="WhatsApp"><i class="bi bi-whatsapp"></i></a>
+                        <a href="#" aria-label="Facebook"><i class="bi bi-facebook"></i></a>
+                    </div>
+                </div>
+            </div>
+            <hr class="footer-divider">
+
+            <div class="footer-bottom">
+                <span>&copy; 2026 Horizon Travel - Todos os direitos reservados.</span>
+                <a href="#">Política de Privacidade</a>
+            </div>
+        </footer>
+        }
+        
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*Importar jquery.mask.min.js*@
+    <script src="~/lib/mask/jquery.mask.min.js"></script>
+    @*Função máscara site.js*@
+    <script src="~/js/site.js"></script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+

@@ -2,7 +2,452 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<link rel="stylesheet" href="~/css/index.css" asp-append-version="true" />
+<script src="~/js/index.js"></script>
+
+<!-- BANNER INICIAL DA PÁG. -->
+<div class="container-fluid p-0">
+    <div class="banner">
+        <img src="/img/img banner.jpg" alt="banner" asp-append-version="true">
+
+        <div class="banner-conteudo">
+            <h2 class="titulo-banner">VISITE DESTINOS INCRÍVEIS</h2>
+            <p class="texto-banner">Descubra lugares paradisíacos e viva experiências únicas<br /> ao redor do mundo.</p>
+            <a id="btn-banner" class="btn btn-primary" asp-controller="Destinos" asp-action="Index">Explorar Destinos</a>
+        </div>
+
+    </div>
 </div>
+
+
+<!-- BUSCA DE PACOTES/ DESTINOS -->
+<section class="envoltorio-busca-pacotes">
+    <form class="barra-busca-pacotes" asp-controller="Pacotes" asp-action="Index" method="get">
+        <div class="campo-busca">
+            <i class="bi bi-geo-alt text-secondary"></i>
+            <input type="text" name="origem" placeholder="Origem" aria-label="Origem" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-geo-alt text-secondary"></i>
+            <input type="text" name="destino" placeholder="Destino" aria-label="Destino" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-calendar-event text-secondary"></i>
+            <input type="date" name="data" aria-label="Data" />
+        </div>
+        <div class="campo-busca">
+            <i class="bi bi-people text-secondary"></i>
+            <input type="number" name="pessoas" min="1" placeholder="Nº de pessoas" aria-label="Número de pessoas" />
+        </div>
+        <button type="submit" class="btn btn-login">Buscar</button>
+    </form>
+</section>
+
+
+<!-- PRESENTAÇÃO DOS DESTINOS EM DESTAQUE -->
+<!-- título e texto -->
+<div class="container">
+    <div class="text">
+        <h4 class="titulo"> Destinos em destaque</h4>
+        <p class="texto">Lugares incríveis esperando por você<br />Escolha se próximo destino e viva experiências únicas.</p>
+    </div>
+</div>
+
+<div class="container py-5">
+    <div class="row g-4 mt-1">
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/img/card paris.jpg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Paris, França" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Paris, França</h3>
+                    <p class="texto-card">Cidade, Luz e Romance</p>
+                </div>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="França"
+                   aria-label="Ver pacotes para a França">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/img/card orlando.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Orlando, Estados Unidos" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Orlando, EUA</h3>
+                    <p class="texto-card">Parque da Disney</p>
+                </div>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Estados Unidos"
+                   aria-label="Ver pacotes para os Estados Unidos">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/img/card copacabana.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Copacabana, Brasil" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Copacabana, Brasil</h3>
+                    <p class="texto-card">Praias incríveis</p>
+                </div>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Brasil"
+                   aria-label="Ver pacotes para o Brasil">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </article>
+        </div>
+
+        <div class="col-12 col-sm-6 col-lg-3">
+            <article class="card card-destino">
+                <img src="~/img/card pisa.jpeg"
+                     asp-append-version="true"
+                     class="card-img"
+                     alt="Pisa, Itália" />
+                <div class="card-img-overlay">
+                    <h3 class="titulo-card"><i class="bi bi-geo-alt"></i> Pisa, Itália</h3>
+                    <p class="texto-card">Cidade da famosa torre</p>
+                </div>
+                <a class="btn-card"
+                   asp-controller="Pacotes"
+                   asp-action="Index"
+                   asp-route-destino="Itália"
+                   aria-label="Ver pacotes para a Itália">
+                    <i class="bi bi-arrow-right"></i>
+                </a>
+            </article>
+        </div>
+    </div>
+</div>
+
+<!-- RANKING DOS DESTINOS MAIS PROCURADOS/ VIDEO -->
+<section class="procurados">
+    <div class="container">
+        <h4 class="titulo-procurados mb-4">Mais procurados</h4>
+
+        <div class="row g-4">
+            <div class="col-12 col-lg-5">
+                <div class="d-flex flex-column gap-3">
+                    <div class="procurado-item">
+                        <img src="~/img/franca-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">1</span> França</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/img/eua-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">2</span> Estados Unidos</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/img/brasil-procurados.jpg" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">3</span> Brasil</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="procurado-item">
+                        <img src="~/img/japao-procurados.png" asp-append-version="true" class="procurado-img" alt="img" />
+                        <div>
+                            <div class="procurado-nome"><span class="procurado-numero">4</span> Japão</div>
+                            <div class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- VIDEO -->
+            <div class="col-12 col-lg-7">
+                <div class="viaje-card">
+                    <!--trocar imagem dps-->
+                    <img src="~/img/video-img.jpg" asp-append-version="true" alt="Praia paradisíaca" />
+                    <div class="viaje-overlay">
+                        <h3 class="viaje-titulo">Viaje e aproveite suas férias</h3>
+                        <p class="viaje-texto">Explore paisagens incríveis, culturas diferentes e viva momentos inesquecíveis</p>
+                        <a href="#" class="btn btn-login"><i class="bi bi-play-fill"></i> Assistir vídeo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<hr />
+
+<!-- BENEFICIOS DA EMPRESA -->
+<section class="beneficios" id="beneficios">
+    <div class="container text-center">
+        <h2 class="titulo-beneficios">Nossos Diferenciais</h2>
+        <p class="texto mx-auto" style="max-width: 520px;">Proteção total em suas viagens! Conte com a Horizon Travel para uma experiência tranquila, segura e inesquecível.</p>
+
+        <div class="row g-4 mt-2 justify-content-center">
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-azul"><i class="bi bi-shield-check"></i></span>
+                    <h3 class="titulo-beneficio">Segurança</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-amarelo"><i class="bi bi-currency-dollar"></i></span>
+                    <h3 class="titulo-beneficio">Melhor preço</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-amarelo-claro"><i class="bi bi-lightning-charge-fill"></i></span>
+                    <h3 class="titulo-beneficio">Rapidez</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+
+            <div class="col-12 col-sm-6 col-lg-3">
+                <div class="beneficio">
+                    <span class="beneficio-icone icone-verde"><i class="bi bi-globe-americas"></i></span>
+                    <h3 class="titulo-beneficio">Cobertura global</h3>
+                    <p class="texto-beneficio">Nossa empresa oferece viagens seguras ao redor do mundo</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- DEPOIMENTOS DOS USUÁRIOS -->
+<section class="container-fluid p-0" id="depoimentos">
+    <div class="depoimentos">
+
+        <h2 class="titulo-depoimentos">O que nossos clientes dizem?</h2>
+        <p class="texto-depoimentos">Veja como tornamos viagens inesquecíveis para pessoas como você</p>
+
+        <div class="depoimentos-carrossel">
+            <div class="depoimentos-track" id="depoimentosTrack">
+
+                <!-- 1 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#b03a5b;">M</span>
+                            <div>
+                                <p class="titulo-depoimento">Mariana Santos</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 2 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#c2185b;">K</span>
+                            <div>
+                                <p class="titulo-depoimento">Kauã Edson</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#9aa61e;">V</span>
+                            <div>
+                                <p class="titulo-depoimento">Victor Couto</p>
+                                <span class="local-depoimento">São Paulo, SP</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Melhor experiência de todas, equipe da Disney super atenciosa</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">22/06/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4 (NOVO) -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#6a1b9a;">A</span>
+                            <div>
+                                <p class="titulo-depoimento">Ana Beatriz Lima</p>
+                                <span class="local-depoimento">Rio de Janeiro, RJ</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Viagem impecável do início ao fim. O suporte nos deu toda segurança para curtir com as crianças.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">15/07/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 5 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#0277bd;">R</span>
+                            <div>
+                                <p class="titulo-depoimento">Rafael Nogueira</p>
+                                <span class="local-depoimento">Belo Horizonte, MG</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Roteiro personalizado fez toda a diferença. Conseguimos conhecer tudo sem correria e no nosso ritmo.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">03/08/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#ef6c00;">C</span>
+                            <div>
+                                <p class="titulo-depoimento">Camila Ferreira</p>
+                                <span class="local-depoimento">Curitiba, PR</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Atendimento humano e rápido. Tiraram todas as dúvidas antes da viagem e nos ajudaram até o retorno.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">21/08/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 7 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#00897b;">L</span>
+                            <div>
+                                <p class="titulo-depoimento">Lucas Andrade</p>
+                                <span class="local-depoimento">Porto Alegre, RS</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Custo-benefício excelente. Pagamos um valor justo e tivemos uma experiência de outro nível na Disney.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">12/09/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 8 -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#5e35b1;">J</span>
+                            <div>
+                                <p class="titulo-depoimento">Juliana Prado</p>
+                                <span class="local-depoimento">Salvador, BA</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Foi a primeira viagem internacional da nossa família e superou todas as expectativas. Já queremos voltar!</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">30/09/26</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 9 (NOVO) -->
+                <div class="depoimento-slide">
+                    <div class="depoimento-card">
+                        <div class="d-flex align-items-center gap-2 mb-2">
+                            <span class="depoimento-avatar" style="background-color:#455a64;">F</span>
+                            <div>
+                                <p class="titulo-depoimento">Fernando Rocha</p>
+                                <span class="local-depoimento">Fortaleza, CE</span>
+                            </div>
+                        </div>
+                        <p class="texto-depoimento">Tudo muito bem organizado. Os ingressos chegaram no prazo e o hotel era exatamente como nas fotos.</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span class="estrelas">
+                                <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+                            </span>
+                            <span class="data-depoimento">14/10/26</span>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="carrossel-dots d-flex justify-content-center gap-2 mt-4" id="carrosselDots">
+            <span class="dot" style="width: 12px; height: 12px; border-radius: 50%; background-color: #888; cursor: pointer; display: inline-block; transition: 0.3s;"></span>
+            <span class="dot" style="width: 12px; height: 12px; border-radius: 50%; background-color: #888; cursor: pointer; display: inline-block; transition: 0.3s;"></span>
+            <span class="dot" style="width: 12px; height: 12px; border-radius: 50%; background-color: #888; cursor: pointer; display: inline-block; transition: 0.3s;"></span>
+        </div>
+    </div>
+</section>
+@section Scripts {
+    <script src="~/js/index.js"></script>
+}
