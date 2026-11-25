@@ -199,67 +199,6 @@ namespace HorizonTravel.Repository
             return LerReservas(comando);
         }
 
-        public IEnumerable<Historico> BuscarHistoricoPorCliente(int idUsuario)
-        {
-            using var conexao = new MySqlConnection(_conexaoMySQL);
-            conexao.Open();
-
-            const string sql = @"
-                SELECT h.IDHist,
-                       h.IDRes,
-                       h.IDFun,
-                       h.statusAnterior,
-                       h.statusNovo,
-                       h.dataModificacao,
-                       f.nomeFun
-                FROM Historico h
-                INNER JOIN Reserva r
-                    ON r.IDRes = h.IDRes
-                LEFT JOIN Funcionario f
-                    ON f.IDFun = h.IDFun
-                WHERE r.IDUsu = @IDUsu
-                ORDER BY h.dataModificacao DESC,
-                         h.IDHist DESC";
-
-            using var comando = new MySqlCommand(sql, conexao);
-            comando.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = idUsuario;
-
-            using var leitor = comando.ExecuteReader();
-            var historicos = new List<Historico>();
-
-            while (leitor.Read())
-            {
-                historicos.Add(MapearHistorico(leitor));
-            }
-
-            return historicos;
-        }
-
-        public void RegistrarAlteracao(
-            int idReserva,
-            int? idFuncionario,
-            string? statusAnterior,
-            string statusNovo)
-        {
-            using var conexao = new MySqlConnection(_conexaoMySQL);
-            conexao.Open();
-
-            const string sql = @"
-                INSERT INTO Historico
-                    (IDRes, IDFun, statusAnterior, statusNovo, dataModificacao)
-                VALUES
-                    (@IDRes, @IDFun, @statusAnterior, @statusNovo, NOW())";
-
-            using var comando = new MySqlCommand(sql, conexao);
-            AdicionarParametrosHistorico(
-                comando,
-                idReserva,
-                idFuncionario,
-                statusAnterior,
-                statusNovo);
-            comando.ExecuteNonQuery();
-        }
-
         public ReservaDetalhesViewModel? ObterDetalhesReserva(int idReserva)
         {
             const string sqlReserva = @"

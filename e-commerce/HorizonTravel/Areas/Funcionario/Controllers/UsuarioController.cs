@@ -11,13 +11,16 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
     {
         private IUsuarioRepository _usuarioRepository;
         private IReservaRepository _reservaRepository;
+        private IHistoricoRepository _historicoRepository;
 
         public UsuarioController(
             IUsuarioRepository usuarioRepository,
-            IReservaRepository reservaRepository)
+            IReservaRepository reservaRepository,
+            IHistoricoRepository historicoRepository)
         {
             _usuarioRepository = usuarioRepository;
             _reservaRepository = reservaRepository;
+            _historicoRepository = historicoRepository;
         }
 
         public IActionResult Index()
@@ -64,7 +67,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
                 modelo.Cliente = cliente;
                 modelo.Reservas = _reservaRepository.ObterReservasPorUsuario(cliente.IDUsu);
-                modelo.Historicos = _reservaRepository.BuscarHistoricoPorCliente(cliente.IDUsu);
+                modelo.Historicos = _historicoRepository.BuscarHistoricoPorCliente(cliente.IDUsu);
             }
 
             return View(modelo);

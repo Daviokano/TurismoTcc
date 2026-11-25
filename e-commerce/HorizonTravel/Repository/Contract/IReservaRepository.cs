@@ -20,14 +20,6 @@ namespace HorizonTravel.Repository.Contract
 
         IEnumerable<ReservaResumo> ObterReservasPorUsuario(int idUsuario);
 
-        IEnumerable<Historico> BuscarHistoricoPorCliente(int idUsuario);
-
-        void RegistrarAlteracao(
-            int idReserva,
-            int? idFuncionario,
-            string? statusAnterior,
-            string statusNovo);
-
         ReservaDetalhesViewModel? ObterDetalhesReserva(int idReserva);
 
         void AtualizarStatusPagamento(int idReserva, string statusPagamento, int? idFuncionario);

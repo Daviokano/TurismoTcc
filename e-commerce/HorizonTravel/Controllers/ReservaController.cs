@@ -21,6 +21,7 @@ namespace HorizonTravel.Controllers
         private readonly IPacoteRepository _pacoteRepository;
         private readonly LoginUsuario _loginUsuario;
         private readonly IPromocaoRepository _promocaoRepository;
+        private readonly IPagamentoRepository _pagamentoRepository;
         private readonly CarrinhoCompra _carrinhoCompra;
 
         public ReservaController(
@@ -28,12 +29,14 @@ namespace HorizonTravel.Controllers
             IPacoteRepository pacoteRepository,
             LoginUsuario loginUsuario,
             IHttpContextAccessor context,
-            IPromocaoRepository promocaoRepository)
+            IPromocaoRepository promocaoRepository,
+            IPagamentoRepository pagamentoRepository)
         {
             _reservaRepository = reservaRepository;
             _pacoteRepository = pacoteRepository;
             _loginUsuario = loginUsuario;
             _promocaoRepository = promocaoRepository;
+            _pagamentoRepository = pagamentoRepository;
             _carrinhoCompra = new CarrinhoCompra(new Cookie(context));
         }
 
@@ -209,6 +212,15 @@ namespace HorizonTravel.Controllers
             if (detalhes == null || usuario == null || detalhes.Reserva.IDUsu != usuario.IDUsu)
             {
                 return NotFound();
+            }
+
+            var pagamento = _pagamentoRepository.ObterPagamentoPorReserva(id);
+
+            if (pagamento != null)
+            {
+                detalhes.Reserva.valorPag = pagamento.valorPag;
+                detalhes.Reserva.metodoPag = pagamento.metodoPag;
+                detalhes.Reserva.statusPag = pagamento.statusPag;
             }
 
             return View(detalhes);

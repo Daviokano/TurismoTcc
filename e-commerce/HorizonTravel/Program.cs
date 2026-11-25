@@ -16,6 +16,8 @@ builder.Services.AddScoped<IParceiroRepository, ParceiroRepository>();
 builder.Services.AddScoped<IPacoteRepository, PacoteRepository>();
 builder.Services.AddScoped<IPromocaoRepository, PromocaoRepository>();
 builder.Services.AddScoped<IReservaRepository, ReservaRepository>();
+builder.Services.AddScoped<IHistoricoRepository, HistoricoRepository>();
+builder.Services.AddScoped<IPagamentoRepository, PagamentoRepository>();
 builder.Services.AddScoped<IAvaliacaoRepository, AvaliacaoRepository>();
 
 builder.Services.AddDistributedMemoryCache();
