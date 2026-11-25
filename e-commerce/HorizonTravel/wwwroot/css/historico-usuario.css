@@ -246,3 +246,144 @@
     height: 32px;
     font-size: 0.75rem;
 }
+
+/* Histórico do cliente logado */
+.historico-usuario {
+    max-width: 980px;
+    min-height: 650px;
+    margin: 0 auto;
+    padding: 46px 20px 80px;
+}
+
+.cabecalho-historico-usuario {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 22px 24px;
+    border-radius: 3px;
+    background: #1e3a8a;
+    color: #fff;
+}
+
+.avatar-historico-usuario {
+    display: grid;
+    width: 48px;
+    height: 48px;
+    place-items: center;
+    border-radius: 50%;
+    background: #ff7417;
+    font-size: 1.35rem;
+    font-weight: 700;
+}
+
+.cabecalho-historico-usuario h1 {
+    margin: 0;
+    font-size: 1.15rem;
+}
+
+.cabecalho-historico-usuario p {
+    margin: 3px 0 0;
+    font-size: .78rem;
+}
+
+.abas-usuario {
+    display: flex;
+    gap: 24px;
+    margin: 12px 0 16px;
+    padding: 0 14px;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px #0002;
+}
+
+.abas-usuario a {
+    padding: 12px 8px;
+    color: #222;
+    font-size: .76rem;
+    text-decoration: none;
+}
+
+.abas-usuario a:hover,
+.abas-usuario a:focus {
+    color: #222;
+    text-decoration: none;
+}
+
+.abas-usuario .aba-ativa {
+    border-radius: 3px;
+    background: #ff7417;
+    color: #fff;
+}
+
+.lista-historico-usuario {
+    display: grid;
+    gap: 14px;
+}
+
+.cartao-historico-usuario {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    padding: 16px 18px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px #0002;
+}
+
+.cartao-historico-usuario h2 {
+    margin: 0 0 8px;
+    font-size: 1rem;
+}
+
+.cartao-historico-usuario p {
+    margin: 4px 0;
+    color: #666;
+    font-size: .8rem;
+}
+
+.resumo-historico-usuario {
+    display: flex;
+    align-items: flex-end;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.resumo-historico-usuario strong {
+    font-size: .85rem;
+}
+
+.texto-avaliacao {
+    color: #666;
+    font-size: .7rem;
+}
+
+.estrelas-avaliacao,
+.botao-avaliar {
+    color: #ff7417;
+    font-size: .8rem;
+    text-decoration: none;
+}
+
+.historico-vazio {
+    padding: 40px 20px;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px #0002;
+    color: #666;
+    text-align: center;
+}
+
+.historico-vazio i {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 2rem;
+}
+
+@media (max-width: 600px) {
+    .cartao-historico-usuario {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .resumo-historico-usuario {
+        align-items: flex-start;
+    }
+}
