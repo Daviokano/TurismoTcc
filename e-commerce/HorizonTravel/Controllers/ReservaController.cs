@@ -15,6 +15,7 @@ namespace HorizonTravel.Controllers
     {
         private const string PassageirosSessionKey = "ReservaPassageiros";
         private const string PacoteSessionKey = "ReservaPacote";
+        private const string QuantidadePacotesSessionKey = "ReservaQuantidadePacotes";
 
         private readonly IReservaRepository _reservaRepository;
         private readonly IPacoteRepository _pacoteRepository;
@@ -43,20 +44,28 @@ namespace HorizonTravel.Controllers
 
             if (item == null)
             {
+                TempData["MSG_E"] = "Não foi possível iniciar a compra porque o carrinho está vazio.";
                 return RedirectToAction("Index", "Carrinho");
             }
 
             var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
 
-            if (pacote == null || pacote.quantidadePac < pacote.quantidadePassageirosPac)
+            if (pacote == null)
             {
+                TempData["MSG_E"] = "O pacote selecionado não foi encontrado. Remova-o do carrinho e adicione-o novamente.";
+                return RedirectToAction("Index", "Carrinho");
+            }
+
+            if (pacote.quantidadePac < item.Quantidade)
+            {
+                TempData["MSG_E"] = $"Há apenas {pacote.quantidadePac} pacote(s) disponível(is), mas você selecionou {item.Quantidade}.";
                 return RedirectToAction("Index", "Carrinho");
             }
 
             var modelo = new ReservaCheckout
             {
                 IDPac = item.IdPacote,
-                ValorTotal = ObterPrecoAtual(pacote) * pacote.quantidadePassageirosPac,
+                ValorTotal = ObterPrecoAtual(pacote) * pacote.quantidadePassageirosPac * item.Quantidade,
                 Passageiros = Enumerable
                     .Range(0, pacote.quantidadePassageirosPac)
                     .Select(_ => new Passageiro())
@@ -98,6 +107,7 @@ namespace HorizonTravel.Controllers
                 JsonSerializer.Serialize(modelo.Passageiros));
 
             HttpContext.Session.SetInt32(PacoteSessionKey, item.IdPacote);
+            HttpContext.Session.SetInt32(QuantidadePacotesSessionKey, item.Quantidade);
 
             return RedirectToAction(nameof(Pagamento));
         }
@@ -116,11 +126,12 @@ namespace HorizonTravel.Controllers
             }
 
             var passageiros = ObterPassageirosDaSessao();
+            int quantidadePacotes = HttpContext.Session.GetInt32(QuantidadePacotesSessionKey) ?? 1;
 
             var modelo = new ReservaCheckout
             {
                 IDPac = pacote.IDPac,
-                ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count
+                ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count * quantidadePacotes
             };
 
             return View(modelo);
@@ -133,6 +144,7 @@ namespace HorizonTravel.Controllers
             var usuario = _loginUsuario.GetUsuario();
             int? idPacote = HttpContext.Session.GetInt32(PacoteSessionKey);
             var passageiros = ObterPassageirosDaSessao();
+            int quantidadePacotes = HttpContext.Session.GetInt32(QuantidadePacotesSessionKey) ?? 1;
             var pacote = idPacote.HasValue
                 ? _pacoteRepository.ObterPacote(idPacote.Value)
                 : null;
@@ -143,7 +155,7 @@ namespace HorizonTravel.Controllers
             }
 
             modelo.IDPac = pacote.IDPac;
-            modelo.ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count;
+            modelo.ValorTotal = ObterPrecoAtual(pacote) * passageiros.Count * quantidadePacotes;
 
             ValidarPagamento(modelo);
 
@@ -165,6 +177,7 @@ namespace HorizonTravel.Controllers
                 int idReserva = _reservaRepository.FinalizarReserva(
                     reserva,
                     passageiros,
+                    quantidadePacotes,
                     new Pagamento
                     {
                         valorPag = modelo.ValorTotal,
@@ -176,6 +189,7 @@ namespace HorizonTravel.Controllers
                 _carrinhoCompra.RemoverTodos();
                 HttpContext.Session.Remove(PassageirosSessionKey);
                 HttpContext.Session.Remove(PacoteSessionKey);
+                HttpContext.Session.Remove(QuantidadePacotesSessionKey);
 
                 return RedirectToAction(nameof(Confirmacao), new { id = idReserva });
             }

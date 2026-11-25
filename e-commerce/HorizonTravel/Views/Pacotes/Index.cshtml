@@ -93,30 +93,7 @@
                         <h2>@pacote.destinoPac</h2>
                         
                         <p class="descricao-pacote">
-                            @if (pacote.destinoPac == "Brasil")
-                            {
-                                <text>Descubra praias, natureza e experiências inesquecíveis.</text>
-                            }
-                            else if (pacote.destinoPac == "França")
-                            {
-
-                                <text>Encante-se com elegância, história e charme.</text>
-                            }
-                            else if (pacote.destinoPac == "Japão")
-                            {
-
-                                <text>Tradição, tecnologia e paisagens surpreendentes.</text>
-                            }
-                            else if (pacote.destinoPac == "México")
-                            {
-
-                                <text>Cores, cultura e paisagens fascinantes.</text>
-                            }
-                            else
-                            {
-
-                                <text>@pacote.origemPac → @pacote.destinoPac</text>
-                            }
+                            @pacote.origemPac → @pacote.destinoPac
                         </p>
 
                         <!-- ===== ÁREA DE AVALIAÇÃO ===== -->
@@ -134,7 +111,9 @@
                                     Avaliar pacote
                                 </a>
                             </div>
-                            <span class="qtd-vagas">@pacote.quantidadePac passageiros</span>
+                            <div class="capacidade-pacote">
+                                <span class="qtd-vagas">@pacote.quantidadePassageirosPac passageiros </span>
+                            </div>
                         </div>
                         
                         <div class="preco-acao">

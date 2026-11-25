@@ -87,6 +87,7 @@ namespace HorizonTravel.Repository
         public int FinalizarReserva(
             Reserva reserva,
             IEnumerable<Passageiro> passageiros,
+            int quantidadePacotes,
             Pagamento pagamento)
         {
             var listaPassageiros = passageiros.ToList();
@@ -99,13 +100,13 @@ namespace HorizonTravel.Repository
             {
                 const string sqlEstoque = @"
                     UPDATE Pacote
-                    SET quantidadePac = quantidadePac - @quantidade
+                    SET quantidadePac = quantidadePac - @quantidadePacotes
                     WHERE IDPac = @IDPac
-                      AND quantidadePac >= @quantidade
+                      AND quantidadePac >= @quantidadePacotes
                       AND situacaoPac = 'A'";
 
                 using var comandoEstoque = new MySqlCommand(sqlEstoque, conexao, transacao);
-                comandoEstoque.Parameters.Add("@quantidade", MySqlDbType.Int32).Value = listaPassageiros.Count;
+                comandoEstoque.Parameters.Add("@quantidadePacotes", MySqlDbType.Int32).Value = quantidadePacotes;
                 comandoEstoque.Parameters.Add("@IDPac", MySqlDbType.Int32).Value = reserva.IDPac;
 
                 if (comandoEstoque.ExecuteNonQuery() != 1)

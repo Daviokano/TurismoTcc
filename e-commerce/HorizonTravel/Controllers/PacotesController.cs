@@ -29,7 +29,7 @@ namespace HorizonTravel.Controllers
                 .Where(pacote => string.IsNullOrWhiteSpace(destino)
                     || pacote.destinoPac.Contains(destino, StringComparison.OrdinalIgnoreCase))
                 .Where(pacote => !data.HasValue || pacote.dataPac.Date == data.Value.Date)
-                .Where(pacote => !pessoas.HasValue || pacote.quantidadePac >= pessoas.Value)
+                .Where(pacote => !pessoas.HasValue || pacote.quantidadePassageirosPac >= pessoas.Value)
                 .ToList();
 
             pacotes = ordenacao switch

@@ -41,22 +41,46 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Atualizar(string id)
         {
             Models.Parceiro parceiro = _parceiroRepository.ObterParceiro(id);
+
+            if (parceiro != null && !string.IsNullOrWhiteSpace(parceiro.CNPJFor))
+            {
+                parceiro.CNPJFor = FormatarCnpj(parceiro.CNPJFor);
+            }
+
             return View(parceiro);
         }
 
         [HttpPost]
-        public IActionResult Atualizar([FromForm] Models.Parceiro parceiro)
+        public IActionResult Atualizar([FromForm] Models.Parceiro parceiro, [FromForm] string cnpjOriginal)
         {
-            parceiro.CNPJFor = new string(parceiro.CNPJFor.Where(char.IsDigit).ToArray());
+            cnpjOriginal = new string((cnpjOriginal ?? string.Empty)
+                .Where(char.IsDigit)
+                .ToArray());
+            parceiro.CNPJFor = new string((parceiro.CNPJFor ?? string.Empty)
+                .Where(char.IsDigit)
+                .ToArray());
+
+            // O model binder valida antes de entrar nesta action. Como o CNPJ
+            // pode chegar mascarado ou sem máscara, valida-se o valor normalizado.
+            ModelState.Remove(nameof(Models.Parceiro.CNPJFor));
 
             if (ModelState.IsValid)
             {
-                _parceiroRepository.Atualizar(parceiro);
+                _parceiroRepository.Atualizar(parceiro, cnpjOriginal);
                 TempData["MSG_S"] = "Cadastro atualizado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
 
             return View(parceiro);
+        }
+
+        private static string FormatarCnpj(string cnpj)
+        {
+            string numeros = new string(cnpj.Where(char.IsDigit).ToArray());
+
+            return numeros.Length == 14
+                ? Convert.ToUInt64(numeros).ToString(@"00\.000\.000\/0000-00")
+                : cnpj;
         }
 
         [ValidateHttpReferer]

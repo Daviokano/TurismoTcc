@@ -20,7 +20,7 @@
         <div class="informacoes-pacote">
             <span><i class="bi bi-geo-alt"></i> @Model.destinoPac</span>
             <span><i class="bi bi-calendar-event"></i> @Model.dataPac.ToString("dd/MM/yyyy")</span>
-            <span><i class="bi bi-people"></i> @Model.quantidadePac vagas</span>
+            <span><i class="bi bi-people"></i> @Model.quantidadePassageirosPac passageiros por pacote</span>
         </div>
         <p><i class="bi bi-building"></i> Hotel Windsor Atlantica <span class="estrelas">★★★★</span></p>
     </div>
@@ -56,8 +56,8 @@
         </div>
 
         <div class="informacao-fixa-pacote">
-            <span class="rotulo-informacao-pacote">vagas disponíveis</span>
-            <strong><i class="bi bi-people"></i> @Model.quantidadePac pessoas</strong>
+            <span class="rotulo-informacao-pacote">passageiros por pacote</span>
+            <strong><i class="bi bi-people"></i> @Model.quantidadePassageirosPac pessoa(s)</strong>
         </div>
         
         <form asp-controller="Carrinho" asp-action="Adicionar" method="post">

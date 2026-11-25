@@ -4,6 +4,26 @@
     padding: 58px 20px 90px;
 }
 
+.mensagem-carrinho {
+    width: 100%;
+    margin-bottom: 24px;
+    padding: 14px 18px;
+    border-radius: 6px;
+    font-weight: 600;
+}
+
+.mensagem-carrinho-erro {
+    color: #842029;
+    background: #f8d7da;
+    border: 1px solid #f5c2c7;
+}
+
+.mensagem-carrinho-sucesso {
+    color: #0f5132;
+    background: #d1e7dd;
+    border: 1px solid #badbcc;
+}
+
 .cabecalho-carrinho h1 {
     display: flex;
     align-items: center;
@@ -177,7 +197,6 @@
 }
 
 .botao-finalizar.disabled {
-    pointer-events: none;
     opacity: 0.55;
 }
 

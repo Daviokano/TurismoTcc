@@ -5,7 +5,7 @@ namespace HorizonTravel.Repository.Contract
     public interface IParceiroRepository
     {
         void Cadastrar(Parceiro parceiro);
-        void Atualizar(Parceiro parceiro);
+        void Atualizar(Parceiro parceiro, string cnpjOriginal);
         void Excluir(string cnpj);
         Parceiro ObterParceiro(string cnpj);
         IEnumerable<Parceiro> ObterTodosParceiros();

@@ -15,6 +15,7 @@ namespace HorizonTravel.Repository.Contract
         int FinalizarReserva(
             Reserva reserva,
             IEnumerable<Passageiro> passageiros,
+            int quantidadePacotes,
             Pagamento pagamento);
 
         IEnumerable<ReservaResumo> ObterReservasPorUsuario(int idUsuario);

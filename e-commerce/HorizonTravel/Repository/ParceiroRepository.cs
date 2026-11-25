@@ -30,17 +30,18 @@ namespace HorizonTravel.Repository
             }
         }
 
-        public void Atualizar(Parceiro parceiro)
+        public void Atualizar(Parceiro parceiro, string cnpjOriginal)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
 
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, emailFor=@emailFor, situacaoFor=@situacaoFor
-                WHERE CNPJFor=@CNPJFor", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Parceiro SET nomeFor=@nomeFor, CNPJFor=@CNPJFor, emailFor=@emailFor, situacaoFor=@situacaoFor
+                WHERE CNPJFor=@cnpjOriginal", conexao);
 
                 cmd.Parameters.Add("@nomeFor", MySqlDbType.VarChar).Value = parceiro.nomeFor;
                 cmd.Parameters.Add("@CNPJFor", MySqlDbType.VarChar).Value = parceiro.CNPJFor;
+                cmd.Parameters.Add("@cnpjOriginal", MySqlDbType.VarChar).Value = cnpjOriginal;
                 cmd.Parameters.Add("@emailFor", MySqlDbType.VarChar).Value = parceiro.emailFor;
                 cmd.Parameters.Add("@situacaoFor", MySqlDbType.VarChar).Value = parceiro.situacaoFor;
 

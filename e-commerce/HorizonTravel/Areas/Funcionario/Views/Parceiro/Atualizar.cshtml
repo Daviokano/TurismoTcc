@@ -19,6 +19,7 @@
 
             <form asp-action="Atualizar" method="post" id="formAtualizarParceiro">
                 <input type="hidden" asp-for="situacaoFor" />
+                <input type="hidden" name="cnpjOriginal" value="@Model.CNPJFor" />
 
                 <div class="grade-atualizar">
 
