@@ -4,7 +4,7 @@
 @{
     ViewData["Title"] = "Funcionários";
     Layout = "~/Areas/Funcionario/Views/Shared/_Layout.cshtml";
-    
+
     // variavel para verificação do admin
     var isAdmin = _login.GetFuncionario()?.permissaoFun == PermissaoFunConstant.Administrador;
 }
@@ -47,6 +47,8 @@
                     <th>@Html.DisplayNameFor(model => model.First().emailFun)</th>
                     <th>@Html.DisplayNameFor(model => model.First().telefoneFun)</th>
                     <th>@Html.DisplayNameFor(model => model.First().dataNascimentoFun)</th>
+                    <th>Cargo</th>
+                    <th>Status</th>
                     <th>Ações</th>
                 </tr>
             </thead>
@@ -54,6 +56,8 @@
             <tbody>
                 @foreach (Funcionario funcionario in Model)
                 {
+                    var ativo = funcionario.situacaoFun == "A";
+
                     <tr class="linha-funcionario">
                         <td>
                             <div class="celula-funcionario">
@@ -65,21 +69,42 @@
                         <td>@funcionario.emailFun</td>
                         <td class="telefone-funcionario">@funcionario.telefoneFun</td>
                         <td class="data-funcionario">@funcionario.dataNascimentoFun.ToString("dd/MM/yyyy")</td>
+                        <td class="cargo-funcionario">@funcionario.permissaoFun</td>
+                        <td>
+                            <span class="selo-status @(ativo ? "selo-ativo" : "selo-inativo")">
+                                @(ativo ? "Ativo" : "Inativo")
+                            </span>
+                        </td>
                         <td>
                             <div class="grupo-acoes">
-                                <!-- só aparece se for admin -->
+                                <!-- só aparece se for admin (vale para qualquer funcionário, inclusive ele mesmo) -->
                                 @if (isAdmin)
                                 {
                                     <a asp-action="Atualizar" asp-route-id="@funcionario.IDFun" class="botao-acao botao-editar">Editar</a>
-                                }
-                                
-                                <!-- só aparece se for admin -->
-                                @if (isAdmin && funcionario.permissaoFun != PermissaoFunConstant.Administrador)
-                                {
-                                    <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
-                                          onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
-                                        <button type="submit" class="botao-acao botao-excluir">Excluir</button>
-                                    </form>
+
+                                    @if (ativo)
+                                    {
+                                        <form asp-action="Desativar" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
+                                                onsubmit="return confirm('Tem certeza que deseja desativar este funcionário?')">
+                                            <button type="submit" class="botao-acao botao-desativar">Desativar</button>
+                                        </form>
+                                    }
+                                    else
+                                    {
+                                        <form asp-action="Ativar" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
+                                                onsubmit="return confirm('Tem certeza que deseja ativar este funcionário?')">
+                                            <button type="submit" class="botao-acao botao-ativar">Ativar</button>
+                                        </form>
+                                    }
+
+                                    <!-- só aparece para funcionário comum (não exclui administrador) -->
+                                    @if (funcionario.permissaoFun != PermissaoFunConstant.Administrador)
+                                    {
+                                        <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
+                                                onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
+                                            <button type="submit" class="botao-acao botao-excluir">Excluir</button>
+                                        </form>
+                                    }
                                 }
                             </div>
                         </td>
@@ -87,7 +112,7 @@
                 }
 
                 <tr id="linhaSemResultado" class="linha-sem-resultado" hidden>
-                    <td colspan="6">Nenhum funcionário encontrado.</td>
+                    <td colspan="8">Nenhum funcionário encontrado.</td>
                 </tr>
             </tbody>
         </table>
@@ -130,15 +155,34 @@
                         </div>
 
                         <div class="campo-form">
+                            <label for="permissaoFun" class="rotulo-form">Cargo</label>
+                            <select id="permissaoFun" name="permissaoFun" class="input-form" required>
+                                <option value="" disabled selected>Selecione o cargo</option>
+                                <option value="@PermissaoFunConstant.Administrador">Administrador</option>
+                                <option value="@PermissaoFunConstant.Funcionario">Funcionário</option>
+                            </select>
+                        </div>
+
+                        <div class="campo-form">
                             <label for="senhaFun" class="rotulo-form">Senha</label>
-                            <input type="password" id="senhaFun" name="senhaFun" class="input-form"
-                                   placeholder="Digite a senha" maxlength="8" required />
+                            <div class="campo-senha-wrapper">
+                                <input type="password" id="senhaFun" name="senhaFun" class="input-form"
+                                       placeholder="Digite a senha" maxlength="8" required />
+                                <button type="button" class="botao-olho toggle-senha" title="Mostrar/Ocultar senha">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
                         </div>
 
                         <div class="campo-form">
                             <label for="confirmarSenha" class="rotulo-form">Confirmar senha</label>
-                            <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
-                                   placeholder="Confirme a senha" maxlength="8" required />
+                            <div class="campo-senha-wrapper">
+                                <input type="password" id="confirmarSenha" name="confirmarSenha" class="input-form"
+                                       placeholder="Confirme a senha" maxlength="8" required />
+                                <button type="button" class="botao-olho toggle-senha" title="Mostrar/Ocultar senha">
+                                    <i class="bi bi-eye"></i>
+                                </button>
+                            </div>
                             <span id="erroSenha" class="erro-form" hidden>As senhas não coincidem.</span>
                         </div>
 
@@ -160,3 +204,19 @@
 </div>
 
 <script src="~/js/listagem.js" asp-append-version="true"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        document.querySelectorAll(".toggle-senha").forEach(function(botao) {
+            botao.addEventListener("click", function() {
+                var input = this.parentElement.querySelector("input");
+                var mostrando = input.type === "text";
+
+                input.type = mostrando ? "password" : "text";
+                this.innerHTML = mostrando
+                    ? '<i class="bi bi-eye"></i>'
+                    : '<i class="bi bi-eye-slash"></i>';
+            });
+        });
+    });
+</script>

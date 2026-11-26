@@ -13,5 +13,11 @@ namespace HorizonTravel.Repository.Contract
         void Excluir(int Id);
         Funcionario ObterFuncionario(int Id);
         IEnumerable<Funcionario> ObterTodosFuncionarios();
+
+        void Ativar(int Id);
+        void Desativar(int Id);
+
+        void AlterarSituacao(int id, string situacao);
+        int ContarAdministradoresAtivos();
     }
 }

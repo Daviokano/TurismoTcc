@@ -1,5 +1,6 @@
 ﻿using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
@@ -32,13 +33,17 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult LoginFuncionario([FromForm] Models.Funcionario funcionario)
         {
-            //para conferir se emailFun e senhaFun chegaram preenchidos
-            Console.WriteLine($"Email: [{funcionario.emailFun}] Senha: [{funcionario.senhaFun}]");
-
             Models.Funcionario funcionarioDB = _funcionarioRepository.Login(funcionario.emailFun, funcionario.senhaFun);
 
             if (funcionarioDB.emailFun != null && funcionarioDB.senhaFun != null)
             {
+                // funcionário ou administrador inativo não entra
+                if (funcionarioDB.situacaoFun != SituacaoFunConstant.Ativo)
+                {
+                    ViewData["MSG_E"] = "Conta desativada. Procure um administrador.";
+                    return View();
+                }
+
                 _loginFuncionario.Login(funcionarioDB);
                 return RedirectToAction(nameof(PainelFuncionario));
             }

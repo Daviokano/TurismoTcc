@@ -1,3 +1,4 @@
+@using HorizonTravel.Models.Constant
 @model HorizonTravel.Models.Funcionario
 @{
     ViewBag.Title = "Atualizar Funcionário";
@@ -53,7 +54,15 @@
                         <span asp-validation-for="dataNascimentoFun" class="erro-form"></span>
                     </div>
 
-                    <!-- CAMPO DE SENHA COM OLHINHO -->
+                    <div class="campo-form">
+                        <label for="permissaoFun" class="rotulo-form">Cargo (opcional)</label>
+                        <select id="permissaoFun" name="permissaoFun" class="input-form">
+                            <option value="" selected>Manter cargo atual (@Model.permissaoFun)</option>
+                            <option value="@PermissaoFunConstant.Administrador">Administrador</option>
+                            <option value="@PermissaoFunConstant.Funcionario">Funcionário</option>
+                        </select>
+                    </div>
+
                     <div class="campo-form">
                         <label asp-for="senhaFun" class="rotulo-form">Nova Senha (opcional)</label>
                         <div class="campo-senha-wrapper">
@@ -65,7 +74,7 @@
                         <span asp-validation-for="senhaFun" class="erro-form"></span>
                     </div>
 
-                    <!-- CONFIRMAR SENHA COM OLHINHO -->
+ 
                     <div class="campo-form">
                         <label for="confirmarSenha" class="rotulo-form">Confirmar nova senha</label>
                         <div class="campo-senha-wrapper">
@@ -94,7 +103,6 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
     
-    <!-- SCRIPT PARA MOSTRAR/OCULTAR A SENHA -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             const botoesOlho = document.querySelectorAll('.toggle-senha');

@@ -15,6 +15,34 @@ namespace HorizonTravel.Repository
             _conexaoMySQL = conf.GetConnectionString("ConexaoMySQL");
         }
 
+        public void AlterarSituacao(int id, string situacao)
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand cmd = new MySqlCommand("UPDATE Funcionario SET situacaoFun = @situacaoFun WHERE IDFun = @IDFun", conexao);
+                cmd.Parameters.AddWithValue("@situacaoFun", situacao);
+                cmd.Parameters.AddWithValue("@IDFun", id);
+                cmd.ExecuteNonQuery();
+            }
+        }
+
+        public void Ativar(int Id)
+        {
+            string situacao = SituacaoFunConstant.Ativo;
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Funcionario SET situacaoFun=@situacaoFun WHERE IDFun=@IDFun", conexao);
+                cmd.Parameters.Add("@situacaoFun", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDFun", MySqlDbType.Int32).Value = Id;
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
         public void Atualizar(Funcionario funcionario)
         {
             using (var conexao = new MySqlConnection(_conexaoMySQL))
@@ -22,7 +50,7 @@ namespace HorizonTravel.Repository
                 conexao.Open();
 
                 MySqlCommand cmd = new MySqlCommand(@"UPDATE Funcionario SET nomeFun=@nomeFun, CPFFun=@CPFFun, emailFun=@emailFun, 
-                telefoneFun=@telefoneFun, dataNascimentoFun=@dataNascimentoFun, senhaFun=@senhaFun WHERE IDFun=@IDFun", conexao);
+                telefoneFun=@telefoneFun, dataNascimentoFun=@dataNascimentoFun, senhaFun=@senhaFun, permissaoFun=@permissaoFun WHERE IDFun=@IDFun", conexao);
 
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
                 cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = funcionario.CPFFun;
@@ -31,7 +59,7 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun;
                 cmd.Parameters.Add("@senhaFun", MySqlDbType.VarChar).Value = funcionario.senhaFun;
                 cmd.Parameters.Add("@IDFun", MySqlDbType.Int32).Value = funcionario.IDFun;
-                
+                cmd.Parameters.Add("@permissaoFun", MySqlDbType.VarChar).Value = funcionario.permissaoFun;
 
                 cmd.ExecuteNonQuery();
                 conexao.Close();
@@ -46,8 +74,8 @@ namespace HorizonTravel.Repository
 
                 string cpf = System.Text.RegularExpressions.Regex.Replace(funcionario.CPFFun, @"\D", "");
 
-                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun, permissaoFun)
-                    VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun, @permissaoFun)", conexao);
+                MySqlCommand cmd = new MySqlCommand(@"INSERT INTO Funcionario(nomeFun, CPFFun, emailFun, telefoneFun, dataNascimentoFun, senhaFun, permissaoFun, situacaoFun)
+                    VALUES (@nomeFun, @CPFFun, @emailFun, @telefoneFun, @dataNascimentoFun, @senhaFun, @permissaoFun, @situacaoFun)", conexao);
 
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
                 cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = cpf;
@@ -56,8 +84,36 @@ namespace HorizonTravel.Repository
                 cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun.ToString("yyyy-MM-dd");
                 cmd.Parameters.Add("@senhaFun", MySqlDbType.VarChar).Value = funcionario.senhaFun;
                 cmd.Parameters.Add("@permissaoFun", MySqlDbType.VarChar).Value = PermissaoFunConstant.Funcionario;
+                cmd.Parameters.Add("@situacaoFun", MySqlDbType.VarChar).Value = funcionario.situacaoFun;
 
 
+                cmd.ExecuteNonQuery();
+                conexao.Close();
+            }
+        }
+
+        public int ContarAdministradoresAtivos()
+        {
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+
+                MySqlCommand cmd = new MySqlCommand("SELECT COUNT(*) FROM Funcionario WHERE permissaoFun = @permissaoFun AND situacaoFun = 'A'", conexao);
+                cmd.Parameters.AddWithValue("@permissaoFun", PermissaoFunConstant.Administrador);
+                return Convert.ToInt32(cmd.ExecuteScalar());
+            }
+        }
+
+        public void Desativar(int Id)
+        {
+            string situacao = SituacaoFunConstant.Inativo;
+
+            using (var conexao = new MySqlConnection(_conexaoMySQL))
+            {
+                conexao.Open();
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Funcionario SET situacaoFun=@situacaoFun WHERE IDFun=@IDFun", conexao);
+                cmd.Parameters.Add("@situacaoFun", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDFun", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -104,6 +160,7 @@ namespace HorizonTravel.Repository
                     funcionario.dataNascimentoFun = Convert.ToDateTime(dr["dataNascimentoFun"]);
                     funcionario.senhaFun = Convert.ToString(dr["senhaFun"]);
                     funcionario.permissaoFun = Convert.ToString(dr["permissaoFun"]);
+                    funcionario.situacaoFun = Convert.ToString(dr["situacaoFun"]);
                 }
                 return funcionario;
             }
@@ -131,7 +188,8 @@ namespace HorizonTravel.Repository
                         funcionario.telefoneFun = (string)(dr["telefoneFun"]);
                         funcionario.dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]);
                         funcionario.senhaFun = (string)(dr["senhaFun"]);
-                        funcionario.permissaoFun = Convert.ToString(dr["permissaoFun"]);
+                        funcionario.permissaoFun = (string)(dr["permissaoFun"]);
+                        funcionario.situacaoFun = (string)(dr["situacaoFun"]);
                     }
                 }
 
@@ -166,6 +224,7 @@ namespace HorizonTravel.Repository
                             dataNascimentoFun = (DateTime)(dr["dataNascimentoFun"]),
                             senhaFun = (string)(dr["senhaFun"]),
                             permissaoFun = (string)(dr["permissaoFun"]),
+                            situacaoFun = (string)(dr["situacaoFun"]),
                         }
                     );
                 }

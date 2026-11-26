@@ -49,11 +49,13 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Cadastrar(Models.Funcionario funcionario)
         {
             funcionario.CPFFun = new string(funcionario.CPFFun.Where(char.IsDigit).ToArray());
+            funcionario.situacaoFun = "A"; // novo funcionário já nasce ativo
             _funcionarioRepository.Cadastrar(funcionario);
 
             TempData["MSG_S"] = "Cadastro realizado com sucesso!";
             return RedirectToAction(nameof(Index));
         }
+
 
         // restriçaõ para dmin
         [HttpGet]
@@ -68,17 +70,45 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
         public IActionResult Atualizar([FromForm] Models.Funcionario funcionario)
         {
-            // se o campo continuar vazio, mantém a senha no banco.
+            var funcionarioBanco = _funcionarioRepository.ObterFuncionario(funcionario.IDFun);
+
+            if (funcionarioBanco.IDFun == 0)
+            {
+                TempData["MSG_E"] = "Funcionário não encontrado.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // se a senha continuar vazia, mantém a do banco
             if (string.IsNullOrWhiteSpace(funcionario.senhaFun))
             {
-                var funcionarioBanco = _funcionarioRepository.ObterFuncionario(funcionario.IDFun);
-                if (funcionarioBanco != null)
-                {
-                    funcionario.senhaFun = funcionarioBanco.senhaFun;
-                }
+                funcionario.senhaFun = funcionarioBanco.senhaFun;
             }
-            // removendo a validação do ModelState para o campo senha, já que ele agora é opcional na tela.
+
+            // se o cargo vier vazio, mantém o do banco
+            if (string.IsNullOrWhiteSpace(funcionario.permissaoFun))
+            {
+                funcionario.permissaoFun = funcionarioBanco.permissaoFun;
+            }
+            else if (funcionario.permissaoFun != PermissaoFunConstant.Administrador &&
+                     funcionario.permissaoFun != PermissaoFunConstant.Funcionario)
+            {
+                TempData["MSG_E"] = "Selecione um cargo válido.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // impede rebaixar o único administrador ativo
+            if (funcionarioBanco.permissaoFun == PermissaoFunConstant.Administrador
+                && funcionario.permissaoFun != PermissaoFunConstant.Administrador
+                && funcionarioBanco.situacaoFun == SituacaoFunConstant.Ativo
+                && _funcionarioRepository.ContarAdministradoresAtivos() <= 1)
+            {
+                TempData["MSG_E"] = "Não é possível rebaixar o único administrador ativo.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // senha e cargo são opcionais na tela
             ModelState.Remove(nameof(funcionario.senhaFun));
+            ModelState.Remove(nameof(funcionario.permissaoFun));
 
             if (ModelState.IsValid)
             {
@@ -94,10 +124,64 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
+        public IActionResult Desativar(int Id)
+        {
+            var logado = _loginFuncionario.GetFuncionario();
+            var alvo = _funcionarioRepository.ObterFuncionario(Id);
+
+            if (alvo == null)
+            {
+                TempData["MSG_E"] = "Funcionário não encontrado.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            // impede ficar sem nenhum administrador ativo
+            if (alvo.permissaoFun == PermissaoFunConstant.Administrador && alvo.situacaoFun == "A"
+                && _funcionarioRepository.ContarAdministradoresAtivos() <= 1)
+            {
+                TempData["MSG_E"] = "Não é possível desativar o único administrador ativo.";
+                return RedirectToAction(nameof(Index));
+            }
+
+            _funcionarioRepository.AlterarSituacao(Id, "D");
+
+            // se o admin desativou a si mesmo, encerra a sessão dele
+            if (Id == logado.IDFun)
+            {
+                _loginFuncionario.Logout();
+                TempData["MSG_E"] = "Sua conta foi desativada.";
+                return RedirectToAction("LoginFuncionario", "Home", new { area = "Funcionario" });
+            }
+
+            TempData["MSG_S"] = "Funcionário desativado com sucesso!";
+            return RedirectToAction(nameof(Index));
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
+        public IActionResult Ativar(int Id)
+        {
+            _funcionarioRepository.AlterarSituacao(Id, "A");
+            TempData["MSG_S"] = "Funcionário ativado com sucesso!";
+            return RedirectToAction(nameof(Index));
+        }
+
+
+        // excluir definitivamente (só funcionário comum e nunca a própria conta)
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
         public IActionResult Excluir(int Id)
         {
             var logado = _loginFuncionario.GetFuncionario();
             var alvo = _funcionarioRepository.ObterFuncionario(Id);
+
+            if (alvo.IDFun == 0)
+            {
+                TempData["MSG_E"] = "Funcionário não encontrado.";
+                return RedirectToAction(nameof(Index));
+            }
 
             if (Id == logado.IDFun)
             {
