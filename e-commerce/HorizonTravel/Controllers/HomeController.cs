@@ -35,12 +35,19 @@ namespace HorizonTravel.Controllers
 
             if (usuarioDB.emailUsu != null && usuarioDB.senhaUsu != null)
             {
+                // usuário inativo não entra
+                if (usuarioDB.situacaoUsu != SituacaoUsuConstant.Ativo)
+                {
+                    ViewData["MSG_E"] = "Conta desativada. Entre em contato com o suporte.";
+                    return View();
+                }
+
                 _usuarioLogin.Login(usuarioDB);
                 return new RedirectResult(Url.Action(nameof(PainelUsuario)));
             }
             else
             {
-                ViewData["MSG_E"] = "O usuário não foi localizado, por fazer verifique o email e senha digitados!";
+                ViewData["MSG_E"] = "O usuário não foi localizado, por favor verifique o email e senha digitados!";
                 return View();
             }
         }

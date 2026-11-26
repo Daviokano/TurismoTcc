@@ -130,9 +130,9 @@ namespace HorizonTravel.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET situacaoFun=@situacaoFun WHERE IDFun=@IDFun", conexao);
-                cmd.Parameters.Add("@situacaoFun", MySqlDbType.VarChar).Value = situacao;
-                cmd.Parameters.Add("@IDFun", MySqlDbType.Int32).Value = Id;
+                MySqlCommand cmd = new MySqlCommand(@"UPDATE Usuario SET situacaoUsu=@situacaoUsu WHERE IDUsu=@IDUsu", conexao);
+                cmd.Parameters.Add("@situacaoUsu", MySqlDbType.VarChar).Value = situacao;
+                cmd.Parameters.Add("@IDUsu", MySqlDbType.Int32).Value = Id;
                 cmd.ExecuteNonQuery();
                 conexao.Close();
             }
@@ -143,7 +143,7 @@ namespace HorizonTravel.Repository
             using (var conexao = new MySqlConnection(_conexaoMySQL))
             {
                 conexao.Open();
-                MySqlCommand cmd = new MySqlCommand("DELETE * FROM Usuario WHERE IDUsu=@IDUsu", conexao);
+                MySqlCommand cmd = new MySqlCommand("DELETE FROM Usuario WHERE IDUsu=@IDUsu", conexao);
                 cmd.Parameters.AddWithValue("@IDUsu", Id);
                 int i = cmd.ExecuteNonQuery();
 
