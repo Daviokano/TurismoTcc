@@ -96,15 +96,6 @@
                                             <button type="submit" class="botao-acao botao-ativar">Ativar</button>
                                         </form>
                                     }
-
-                                    <!-- só aparece para funcionário comum (não exclui administrador) -->
-                                    @if (funcionario.permissaoFun != PermissaoFunConstant.Administrador)
-                                    {
-                                        <form asp-action="Excluir" asp-route-id="@funcionario.IDFun" method="post" class="form-excluir"
-                                                onsubmit="return confirm('Tem certeza que deseja excluir este funcionário?')">
-                                            <button type="submit" class="botao-acao botao-excluir">Excluir</button>
-                                        </form>
-                                    }
                                 }
                             </div>
                         </td>
