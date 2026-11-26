@@ -4,6 +4,7 @@ using HorizonTravel.Libraries.Cookie;
 using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using HorizonTravel.Libraries.Promocao;
 using Microsoft.AspNetCore.Mvc;
@@ -172,7 +173,7 @@ namespace HorizonTravel.Controllers
                 IDUsu = usuario.IDUsu,
                 IDPac = pacote.IDPac,
                 dataRes = DateTime.Today,
-                statusRes = "Pendente"
+                statusRes = StatusReservaConstant.Pendente
             };
 
             try
@@ -186,7 +187,7 @@ namespace HorizonTravel.Controllers
                         valorPag = modelo.ValorTotal,
                         dataPag = DateTime.Today,
                         metodoPag = modelo.metodoPag,
-                        statusPag = "Pendente"
+                        statusPag = StatusPagamentoConstant.Pendente
                     });
 
                 _carrinhoCompra.RemoverTodos();
@@ -238,7 +239,7 @@ namespace HorizonTravel.Controllers
                 return NotFound();
             }
 
-            _reservaRepository.AtualizarStatusPagamento(id, "Pago", null);
+            _reservaRepository.AtualizarStatusPagamento(id, StatusPagamentoConstant.Pago, null);
             return RedirectToAction(nameof(Confirmacao), new { id });
         }
 
@@ -254,7 +255,7 @@ namespace HorizonTravel.Controllers
                 return NotFound();
             }
 
-            _reservaRepository.AtualizarStatusPagamento(id, "Cancelado", null);
+            _reservaRepository.AtualizarStatusPagamento(id, StatusPagamentoConstant.Cancelado, null);
             return RedirectToAction(nameof(Confirmacao), new { id });
         }
 

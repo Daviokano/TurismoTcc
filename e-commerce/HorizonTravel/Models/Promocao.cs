@@ -30,7 +30,7 @@ namespace HorizonTravel.Models
 
         [Required]
         [StringLength(1)]
-        public string situacaoPromocao { get; set; } = "A";
+        public string situacaoPromocao { get; set; } = Constant.SituacaoPromocaoConstant.Ativo;
 
     }
 }

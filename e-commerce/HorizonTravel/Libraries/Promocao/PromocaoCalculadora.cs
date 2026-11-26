@@ -1,4 +1,5 @@
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using ModeloPromocao = HorizonTravel.Models.Promocao;
 
 namespace HorizonTravel.Libraries.Promocao
@@ -8,7 +9,7 @@ namespace HorizonTravel.Libraries.Promocao
         public static bool EstaValida(ModeloPromocao? promocao)
         {
             return promocao != null
-                && promocao.situacaoPromocao == "A"
+                && promocao.situacaoPromocao == SituacaoPromocaoConstant.Ativo
                 && promocao.dataValidade.Date >= DateTime.Today;
         }
 

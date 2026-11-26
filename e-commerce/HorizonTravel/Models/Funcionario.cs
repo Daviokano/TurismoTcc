@@ -40,6 +40,6 @@ namespace HorizonTravel.Models
         public string permissaoFun { get; set; }
 
         [StringLength(1)]
-        public string situacaoFun { get; set; }
+        public string situacaoFun { get; set; } = Constant.SituacaoFuncionarioConstant.Ativo;
     }
 }

@@ -1,4 +1,5 @@
 @using HorizonTravel.Models
+@using HorizonTravel.Models.Constant
 @model IEnumerable<HorizonTravel.Models.Usuario>
 
 @{
@@ -75,7 +76,7 @@
                         <td class="telefone-usuario">@usuario.telefoneUsu</td>
                         <td class="data-usuario">@usuario.dataNascimentoUsu.ToString("dd/MM/yyyy")</td>
                         <td>
-                            @if (usuario.situacaoUsu == "A")
+                            @if (usuario.situacaoUsu == SituacaoUsuConstant.Ativo)
                             {
                                 <span class="selo selo-ativo">Ativo</span>
                             }
@@ -88,7 +89,7 @@
                             <div class="grupo-acoes">
                                 <a asp-action="Atualizar" asp-route-id="@usuario.IDUsu" class="botao-acao botao-editar">Editar</a>
 
-                                @if (usuario.situacaoUsu == "A")
+                                @if (usuario.situacaoUsu == SituacaoUsuConstant.Ativo)
                                 {
                                     <a asp-action="Desativar" asp-route-id="@usuario.IDUsu"
                                        class="botao-acao botao-desativar"
@@ -126,7 +127,7 @@
                 do POST Cadastrar(Usuario) continua funcionando.
             -->
             <form asp-action="Cadastrar" method="post" id="formCadastroUsuario" class="form-cadastro">
-                <input type="hidden" name="situacaoUsu" value="A" />
+                <input type="hidden" name="situacaoUsu" value="@SituacaoUsuConstant.Ativo" />
 
                 <div class="grade-cadastro">
 

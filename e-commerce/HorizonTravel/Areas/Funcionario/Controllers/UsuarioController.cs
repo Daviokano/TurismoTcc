@@ -1,5 +1,6 @@
 ﻿using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -83,7 +84,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Models.Usuario usuario)
         {
-            usuario.situacaoUsu = "A";
+            usuario.situacaoUsu = SituacaoUsuConstant.Ativo;
             _usuarioRepository.Cadastrar(usuario);
             usuario.CPFUsu = new string(usuario.CPFUsu.Where(char.IsDigit).ToArray());
 

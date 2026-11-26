@@ -1,4 +1,5 @@
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -173,7 +174,7 @@ namespace HorizonTravel.Repository
                 abrangenciaPromocao = Convert.ToString(registro["abrangenciaPromocao"]) ?? "Todos",
                 porcentagemDesconto = Convert.ToDecimal(registro["porcentagemDesconto"]),
                 dataValidade = Convert.ToDateTime(registro["dataValidade"]),
-                situacaoPromocao = Convert.ToString(registro["situacaoPromocao"]) ?? "A"
+                situacaoPromocao = Convert.ToString(registro["situacaoPromocao"]) ?? SituacaoPromocaoConstant.Ativo
             };
         }
     }

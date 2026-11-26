@@ -1,5 +1,6 @@
 using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -53,7 +54,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         public IActionResult Cadastrar(Pacote pacote)
         {
             pacote.CNPJFor = RemoverCaracteresNaoNumericos(pacote.CNPJFor);
-            pacote.situacaoPac = "A";
+            pacote.situacaoPac = SituacaoPacoteConstant.Ativo;
             ModelState.Remove(nameof(pacote.CNPJFor));
             ValidarRelacionamentos(pacote);
 
@@ -136,7 +137,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             {
                 ModelState.AddModelError(nameof(pacote.CNPJFor), "Informe um parceiro cadastrado.");
             }
-            else if (parceiro.situacaoFor != "A")
+            else if (parceiro.situacaoFor != SituacaoParceiroConstant.Ativo)
             {
                 ModelState.AddModelError(nameof(pacote.CNPJFor), "O parceiro informado está inativo.");
             }

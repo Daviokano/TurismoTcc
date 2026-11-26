@@ -52,6 +52,6 @@ namespace HorizonTravel.Models
 
         [Required]
         [StringLength(1)]
-        public string situacaoPac { get; set; } = "A";
+        public string situacaoPac { get; set; } = Constant.SituacaoPacoteConstant.Ativo;
     }
 }

@@ -1,5 +1,6 @@
 using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -96,9 +97,11 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
                 return NotFound();
             }
 
-            string novaSituacao = promocao.situacaoPromocao == "A" ? "I" : "A";
+            string novaSituacao = promocao.situacaoPromocao == SituacaoPromocaoConstant.Ativo
+                ? SituacaoPromocaoConstant.Inativo
+                : SituacaoPromocaoConstant.Ativo;
             _promocaoRepository.AlterarSituacao(id, novaSituacao);
-            TempData["MSG_S"] = novaSituacao == "A"
+            TempData["MSG_S"] = novaSituacao == SituacaoPromocaoConstant.Ativo
                 ? "Promoção ativada com sucesso!"
                 : "Promoção desativada com sucesso!";
 

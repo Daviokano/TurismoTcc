@@ -1,5 +1,6 @@
 using System.Data;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using MySql.Data.MySqlClient;
 
@@ -273,7 +274,8 @@ namespace HorizonTravel.Repository
 
                 comandoPagamento.ExecuteNonQuery();
 
-                if (statusPagamento == "Cancelado" && statusAnterior != "Cancelado")
+                if (statusPagamento == StatusPagamentoConstant.Cancelado
+                    && statusAnterior != StatusPagamentoConstant.Cancelado)
                 {
                     const string sqlDevolverVagas = @"
                         UPDATE Pacote p
@@ -292,8 +294,8 @@ namespace HorizonTravel.Repository
 
                 string? statusReserva = statusPagamento switch
                 {
-                    "Pago" => "Confirmada",
-                    "Cancelado" => "Cancelada",
+                    StatusPagamentoConstant.Pago => StatusReservaConstant.Confirmada,
+                    StatusPagamentoConstant.Cancelado => StatusReservaConstant.Cancelada,
                     _ => null
                 };
 

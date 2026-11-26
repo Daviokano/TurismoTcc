@@ -1,4 +1,5 @@
 @model HorizonTravel.Models.MinhasReservasViewModel
+@using HorizonTravel.Models.Constant
 
 @{
     ViewData["Title"] = "Histórico";
@@ -45,7 +46,7 @@
                     </div>
                     <div class="resumo-historico-usuario">
                         <strong>R$ @reserva.valorPag.ToString("N2")</strong>
-                        @if (reserva.statusRes.Equals("Confirmada", StringComparison.OrdinalIgnoreCase))
+                        @if (reserva.statusRes.Equals(StatusReservaConstant.Confirmada, StringComparison.OrdinalIgnoreCase))
                         {
                             <span class="texto-avaliacao">Sua avaliação:</span>
                             <a asp-controller="Avaliacao" asp-action="Index" asp-route-id="@reserva.IDPac" class="estrelas-avaliacao" aria-label="Avaliar pacote">

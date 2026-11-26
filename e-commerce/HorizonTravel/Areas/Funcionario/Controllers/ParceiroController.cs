@@ -1,6 +1,7 @@
 ﻿using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
+using HorizonTravel.Models.Constant;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HorizonTravel.Areas.Funcionario.Controllers
@@ -29,7 +30,7 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [HttpPost]
         public IActionResult Cadastrar(Models.Parceiro parceiro)
         {
-            parceiro.situacaoFor = "A";
+            parceiro.situacaoFor = SituacaoParceiroConstant.Ativo;
             parceiro.CNPJFor = new string(parceiro.CNPJFor.Where(char.IsDigit).ToArray());
             _parceiroRepository.Cadastrar(parceiro);
             TempData["MSG_S"] = "Cadastro realizado com sucesso!";

@@ -1,9 +1,10 @@
 @model HorizonTravel.Models.ReservaDetalhesViewModel
+@using HorizonTravel.Models.Constant
 
 @{
     ViewData["Title"] = "Confirmação da reserva";
-    bool pagamentoPendente = Model.Reserva.statusPag == "Pendente";
-    bool pagamentoCancelado = Model.Reserva.statusPag == "Cancelado";
+    bool pagamentoPendente = Model.Reserva.statusPag == StatusPagamentoConstant.Pendente;
+    bool pagamentoCancelado = Model.Reserva.statusPag == StatusPagamentoConstant.Cancelado;
     string codigoReserva = $"HT{Model.Reserva.IDRes:000000}";
 }
 

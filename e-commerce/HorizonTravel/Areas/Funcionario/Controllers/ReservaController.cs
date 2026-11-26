@@ -1,5 +1,6 @@
 using HorizonTravel.Libraries.Filtro;
 using HorizonTravel.Libraries.Login;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using Microsoft.AspNetCore.Mvc;
 
@@ -32,7 +33,12 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AtualizarStatus(int id, string statusRes)
         {
-            string[] statusPermitidos = ["Pendente", "Confirmada", "Cancelada"];
+            string[] statusPermitidos =
+            [
+                StatusReservaConstant.Pendente,
+                StatusReservaConstant.Confirmada,
+                StatusReservaConstant.Cancelada
+            ];
 
             if (!statusPermitidos.Contains(statusRes))
             {
@@ -41,13 +47,13 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
             int idFuncionario = _loginFuncionario.GetFuncionario().IDFun;
 
-            if (statusRes == "Confirmada")
+            if (statusRes == StatusReservaConstant.Confirmada)
             {
-                _reservaRepository.AtualizarStatusPagamento(id, "Pago", idFuncionario);
+                _reservaRepository.AtualizarStatusPagamento(id, StatusPagamentoConstant.Pago, idFuncionario);
             }
-            else if (statusRes == "Cancelada")
+            else if (statusRes == StatusReservaConstant.Cancelada)
             {
-                _reservaRepository.AtualizarStatusPagamento(id, "Cancelado", idFuncionario);
+                _reservaRepository.AtualizarStatusPagamento(id, StatusPagamentoConstant.Cancelado, idFuncionario);
             }
             else
             {
@@ -62,7 +68,12 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AtualizarPagamento(int id, string statusPag)
         {
-            string[] statusPermitidos = ["Pendente", "Pago", "Cancelado"];
+            string[] statusPermitidos =
+            [
+                StatusPagamentoConstant.Pendente,
+                StatusPagamentoConstant.Pago,
+                StatusPagamentoConstant.Cancelado
+            ];
 
             if (!statusPermitidos.Contains(statusPag))
             {
