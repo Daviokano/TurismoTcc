@@ -52,11 +52,13 @@ namespace HorizonTravel.Repository
                 MySqlCommand cmd = new MySqlCommand(@"UPDATE Funcionario SET nomeFun=@nomeFun, CPFFun=@CPFFun, emailFun=@emailFun, 
                 telefoneFun=@telefoneFun, dataNascimentoFun=@dataNascimentoFun, senhaFun=@senhaFun, permissaoFun=@permissaoFun WHERE IDFun=@IDFun", conexao);
 
+                string cpfLimpo = Regex.Replace(funcionario.CPFFun ?? "", @"\D", "");
+
                 cmd.Parameters.Add("@nomeFun", MySqlDbType.VarChar).Value = funcionario.nomeFun;
-                cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = funcionario.CPFFun;
+                cmd.Parameters.Add("@CPFFun", MySqlDbType.VarChar).Value = cpfLimpo;
                 cmd.Parameters.Add("@emailFun", MySqlDbType.VarChar).Value = funcionario.emailFun;
                 cmd.Parameters.Add("@telefoneFun", MySqlDbType.VarChar).Value = funcionario.telefoneFun;
-                cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun;
+                cmd.Parameters.Add("@dataNascimentoFun", MySqlDbType.VarChar).Value = funcionario.dataNascimentoFun.ToString("yyyy-MM-dd");
                 cmd.Parameters.Add("@senhaFun", MySqlDbType.VarChar).Value = funcionario.senhaFun;
                 cmd.Parameters.Add("@IDFun", MySqlDbType.Int32).Value = funcionario.IDFun;
                 cmd.Parameters.Add("@permissaoFun", MySqlDbType.VarChar).Value = funcionario.permissaoFun;
