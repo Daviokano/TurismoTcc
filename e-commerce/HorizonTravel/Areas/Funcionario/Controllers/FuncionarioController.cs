@@ -166,46 +166,5 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             TempData["MSG_S"] = "Funcionário ativado com sucesso!";
             return RedirectToAction(nameof(Index));
         }
-
-
-        // excluir definitivamente (só funcionário comum e nunca a própria conta)
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        [FuncionarioAutorizacao(PermissaoFunConstant.Administrador)]
-        public IActionResult Excluir(int Id)
-        {
-            var logado = _loginFuncionario.GetFuncionario();
-            var alvo = _funcionarioRepository.ObterFuncionario(Id);
-
-            if (alvo.IDFun == 0)
-            {
-                TempData["MSG_E"] = "Funcionário não encontrado.";
-                return RedirectToAction(nameof(Index));
-            }
-
-            if (Id == logado.IDFun)
-            {
-                TempData["MSG_E"] = "Você não pode excluir a própria conta.";
-                return RedirectToAction(nameof(Index));
-            }
-
-            if (alvo.permissaoFun == PermissaoFunConstant.Administrador)
-            {
-                TempData["MSG_E"] = "Não é possível excluir o administrador.";
-                return RedirectToAction(nameof(Index));
-            }
-
-            try
-            {
-                _funcionarioRepository.Excluir(Id);
-                TempData["MSG_S"] = "Cadastro excluído com sucesso!";
-            }
-            catch (MySqlException)
-            {
-                TempData["MSG_E"] = "Não foi possível excluir: este funcionário possui pacotes vinculados.";
-            }
-
-            return RedirectToAction(nameof(Index));
-        }
     }
 }

@@ -5,7 +5,11 @@
 <link rel="stylesheet" href="~/css/destinos.css" asp-append-version="true" />
 
 <section class="banner-destinos">
+<<<<<<< HEAD
     <img src="~/img/destino-eua.png" alt="Paisagem de destino turístico" />
+=======
+    <img src="~/img/destinoimg.jpg" alt="Paisagem de destino turístico" />
+>>>>>>> 2aa42f6dff4ee1185c4e50031458d86a4a09f2e0
     <div class="conteudo-banner-destinos">
         <p>Explore o mundo e encontre...</p>
         <h1>DESTINOS<br />INCRÍVEIS!</h1>
@@ -21,18 +25,20 @@
 
     <div class="grade-destinos">
         @foreach (var destino in new[] {
-            ("Brasil", "destino-brasil.jpg", "Descubra praias, natureza e experiências inesquecíveis."),
-            ("França", "destino-franca.png", "Encante-se com elegância, história e charme."),
+            ("Brasil", "brasil.jpg", "Descubra praias, natureza e experiências inesquecíveis."),
+            ("França", "franca.jpg", "Encante-se com elegância, história e charme."),
             ("Japão", "destino-japao.jpg", "Tradição, tecnologia e paisagens surpreendentes."),
             ("México", "destino-mexico.jpg", "Cores, cultura e paisagens fascinantes."),
-            ("Tailândia", "destino-tailandia.jpg", "Praias paradisíacas e uma cultura encantadora."),
-            ("Emirados Árabes Unidos", "destino-emirados.jpg", "Luxo, inovação e paisagens únicas."),
-            ("Itália", "destino-italia.png", "Gastronomia, arte e beleza italiana."),
-            ("Estados Unidos", "destino-eua.png", "Cidades grandiosas e experiências inesquecíveis."),
-            ("Egito", "destino-egito.jpg", "História, cultura e monumentos impressionantes."),
             ("Inglaterra", "destino-inglaterra.jpg", "Paisagens clássicas e muita história."),
-            ("África do Sul", "destino-africa-do-sul.jpg", "Natureza exuberante e experiências inesquecíveis."),
-            ("Argentina", "destino-argentina.png", "Paisagens incríveis, cultura e sabor.")
+            ("Disney", "disney.jpg", "Magia, diversão e experiências inesquecíveis."),
+            ("Museu do Louvre", "museu-louvre.jpg", "Arte, história e obras-primas inesquecíveis."),
+            ("Copacabana", "copacabana.jpg", "Praia icônica, paisagens e energia contagiante."),
+            ("Cristo Redentor", "cristo-redentor.jpg", "Uma das maravilhas do mundo com vista espetacular."),
+            ("Torre Eiffel", "torre-eiffel.jpg", "Símbolo de elegância e romantismo em Paris."),
+            ("Monte Fuji", "monte-fuji.jpg", "Beleza natural e tradição milenar do Japão."),
+            ("Templo Senso-ji", "templo-senso-ji.jpg", "Espiritualidade e cultura no coração de Tóquio."),
+            ("Chichén Itzá", "chichen-itza.jpg", "Mistério e história das civilizações maias."),
+            ("Big Ben", "big-ben.jpg", "Ícone histórico e cultural de Londres.")
         })
         {
             <a class="link-destino" asp-controller="Pacotes" asp-action="Index" asp-route-destino="@destino.Item1" aria-label="Ver pacotes para @destino.Item1">
