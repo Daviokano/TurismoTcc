@@ -118,6 +118,30 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
             return pacote == null ? NotFound() : View(pacote);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult AlterarSituacao(int id)
+        {
+            var pacote = _pacoteRepository.ObterPacote(id);
+
+            if (pacote == null)
+            {
+                return NotFound();
+            }
+
+            string novaSituacao = pacote.situacaoPac == SituacaoPacoteConstant.Ativo
+                ? SituacaoPacoteConstant.Inativo
+                : SituacaoPacoteConstant.Ativo;
+
+            _pacoteRepository.AlterarSituacao(id, novaSituacao);
+
+            TempData["MSG_S"] = novaSituacao == SituacaoPacoteConstant.Ativo
+                ? "Pacote ativado com sucesso!"
+                : "Pacote desativado com sucesso!";
+
+            return RedirectToAction(nameof(Index));
+        }
+
         private void ValidarRelacionamentos(Pacote pacote)
         {
             if (pacote.CNPJFor.Length != 14)

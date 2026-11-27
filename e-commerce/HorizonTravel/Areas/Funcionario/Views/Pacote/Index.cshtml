@@ -1,4 +1,5 @@
 @model IEnumerable<HorizonTravel.Models.Pacote>
+@using HorizonTravel.Models.Constant
 
 @{
     ViewData["Title"] = "Pacotes";
@@ -70,6 +71,15 @@
                            asp-route-id="@pacote.IDPac">
                             Editar
                         </a>
+
+                        <form asp-action="AlterarSituacao" method="post">
+                            <input type="hidden" name="id" value="@pacote.IDPac" />
+                            <button type="submit"
+                                    class="botao-situacao-pacote @(pacote.situacaoPac == SituacaoPacoteConstant.Ativo ? "botao-desativar-pacote" : "botao-ativar-pacote")"
+                                    onclick="return confirm('@(pacote.situacaoPac == SituacaoPacoteConstant.Ativo ? "Realmente deseja desativar esse pacote?" : "Realmente deseja ativar esse pacote?")');">
+                                @(pacote.situacaoPac == SituacaoPacoteConstant.Ativo ? "Desativar" : "Ativar")
+                            </button>
+                        </form>
                     </div>
                 </div>
             </article>

@@ -60,6 +60,12 @@ namespace HorizonTravel.Controllers
                 return RedirectToAction("Index", "Carrinho");
             }
 
+            if (pacote.situacaoPac != SituacaoPacoteConstant.Ativo)
+            {
+                TempData["MSG_E"] = "Este pacote não está mais disponível. Remova-o do carrinho e adicione outro pacote.";
+                return RedirectToAction("Index", "Carrinho");
+            }
+
             if (pacote.quantidadePac < item.Quantidade)
             {
                 TempData["MSG_E"] = $"Há apenas {pacote.quantidadePac} pacote(s) disponível(is), mas você selecionou {item.Quantidade}.";

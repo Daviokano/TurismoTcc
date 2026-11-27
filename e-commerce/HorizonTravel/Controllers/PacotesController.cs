@@ -1,4 +1,5 @@
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Libraries.Promocao;
 using HorizonTravel.Repository.Contract; // Ou o seu Contexto do banco
 using Microsoft.AspNetCore.Mvc;
@@ -23,6 +24,7 @@ namespace HorizonTravel.Controllers
             // Busca os pacotes reais do banco
             var pacotes = _pacoteRepository
                 .ObterTodosPacotes()
+                .Where(pacote => pacote.situacaoPac == SituacaoPacoteConstant.Ativo)
                 .Where(pacote => pacote.quantidadePac > 0)
                 .Where(pacote => string.IsNullOrWhiteSpace(origem)
                     || pacote.origemPac.Contains(origem, StringComparison.OrdinalIgnoreCase))
@@ -49,7 +51,7 @@ namespace HorizonTravel.Controllers
         {
             var pacote = _pacoteRepository.ObterPacote(id);
 
-            if (pacote == null)
+            if (pacote == null || pacote.situacaoPac != SituacaoPacoteConstant.Ativo)
                 return NotFound();
 
             ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas().ToList();

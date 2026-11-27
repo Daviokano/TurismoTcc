@@ -1,6 +1,7 @@
 using HorizonTravel.Libraries.CarrinhoCompra;
 using HorizonTravel.Libraries.Cookie;
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using HorizonTravel.Libraries.Promocao;
 using Microsoft.AspNetCore.Mvc;
@@ -53,7 +54,9 @@ public class CarrinhoController : Controller
     {
         var pacote = _pacoteRepository.ObterPacote(item.IdPacote);
 
-        if (pacote == null || pacote.quantidadePac <= 0)
+        if (pacote == null
+            || pacote.situacaoPac != SituacaoPacoteConstant.Ativo
+            || pacote.quantidadePac <= 0)
         {
             return RedirectToAction(nameof(Index));
         }

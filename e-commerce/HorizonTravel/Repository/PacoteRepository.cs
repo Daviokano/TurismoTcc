@@ -1,4 +1,5 @@
 using HorizonTravel.Models;
+using HorizonTravel.Models.Constant;
 using HorizonTravel.Repository.Contract;
 using MySql.Data.MySqlClient;
 using System.Data;
@@ -89,6 +90,22 @@ namespace HorizonTravel.Repository
             }
 
             return pacotes;
+        }
+
+        public void AlterarSituacao(int id, string situacao)
+        {
+            using var conexao = new MySqlConnection(_conexaoMySQL);
+            conexao.Open();
+
+            const string sql = @"
+                UPDATE Pacote
+                SET situacaoPac = @situacaoPac
+                WHERE IDPac = @IDPac";
+
+            using var comando = new MySqlCommand(sql, conexao);
+            comando.Parameters.Add("@situacaoPac", MySqlDbType.VarChar).Value = situacao;
+            comando.Parameters.Add("@IDPac", MySqlDbType.Int32).Value = id;
+            comando.ExecuteNonQuery();
         }
 
         private static void AdicionarParametros(

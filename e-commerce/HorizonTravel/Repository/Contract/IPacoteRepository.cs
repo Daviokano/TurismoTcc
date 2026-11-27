@@ -8,5 +8,6 @@ namespace HorizonTravel.Repository.Contract
         void Atualizar(Pacote pacote);
         Pacote ObterPacote(int id);
         IEnumerable<Pacote> ObterTodosPacotes();
+        void AlterarSituacao(int id, string situacao);
     }
 }
