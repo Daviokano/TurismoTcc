@@ -37,7 +37,6 @@ html, body {
     object-fit: cover;
 }
 
-/* sombra de baixo pra cima */
 .imagem-login::after {
     content: "";
     position: absolute;
@@ -57,7 +56,7 @@ html, body {
     padding: 0 2rem 2.5rem;
     color: #fff;
     text-shadow: 0 1px 4px rgba(0, 0, 0, 0.45);
-    z-index: 1; /* garante que o texto fique acima da sombra */
+    z-index: 1; 
 }
 
 .logo-aviao {
@@ -249,8 +248,7 @@ html, body {
     text-decoration: underline;
 }
 
-
-/* ---------- Responsivo ---------- */
+/* Responsivo */
 @media (max-width: 800px) {
     .imagem-login {
         display: none;

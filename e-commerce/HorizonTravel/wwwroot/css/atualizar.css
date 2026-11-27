@@ -1,10 +1,5 @@
 ﻿@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
-/* ===================================================== */
-/* ===== Telas de atualização (funcionário, usuário e   ===== */
-/* ===== parceiro) - um único CSS para as três          ===== */
-/* ===================================================== */
-
 *,
 *::before,
 *::after {
@@ -21,13 +16,11 @@ html, body {
     display: none !important;
 }
 
-/* ===== Página ===== */
 .pagina-atualizar {
     margin: 0;
     padding: 0;
 }
 
-/* ===== Cabeçalho ===== */
 .cabecalho-atualizar {
     margin: 0 0 24px;
 }
@@ -46,7 +39,6 @@ html, body {
     color: #6b7280;
 }
 
-/* ===== Painel cinza + card branco ===== */
 .secao-atualizar {
     padding: 32px;
     border-radius: 6px;
@@ -77,7 +69,6 @@ html, body {
     gap: 18px 28px;
 }
 
-/* campo que ocupa a linha inteira (use junto com campo-form) */
 .campo-largo {
     grid-column: 1 / -1;
 }
@@ -110,36 +101,32 @@ html, body {
     color: #111827;
 }
 
-    .input-form::placeholder {
-        color: #6b7280;
-    }
+.input-form::placeholder {
+    color: #6b7280;
+}
 
-    .input-form:focus {
-        outline: none;
-        border-color: #05053a;
-        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-    }
+.input-form:focus {
+    outline: none;
+    border-color: #05053a;
+    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+}
 
-    /* campo travado (ex.: se quiser deixar o CPF/CNPJ só para leitura) */
-    .input-form:read-only {
-        background: #f3f4f6;
-        color: #6b7280;
-        cursor: not-allowed;
-    }
+.input-form:read-only {
+    background: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+.input-
+form.input-validation-error {
+    border-color: #dc2626;
+}
 
-    /* o ASP.NET adiciona essa classe quando o campo está inválido */
-    .input-form.input-validation-error {
-        border-color: #dc2626;
-    }
-
-/* mensagens de erro (asp-validation-for e erro da confirmação de senha) */
 .erro-form {
     font-size: 0.65rem;
     font-weight: 500;
     color: #dc2626;
 }
 
-/* ===== Botões ===== */
 .acoes-form {
     display: flex;
     justify-content: flex-end;
@@ -164,18 +151,17 @@ html, body {
     transition: background 0.2s, filter 0.2s;
 }
 
-/* "Voltar" pode ser um <a> ou um <button> */
 .botao-cancelar {
     border: 1px solid #9ca3af;
     background: #ffffff;
     color: #111827;
 }
 
-    .botao-cancelar:hover {
-        background: #f3f4f6;
-        color: #111827;
-        text-decoration: none;
-    }
+.botao-cancelar:hover {
+    background: #f3f4f6;
+    color: #111827;
+    text-decoration: none;
+}
 
 .botao-salvar {
     border: 0;

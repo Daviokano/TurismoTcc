@@ -16,13 +16,11 @@ html, body {
     display: none !important;
 }
 
-/* ===== Página (sem espaço extra no topo) ===== */
 .pagina-lista {
     margin: 0;
     padding: 0;
 }
 
-/* ===== Cabeçalho ===== */
 .cabecalho-lista {
     display: flex;
     align-items: flex-start;
@@ -45,7 +43,6 @@ html, body {
     color: #6b7280;
 }
 
-/* ===== Área de busca (campo + botão) ===== */
 .area-busca {
     display: flex;
     align-items: center;
@@ -84,17 +81,16 @@ html, body {
     color: #111827;
 }
 
-    .input-busca::placeholder {
-        color: #6b7280;
-    }
+.input-busca::placeholder {
+    color: #6b7280;
+}
 
-    .input-busca:focus {
-        outline: none;
-        border-color: #05053a;
-        box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
-    }
+.input-busca:focus {
+    outline: none;
+    border-color: #05053a;
+    box-shadow: 0 0 0 2px rgba(5, 5, 58, 0.15);
+}
 
-/* ===== Botão de buscar ===== */
 .botao-buscar {
     display: inline-flex;
     align-items: center;
@@ -114,11 +110,10 @@ html, body {
     transition: background 0.2s;
 }
 
-    .botao-buscar:hover {
-        background: #ea6a0a;
-    }
+.botao-buscar:hover {
+    background: #ea6a0a;
+}
 
-/* ===== Tabela ===== */
 .cartao-tabela {
     width: 100%;
     overflow-x: auto;
@@ -132,30 +127,30 @@ html, body {
     border-collapse: collapse;
 }
 
-    .tabela-funcionarios thead th {
-        padding: 14px 12px;
-        border-bottom: 1px solid #d1d5db;
-        background: #f5f5f5;
-        font-size: 0.75rem;
-        font-weight: 700;
-        text-align: left;
-        white-space: nowrap;
-        color: #111827;
-    }
+.tabela-funcionarios thead th {
+    padding: 14px 12px;
+    border-bottom: 1px solid #d1d5db;
+    background: #f5f5f5;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-align: left;
+    white-space: nowrap;
+    color: #111827;
+}
 
-    .tabela-funcionarios tbody td {
-        padding: 14px 12px;
-        border-bottom: 1px solid #d1d5db;
-        font-size: 0.75rem;
-        font-weight: 600;
-        text-align: left;
-        vertical-align: middle;
-        color: #111827;
-    }
+.tabela-funcionarios tbody td {
+    padding: 14px 12px;
+    border-bottom: 1px solid #d1d5db;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-align: left;
+    vertical-align: middle;
+    color: #111827;
+}
 
-    .tabela-funcionarios tbody tr:last-child td {
-        border-bottom: 0;
-    }
+.tabela-funcionarios tbody tr:last-child td {
+    border-bottom: 0;
+}
 
 .linha-funcionario:hover {
     background: #fafafa;
@@ -167,7 +162,6 @@ html, body {
     color: #6b7280;
 }
 
-/* ===== Funcionário com avatar ===== */
 .celula-funcionario {
     display: flex;
     align-items: center;
@@ -200,7 +194,6 @@ html, body {
     white-space: nowrap;
 }
 
-/* ===== Botões de ação ===== */
 .grupo-acoes {
     display: flex;
     align-items: center;
@@ -223,10 +216,10 @@ html, body {
     transition: filter 0.2s;
 }
 
-    .botao-acao:hover {
-        filter: brightness(0.95);
-        text-decoration: none;
-    }
+.botao-acao:hover {
+    filter: brightness(0.95);
+    text-decoration: none;
+}
 
 .botao-editar {
     background: #fef3c7;
@@ -258,7 +251,6 @@ html, body {
     display: inline-flex;
 }
 
-/* ===== Status (Ativo / Inativo) ===== */
 .selo-status {
     display: inline-block;
     padding: 3px 12px;
@@ -279,7 +271,6 @@ html, body {
     color: #6b7280;
 }
 
-/* ===== Paginação ===== */
 .paginacao {
     display: flex;
     justify-content: flex-end;
@@ -305,14 +296,14 @@ html, body {
     cursor: pointer;
 }
 
-    .botao-pagina:hover:not(:disabled) {
-        background: #f3f4f6;
-    }
+.botao-pagina:hover:not(:disabled) {
+    background: #f3f4f6;
+}
 
-    .botao-pagina:disabled {
-        opacity: 0.4;
-        cursor: default;
-    }
+.botao-pagina:disabled {
+    opacity: 0.4;
+    cursor: default;
+}
 
 .pagina-atual {
     border-color: #0000ff;
@@ -320,11 +311,11 @@ html, body {
     color: #ffffff;
 }
 
-    .pagina-atual:hover:not(:disabled) {
-        background: #0000ff;
-    }
+.pagina-atual:hover:not(:disabled) {
+    background: #0000ff;
+}
 
-/* ===== Mobile ===== */
+/* Responsivo */
 @media (max-width: 767.98px) {
     .cabecalho-lista {
         flex-direction: column;
