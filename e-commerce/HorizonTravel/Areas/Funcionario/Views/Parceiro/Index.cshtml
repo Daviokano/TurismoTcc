@@ -8,6 +8,16 @@
 
 <link rel="stylesheet" href="~/css/listaparceiro.css" asp-append-version="true" />
 
+@if (TempData["MSG_S"] is string mensagemSucesso)
+{
+    <div class="alert alert-success" role="alert">@mensagemSucesso</div>
+}
+
+@if (TempData["MSG_E"] is string mensagemErro)
+{
+    <div class="alert alert-danger" role="alert">@mensagemErro</div>
+}
+
 @functions {
     string ObterIniciais(string nome)
     {

@@ -3,6 +3,7 @@ using HorizonTravel.Repository;
 using HorizonTravel.Repository.Contract;
 using HorizonTravel.Models.Constant;
 using Microsoft.AspNetCore.Mvc;
+using MySql.Data.MySqlClient;
 
 namespace HorizonTravel.Areas.Funcionario.Controllers
 {
@@ -32,7 +33,17 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
         {
             parceiro.situacaoFor = SituacaoParceiroConstant.Ativo;
             parceiro.CNPJFor = new string(parceiro.CNPJFor.Where(char.IsDigit).ToArray());
-            _parceiroRepository.Cadastrar(parceiro);
+
+            try
+            {
+                _parceiroRepository.Cadastrar(parceiro);
+            }
+            catch (MySqlException exception) when (exception.Number == 1062)
+            {
+                TempData["MSG_E"] = "Não foi possível cadastrar: o CNPJ ou o e-mail informado já está cadastrado.";
+                return RedirectToAction(nameof(Index));
+            }
+
             TempData["MSG_S"] = "Cadastro realizado com sucesso!";
             return RedirectToAction(nameof(Index));
         }
@@ -67,7 +78,21 @@ namespace HorizonTravel.Areas.Funcionario.Controllers
 
             if (ModelState.IsValid)
             {
-                _parceiroRepository.Atualizar(parceiro, cnpjOriginal);
+                try
+                {
+                    _parceiroRepository.Atualizar(parceiro, cnpjOriginal);
+                }
+                catch (MySqlException exception) when (exception.Number == 1451)
+                {
+                    TempData["MSG_E"] = "Não é possível alterar o CNPJ porque este parceiro está vinculado a pacotes. Mantenha o CNPJ atual ou desative o parceiro.";
+                    return RedirectToAction(nameof(Index));
+                }
+                catch (MySqlException exception) when (exception.Number == 1062)
+                {
+                    TempData["MSG_E"] = "Não foi possível atualizar: o CNPJ ou o e-mail informado já está cadastrado.";
+                    return RedirectToAction(nameof(Index));
+                }
+
                 TempData["MSG_S"] = "Cadastro atualizado com sucesso!";
                 return RedirectToAction(nameof(Index));
             }
