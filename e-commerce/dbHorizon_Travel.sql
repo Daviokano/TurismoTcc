@@ -180,114 +180,6 @@ VALUES (
     '1992-08-15'
 );
 
-INSERT INTO Pacote (
-    IDFun,
-    CNPJFor,
-    IDPromo,
-    precoPac,
-    quantidadePac,
-    quantidadePassageirosPac,
-    descricaoPac,
-    avaliacaoPac,
-    fotoPac,
-    origemPac,
-    destinoPac,
-    dataPac,
-    situacaoPac
-)
-VALUES
-
-(1, '11222333000181', NULL, 3500.00, 20, 4,
-'Pacote turístico para conhecer as principais atrações do Brasil, incluindo passeios guiados, 
-visitas a pontos turísticos, alimentação durante os passeios, acompanhamento de guia especializado e tempo livre para conhecer a cultura,
- a gastronomia e as paisagens brasileiras.',
-NULL, 'brasil.jpeg', 'São Paulo', 'Brasil', '2027-07-15', 'A'),
-
-(1, '11222333000181', NULL, 6200.00, 12, 4,
-'Viagem especial para conhecer a França e suas atrações culturais e históricas, 
-incluindo passeios turísticos por Paris, visitas a monumentos famosos, acompanhamento de guia, alimentação e ingressos para atrações selecionadas. 
-Aproveite para conhecer a arquitetura francesa e experimentar a gastronomia local.',
-NULL, 'franca.jpeg', 'São Paulo', 'França', '2027-07-20', 'A'),
-
-(1, '11222333000181', NULL, 5800.00, 18, 3,
-'Pacote turístico pelo Japão para conhecer sua cultura, tradição e modernidade. 
-Inclui visitas a pontos turísticos famosos, passeios pelos templos tradicionais, acompanhamento de guia turístico, alimentação e ingressos para atrações selecionadas. 
-Uma experiência para descobrir paisagens incríveis e costumes japoneses.',
-NULL, 'japao.jpeg', 'São Paulo', 'Japão', '2027-09-05', 'A'),
-
-(1, '11222333000181', NULL, 4900.00, 25, 2,
-'Experiência completa no México para conhecer sua história, arquitetura e cultura. 
-O pacote inclui passeios guiados por atrações históricas, visitas a monumentos tradicionais, alimentação, transporte turístico e acompanhamento profissional. 
-Aproveite também o tempo livre para conhecer a gastronomia e os costumes mexicanos.',
-NULL, 'mexico.jpeg', 'Brasília', 'México', '2027-10-12', 'A'),
-
-(1, '11222333000181', NULL, 4500.00, 19, 4,
-'Viagem turística pela Inglaterra para conhecer seus principais pontos históricos e culturais. 
-Inclui passeios guiados, visitas a monumentos famosos, acompanhamento de guia turístico, alimentação e tempo livre para explorar as ruas, lojas e construções 
-tradicionais. Uma oportunidade de conhecer melhor a cultura inglesa.',
-NULL, 'inglaterra.jpeg', 'Brasília', 'Inglaterra', '2027-09-25', 'A'),
-
-(1, '11222333000181', NULL, 6800.00, 10, 2,
-'Pacote especial para aproveitar a magia da Disney, incluindo ingressos para o parque,
- acesso às principais atrações disponíveis, passeios pelas áreas temáticas, alimentação e acompanhamento turístico. 
- Uma experiência inesquecível para aproveitar brinquedos, apresentações, personagens e momentos especiais em família.',
-NULL, 'disney.jpeg', 'São Paulo', 'Disney', '2027-11-20', 'A'),
-
-(1, '11222333000181', NULL, 7200.00, 15, 4,
-'Experiência completa no Parque da Disney para aproveitar atrações temáticas, brinquedos, espetáculos
- e encontros com personagens. O pacote inclui ingressos de acesso, alimentação, orientações turísticas e tempo livre para explorar diferentes áreas do parque. 
- Ideal para famílias e visitantes que desejam viver momentos de diversão e entretenimento.',
-NULL, 'parque-disney.jpeg', 'Rio de Janeiro', 'Parque da Disney', '2027-12-05', 'A'),
-
-(1, '11222333000181', NULL, 5500.00, 16, 2,
-'Pacote cultural em Paris para conhecer o famoso Museu do Louvre, incluindo ingresso para visitação, 
-acompanhamento de guia turístico, alimentação e passeio pelas principais áreas culturais da região. Conheça importantes obras de arte, exposições históricas e a 
-arquitetura de um dos museus mais conhecidos do mundo.',
-NULL, 'museu-louvre.jpeg', 'Curitiba', 'Museu do Louvre', '2027-11-08', 'A'),
-
-(1, '11222333000181', NULL, 2800.00, 30, 4,
-'Pacote turístico para aproveitar a famosa praia de Copacabana, no Rio de Janeiro. 
-Inclui passeios pela orla, acompanhamento de guia turístico, alimentação durante as atividades, visitas a pontos turísticos próximos e tempo livre para aproveitar a
- praia, conhecer restaurantes e registrar belas fotografias.',
-NULL, 'copacabana.jpeg', 'São Paulo', 'Copacabana', '2027-07-25', 'A'),
-
-(1, '11222333000181', NULL, 3200.00, 22, 3,
-'Viagem para conhecer o Cristo Redentor, um dos maiores símbolos do Brasil.
- O pacote inclui ingresso de acesso, transporte até o ponto turístico, acompanhamento de guia, alimentação e passeio panorâmico pela região. 
- Aproveite para admirar uma das vistas mais bonitas do Rio de Janeiro e conhecer a história desse importante monumento.',
-NULL, 'cristo-redentor.jpeg', 'Campinas', 'Cristo Redentor', '2027-10-15', 'A'),
-
-(1, '11222333000181', NULL, 6200.00, 12, 4,
-'Pacote completo para conhecer a Torre Eiffel, um dos monumentos mais famosos do mundo. 
-Inclui ingresso para visitação, passeio panorâmico por Paris, acompanhamento de guia turístico, alimentação e tempo livre para conhecer os arredores, tirar fotografias e
- aproveitar as paisagens da capital francesa.',
-NULL, 'torre-eiffel.jpeg', 'São Paulo', 'Torre Eiffel', '2027-08-20', 'A'),
-
-(1, '11222333000181', NULL, 5800.00, 18, 3,
-'Pacote especial para conhecer o famoso Monte Fuji, com transporte até a região turística, 
-acompanhamento de guia, alimentação, visitas aos mirantes naturais e oportunidades para fotografar as belas paisagens japonesas.
- Uma experiência ideal para quem deseja conhecer a natureza e a cultura do Japão.',
-NULL, 'monte-fuji.jpeg', 'São Paulo', 'Monte Fuji', '2027-09-05', 'A'),
-
-(1, '11222333000181', NULL, 5100.00, 14, 2,
-'Viagem cultural para conhecer o tradicional Templo Senso-ji, localizado em Tóquio. 
-O pacote inclui ingresso para visitação, acompanhamento de guia turístico, alimentação e passeio pelos arredores do templo. Conheça a arquitetura tradicional japonesa, 
-os costumes locais e a história de um dos templos mais importantes do Japão.',
-NULL, 'templo-senso-ji.jpeg', 'Rio de Janeiro', 'Templo Senso-ji', '2027-09-18', 'A'),
-
-(1, '11222333000181', NULL, 5300.00, 13, 3,
-'Pacote turístico para conhecer Chichén Itzá, um dos mais importantes sítios arqueológicos da civilização maia.
- Inclui ingresso para visitação, transporte até o complexo histórico, acompanhamento de guia especializado, alimentação e passeio pelas construções antigas.
-  Uma oportunidade de conhecer a história, a arquitetura e a cultura maia.',
-NULL, 'chichen-itza.jpeg', 'São Paulo', 'Chichén Itzá', '2027-10-05', 'A'),
-
-(1, '11222333000181', NULL, 4500.00, 19, 4,
-'Viagem turística para conhecer o famoso Big Ben e os principais pontos históricos de Londres. 
-O pacote inclui passeios guiados, acompanhamento turístico, alimentação e tempo livre para explorar a região, conhecer construções históricas e registrar fotografias. 
-Uma experiência para aproveitar a cultura e os encantos da capital inglesa.',
-NULL, 'big-ben.jpeg', 'Brasília', 'Big Ben', '2027-09-25', 'A');
-
-
 DELIMITER $$
 
 CREATE PROCEDURE ht_CadastrarUsuario (
@@ -458,3 +350,80 @@ SELECT * FROM Pagamento;
 SELECT * FROM Historico;
 SELECT * FROM Passageiro;
 SELECT * FROM Avaliacao;
+
+
+INSERT INTO Pacote (
+    IDFun,
+    CNPJFor,
+    IDPromo,
+    precoPac,
+    quantidadePac,
+    quantidadePassageirosPac,
+    descricaoPac,
+    avaliacaoPac,
+    fotoPac,
+    origemPac,
+    destinoPac,
+    dataPac,
+    situacaoPac
+)
+VALUES
+(1, '11222333000181', NULL, 3500.00, 20, 4,
+'Pacote turístico para conhecer as principais atrações do Brasil, incluindo passeios guiados, visitas a pontos turísticos, alimentação durante os passeios, acompanhamento de guia especializado e tempo livre para conhecer a cultura, a gastronomia e as paisagens brasileiras.',
+NULL, 'img/destino-brasil.jpg', 'São Paulo', 'Brasil', '2027-07-15', 'A'),
+
+(1, '11222333000181', NULL, 6200.00, 12, 4,
+'Viagem especial para conhecer a França e suas atrações culturais e históricas, incluindo passeios turísticos por Paris, visitas a monumentos famosos, acompanhamento de guia, alimentação e ingressos para atrações selecionadas. Aproveite para conhecer a arquitetura francesa e experimentar a gastronomia local.',
+NULL, 'img/destino-franca.png', 'São Paulo', 'França', '2027-07-20', 'A'),
+
+(1, '11222333000181', NULL, 5800.00, 18, 3,
+'Pacote turístico pelo Japão para conhecer sua cultura, tradição e modernidade. Inclui visitas a pontos turísticos famosos, passeios pelos templos tradicionais, acompanhamento de guia turístico, alimentação e ingressos para atrações selecionadas. Uma experiência para descobrir paisagens incríveis e costumes japoneses.',
+NULL, 'img/destino-japao.jpg', 'São Paulo', 'Japão', '2027-09-05', 'A'),
+
+(1, '11222333000181', NULL, 4900.00, 25, 2,
+'Experiência completa no México para conhecer sua história, arquitetura e cultura. O pacote inclui passeios guiados por atrações históricas, visitas a monumentos tradicionais, alimentação, transporte turístico e acompanhamento profissional. Aproveite também o tempo livre para conhecer a gastronomia e os costumes mexicanos.',
+NULL, 'img/destino-mexico.jpg', 'Brasília', 'México', '2027-10-12', 'A'),
+
+(1, '11222333000181', NULL, 4500.00, 19, 4,
+'Viagem turística pela Inglaterra para conhecer seus principais pontos históricos e culturais. Inclui passeios guiados, visitas a monumentos famosos, acompanhamento de guia turístico, alimentação e tempo livre para explorar as ruas, lojas e construções tradicionais. Uma oportunidade de conhecer melhor a cultura inglesa.',
+NULL, 'img/destino-inglaterra.jpg', 'Brasília', 'Inglaterra', '2027-09-25', 'A'),
+
+(1, '11222333000181', NULL, 6800.00, 10, 2,
+'Pacote especial para aproveitar a magia da Disney, incluindo ingressos para o parque, acesso às principais atrações disponíveis, passeios pelas áreas temáticas, alimentação e acompanhamento turístico. Uma experiência inesquecível para aproveitar brinquedos, apresentações, personagens e momentos especiais em família.',
+NULL, 'img/disneyimg.jpg', 'São Paulo', 'Disney', '2027-11-20', 'A'),
+
+(1, '11222333000181', NULL, 7200.00, 15, 4,
+'Experiência completa no Parque da Disney para aproveitar atrações temáticas, brinquedos, espetáculos e encontros com personagens. O pacote inclui ingressos de acesso, alimentação, orientações turísticas e tempo livre para explorar diferentes áreas do parque. Ideal para famílias e visitantes que desejam viver momentos de diversão e entretenimento.',
+NULL, 'img/disneyimg.jpg', 'Rio de Janeiro', 'Parque da Disney', '2027-12-05', 'A'),
+
+(1, '11222333000181', NULL, 5500.00, 16, 2,
+'Pacote cultural em Paris para conhecer o famoso Museu do Louvre, incluindo ingresso para visitação, acompanhamento de guia turístico, alimentação e passeio pelas principais áreas culturais da região. Conheça importantes obras de arte, exposições históricas e a arquitetura de um dos museus mais conhecidos do mundo.',
+NULL, 'img/card paris.jpg', 'Curitiba', 'Museu do Louvre', '2027-11-08', 'A'),
+
+(1, '11222333000181', NULL, 2800.00, 30, 4,
+'Pacote turístico para aproveitar a famosa praia de Copacabana, no Rio de Janeiro. Inclui passeios pela orla, acompanhamento de guia turístico, alimentação durante as atividades, visitas a pontos turísticos próximos e tempo livre para aproveitar a praia, conhecer restaurantes e registrar belas fotografias.',
+NULL, 'img/card copacabana.jpeg', 'São Paulo', 'Copacabana', '2027-07-25', 'A'),
+
+(1, '11222333000181', NULL, 3200.00, 22, 3,
+'Viagem para conhecer o Cristo Redentor, um dos maiores símbolos do Brasil. O pacote inclui ingresso de acesso, transporte até o ponto turístico, acompanhamento de guia, alimentação e passeio panorâmico pela região. Aproveite para admirar uma das vistas mais bonitas do Rio de Janeiro e conhecer a história desse importante monumento.',
+NULL, 'img/brasil-procurados.jpg', 'Campinas', 'Cristo Redentor', '2027-10-15', 'A'),
+
+(1, '11222333000181', NULL, 6200.00, 12, 4,
+'Pacote completo para conhecer a Torre Eiffel, um dos monumentos mais famosos do mundo. Inclui ingresso para visitação, passeio panorâmico por Paris, acompanhamento de guia turístico, alimentação e tempo livre para conhecer os arredores, tirar fotografias e aproveitar as paisagens da capital francesa.',
+NULL, 'img/destino-franca.png', 'São Paulo', 'Torre Eiffel', '2027-08-20', 'A'),
+
+(1, '11222333000181', NULL, 5800.00, 18, 3,
+'Pacote especial para conhecer o famoso Monte Fuji, com transporte até a região turística, acompanhamento de guia, alimentação, visitas aos mirantes naturais e oportunidades para fotografar as belas paisagens japonesas. Uma experiência ideal para quem deseja conhecer a natureza e a cultura do Japão.',
+NULL, 'img/destino-japao.jpg', 'São Paulo', 'Monte Fuji', '2027-09-05', 'A'),
+
+(1, '11222333000181', NULL, 5100.00, 14, 2,
+'Viagem cultural para conhecer o tradicional Templo Senso-ji, localizado em Tóquio. O pacote inclui ingresso para visitação, acompanhamento de guia turístico, alimentação e passeio pelos arredores do templo. Conheça a arquitetura tradicional japonesa, os costumes locais e a história de um dos templos mais importantes do Japão.',
+NULL, 'img/destino-japao.jpg', 'Rio de Janeiro', 'Templo Senso-ji', '2027-09-18', 'A'),
+
+(1, '11222333000181', NULL, 5300.00, 13, 3,
+'Pacote turístico para conhecer Chichén Itzá, um dos mais importantes sítios arqueológicos da civilização maia. Inclui ingresso para visitação, transporte até o complexo histórico, acompanhamento de guia especializado, alimentação e passeio pelas construções antigas. Uma oportunidade de conhecer a história, a arquitetura e a cultura maia.',
+NULL, 'img/destino-mexico.jpg', 'São Paulo', 'Chichén Itzá', '2027-10-05', 'A'),
+
+(1, '11222333000181', NULL, 4500.00, 19, 4,
+'Viagem turística para conhecer o famoso Big Ben e os principais pontos históricos de Londres. O pacote inclui passeios guiados, acompanhamento turístico, alimentação e tempo livre para explorar a região, conhecer construções históricas e registrar fotografias. Uma experiência para aproveitar a cultura e os encantos da capital inglesa.',
+NULL, 'img/destino-inglaterra.jpg', 'Brasília', 'Big Ben', '2027-09-25', 'A');
