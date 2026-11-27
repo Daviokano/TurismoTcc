@@ -4,6 +4,15 @@
 
 <link rel="stylesheet" href="~/css/sobre.css" asp-append-version="true" />
 
+@if (TempData["MSG_S"] != null)
+{
+    <div class="mensagem-formulario mensagem-sucesso">@TempData["MSG_S"]</div>
+}
+else if (TempData["MSG_E"] != null)
+{
+    <div class="mensagem-formulario mensagem-erro">@TempData["MSG_E"]</div>
+}
+
 <section class="banner-sobre">
     <img src="~/img/img banner.jpg" alt="Paisagem de viagem" />
     <div class="conteudo-banner-sobre">
@@ -89,15 +98,16 @@
         <div class="formulario-sobre">
             <h2>ENTRE EM CONTATO</h2>
             <p>Estamos prontos para ajudar você a planejar sua próxima viagem.</p>
-            <form>
-                <input placeholder="Nome completo" />
+            <form asp-controller="Sobre" asp-action="EnviarMensagem" method="post">
+                @Html.AntiForgeryToken()
+                <input name="nome" placeholder="Nome completo" required />
                 <div>
-                    <input placeholder="E-mail" />
-                    <input placeholder="Telefone" />
+                    <input name="email" type="email" placeholder="E-mail" required />
+                    <input name="telefone" placeholder="Telefone" />
                 </div>
-                <input placeholder="Assunto" />
-                <textarea placeholder="Mensagem..."></textarea>
-                <button type="button">ENVIAR MENSAGEM</button>
+                <input name="assunto" placeholder="Assunto" required />
+                <textarea name="mensagem" placeholder="Mensagem..." required></textarea>
+                <button type="submit">ENVIAR MENSAGEM</button>
             </form>
         </div>
         <div class="informacoes-sobre">

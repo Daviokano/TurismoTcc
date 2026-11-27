@@ -1,4 +1,5 @@
 @model HorizonTravel.Models.MinhasReservasViewModel
+@using HorizonTravel.Models.Constant
 
 @{
     ViewData["Title"] = "Minhas reservas";
@@ -43,6 +44,15 @@
                         <strong>R$ @reserva.valorPag.ToString("N2")</strong>
                         <span class="status-reserva">@reserva.statusRes</span>
                         <small>#@codigoReserva</small>
+                        @if (reserva.statusPag == StatusPagamentoConstant.Pendente)
+                        {
+                            <a asp-controller="Reserva"
+                               asp-action="Confirmacao"
+                               asp-route-id="@reserva.IDRes"
+                               class="botao-pagar-reserva">
+                                Pagar agora
+                            </a>
+                        }
                     </div>
                 </article>
             }

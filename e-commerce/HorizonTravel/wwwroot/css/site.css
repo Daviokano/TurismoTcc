@@ -76,26 +76,26 @@ main {
     display: inline-block;
 }
 
-    .navbar .navbar-nav.mx-auto .nav-link::after {
-        content: "" !important;
-        display: block !important;
-        position: absolute !important;
-        left: 0 !important;
-        bottom: -5px !important;
-        width: 0 !important;
-        height: 2px !important;
-        background-color: #f5821f !important;
-        transition: width 0.3s ease !important;
-        pointer-events: none;
-    }
+.navbar .navbar-nav.mx-auto .nav-link::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: -5px !important;
+    width: 0 !important;
+    height: 2px !important;
+    background-color: #f5821f !important;
+    transition: width 0.3s ease !important;
+    pointer-events: none;
+}
 
-    .navbar .navbar-nav.mx-auto .nav-link:hover {
-        color: #f5821f;
-    }
+.navbar .navbar-nav.mx-auto .nav-link:hover {
+    color: #f5821f;
+}
 
-        .navbar .navbar-nav.mx-auto .nav-link:hover::after {
-            width: 100% !important;
-        }
+.navbar .navbar-nav.mx-auto .nav-link:hover::after {
+    width: 100% !important;
+}
 
 /* ===== Dropdown (sem animação) ===== */
 .navbar .dropdown-menu .dropdown-item,
@@ -106,10 +106,10 @@ main {
     transition: background-color 0.2s, color 0.2s;
 }
 
-    .navbar .dropdown-menu .dropdown-item:hover {
-        background-color: #f3f4f6;
-        color: #f5821f;
-    }
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #f5821f;
+}
 
 /* ===== Área de ações (login + carrinho) ===== */
 .header-actions {
@@ -120,11 +120,11 @@ main {
     align-items: center;
 }
 
-    .header-actions .nav-item {
-        margin: 0;
-        display: flex;
-        align-items: center;
-    }
+.header-actions .nav-item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
 
 /* ===== Botão de Login (equilibrado) ===== */
 .navbar .btn.btn-login {
@@ -146,15 +146,15 @@ main {
     transition: background-color 0.2s, transform 0.1s;
 }
 
-    .navbar .btn.btn-login:hover {
-        background-color: #d96e12;
-        color: #fff;
-        transform: translateY(-1px);
-    }
+.navbar .btn.btn-login:hover {
+    background-color: #d96e12;
+    color: #fff;
+    transform: translateY(-1px);
+}
 
-    .navbar .btn.btn-login:active {
-        transform: translateY(0);
-    }
+.navbar .btn.btn-login:active {
+    transform: translateY(0);
+}
 
 /* ===== Carrinho (equilibrado) ===== */
 .navbar .cart-icon {
@@ -208,9 +208,9 @@ main {
     margin-bottom: 10px;
 }
 
-    .footer-brand h5 i {
-        margin-right: 6px;
-    }
+.footer-brand h5 i {
+    margin-right: 6px;
+}
 
 .footer-brand p {
     font-size: 0.85rem;

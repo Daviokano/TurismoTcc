@@ -283,6 +283,21 @@ nav .active {
   resize: none;
 }
 
+.mensagem-formulario {
+  display: none;
+  margin: 16px 0 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #d7f8d8;
+  color: #16852b;
+  font-weight: 700;
+  text-align: center;
+}
+
+.mensagem-formulario.visivel {
+  display: block;
+}
+
 .formulario button {
   width: 100%;
   border: 0;

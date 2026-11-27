@@ -7,6 +7,8 @@
     var listaExibicao = Model ?? new List<HorizonTravel.Models.Pacote>();
     var promocoes = ViewBag.Promocoes as IEnumerable<HorizonTravel.Models.Promocao>
         ?? Enumerable.Empty<HorizonTravel.Models.Promocao>();
+    var ordenacaoAtual = Context.Request.Query["ordenacao"].ToString();
+    var destinoAtual = Context.Request.Query["destino"].ToString();
 }
 
 <link rel="stylesheet" href="~/css/pacotes.css" asp-append-version="true" />
@@ -46,13 +48,13 @@
         <div>
             <i class="bi bi-sliders"></i>
             <span>Filtrar por:</span>
-            <a class="filtro-pacote @(string.IsNullOrEmpty(Context.Request.Query["destino"]) ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index">Todos</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Brasil" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Brasil">Brasil</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Japão" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Japão">Japão</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Estados Unidos" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Estados Unidos">Estados Unidos</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "França" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="França">França</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Itália" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Itália">Itália</a>
-            <a class="filtro-pacote @(Context.Request.Query["destino"] == "Inglaterra" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Inglaterra">Inglaterra</a>
+            <a class="filtro-pacote @(string.IsNullOrEmpty(destinoAtual) ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index">Todos</a>
+            <a class="filtro-pacote @(destinoAtual == "Brasil" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Brasil">Brasil</a>
+            <a class="filtro-pacote @(destinoAtual == "Japão" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Japão">Japão</a>
+            <a class="filtro-pacote @(destinoAtual == "Estados Unidos" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Estados Unidos">Estados Unidos</a>
+            <a class="filtro-pacote @(destinoAtual == "França" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="França">França</a>
+            <a class="filtro-pacote @(destinoAtual == "Itália" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Itália">Itália</a>
+            <a class="filtro-pacote @(destinoAtual == "Inglaterra" ? "filtro-ativo" : "")" asp-controller="Pacotes" asp-action="Index" asp-route-destino="Inglaterra">Inglaterra</a>
         </div>
         <form class="formulario-ordenacao" asp-controller="Pacotes" asp-action="Index" method="get">
             <input type="hidden" name="origem" value="@Context.Request.Query["origem"]" />
@@ -60,9 +62,9 @@
             <input type="hidden" name="data" value="@Context.Request.Query["data"]" />
             <input type="hidden" name="pessoas" value="@Context.Request.Query["pessoas"]" />
             <select name="ordenacao" aria-label="Ordenar pacotes" onchange="this.form.submit()">
-                <option value="popularidade" selected="@(string.IsNullOrEmpty(Context.Request.Query["ordenacao"]) || Context.Request.Query["ordenacao"] == "popularidade")">Popularidade</option>
-                <option value="menor-preco" selected="@(Context.Request.Query["ordenacao"] == "menor-preco")">Menor preço</option>
-                <option value="maior-preco" selected="@(Context.Request.Query["ordenacao"] == "maior-preco")">Maior preço</option>
+                <option value="popularidade" selected="@(string.IsNullOrEmpty(ordenacaoAtual) || ordenacaoAtual == "popularidade" ? "selected" : null)">Popularidade</option>
+                <option value="menor-preco" selected="@(ordenacaoAtual == "menor-preco" ? "selected" : null)">Menor preço</option>
+                <option value="maior-preco" selected="@(ordenacaoAtual == "maior-preco" ? "selected" : null)">Maior preço</option>
             </select>
         </form>
     </section>

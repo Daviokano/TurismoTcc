@@ -122,6 +122,22 @@
     font-size: .58rem;
 }
 
+.botao-pagar-reserva {
+    padding: 6px 10px;
+    border-radius: 4px;
+    background: #ff7417;
+    color: #fff;
+    font-size: .68rem;
+    font-weight: 700;
+    text-decoration: none;
+    transition: background-color .2s ease;
+}
+
+.botao-pagar-reserva:hover {
+    background: #d96e12;
+    color: #fff;
+}
+
 @media (max-width: 600px) {
     .cartao-reserva {
         align-items: flex-start;

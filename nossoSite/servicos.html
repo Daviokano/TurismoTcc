@@ -8,6 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/servicos.css">
+  <script src="js/contato.js" defer></script>
 </head>
 <body>
   <header class="cabecalho">
@@ -123,15 +124,16 @@
         </div>
       </div>
 
-      <form class="formulario">
+      <form class="formulario" id="formularioContato">
         <h3>Envie sua mensagem</h3>
         <div class="campos-duplos">
-          <input type="text" placeholder="Nome">
-          <input type="email" placeholder="Email">
+          <input type="text" name="nome" placeholder="Nome" required>
+          <input type="email" name="email" placeholder="Email" required>
         </div>
-        <input type="text" placeholder="Assunto">
-        <textarea placeholder="Mensagem..."></textarea>
+        <input type="text" name="assunto" placeholder="Assunto" required>
+        <textarea name="mensagem" placeholder="Mensagem..." required></textarea>
         <button type="submit">Enviar Mensagem</button>
+        <p class="mensagem-formulario" id="mensagemFormulario" role="status" aria-live="polite"></p>
       </form>
     </section>
   </main>

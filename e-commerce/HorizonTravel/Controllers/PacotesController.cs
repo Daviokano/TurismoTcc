@@ -3,6 +3,7 @@ using HorizonTravel.Models.Constant;
 using HorizonTravel.Libraries.Promocao;
 using HorizonTravel.Repository.Contract; // Ou o seu Contexto do banco
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace HorizonTravel.Controllers
 {
@@ -19,19 +20,32 @@ namespace HorizonTravel.Controllers
         }
 
         // A URL acessada será: localhost:porta/Pacotes
-        public IActionResult Index(string? origem, string? destino, DateTime? data, int? pessoas, string? ordenacao)
+        public IActionResult Index(
+            string? origem,
+            string? destino,
+            string? data,
+            string? pessoas,
+            string? ordenacao)
         {
+            DateTime? dataFiltro = ConverterData(data);
+            string origemFiltro = origem?.Trim() ?? string.Empty;
+            string destinoFiltro = destino?.Trim() ?? string.Empty;
+            int? pessoasFiltro = ConverterQuantidadePessoas(pessoas);
+
             // Busca os pacotes reais do banco
             var pacotes = _pacoteRepository
                 .ObterTodosPacotes()
                 .Where(pacote => pacote.situacaoPac == SituacaoPacoteConstant.Ativo)
                 .Where(pacote => pacote.quantidadePac > 0)
-                .Where(pacote => string.IsNullOrWhiteSpace(origem)
-                    || pacote.origemPac.Contains(origem, StringComparison.OrdinalIgnoreCase))
-                .Where(pacote => string.IsNullOrWhiteSpace(destino)
-                    || pacote.destinoPac.Contains(destino, StringComparison.OrdinalIgnoreCase))
-                .Where(pacote => !data.HasValue || pacote.dataPac.Date == data.Value.Date)
-                .Where(pacote => !pessoas.HasValue || pacote.quantidadePassageirosPac >= pessoas.Value)
+                .Where(pacote => string.IsNullOrWhiteSpace(origemFiltro)
+                    || pacote.origemPac != null
+                    && pacote.origemPac.Contains(origemFiltro, StringComparison.OrdinalIgnoreCase))
+                .Where(pacote => string.IsNullOrWhiteSpace(destinoFiltro)
+                    || pacote.destinoPac != null
+                    && pacote.destinoPac.Contains(destinoFiltro, StringComparison.OrdinalIgnoreCase))
+                .Where(pacote => !dataFiltro.HasValue || pacote.dataPac.Date == dataFiltro.Value.Date)
+                .Where(pacote => !pessoasFiltro.HasValue
+                    || pacote.quantidadePassageirosPac == pessoasFiltro.Value)
                 .ToList();
 
             pacotes = ordenacao switch
@@ -44,6 +58,32 @@ namespace HorizonTravel.Controllers
             ViewBag.Promocoes = _promocaoRepository.ObterPromocoesAtivas().ToList();
 
             return View(pacotes);
+        }
+
+        private static DateTime? ConverterData(string? data)
+        {
+            if (string.IsNullOrWhiteSpace(data))
+            {
+                return null;
+            }
+
+            string[] formatos = { "dd/MM/yyyy", "yyyy-MM-dd" };
+
+            return DateTime.TryParseExact(
+                data,
+                formatos,
+                CultureInfo.InvariantCulture,
+                DateTimeStyles.None,
+                out DateTime dataConvertida)
+                ? dataConvertida
+                : null;
+        }
+
+        private static int? ConverterQuantidadePessoas(string? pessoas)
+        {
+            return int.TryParse(pessoas, out int quantidade) && quantidade > 0
+                ? quantidade
+                : null;
         }
 
         // Action de detalhes que você já deve ter
