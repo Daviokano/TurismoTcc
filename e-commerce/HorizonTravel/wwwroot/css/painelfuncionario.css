@@ -70,7 +70,6 @@
     font-weight: 500;
 }
 
-/* ===== Cards de resumo ===== */
 .cartao-resumo {
     display: flex;
     align-items: center;
@@ -105,7 +104,6 @@
     color: #5b5b78;
 }
 
-/* Card em destaque (o único com fundo escuro) */
 .cartao-destaque {
     background: #05003a;
     border-color: #05003a;

@@ -46,7 +46,7 @@
     position: relative;
     z-index: 2;
     max-width: 1180px;
-    margin: -40px auto 0; /* era -60px → subiu menos sobre o banner */
+    margin: -40px auto 0; 
     padding: 0 24px;
 }
 
@@ -108,7 +108,6 @@
     color: #ffffff;
 }
 
-/* ===== Textos e cards da Home ===== */
 .text .titulo {
     margin-bottom: 20px;
     margin-top: 40px;
@@ -129,18 +128,18 @@
     box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
 }
 
-    .card-destino .card-img {
-        height: 100%;
-        width: 100%;
-        object-fit: cover;
-    }
+.card-destino .card-img {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+}
 
-    .card-destino .card-img-overlay {
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0) 55%);
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-    }
+.card-destino .card-img-overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0) 55%);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
 
 .titulo-card {
     color: #fff;
@@ -171,12 +170,11 @@
     border: none;
 }
 
-    .btn-card:hover {
-        background-color: #ff8c00;
-        color: #fff;
-    }
+.btn-card:hover {
+    background-color: #ff8c00;
+    color: #fff;
+}
 
-/* ===== Mais procurados ===== */
 .procurados {
     padding: 2rem 0 3.5rem;
 }
@@ -196,23 +194,23 @@
     height: 130px;
 }
 
-    .procurado-item .procurado-img {
-        width: 84px;
-        height: 100%;
-        object-fit: cover;
-        border-radius: 8px 0px 0px 8px;
-    }
+.procurado-item .procurado-img {
+    width: 84px;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px 0px 0px 8px;
+}
 
-    .procurado-item .procurado-numero {
-        font-weight: 600;
-        color: #000;
-        margin-right: 0.35rem;
-    }
+.procurado-item .procurado-numero {
+    font-weight: 600;
+    color: #000;
+    margin-right: 0.35rem;
+}
 
-    .procurado-item .procurado-nome {
-        font-weight: 600;
-        color: #000;
-    }
+.procurado-item .procurado-nome {
+    font-weight: 600;
+    color: #000;
+}
 
 .estrelas {
     color: #ffce00;
@@ -221,7 +219,6 @@
     gap: 5px;
 }
 
-/* ===== Viaje com a gente ===== */
 .viaje-card {
     position: relative;
     border-radius: 16px;
@@ -230,36 +227,35 @@
     height: 100%;
 }
 
-    .viaje-card img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    }
+.viaje-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
-    .viaje-card .viaje-overlay {
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-        padding: 1.5rem;
-    }
+.viaje-card .viaje-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.55), rgba(0, 0, 0, 0.1));
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 1.5rem;
+}
 
-    .viaje-card .viaje-titulo {
-        color: #fff;
-        font-weight: 700;
-        font-size: 1.6rem;
-    }
+.viaje-card .viaje-titulo {
+    color: #fff;
+    font-weight: 700;
+    font-size: 1.6rem;
+}
 
-    .viaje-card .viaje-texto {
-        color: rgba(255, 255, 255, 0.9);
-        max-width: 380px;
-    }
+.viaje-card .viaje-texto {
+    color: rgba(255, 255, 255, 0.9);
+    max-width: 380px;
+}
 
-/* ===== Benefícios ===== */
 .beneficios {
     padding: 3.5rem 0;
     background-color: #fff;
@@ -282,15 +278,15 @@
     height: 120%;
 }
 
-    .beneficio .beneficio-icone {
-        width: 76px;
-        height: 76px;
-        border-radius: 50%;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 2rem;
-    }
+.beneficio .beneficio-icone {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+}
 
 .icone-azul {
     background-color: #d5e6f7;
@@ -325,7 +321,6 @@
     margin-bottom: 0;
 }
 
-/* ===== Depoimentos ===== */
 .depoimentos {
     background: linear-gradient(135deg, #f5821f, #f2994a);
     color: #fff;
@@ -406,39 +401,38 @@
     font-size: 0.85rem;
 }
 
-/* ===== Dots do carrossel ===== */
+
 .carrossel-dots {
     display: flex;
     justify-content: center;
     gap: 12px;
     margin-top: 35px;
 }
+     
+.carrossel-dots .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: #888;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
 
-    .carrossel-dots .dot {
-        width: 12px;
-        height: 12px;
-        border-radius: 50%;
-        background-color: #888;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        display: inline-block;
-    }
+.carrossel-dots .dot.ativo {
+    background-color: #fff !important;
+    transform: scale(1.3);
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
 
-        .carrossel-dots .dot.ativo {
-            background-color: #fff !important;
-            transform: scale(1.3);
-            box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-        }
-
-/* ===== Responsivo ===== */
 @media (max-width: 900px) {
     .banner {
         min-height: 460px;
     }
 
-        .banner img {
-            height: 450px;
-        }
+    .banner img {
+        height: 450px;
+    }
 
     .banner-conteudo {
         top: 180px;
@@ -446,25 +440,26 @@
         max-width: 90%;
     }
 
-        .banner-conteudo .titulo-banner {
-            font-size: 2.2rem;
-        }
+    .banner-conteudo .titulo-banner {
+        font-size: 2.2rem;
+    }
 
     .barra-busca-pacotes {
         grid-template-columns: 1fr 1fr;
     }
 
-        .barra-busca-pacotes .btn {
-            grid-column: 1 / -1;
-            height: 48px;
-            padding: 0;
-        }
+    .barra-busca-pacotes .btn {
+        grid-column: 1 / -1;
+        height: 48px;
+        padding: 0;
+    }
 
     .depoimento-slide {
         flex: 0 0 calc((100% - 20px) / 2);
     }
 }
 
+/* Responsivo */
 @media (max-width: 600px) {
     .banner {
         min-height: 400px;

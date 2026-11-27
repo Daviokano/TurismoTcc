@@ -6,7 +6,6 @@
     text-decoration: none;
 }
 
-/* ===== Base ===== */
 * {
     font-family: "Poppins", sans-serif;
     font-weight: 600;
@@ -21,18 +20,6 @@ main {
     flex: 1;
 }
 
-@media (min-width: 768px) {
-    html {
-        font-size: 16px;
-    }
-
-    .navbar-collapse .nav-item {
-        align-items: center;
-        margin-bottom: 5px;
-    }
-}
-
-/* ===== NAVBAR ===== */
 .navbar {
     background-color: #fff;
     box-shadow: 0 1px 6px rgba(0, 0, 0, 0.08);
@@ -65,7 +52,6 @@ main {
     color: #f5821f;
 }
 
-/* ===== Links do menu principal (com animação laranja) ===== */
 .navbar .navbar-nav.mx-auto .nav-link {
     position: relative;
     color: #333;
@@ -76,28 +62,27 @@ main {
     display: inline-block;
 }
 
-    .navbar .navbar-nav.mx-auto .nav-link::after {
-        content: "" !important;
-        display: block !important;
-        position: absolute !important;
-        left: 0 !important;
-        bottom: -5px !important;
-        width: 0 !important;
-        height: 2px !important;
-        background-color: #f5821f !important;
-        transition: width 0.3s ease !important;
-        pointer-events: none;
-    }
+.navbar .navbar-nav.mx-auto .nav-link::after {
+    content: "" !important;
+    display: block !important;
+    position: absolute !important;
+    left: 0 !important;
+    bottom: -5px !important;
+    width: 0 !important;
+    height: 2px !important;
+    background-color: #f5821f !important;
+    transition: width 0.3s ease !important;
+    pointer-events: none;
+}
 
-    .navbar .navbar-nav.mx-auto .nav-link:hover {
-        color: #f5821f;
-    }
+.navbar .navbar-nav.mx-auto .nav-link:hover {
+    color: #f5821f;
+}
 
-        .navbar .navbar-nav.mx-auto .nav-link:hover::after {
-            width: 100% !important;
-        }
+.navbar .navbar-nav.mx-auto .nav-link:hover::after {
+    width: 100% !important;
+}
 
-/* ===== Dropdown (sem animação) ===== */
 .navbar .dropdown-menu .dropdown-item,
 .navbar .dropdown-menu .dropdown-item:hover,
 .navbar .dropdown-menu .dropdown-item:focus {
@@ -106,12 +91,11 @@ main {
     transition: background-color 0.2s, color 0.2s;
 }
 
-    .navbar .dropdown-menu .dropdown-item:hover {
-        background-color: #f3f4f6;
-        color: #f5821f;
-    }
-
-/* ===== Área de ações (login + carrinho) ===== */
+.navbar .dropdown-menu .dropdown-item:hover {
+    background-color: #f3f4f6;
+    color: #f5821f;
+}
+    
 .header-actions {
     gap: 14px;
     margin: 0;
@@ -120,13 +104,13 @@ main {
     align-items: center;
 }
 
-    .header-actions .nav-item {
-        margin: 0;
-        display: flex;
-        align-items: center;
-    }
+.header-actions .nav-item {
+    margin: 0;
+    display: flex;
+    align-items: center;
+}
 
-/* ===== Botão de Login (equilibrado) ===== */
+
 .navbar .btn.btn-login {
     display: inline-flex;
     align-items: center;
@@ -146,17 +130,16 @@ main {
     transition: background-color 0.2s, transform 0.1s;
 }
 
-    .navbar .btn.btn-login:hover {
-        background-color: #d96e12;
-        color: #fff;
-        transform: translateY(-1px);
-    }
+.navbar .btn.btn-login:hover {
+    background-color: #d96e12;
+    color: #fff;
+    transform: translateY(-1px);
+}
 
-    .navbar .btn.btn-login:active {
-        transform: translateY(0);
-    }
+.navbar .btn.btn-login:active {
+    transform: translateY(0);
+}
 
-/* ===== Carrinho (equilibrado) ===== */
 .navbar .cart-icon {
     display: inline-flex;
     align-items: center;
@@ -182,7 +165,6 @@ main {
     line-height: 1;
 }
 
-/* ===== FOOTER ===== */
 .footer-horizon {
     background-color: #1a3a8f;
     color: #fff;
@@ -296,4 +278,16 @@ main {
 
 .footer-bottom a:hover {
     text-decoration: underline;
+}
+
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+
+    .navbar-collapse .nav-item {
+        align-items: center;
+        margin-bottom: 5px;
+    }
 }
